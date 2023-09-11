@@ -3,9 +3,9 @@ layout: post
 title:  "Permutation (How to Count?)"
 ---
 
-# Permutation (How to Count?)
+### Permutation (How to Count?)
 
-
+![dice](assets/dice.png)
 When I first tried to understand “permutation,” it felt like banging my head against a wall for hours. The name itself sounded mysterious and scary, but actually, it turned out to be just an advanced counting method.
 
 If we want to know how many items are inside a box, it’s quite simple. We just need to examine each item in the box one by one and increment the count by 1 for each item we encounter. (These items can be anything discrete, such as apples, oranges, etc.)
