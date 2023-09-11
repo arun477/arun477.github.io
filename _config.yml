@@ -4,7 +4,7 @@ email: arunarumugam411@gmail.com
 description: "I help machines!"
 baseurl: ""
 url: ""
-github_username:  arun477
+github_username: arun477
 
 # Build settings
 markdown: kramdown
