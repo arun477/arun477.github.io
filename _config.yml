@@ -1,9 +1,9 @@
 # Site settings
 title: Arun Arumugam
-email: 
+email: arunarumugam411@gmail.com
 description: "I help machines!"
-baseurl: ""
-url: "https://arun477.github.io/arun/"
+baseurl: "https://arun477.github.io"
+url: "https://arun477.github.io"
 github_username:  arun477
 
 # Build settings
