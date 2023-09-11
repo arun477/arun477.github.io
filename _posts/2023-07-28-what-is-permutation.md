@@ -4,7 +4,7 @@ title:  "Permutation (How to Count?)"
 ---
 
 # Permutation (How to Count?)
-![dice](assets/dice.png)
+![dice](/assets/dice.png)
 
 When I first tried to understand “permutation,” it felt like banging my head against a wall for hours. The name itself sounded mysterious and scary, but actually, it turned out to be just an advanced counting method.
 
