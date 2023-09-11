@@ -4,7 +4,6 @@ title:  "Permutation (How to Count?)"
 ---
 
 ### Permutation (How to Count?)
-<!-- ![dice](/assets/dice.png) -->
 <img src="/assets/dice.png" width="300">
 
 
