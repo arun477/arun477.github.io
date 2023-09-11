@@ -3,6 +3,8 @@ layout: post
 title:  "Permutation (How to Count?)"
 ---
 
+# Permutation (How to Count?)
+
 
 When I first tried to understand “permutation,” it felt like banging my head against a wall for hours. The name itself sounded mysterious and scary, but actually, it turned out to be just an advanced counting method.
 
@@ -23,7 +25,7 @@ Now you can extract the pattern from here. If you start at the root, you will ha
 
 Ok, now you realize it doesn’t have to be 8; it can be any number. Still, this process makes sense and seems like it will work for other numbers of items. So, you replace 8 with the placeholder “n,” and the pattern will be as follows:
 
-n x (n-1) x (n-2) x …. x 1
+`n x (n-1) x (n-2) x …. x 1`
 
 The shorthand for the above one is the following:
 
@@ -32,10 +34,11 @@ n! (spelled as “n factorial”)
 So now you can plug in any number for “n” and you can count how many way’s to order those “n” items using the above formula.
 
 By the way, you plug in 8 for your flag color example and the answer is
-
+```
 n = 8
 
 n! = 8! = 8x7x6x5x4x3x2x1 = 40,320
+```
 
 Oh, Jesus, you think it’s worth the effort you put into working out this method to count before you spend days to finish the 40,320 possible orders for 8 colors.
 
@@ -45,30 +48,37 @@ What if I want to choose only 3 ordered colors from 8 colors?
 What if I have the option to choose the same color at each step? (For example, you can choose the same 8 colors repeatedly)
 For the first question, the answer is to simply stop the sequence after 3 steps or tree branching in 3 levels.
 
+```
 8x7x6
+```
 
 The general pattern is
 
+```
 n x (n-1) x … x (n-k+1)
+```
 
 The shorthand notation for this is
 
+```
 n! / (n-k)!
+```
 
 For the second question, the answer is that at each step, you will have the same number of choices. So, instead of subtracting 1 choice at each step, you won’t subtract at all and keep the same number of choices all the way up to the “n” steps. In that case, the formula is simply
 
+```
 8⁸
+```
 
 The general pattern is
 
+```
 n^r (n-number of choices, r-number of steps or items)
+```
 
 So, this is just a method for counting in specific settings.
 
-Readings:
+#### Readings:
+- [mathsisfun](mathsisfun.com/combinatorics/combinations-permutations.html)
+- [khanacademy](https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:prob-comb/x9e81a4f98389efdf:compound-probability-of-ind-events-using-mult-rule/quiz/x9e81a4f98389efdf:prob-comb-quiz-1)
 
-Combinations and Permutations
-In English we use the word "combination" loosely, without thinking if the order of things is important. In other words…
-www.mathsisfun.com
-
-https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:prob-comb/x9e81a4f98389efdf:compound-probability-of-ind-events-using-mult-rule/quiz/x9e81a4f98389efdf:prob-comb-quiz-1
