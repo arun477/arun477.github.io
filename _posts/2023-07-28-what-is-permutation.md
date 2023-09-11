@@ -21,6 +21,8 @@ After hours and hours of thinking, you finally got an idea. The idea is to imagi
 
 This process seems to make sense. You try to visualize this process to understand it better. You visualize each step as a branching in a tree, starting at the root, and you can have 8 choices for the first step of the branch. In the second step, each branch has only 7 choices, and so on until you reach 1 choice for each branch. Now, you realize that each branch represents exactly a different order of colors you need to try. So, with a little mental effort, it becomes obvious that if you count all the branches, that’s the count you needed. Cool!
 
+![binary_tree](/assets//binary_tree.png)
+
 
 Now you can extract the pattern from here. If you start at the root, you will have 8 items. In the next step, you will have 8x7 (this is because each branch will have 7 branches each at the next step). If we continue this pattern, it will be like 8x7x6x5x4x3x2x1. Okay, this makes sense.
 
