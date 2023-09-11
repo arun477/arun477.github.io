@@ -1,0 +1,17 @@
+# Site settings
+title: Arun Arumugam Personal Website
+email: 
+description: "I help machines!"
+baseurl: ""
+url: "https://arun477.github.io/arun/"
+github_username:  arun477
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+highlighter: rouge
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
