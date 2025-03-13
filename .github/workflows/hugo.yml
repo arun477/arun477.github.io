@@ -2,7 +2,8 @@ name: Deploy Hugo site to Pages
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -14,6 +15,10 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,21 +26,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          submodules: true
-          fetch-depth: 0
+          submodules: recursive
+
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: 'latest'
           extended: true
+
       - name: Build
         run: hugo --minify
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           path: ./public
+
   deploy:
     environment:
       name: github-pages
