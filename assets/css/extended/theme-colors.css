@@ -1,0 +1,188 @@
+/* Cream-based developer theme styles */
+
+:root {
+    /* Light theme */
+    --theme: var(--background, #FDFBEE);
+    --primary-color: var(--primary, #3b82f6);
+    --secondary-color: var(--secondary, #4f46e5);
+    --text-color: var(--text, #1e293b);
+    
+    /* Apply colors to PaperMod variables */
+    --entry: #f8f5e6;
+    --primary: var(--text-color);
+    --secondary: #475569;
+    --tertiary: #64748b;
+    --content: var(--text-color);
+    --border: #e9e4d0;
+    --link-color: var(--primary-color);
+    --link-hover-color: var(--secondary-color);
+    
+    /* Code block styling */
+    --hljs-bg: #f5f2e8;
+    --code-bg: #f5f2e8;
+    --code-color: #1e293b;
+    --code-border: #e9e4d0;
+}
+
+[theme="dark"] {
+    /* Dark theme */
+    --theme: #1e1e1e;
+    --primary-color: var(--primary, #3b82f6);
+    --secondary-color: var(--secondary, #4f46e5);
+    --text-color: #e2e8f0;
+    
+    /* Apply colors to PaperMod variables */
+    --entry: #252526;
+    --primary: var(--text-color);
+    --secondary: #bbb;
+    --tertiary: #999;
+    --content: var(--text-color);
+    --border: #333;
+    --link-color: var(--primary-color);
+    --link-hover-color: var(--secondary-color);
+    
+    /* Code block styling */
+    --hljs-bg: #1e1e1e;
+    --code-bg: #1e1e1e;
+    --code-color: #e2e8f0;
+    --code-border: #333;
+}
+
+/* Base styles */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+}
+
+/* Enhanced code blocks for developers */
+pre, code {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', monospace;
+    border-radius: 4px;
+}
+
+pre {
+    padding: 16px;
+    overflow: auto;
+    border: 1px solid var(--code-border);
+}
+
+/* Inline code */
+code {
+    padding: 2px 4px;
+    background-color: var(--code-bg);
+    color: var(--code-color);
+}
+
+/* Special styling for the homepage */
+.home-info h1 {
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.home-info p {
+    color: var(--secondary);
+}
+
+.social-icons a {
+    color: var(--tertiary);
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--primary-color) !important;
+}
+
+/* Navigation styling */
+.logo a {
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.nav a {
+    color: var(--tertiary);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav a:hover {
+    color: var(--primary-color) !important;
+}
+
+/* Post styling */
+.post-title {
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.post-title a:hover {
+    color: var(--primary-color) !important;
+}
+
+.post-content {
+    color: var(--content);
+}
+
+.post-content a {
+    color: var(--link-color);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--link-color);
+    transition: all 0.3s;
+}
+
+.post-content a:hover {
+    color: var(--link-hover-color);
+    border-bottom: 1px solid var(--link-hover-color);
+}
+
+/* Post entry cards */
+.post-entry {
+    border-radius: 8px;
+    background-color: var(--entry);
+    border: 1px solid var(--border);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.post-entry:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Tags */
+.terms-tags a {
+    background: var(--entry);
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    color: var(--tertiary);
+    transition: all 0.3s;
+}
+
+.terms-tags a:hover {
+    background: var(--primary-color);
+    color: white !important;
+    border-color: var(--primary-color);
+}
+
+/* Custom button style */
+.button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    color: white !important;
+    border-radius: 6px;
+    font-weight: 500;
+    text-decoration: none !important;
+    transition: background-color 0.2s;
+    border: none;
+}
+
+.button:hover {
+    background-color: var(--secondary-color);
+    text-decoration: none !important;
+}
+
+/* Footer styling */
+.footer {
+    color: var(--tertiary);
+    border-top: 1px solid var(--border);
+}

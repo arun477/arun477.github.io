@@ -1,3 +1,77 @@
-baseURL = 'https://arun477.github.io/'
-languageCode = 'en-us'
-title = 'Arun'
+baseURL = "https://arun477.github.io/"
+title = "Arun"
+paginate = 5
+theme = "PaperMod"
+
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+
+minifyOutput = true
+
+# Required for index.html generation
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[params]
+  env = "production"
+  showCodeCopyButtons = true
+  title = "Arun"
+  description = "My personal website and blog"
+  keywords = ["Blog", "Portfolio", "Personal"]
+  author = "Arun"
+  DateFormat = "January 2, 2006"
+  defaultTheme = "light"  
+  disableThemeToggle = false
+
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = false
+  ShowWordCount = true
+  ShowRssButtonInSectionTermList = true
+  UseHugoToc = true
+  disableSpecial1stPost = false
+  disableScrollToTop = false
+  hidefooter = false
+  ShowFullTextinRSS = false
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/arun477"
+
+  [params.themeColor]
+    primary = "#3b82f6"     # Blue - for links and accents
+    secondary = "#4f46e5"   # Indigo - for secondary elements
+    background = "#FDFBEE"  # Cream background - soft and easy on the eyes
+    text = "#1e293b"        # Dark slate - for readable text
+
+
+[[menu.main]]
+  identifier = "home"
+  name = "Home"
+  url = "/"
+  weight = 10
+
+[[menu.main]]
+  identifier = "posts"
+  name = "Posts"
+  url = "/posts/"
+  weight = 20
+
+[[menu.main]]
+  identifier = "tags"
+  name = "Tags"
+  url = "/tags/"
+  weight = 30
+
+
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = true
+    lineNumbersInTable = true
+    style = "github"

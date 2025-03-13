@@ -1,9 +1,13 @@
 ---
-title: "Home"
+title: "Arun Arumugam"
 date: 2025-03-13
 draft: false
 ---
 
-# Welcome to My Website
+# Hello, I'm Arun 👋
 
-This is a simple home page to test GitHub Pages deployment.
+Software Engineer.
+
+I enjoy developing open-source tools and working on machine learning models.
+
+[GitHub](https://github.com/arun477) | [LinkedIn](https://linkedin.com/in/arun477)
