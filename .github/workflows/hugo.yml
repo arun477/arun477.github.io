@@ -48,6 +48,7 @@ jobs:
           hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
           ls -la public/
 
+      # Direct upload to pages artifact
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
@@ -63,5 +64,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-        with:
-          timeout: 600000  # 10 minutes in milliseconds
