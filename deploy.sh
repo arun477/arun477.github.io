@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Push source code to main branch first
+git add .
+git commit -m "Source update $(date)"
+git push origin main
+
 # Build the Hugo site
 hugo
 

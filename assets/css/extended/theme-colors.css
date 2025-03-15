@@ -186,3 +186,60 @@ code {
     color: var(--tertiary);
     border-top: 1px solid var(--border);
 }
+
+
+/* Global font size reduction */
+:root {
+    --fontSize-base: 16px;          /* Base font size (default is usually 18px) */
+    --lineHeight-normal: 1.5;       /* Line height */
+  }
+  
+  /* Adjust body text */
+  body {
+    font-size: var(--fontSize-base);
+    line-height: var(--lineHeight-normal);
+  }
+  
+  /* Adjust heading sizes */
+  h1 {
+    font-size: 1.8rem;  /* Original is typically ~2rem */
+  }
+  
+  h2 {
+    font-size: 1.5rem;  /* Original is typically ~1.7rem */
+  }
+  
+  h3 {
+    font-size: 1.3rem;  /* Original is typically ~1.4rem */
+  }
+  
+  h4, h5, h6 {
+    font-size: 1.1rem;  /* Smaller headers */
+  }
+  
+  /* Adjust post content */
+  .post-content p, .post-content li {
+    font-size: var(--fontSize-base);
+    line-height: var(--lineHeight-normal);
+  }
+  
+  /* Adjust code blocks */
+  pre, code {
+    font-size: 0.9rem !important;  /* Make code slightly smaller */
+  }
+  
+  /* Optional: Adjust other elements */
+  .post-title {
+    font-size: 1.8rem;  /* Smaller post titles */
+  }
+  
+  .entry-content {
+    font-size: var(--fontSize-base);
+  }
+  
+  /* Make sure mobile view looks good too */
+  @media (max-width: 768px) {
+    :root {
+      --fontSize-base: 15px;  /* Even smaller on mobile */
+    }
+  }

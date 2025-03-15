@@ -62,6 +62,12 @@ minifyOutput = true
   weight = 20
 
 [[menu.main]]
+  identifier = "utilities"
+  name = "Utilities"
+  url = "/utilities/"
+  weight = 40
+
+[[menu.main]]
   identifier = "tags"
   name = "Tags"
   url = "/tags/"
@@ -72,6 +78,6 @@ minifyOutput = true
   [markup.highlight]
     codeFences = true
     guessSyntax = true
-    lineNos = true
+    lineNos = false
     lineNumbersInTable = true
-    style = "github"
+    style = "evergarden"
