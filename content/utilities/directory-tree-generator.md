@@ -17,7 +17,7 @@ This Python utility recursively traverses directories starting from a specified 
 
 ## Features
 
-- 🌳 **Clean Visualization**: Creates a human-readable directory tree with proper indentation and connecting lines
+- 🌳 **Clean Visualization**: Creates a human-readable/llm directory tree with proper indentation and connecting lines
 - 🚫 **Exclusion Filters**: Easily exclude directories like `node_modules`, `__pycache__`, `.git`, etc.
 - 💾 **File Output**: Saves the tree structure to a text file instead of just console output
 - ⚡ **Performance Optimized**: Uses efficient data structures and minimizes filesystem operations
