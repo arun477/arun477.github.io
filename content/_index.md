@@ -8,6 +8,6 @@ draft: false
 
 Software Engineer.
 
-I like developing open-source tools and tinkering with machine learning models.
+Mostly personal notes and reminder for me.
 
 [GitHub](https://github.com/arun477) | [LinkedIn](https://linkedin.com/in/arun477)
