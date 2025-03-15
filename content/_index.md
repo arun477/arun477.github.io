@@ -8,6 +8,6 @@ draft: false
 
 Software Engineer.
 
-Mostly personal notes and reminder for me.
+Mostly personal notes and reminders for me.
 
 [GitHub](https://github.com/arun477) | [LinkedIn](https://linkedin.com/in/arun477)
