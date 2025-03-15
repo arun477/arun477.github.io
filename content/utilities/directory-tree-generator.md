@@ -4,7 +4,7 @@ date: 2025-03-15
 description: "A Python utility to recursively generate directory tree structures and save them to text files"
 summary: "Efficiently traverse directories, exclude specified folders like node_modules and __pycache__, and generate a clean tree visualization in a text file."
 tags: ["python", "utility", "filesystem", "directory", "tree"]
-categories: ["utilities", "python", "llm assisted generation"]
+categories: ["utilities", "python", "llm assisted"]
 ShowToc: true
 TocOpen: true
 ShowCodeCopyButtons: true
