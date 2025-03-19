@@ -96,7 +96,7 @@ project/
 
 ## Source and Contributions
 
-The project is [available on GitHub](https://github.com/yourusername/dirtree). Contributions, issues, and feature requests are welcome.
+The project is [available on GitHub](https://github.com/arun477/dirtree). Contributions, issues, and feature requests are welcome.
 
 ## Technical Implementation
 
