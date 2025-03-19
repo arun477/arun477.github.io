@@ -3,7 +3,10 @@ title: "Bharat-NanoBEIR: Indian Language Information Retrieval Dataset"
 date: 2025-03-13
 draft: false
 tags: ["dataset", "information retrieval", "indian languages", "nlp"]
-featured: "/images/embedding_eval_for_indic.jpeg"  
+cover:
+    image: "images/embedding_eval_for_indic.jpeg"
+    alt: "Bharat-NanoBEIR Dataset Banner"
+    caption: "Information Retrieval Dataset for Indian Languages"
 ---
 
 The **Bharat-NanoBEIR** dataset is part of a collection that provides information retrieval datasets for Indian languages. It is derived from the NanoBEIR project, which offers smaller versions of BEIR datasets with 50 queries and up to 10K documents each.
