@@ -37,6 +37,10 @@ minifyOutput = true
   disableScrollToTop = false
   hidefooter = false
   ShowFullTextinRSS = false
+  assets = { customJS = ["js/posthog.js"] }
+
+
+  
 
   [[params.socialIcons]]
     name = "github"
