@@ -243,3 +243,8 @@ code {
       --fontSize-base: 15px;  /* Even smaller on mobile */
     }
   }
+
+  .post-entry .entry-cover img {
+    max-height: 200px; /* Adjust this value as needed */
+    object-fit: cover;
+}
