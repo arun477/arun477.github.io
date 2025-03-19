@@ -1,6 +1,7 @@
 ---
 title: "llmdirtree: Directory Visualization and Context Generator for LLM Workflows"
 date: 2025-03-15
+lastmod: 2025-03-19
 description: "A Python CLI tool that generates both directory trees and code context summaries optimized for LLM interactions"
 summary: "Enhance your AI coding assistant experience with rich project context that respects privacy and security boundaries."
 tags: ["python", "cli", "filesystem", "llm", "developer-tools", "security"]
@@ -35,12 +36,15 @@ pip install llmdirtree
 - **Clean, standardized output** with Unicode box-drawing characters
 - **Intelligent filtering** to exclude irrelevant directories (`node_modules`, `.git`, etc.)
 - **Efficient memory usage** by providing structural context without full codebase uploads
+- **Full .gitignore integration** ensuring sensitive files are excluded from visualization
 
 ### LLM Context Generation
 
 - **AI-powered code analysis** via OpenAI's API
 - **Security-focused** with automatic `.gitignore` pattern recognition
 - **Rich contextual summaries** of your codebase organized by directory
+- **Intelligent large file handling** with automatic chunking and summarization
+- **Customizable model selection** to choose your preferred OpenAI model
 - **Dependency-free** implementation using system curl instead of heavy libraries
 
 ## Usage
@@ -77,6 +81,9 @@ llmdirtree --max-files 150 --llm-context
 
 # Override gitignore protection (not recommended)
 llmdirtree --ignore-gitignore --llm-context
+
+# Specify OpenAI model (skips prompting)
+llmdirtree --llm-context --model gpt-4
 ```
 
 ## Example Outputs
@@ -159,6 +166,39 @@ project/
 - **Privacy protection** by avoiding sending sensitive files to external services
 - **Time-saving** compared to manually explaining your project organization
 - **Token-efficient** by providing only the most relevant information
+- **Handles large codebases** by intelligently processing and summarizing large files
+
+## Advanced Features
+
+### Intelligent Large File Handling
+
+One of the challenges when analyzing code for LLM context is dealing with large files that exceed token limits. llmdirtree now intelligently processes large files by:
+
+1. **Automatic file chunking** - Breaking large files into semantically meaningful chunks
+2. **Per-chunk summarization** - Analyzing each chunk independently
+3. **Cohesive synthesis** - Creating a unified summary that captures the essence of the entire file
+
+This approach ensures even large files like complex modules or extensive configuration are appropriately represented in your context.
+
+### OpenAI Model Selection
+
+llmdirtree offers flexible model selection to balance performance and cost:
+
+- **Interactive selection** - By default, you'll be prompted once per run to select a model
+- **Command-line specification** - Skip the prompt with `--model MODEL_NAME`
+- **Sensible defaults** - Uses `gpt-3.5-turbo-16k` for batch processing and `gpt-3.5-turbo` for project overview
+
+This flexibility allows you to choose the right model for your specific needs, whether optimizing for speed, token capacity, or analysis quality.
+
+### Enhanced .gitignore Support
+
+The tool now fully respects .gitignore patterns for both the directory tree visualization and context generation:
+
+- **Complete pattern recognition** - Supports all standard .gitignore syntax including wildcards
+- **Directory-level protection** - Skips entire directories that match ignore patterns
+- **Consistent application** - Same ignore logic applied to both tree visualization and context generation
+
+This ensures sensitive files or directories are completely excluded from any visualization or analysis.
 
 ## Security Features
 
@@ -178,5 +218,6 @@ The tool takes security seriously:
 3. **Dependency-free API calls** using system curl instead of requiring libraries
 4. **Batch processing** of files for context generation
 5. **Smart token management** to maximize context quality within token limits
+6. **Intelligent file chunking** for processing large files effectively
 
 For more implementation details or to contribute, check the [GitHub repository](https://github.com/arun477/llmdirtree).
