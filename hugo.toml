@@ -29,7 +29,6 @@ minifyOutput = true
   ShowShareButtons = true
   ShowPostNavLinks = true
   ShowBreadCrumbs = true
-  ShowCodeCopyButtons = false
   ShowWordCount = true
   ShowRssButtonInSectionTermList = true
   UseHugoToc = true
