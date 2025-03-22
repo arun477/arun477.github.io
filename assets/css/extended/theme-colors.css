@@ -2,12 +2,12 @@
 
 :root {
     /* Light theme */
-    --theme: var(--background, #FDFBEE);
-    --primary-color: var(--primary, #3b82f6);
-    --secondary-color: var(--secondary, #4f46e5);
-    --text-color: var(--text, #1e293b);
+    --theme: #FDFBEE;
+    --primary-color: #3b82f6;
+    --secondary-color: #4f46e5;
+    --text-color: #1e293b;
     
-    /* Apply colors to PaperMod variables */
+    /* PaperMod variables */
     --entry: #f8f5e6;
     --primary: var(--text-color);
     --secondary: #475569;
@@ -26,16 +26,16 @@
 
 [theme="dark"] {
     /* Dark theme */
-    --theme: #1e1e1e;
-    --primary-color: var(--primary, #3b82f6);
-    --secondary-color: var(--secondary, #4f46e5);
+    --theme: #1a1b1e;
+    --primary-color: #60a5fa;
+    --secondary-color: #818cf8;
     --text-color: #e2e8f0;
     
-    /* Apply colors to PaperMod variables */
+    /* PaperMod variables */
     --entry: #252526;
     --primary: var(--text-color);
-    --secondary: #bbb;
-    --tertiary: #999;
+    --secondary: #cbd5e1;
+    --tertiary: #94a3b8;
     --content: var(--text-color);
     --border: #333;
     --link-color: var(--primary-color);
