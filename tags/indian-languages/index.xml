@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Indian Languages on Arun</title><link>https://arun477.github.io/tags/indian-languages/</link><description>Recent content in Indian Languages on Arun</description><generator>Hugo</generator><language>en</language><lastBuildDate>Thu, 13 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://arun477.github.io/tags/indian-languages/index.xml" rel="self" type="application/rss+xml"/><item><title>Bharat-NanoBEIR: Indian Language Information Retrieval Dataset</title><link>https://arun477.github.io/posts/embedding_eval_for_indic/</link><pubDate>Thu, 13 Mar 2025 00:00:00 +0000</pubDate><guid>https://arun477.github.io/posts/embedding_eval_for_indic/</guid><description>&lt;p>The &lt;strong>Bharat-NanoBEIR&lt;/strong> dataset is part of a collection that provides information retrieval datasets for Indian languages. It is derived from the NanoBEIR project, which offers smaller versions of BEIR datasets with 50 queries and up to 10K documents each.&lt;/p>
+&lt;h3 id="dataset-overview">Dataset Overview&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>Queries:&lt;/strong> 50 per dataset&lt;/li>
+&lt;li>&lt;strong>Documents:&lt;/strong> Up to 10K per dataset&lt;/li>
+&lt;/ul>
+&lt;p>This dataset aims to facilitate research and development in the field of information retrieval, particularly for Indian languages.&lt;/p>
+&lt;h3 id="learn-more">Learn More&lt;/h3>
+&lt;p>For further details and to explore the dataset, please visit the following link:&lt;/p></description></item></channel></rss>
