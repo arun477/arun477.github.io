@@ -5,8 +5,8 @@ git add .
 git commit -m "Source update $(date)"
 git push origin main
 
-# Build the Hugo site with the production baseURL
-hugo --baseURL="https://arun477.github.io/" 
+# Build the Hugo site
+hugo
 
 # Navigate to the public directory
 cd public
