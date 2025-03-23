@@ -1,7 +1,7 @@
 ---
 title: Mel Spectrogram
 date: 2025-03-23T00:00:00.000Z
-draft: false
+draft: true
 categories: [posts]
 tags: [audio, signal-processing]
 cover: {image: images/mel_spectrogram.jpeg, alt: Mel Spectrogram Banner, caption: Mel Spectrogram, hiddenInList: true}
