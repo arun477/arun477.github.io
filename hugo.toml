@@ -1,9 +1,7 @@
 baseURL = "https://arun477.github.io/"
 title = "Arun"
-[pagination]
-  pagerSize = 5
+paginate = 5
 theme = "PaperMod"
-
 
 enableRobotsTXT = true
 buildDrafts = false
@@ -34,7 +32,7 @@ minifyOutput = true
   ShowWordCount = true
   ShowRssButtonInSectionTermList = true
   UseHugoToc = true
-  disableSpecial1stPost = true
+  disableSpecial1stPost = false
   disableScrollToTop = false
   hidefooter = false
   ShowFullTextinRSS = false
@@ -82,8 +80,3 @@ minifyOutput = true
     lineNos = false
     lineNumbersInTable = true
     style = "evergarden"
-
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
-  
