@@ -1,0 +1,24 @@
+.custom-html-container {
+    margin: 2rem 0;
+    width: 100%;
+  }
+  
+  .visualization {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .visualization canvas,
+  .visualization svg {
+    max-width: 100%;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .visualization-caption {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--secondary);
+    text-align: center;
+  }

@@ -1,0 +1,353 @@
+Directory Tree for: /Users/arun/Documents/arun/mywebsite
+Excluding: .git, __pycache__, node_modules, venv
+--------------------------------------------------
+mywebsite/
+├── .DS_Store
+├── .github/
+├── .gitignore
+├── .gitmodules
+├── .hugo_build.lock
+├── archetypes/
+│   └── default.md
+├── assets/
+│   ├── .DS_Store
+│   └── css/
+│       └── extended/
+│           └── theme-colors.css
+├── content/
+│   ├── _index.md
+│   ├── posts/
+│   │   ├── embedding_eval_for_indic.md
+│   │   └── mel_spectrogram.md
+│   └── utilities/
+│       ├── _index.md
+│       └── directory-tree-generator.md
+├── data/
+├── deploy.sh
+├── directory_tree.txt
+├── hugo.toml
+├── i18n/
+├── layouts/
+├── public/
+│   ├── .DS_Store
+│   ├── .nojekyll
+│   ├── 404.html
+│   ├── android-chrome-192x192.png
+│   ├── android-chrome-512x512.png
+│   ├── apple-touch-icon.png
+│   ├── assets/
+│   │   └── css/
+│   │       ├── stylesheet.78d60b8d0c7ea38c0af1838fc1fc7dfea89fe292b02e71a8323555f2d814dd81.css
+│   │       ├── stylesheet.7af0261e140efcc955c93cd0e96b6c382c74dd868a9b27fd10275c854bf7f4c9.css
+│   │       ├── stylesheet.8f51e94ade4dc275034f0ed7bb2ff66db7ec438c191cdf3464cca109c74261a8.css
+│   │       ├── stylesheet.aa1f4f174de50a6ce91a5233079671f0fe1cb87233c4faddc8692d310c238717.css
+│   │       ├── stylesheet.bcd214d079d64797ec96f0dc48620595b999970295b17e54d9dc3b31b15f410f.css
+│   │       └── stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css
+│   ├── categories/
+│   │   ├── index.html
+│   │   ├── index.xml
+│   │   ├── llm/
+│   │   │   ├── index.html
+│   │   │   ├── index.xml
+│   │   │   └── page/
+│   │   │       └── 1/
+│   │   │           └── index.html
+│   │   ├── llm-assisted/
+│   │   │   ├── index.html
+│   │   │   ├── index.xml
+│   │   │   └── page/
+│   │   │       └── 1/
+│   │   │           └── index.html
+│   │   ├── llm-assisted-generation/
+│   │   │   ├── index.html
+│   │   │   ├── index.xml
+│   │   │   └── page/
+│   │   │       └── 1/
+│   │   │           └── index.html
+│   │   ├── python/
+│   │   │   ├── index.html
+│   │   │   ├── index.xml
+│   │   │   └── page/
+│   │   │       └── 1/
+│   │   │           └── index.html
+│   │   ├── tools/
+│   │   │   ├── index.html
+│   │   │   ├── index.xml
+│   │   │   └── page/
+│   │   │       └── 1/
+│   │   │           └── index.html
+│   │   └── utilities/
+│   │       ├── index.html
+│   │       ├── index.xml
+│   │       └── page/
+│   │           └── 1/
+│   │               └── index.html
+│   ├── favicon-16x16.png
+│   ├── favicon-32x32.png
+│   ├── favicon.ico
+│   ├── images/
+│   │   ├── .DS_Store
+│   │   └── embedding_eval_for_indic.jpeg
+│   ├── index.html
+│   ├── index.json
+│   ├── index.xml
+│   ├── page/
+│   │   └── 1/
+│   │       └── index.html
+│   ├── posts/
+│   │   ├── embedding_eval_for_indic/
+│   │   │   └── index.html
+│   │   ├── index.html
+│   │   ├── index.xml
+│   │   └── page/
+│   │       └── 1/
+│   │           └── index.html
+│   ├── robots.txt
+│   ├── sitemap.xml
+│   ├── tags/
+│   │   ├── bharat-nanobeir/
+│   │   │   ├── index.html
+│   │   │   ├── index.xml
+│   │   │   └── page/
+│   │   │       └── 1/
+│   │   │           └── index.html
+│   │   ├── cli/
+│   │   │   ├── index.html
+│   │   │   ├── index.xml
+│   │   │   └── page/
+│   │   │       └── 1/
+│   │   │           └── index.html
+│   │   ├── dataset/
+│   │   │   ├── index.html
+│   │   │   ├── index.xml
+│   │   │   └── page/
+│   │   │       └── 1/
+│   │   │           └── index.html
+│   │   ├── developer-tools/
+│   │   │   ├── index.html
+│   │   │   ├── index.xml
+│   │   │   └── page/
+│   │   │       └── 1/
+│   │   │           └── index.html
+│   │   ├── directory/
+│   │   │   ├── index.html
+│   │   │   ├── index.xml
+│   │   │   └── page/
+│   │   │       └── 1/
+│   │   │           └── index.html
+│   │   ├── filesystem/
+│   │   │   ├── index.html
+│   │   │   ├── index.xml
+│   │   │   └── page/
+│   │   │       └── 1/
+│   │   │           └── index.html
+│   │   ├── index.html
+│   │   ├── index.xml
+│   │   ├── indian-languages/
+│   │   │   ├── index.html
+│   │   │   ├── index.xml
+│   │   │   └── page/
+│   │   │       └── 1/
+│   │   │           └── index.html
+│   │   ├── information-retrieval/
+│   │   │   ├── index.html
+│   │   │   ├── index.xml
+│   │   │   └── page/
+│   │   │       └── 1/
+│   │   │           └── index.html
+│   │   ├── llm/
+│   │   │   ├── index.html
+│   │   │   ├── index.xml
+│   │   │   └── page/
+│   │   │       └── 1/
+│   │   │           └── index.html
+│   │   ├── nlp/
+│   │   │   ├── index.html
+│   │   │   ├── index.xml
+│   │   │   └── page/
+│   │   │       └── 1/
+│   │   │           └── index.html
+│   │   ├── python/
+│   │   │   ├── index.html
+│   │   │   ├── index.xml
+│   │   │   └── page/
+│   │   │       └── 1/
+│   │   │           └── index.html
+│   │   ├── security/
+│   │   │   ├── index.html
+│   │   │   ├── index.xml
+│   │   │   └── page/
+│   │   │       └── 1/
+│   │   │           └── index.html
+│   │   ├── tree/
+│   │   │   ├── index.html
+│   │   │   ├── index.xml
+│   │   │   └── page/
+│   │   │       └── 1/
+│   │   │           └── index.html
+│   │   └── utility/
+│   │       ├── index.html
+│   │       ├── index.xml
+│   │       └── page/
+│   │           └── 1/
+│   │               └── index.html
+│   ├── touch
+│   └── utilities/
+│       ├── directory-tree-generator/
+│       │   └── index.html
+│       ├── index.html
+│       ├── index.xml
+│       └── page/
+│           └── 1/
+│               └── index.html
+├── static/
+│   ├── .DS_Store
+│   ├── android-chrome-192x192.png
+│   ├── android-chrome-512x512.png
+│   ├── apple-touch-icon.png
+│   ├── favicon-16x16.png
+│   ├── favicon-32x32.png
+│   ├── favicon.ico
+│   └── images/
+│       ├── .DS_Store
+│       └── embedding_eval_for_indic.jpeg
+└── themes/
+    └── PaperMod/
+        ├── .github/
+        │   ├── ISSUE_TEMPLATE/
+        │   │   ├── bug.yaml
+        │   │   ├── config.yml
+        │   │   └── enhancement.yaml
+        │   ├── PULL_REQUEST_TEMPLATE.md
+        │   └── workflows/
+        │       └── gh-pages.yml
+        ├── LICENSE
+        ├── README.md
+        ├── assets/
+        │   ├── css/
+        │   │   ├── common/
+        │   │   │   ├── 404.css
+        │   │   │   ├── archive.css
+        │   │   │   ├── footer.css
+        │   │   │   ├── header.css
+        │   │   │   ├── main.css
+        │   │   │   ├── post-entry.css
+        │   │   │   ├── post-single.css
+        │   │   │   ├── profile-mode.css
+        │   │   │   ├── search.css
+        │   │   │   └── terms.css
+        │   │   ├── core/
+        │   │   │   ├── license.css
+        │   │   │   ├── reset.css
+        │   │   │   ├── theme-vars.css
+        │   │   │   └── zmedia.css
+        │   │   ├── extended/
+        │   │   │   └── blank.css
+        │   │   └── includes/
+        │   │       ├── chroma-mod.css
+        │   │       ├── chroma-styles.css
+        │   │       └── scroll-bar.css
+        │   └── js/
+        │       ├── fastsearch.js
+        │       ├── fuse.basic.min.js
+        │       └── license.js
+        ├── go.mod
+        ├── i18n/
+        │   ├── ar.yaml
+        │   ├── be.yaml
+        │   ├── bg.yaml
+        │   ├── bn.yaml
+        │   ├── ca.yaml
+        │   ├── ckb.yaml
+        │   ├── cs.yaml
+        │   ├── da.yaml
+        │   ├── de.yaml
+        │   ├── el.yaml
+        │   ├── en.yaml
+        │   ├── eo.yaml
+        │   ├── es.yaml
+        │   ├── fa.yaml
+        │   ├── fr.yaml
+        │   ├── he.yaml
+        │   ├── hi.yaml
+        │   ├── hr.yaml
+        │   ├── hu.yaml
+        │   ├── id.yaml
+        │   ├── it.yaml
+        │   ├── ja.yaml
+        │   ├── ko.yaml
+        │   ├── ku.yaml
+        │   ├── mn.yaml
+        │   ├── ms.yaml
+        │   ├── nl.yaml
+        │   ├── no.yaml
+        │   ├── oc.yaml
+        │   ├── pa.yaml
+        │   ├── pl.yaml
+        │   ├── pnb.yaml
+        │   ├── pt.yaml
+        │   ├── ro.yaml
+        │   ├── ru.yaml
+        │   ├── sk.yaml
+        │   ├── sv.yaml
+        │   ├── sw.yaml
+        │   ├── th.yaml
+        │   ├── tr.yaml
+        │   ├── uk.yaml
+        │   ├── uz.yaml
+        │   ├── vi.yaml
+        │   ├── zh-tw.yaml
+        │   └── zh.yaml
+        ├── images/
+        │   ├── screenshot.png
+        │   └── tn.png
+        ├── layouts/
+        │   ├── 404.html
+        │   ├── _default/
+        │   │   ├── _markup/
+        │   │   │   └── render-image.html
+        │   │   ├── archives.html
+        │   │   ├── baseof.html
+        │   │   ├── index.json
+        │   │   ├── list.html
+        │   │   ├── rss.xml
+        │   │   ├── search.html
+        │   │   ├── single.html
+        │   │   └── terms.html
+        │   ├── partials/
+        │   │   ├── anchored_headings.html
+        │   │   ├── author.html
+        │   │   ├── breadcrumbs.html
+        │   │   ├── comments.html
+        │   │   ├── cover.html
+        │   │   ├── edit_post.html
+        │   │   ├── extend_footer.html
+        │   │   ├── extend_head.html
+        │   │   ├── footer.html
+        │   │   ├── head.html
+        │   │   ├── header.html
+        │   │   ├── home_info.html
+        │   │   ├── index_profile.html
+        │   │   ├── post_canonical.html
+        │   │   ├── post_meta.html
+        │   │   ├── post_nav_links.html
+        │   │   ├── share_icons.html
+        │   │   ├── social_icons.html
+        │   │   ├── svg.html
+        │   │   ├── templates/
+        │   │   │   ├── _funcs/
+        │   │   │   │   └── get-page-images.html
+        │   │   │   ├── opengraph.html
+        │   │   │   ├── schema_json.html
+        │   │   │   └── twitter_cards.html
+        │   │   ├── toc.html
+        │   │   └── translation_list.html
+        │   ├── robots.txt
+        │   └── shortcodes/
+        │       ├── collapse.html
+        │       ├── figure.html
+        │       ├── inTextImg.html
+        │       ├── ltr.html
+        │       ├── rawhtml.html
+        │       └── rtl.html
+        └── theme.toml

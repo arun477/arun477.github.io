@@ -1,0 +1,24 @@
+<div class="custom-html-container {{ .Get "class" }}" id="{{ .Get "id" }}">
+    {{ .Inner | safeHTML }}
+  </div>
+  
+  <script>
+  // Ensure code runs after DOM is fully loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    // Execute any script in the container we just created
+    const container = document.getElementById('{{ .Get "id" }}');
+    if (container) {
+      // Find all script tags and execute them
+      const scripts = container.getElementsByTagName('script');
+      for (let i = 0; i < scripts.length; i++) {
+        const script = document.createElement('script');
+        if (scripts[i].src) {
+          script.src = scripts[i].src;
+        } else {
+          script.textContent = scripts[i].textContent;
+        }
+        document.body.appendChild(script);
+      }
+    }
+  });
+  </script>

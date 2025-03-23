@@ -1,0 +1,14 @@
+<!-- Self-hosted KaTeX for LaTeX rendering -->
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script defer src="/katex/katex.min.js"></script>
+<script defer src="/katex/contrib/auto-render.min.js" onload="
+  document.addEventListener('DOMContentLoaded', function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ],
+      throwOnError: false
+    });
+  });
+"></script>
