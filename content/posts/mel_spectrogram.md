@@ -1,7 +1,7 @@
 ---
 title: Mel Spectrogram
 date: 2025-03-23T00:00:00.000Z
-draft: true
+draft: false
 categories: [posts]
 tags: [audio, signal-processing]
 cover: {image: images/mel_spectrogram.jpeg, alt: Mel Spectrogram Banner, caption: Mel Spectrogram, hiddenInList: true}
@@ -339,6 +339,7 @@ The process involves:
 4. Using the pseudo-inverse to estimate the original linear spectrogram
 5. Ensuring all values are non-negative (power can't be negative)
 6. Using Griffin-Lim algorithm to estimate the phase and reconstruct the audio
+
 
 The Mel transformation deliberately discards information that isn't perceptually significant to humans, making it excellent for tasks like speech recognition but less suitable for high-fidelity audio reproduction.
 
