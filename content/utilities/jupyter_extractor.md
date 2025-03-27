@@ -1,5 +1,5 @@
 ---
-title: "Jupyter to LLM Extractor: Streamlining Notebook Content for AI Workflows"
+title: "Jupyter to LLM Extractor"
 date: 2025-03-27
 lastmod: 2025-03-27
 description: "A Chrome extension that extracts content from Jupyter notebooks for more effective interactions with large language models"
