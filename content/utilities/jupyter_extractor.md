@@ -13,6 +13,7 @@ weight: 1
 ---
 
 A Chrome extension that extracts content from Jupyter notebooks for use with large language models.
+{{< figure src="/images/notebook_extractor.png" alt="notebook_extractor" caption="Figure: Jupyter to LLM Extractor" >}}
 
 ## Features
 
