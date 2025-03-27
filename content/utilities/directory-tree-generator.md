@@ -158,19 +158,8 @@ project/
 
 3. The LLM now has both structural and semantic understanding of your code.
 
-## Benefits for Developers
 
-- **Comprehensive context** without uploading your entire codebase
-- **More accurate LLM responses** through both structural and semantic understanding
-- **Security first** with automatic gitignore pattern recognition
-- **Privacy protection** by avoiding sending sensitive files to external services
-- **Time-saving** compared to manually explaining your project organization
-- **Token-efficient** by providing only the most relevant information
-- **Handles large codebases** by intelligently processing and summarizing large files
-
-## Advanced Features
-
-### Intelligent Large File Handling
+### Large File Handling
 
 One of the challenges when analyzing code for LLM context is dealing with large files that exceed token limits. llmdirtree now intelligently processes large files by:
 
@@ -190,7 +179,7 @@ llmdirtree offers flexible model selection to balance performance and cost:
 
 This flexibility allows you to choose the right model for your specific needs, whether optimizing for speed, token capacity, or analysis quality.
 
-### Enhanced .gitignore Support
+### .gitignore Support
 
 The tool now fully respects .gitignore patterns for both the directory tree visualization and context generation:
 
@@ -209,15 +198,5 @@ The tool takes security seriously:
 - **Zero dependencies** approach for core functionality
 - **Configurable privacy** with options to control what's analyzed
 
-## Technical Implementation
-
-`llmdirtree` uses several optimization techniques:
-
-1. **Efficient filesystem traversal** with intelligent file selection
-2. **Robust .gitignore pattern matching** that handles wildcard patterns like Git itself
-3. **Dependency-free API calls** using system curl instead of requiring libraries
-4. **Batch processing** of files for context generation
-5. **Smart token management** to maximize context quality within token limits
-6. **Intelligent file chunking** for processing large files effectively
 
 For more implementation details or to contribute, check the [GitHub repository](https://github.com/arun477/llmdirtree).
