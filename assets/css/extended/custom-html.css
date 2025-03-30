@@ -1,24 +1,415 @@
 .custom-html-container {
-    margin: 2rem 0;
-    width: 100%;
+  margin: 2rem 0;
+  width: 100%;
+}
+
+.visualization {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.visualization canvas,
+.visualization svg {
+  max-width: 100%;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.visualization-caption {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--secondary);
+  text-align: center;
+}
+
+
+/* Add to assets/css/extended/custom-html.css */
+
+/* Style for smaller, subtle Ghibli-style image */
+.post-content p:has(img) {
+  position: relative;
+  margin: 2rem auto;
+  max-width: 500px;
+  /* Control maximum width of image */
+  text-align: center;
+}
+
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+/* Very subtle background glow */
+.post-content p:has(img)::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: radial-gradient(ellipse at center,
+      rgba(161, 217, 255, 0.08) 0%,
+      rgba(161, 217, 255, 0.03) 50%,
+      transparent 70%);
+  z-index: -1;
+  border-radius: 12px;
+}
+
+/* Add a gentle floating effect */
+@keyframes subtle-float {
+  0% {
+    transform: translateY(0) rotate(0deg);
   }
-  
-  .visualization {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+  50% {
+    transform: translateY(-3px) rotate(0.3deg);
   }
-  
-  .visualization canvas,
-  .visualization svg {
-    max-width: 100%;
-    border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+  100% {
+    transform: translateY(0) rotate(0deg);
   }
-  
-  .visualization-caption {
-    margin-top: 0.75rem;
-    font-size: 0.9rem;
-    color: var(--secondary);
-    text-align: center;
+}
+
+.post-content img:hover {
+  animation: subtle-float 3s ease-in-out infinite;
+}
+
+/* Adjust heading spacing */
+.post-content h1 {
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .post-content p:has(img) {
+    max-width: 80%;
   }
+}
+
+
+.post-content p:has(img) {
+  display: block;
+  margin: 1.5rem auto;
+  max-width: 60%;
+  /* Adjust size as needed */
+  clear: both;
+}
+
+
+/* Make corners more or less rounded */
+.post-content img {
+  border-radius: 4px;
+  /* Less rounded */
+  /* or */
+  border-radius: 12px;
+  /* More rounded */
+}
+
+.post-content img {
+  opacity: 0.9;
+}
+
+.post-content p:has(img) {
+  position: relative;
+  margin: 2rem auto;
+  max-width: 500px;
+  text-align: center;
+  transform: rotate(2deg);
+  /* Add clockwise rotation */
+  padding: 10px;
+  /* Add padding to prevent text overlap */
+  clear: both;
+}
+
+/* Update the hover animation for rotated image */
+@keyframes subtle-float-rotated {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-3px) rotate(0.3deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.post-content img:hover {
+  animation: subtle-float-rotated 3s ease-in-out infinite;
+}
+
+
+/* Update to reduce image size */
+.post-content p:has(img) {
+  position: relative;
+  margin: 2rem auto;
+  max-width: 400px;
+  /* Reduced from 500px */
+  text-align: center;
+  transform: rotate(2deg);
+  padding: 10px;
+  clear: both;
+}
+
+/* For percentage-based sizing if you prefer */
+.post-content p:has(img) {
+  max-width: 45%;
+  /* Reduced from 60% */
+}
+
+/* Keep the responsive adjustments */
+@media (max-width: 768px) {
+  .post-content p:has(img) {
+    max-width: 70%;
+    /* Reduced from 80% for mobile */
+  }
+}
+
+
+/* Add hover effect to post previews */
+.posts-list article {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 8px;
+}
+
+.posts-list article:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Add to assets/css/extended/custom-html.css */
+
+/* Hide the original link text */
+.post-content a[href*="github.com"],
+.post-content a[href*="linkedin.com"],
+.post-content a[href*="x.com"] {
+  font-size: 0;
+  display: inline-block;
+  margin: 0 10px;
+  vertical-align: middle;
+}
+
+/* GitHub icon */
+.post-content a[href*="github.com"]::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22'%3E%3C/path%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* LinkedIn icon */
+.post-content a[href*="linkedin.com"]::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z'%3E%3C/path%3E%3Crect x='2' y='9' width='4' height='12'%3E%3C/rect%3E%3Ccircle cx='4' cy='4' r='2'%3E%3C/circle%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.post-content a[href*="x.com"]::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Hover effect */
+.post-content a[href*="github.com"]:hover::before,
+.post-content a[href*="linkedin.com"]:hover::before,
+.post-content a[href*="x.com"]:hover::before {
+  transform: translateY(-2px);
+  opacity: 0.8;
+}
+
+/* Transition for smooth hover */
+.post-content a[href*="github.com"]::before,
+.post-content a[href*="linkedin.com"]::before,
+.post-content a[href*="x.com"]::before {
+  transition: all 0.2s ease;
+}
+
+/* Remove separator characters */
+.post-content p:has(a[href*="github.com"]) {
+  word-spacing: 0;
+}
+
+
+.post-content a[href*="huggingface.co"]::before {
+  content: "🤗";
+  font-size: 20px;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 30px;
+  /* Increased to push the emoji down */
+  text-align: center;
+  font-family: "Segoe UI Emoji", "Apple Color Emoji", sans-serif;
+  vertical-align: middle;
+  /* Better alignment with other icons */
+  position: relative;
+  top: 2px;
+  /* Fine-tune position to align with other icons */
+}
+
+/* Alternative approach using transform */
+.post-content a[href*="huggingface.co"]::before {
+  transform: translateY(0px);
+  /* Adjust this value as needed */
+}
+
+/* Update hover effects to include Hugging Face */
+.post-content a[href*="github.com"]:hover::before,
+.post-content a[href*="linkedin.com"]:hover::before,
+.post-content a[href*="x.com"]:hover::before,
+
+
+/* Update transitions to include Hugging Face */
+.post-content a[href*="github.com"]::before,
+.post-content a[href*="linkedin.com"]::before,
+.post-content a[href*="x.com"]::before,
+.post-content a[href*="huggingface.co"]::before {
+  transition: all 0.2s ease;
+}
+
+* Remove underlines from social links */ .post-content a[href*="github.com"],
+.post-content a[href*="linkedin.com"],
+.post-content a[href*="x.com"],
+.post-content a[href*="huggingface.co"] {
+  text-decoration: none;
+  border-bottom: none;
+  color: inherit;
+}
+
+/* Also remove hover underlines/effects for text */
+.post-content a[href*="github.com"]:hover,
+.post-content a[href*="linkedin.com"]:hover,
+.post-content a[href*="x.com"]:hover,
+.post-content a[href*="huggingface.co"]:hover {
+  text-decoration: none;
+  border-bottom: none;
+}
+
+/* Make sure the line/pipe separators don't have too much spacing */
+.post-content p:has(a[href*="github.com"]) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Hide any vertical bar characters between the links */
+.post-content p:has(a[href*="github.com"]) {
+  word-spacing: normal;
+}
+
+
+/* Aggressive underline removal from social links */
+.post-content a[href*="github.com"],
+.post-content a[href*="linkedin.com"],
+.post-content a[href*="x.com"],
+.post-content a[href*="huggingface.co"] {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: none !important;
+  color: inherit !important;
+  padding: 0 !important;
+  margin: 0 10px !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  outline: none !important;
+  filter: grayscale(100%) brightness(1);
+
+}
+
+/* Target all possible states */
+.post-content a[href*="github.com"]:hover,
+.post-content a[href*="linkedin.com"]:hover,
+.post-content a[href*="x.com"]:hover,
+.post-content a[href*="huggingface.co"]:hover,
+.post-content a[href*="github.com"]:active,
+.post-content a[href*="linkedin.com"]:active,
+.post-content a[href*="x.com"]:active,
+.post-content a[href*="huggingface.co"]:active,
+.post-content a[href*="github.com"]:focus,
+.post-content a[href*="linkedin.com"]:focus,
+.post-content a[href*="x.com"]:focus,
+.post-content a[href*="huggingface.co"]:focus,
+.post-content a[href*="github.com"]:visited,
+.post-content a[href*="linkedin.com"]:visited,
+.post-content a[href*="x.com"]:visited,
+.post-content a[href*="huggingface.co"]:visited {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  outline: none !important;
+}
+
+/* Make sure the container doesn't have styling that affects the links */
+.post-content p:has(a[href*="github.com"]) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px auto;
+  border: none !important;
+  filter: grayscale(100%) brightness(1);
+
+}
+
+/* Restore appropriate appearance for icons */
+.post-content a[href*="github.com"]::before,
+.post-content a[href*="linkedin.com"]::before,
+.post-content a[href*="x.com"]::before,
+.post-content a[href*="huggingface.co"]::before {
+  display: inline-block !important;
+  width: 24px !important;
+  height: 24px !important;
+  opacity: 0.8 !important;
+  filter: grayscale(100%) brightness(1);
+
+}
+
+/* Only apply the transform on hover to the icon */
+.post-content a[href*="github.com"]:hover::before,
+.post-content a[href*="linkedin.com"]:hover::before,
+.post-content a[href*="x.com"]:hover::before,
+.post-content a[href*="huggingface.co"]:hover::before {
+  transform: translateY(-2px) !important;
+}
+
+.post-content a[href*="huggingface.co"]::before {
+  content: "🤗";
+  font-size: 20px;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  /* Reset to normal */
+  text-align: center;
+  font-family: "Segoe UI Emoji", "Apple Color Emoji", sans-serif;
+  filter: grayscale(100%) brightness(1);
+  vertical-align: -1px;
+  /* Slight upward adjustment */
+  position: relative;
+  top: -1px;
+  /* Move slightly up */
+}

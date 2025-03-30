@@ -13,6 +13,7 @@ mywebsite/
 │   ├── .DS_Store
 │   └── css/
 │       └── extended/
+│           ├── custom-html.css
 │           └── theme-colors.css
 ├── content/
 │   ├── _index.md
@@ -21,13 +22,18 @@ mywebsite/
 │   │   └── mel_spectrogram.md
 │   └── utilities/
 │       ├── _index.md
-│       └── directory-tree-generator.md
+│       ├── directory-tree-generator.md
+│       └── jupyter_extractor.md
 ├── data/
 ├── deploy.sh
 ├── directory_tree.txt
 ├── hugo.toml
 ├── i18n/
 ├── layouts/
+│   ├── partials/
+│   │   └── extend_head.html
+│   └── shortcodes/
+│       └── rawhtml.html
 ├── public/
 │   ├── .DS_Store
 │   ├── .nojekyll
@@ -37,13 +43,18 @@ mywebsite/
 │   ├── apple-touch-icon.png
 │   ├── assets/
 │   │   └── css/
-│   │       ├── stylesheet.78d60b8d0c7ea38c0af1838fc1fc7dfea89fe292b02e71a8323555f2d814dd81.css
-│   │       ├── stylesheet.7af0261e140efcc955c93cd0e96b6c382c74dd868a9b27fd10275c854bf7f4c9.css
-│   │       ├── stylesheet.8f51e94ade4dc275034f0ed7bb2ff66db7ec438c191cdf3464cca109c74261a8.css
-│   │       ├── stylesheet.aa1f4f174de50a6ce91a5233079671f0fe1cb87233c4faddc8692d310c238717.css
-│   │       ├── stylesheet.bcd214d079d64797ec96f0dc48620595b999970295b17e54d9dc3b31b15f410f.css
-│   │       └── stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css
+│   │       └── stylesheet.c5d717fd95f16135f2524db5303aac3beafb1f69ea63a7be8dc2e1f263f8f2e1.css
+│   ├── audio/
+│   │   ├── libri1_voice.wav
+│   │   ├── mel_reconstructed_libri1_voice.wav
+│   │   └── reconstructed_libri1_voice.wav
 │   ├── categories/
+│   │   ├── chrome-extensions/
+│   │   │   ├── index.html
+│   │   │   ├── index.xml
+│   │   │   └── page/
+│   │   │       └── 1/
+│   │   │           └── index.html
 │   │   ├── index.html
 │   │   ├── index.xml
 │   │   ├── llm/
@@ -52,13 +63,7 @@ mywebsite/
 │   │   │   └── page/
 │   │   │       └── 1/
 │   │   │           └── index.html
-│   │   ├── llm-assisted/
-│   │   │   ├── index.html
-│   │   │   ├── index.xml
-│   │   │   └── page/
-│   │   │       └── 1/
-│   │   │           └── index.html
-│   │   ├── llm-assisted-generation/
+│   │   ├── posts/
 │   │   │   ├── index.html
 │   │   │   ├── index.xml
 │   │   │   └── page/
@@ -70,13 +75,7 @@ mywebsite/
 │   │   │   └── page/
 │   │   │       └── 1/
 │   │   │           └── index.html
-│   │   ├── tools/
-│   │   │   ├── index.html
-│   │   │   ├── index.xml
-│   │   │   └── page/
-│   │   │       └── 1/
-│   │   │           └── index.html
-│   │   └── utilities/
+│   │   └── tools/
 │   │       ├── index.html
 │   │       ├── index.xml
 │   │       └── page/
@@ -87,10 +86,100 @@ mywebsite/
 │   ├── favicon.ico
 │   ├── images/
 │   │   ├── .DS_Store
-│   │   └── embedding_eval_for_indic.jpeg
+│   │   ├── arun_banner.jpg
+│   │   ├── embedding_eval_for_indic.jpeg
+│   │   ├── mel_spectrogram.jpeg
+│   │   ├── melspectrogram.png
+│   │   ├── notebook_extractor.png
+│   │   └── spectrogram.png
 │   ├── index.html
 │   ├── index.json
 │   ├── index.xml
+│   ├── katex/
+│   │   ├── README.md
+│   │   ├── contrib/
+│   │   │   ├── auto-render.js
+│   │   │   ├── auto-render.min.js
+│   │   │   ├── auto-render.mjs
+│   │   │   ├── copy-tex.js
+│   │   │   ├── copy-tex.min.js
+│   │   │   ├── copy-tex.mjs
+│   │   │   ├── mathtex-script-type.js
+│   │   │   ├── mathtex-script-type.min.js
+│   │   │   ├── mathtex-script-type.mjs
+│   │   │   ├── mhchem.js
+│   │   │   ├── mhchem.min.js
+│   │   │   ├── mhchem.mjs
+│   │   │   ├── render-a11y-string.js
+│   │   │   ├── render-a11y-string.min.js
+│   │   │   └── render-a11y-string.mjs
+│   │   ├── directory_tree.txt
+│   │   ├── fonts/
+│   │   │   ├── KaTeX_AMS-Regular.ttf
+│   │   │   ├── KaTeX_AMS-Regular.woff
+│   │   │   ├── KaTeX_AMS-Regular.woff2
+│   │   │   ├── KaTeX_Caligraphic-Bold.ttf
+│   │   │   ├── KaTeX_Caligraphic-Bold.woff
+│   │   │   ├── KaTeX_Caligraphic-Bold.woff2
+│   │   │   ├── KaTeX_Caligraphic-Regular.ttf
+│   │   │   ├── KaTeX_Caligraphic-Regular.woff
+│   │   │   ├── KaTeX_Caligraphic-Regular.woff2
+│   │   │   ├── KaTeX_Fraktur-Bold.ttf
+│   │   │   ├── KaTeX_Fraktur-Bold.woff
+│   │   │   ├── KaTeX_Fraktur-Bold.woff2
+│   │   │   ├── KaTeX_Fraktur-Regular.ttf
+│   │   │   ├── KaTeX_Fraktur-Regular.woff
+│   │   │   ├── KaTeX_Fraktur-Regular.woff2
+│   │   │   ├── KaTeX_Main-Bold.ttf
+│   │   │   ├── KaTeX_Main-Bold.woff
+│   │   │   ├── KaTeX_Main-Bold.woff2
+│   │   │   ├── KaTeX_Main-BoldItalic.ttf
+│   │   │   ├── KaTeX_Main-BoldItalic.woff
+│   │   │   ├── KaTeX_Main-BoldItalic.woff2
+│   │   │   ├── KaTeX_Main-Italic.ttf
+│   │   │   ├── KaTeX_Main-Italic.woff
+│   │   │   ├── KaTeX_Main-Italic.woff2
+│   │   │   ├── KaTeX_Main-Regular.ttf
+│   │   │   ├── KaTeX_Main-Regular.woff
+│   │   │   ├── KaTeX_Main-Regular.woff2
+│   │   │   ├── KaTeX_Math-BoldItalic.ttf
+│   │   │   ├── KaTeX_Math-BoldItalic.woff
+│   │   │   ├── KaTeX_Math-BoldItalic.woff2
+│   │   │   ├── KaTeX_Math-Italic.ttf
+│   │   │   ├── KaTeX_Math-Italic.woff
+│   │   │   ├── KaTeX_Math-Italic.woff2
+│   │   │   ├── KaTeX_SansSerif-Bold.ttf
+│   │   │   ├── KaTeX_SansSerif-Bold.woff
+│   │   │   ├── KaTeX_SansSerif-Bold.woff2
+│   │   │   ├── KaTeX_SansSerif-Italic.ttf
+│   │   │   ├── KaTeX_SansSerif-Italic.woff
+│   │   │   ├── KaTeX_SansSerif-Italic.woff2
+│   │   │   ├── KaTeX_SansSerif-Regular.ttf
+│   │   │   ├── KaTeX_SansSerif-Regular.woff
+│   │   │   ├── KaTeX_SansSerif-Regular.woff2
+│   │   │   ├── KaTeX_Script-Regular.ttf
+│   │   │   ├── KaTeX_Script-Regular.woff
+│   │   │   ├── KaTeX_Script-Regular.woff2
+│   │   │   ├── KaTeX_Size1-Regular.ttf
+│   │   │   ├── KaTeX_Size1-Regular.woff
+│   │   │   ├── KaTeX_Size1-Regular.woff2
+│   │   │   ├── KaTeX_Size2-Regular.ttf
+│   │   │   ├── KaTeX_Size2-Regular.woff
+│   │   │   ├── KaTeX_Size2-Regular.woff2
+│   │   │   ├── KaTeX_Size3-Regular.ttf
+│   │   │   ├── KaTeX_Size3-Regular.woff
+│   │   │   ├── KaTeX_Size3-Regular.woff2
+│   │   │   ├── KaTeX_Size4-Regular.ttf
+│   │   │   ├── KaTeX_Size4-Regular.woff
+│   │   │   ├── KaTeX_Size4-Regular.woff2
+│   │   │   ├── KaTeX_Typewriter-Regular.ttf
+│   │   │   ├── KaTeX_Typewriter-Regular.woff
+│   │   │   └── KaTeX_Typewriter-Regular.woff2
+│   │   ├── katex.css
+│   │   ├── katex.js
+│   │   ├── katex.min.css
+│   │   ├── katex.min.js
+│   │   └── katex.mjs
 │   ├── page/
 │   │   └── 1/
 │   │       └── index.html
@@ -99,19 +188,33 @@ mywebsite/
 │   │   │   └── index.html
 │   │   ├── index.html
 │   │   ├── index.xml
+│   │   ├── mel_spectrogram/
+│   │   │   └── index.html
 │   │   └── page/
 │   │       └── 1/
 │   │           └── index.html
 │   ├── robots.txt
 │   ├── sitemap.xml
 │   ├── tags/
-│   │   ├── bharat-nanobeir/
+│   │   ├── audio/
+│   │   │   ├── index.html
+│   │   │   ├── index.xml
+│   │   │   └── page/
+│   │   │       └── 1/
+│   │   │           └── index.html
+│   │   ├── chrome-extension/
 │   │   │   ├── index.html
 │   │   │   ├── index.xml
 │   │   │   └── page/
 │   │   │       └── 1/
 │   │   │           └── index.html
 │   │   ├── cli/
+│   │   │   ├── index.html
+│   │   │   ├── index.xml
+│   │   │   └── page/
+│   │   │       └── 1/
+│   │   │           └── index.html
+│   │   ├── data-science/
 │   │   │   ├── index.html
 │   │   │   ├── index.xml
 │   │   │   └── page/
@@ -124,12 +227,6 @@ mywebsite/
 │   │   │       └── 1/
 │   │   │           └── index.html
 │   │   ├── developer-tools/
-│   │   │   ├── index.html
-│   │   │   ├── index.xml
-│   │   │   └── page/
-│   │   │       └── 1/
-│   │   │           └── index.html
-│   │   ├── directory/
 │   │   │   ├── index.html
 │   │   │   ├── index.xml
 │   │   │   └── page/
@@ -155,6 +252,12 @@ mywebsite/
 │   │   │   └── page/
 │   │   │       └── 1/
 │   │   │           └── index.html
+│   │   ├── jupyter/
+│   │   │   ├── index.html
+│   │   │   ├── index.xml
+│   │   │   └── page/
+│   │   │       └── 1/
+│   │   │           └── index.html
 │   │   ├── llm/
 │   │   │   ├── index.html
 │   │   │   ├── index.xml
@@ -162,6 +265,12 @@ mywebsite/
 │   │   │       └── 1/
 │   │   │           └── index.html
 │   │   ├── nlp/
+│   │   │   ├── index.html
+│   │   │   ├── index.xml
+│   │   │   └── page/
+│   │   │       └── 1/
+│   │   │           └── index.html
+│   │   ├── productivity/
 │   │   │   ├── index.html
 │   │   │   ├── index.xml
 │   │   │   └── page/
@@ -179,38 +288,131 @@ mywebsite/
 │   │   │   └── page/
 │   │   │       └── 1/
 │   │   │           └── index.html
-│   │   ├── tree/
-│   │   │   ├── index.html
-│   │   │   ├── index.xml
-│   │   │   └── page/
-│   │   │       └── 1/
-│   │   │           └── index.html
-│   │   └── utility/
+│   │   └── signal-processing/
 │   │       ├── index.html
 │   │       ├── index.xml
 │   │       └── page/
 │   │           └── 1/
 │   │               └── index.html
-│   ├── touch
 │   └── utilities/
 │       ├── directory-tree-generator/
 │       │   └── index.html
 │       ├── index.html
 │       ├── index.xml
+│       ├── jupyter_extractor/
+│       │   └── index.html
 │       └── page/
 │           └── 1/
 │               └── index.html
+├── resources/
+│   └── _gen/
+│       ├── assets/
+│       └── images/
 ├── static/
 │   ├── .DS_Store
 │   ├── android-chrome-192x192.png
 │   ├── android-chrome-512x512.png
 │   ├── apple-touch-icon.png
+│   ├── audio/
+│   │   ├── libri1_voice.wav
+│   │   ├── mel_reconstructed_libri1_voice.wav
+│   │   └── reconstructed_libri1_voice.wav
 │   ├── favicon-16x16.png
 │   ├── favicon-32x32.png
 │   ├── favicon.ico
-│   └── images/
-│       ├── .DS_Store
-│       └── embedding_eval_for_indic.jpeg
+│   ├── images/
+│   │   ├── .DS_Store
+│   │   ├── arun_banner.jpg
+│   │   ├── embedding_eval_for_indic.jpeg
+│   │   ├── mel_spectrogram.jpeg
+│   │   ├── melspectrogram.png
+│   │   ├── notebook_extractor.png
+│   │   └── spectrogram.png
+│   └── katex/
+│       ├── README.md
+│       ├── contrib/
+│       │   ├── auto-render.js
+│       │   ├── auto-render.min.js
+│       │   ├── auto-render.mjs
+│       │   ├── copy-tex.js
+│       │   ├── copy-tex.min.js
+│       │   ├── copy-tex.mjs
+│       │   ├── mathtex-script-type.js
+│       │   ├── mathtex-script-type.min.js
+│       │   ├── mathtex-script-type.mjs
+│       │   ├── mhchem.js
+│       │   ├── mhchem.min.js
+│       │   ├── mhchem.mjs
+│       │   ├── render-a11y-string.js
+│       │   ├── render-a11y-string.min.js
+│       │   └── render-a11y-string.mjs
+│       ├── directory_tree.txt
+│       ├── fonts/
+│       │   ├── KaTeX_AMS-Regular.ttf
+│       │   ├── KaTeX_AMS-Regular.woff
+│       │   ├── KaTeX_AMS-Regular.woff2
+│       │   ├── KaTeX_Caligraphic-Bold.ttf
+│       │   ├── KaTeX_Caligraphic-Bold.woff
+│       │   ├── KaTeX_Caligraphic-Bold.woff2
+│       │   ├── KaTeX_Caligraphic-Regular.ttf
+│       │   ├── KaTeX_Caligraphic-Regular.woff
+│       │   ├── KaTeX_Caligraphic-Regular.woff2
+│       │   ├── KaTeX_Fraktur-Bold.ttf
+│       │   ├── KaTeX_Fraktur-Bold.woff
+│       │   ├── KaTeX_Fraktur-Bold.woff2
+│       │   ├── KaTeX_Fraktur-Regular.ttf
+│       │   ├── KaTeX_Fraktur-Regular.woff
+│       │   ├── KaTeX_Fraktur-Regular.woff2
+│       │   ├── KaTeX_Main-Bold.ttf
+│       │   ├── KaTeX_Main-Bold.woff
+│       │   ├── KaTeX_Main-Bold.woff2
+│       │   ├── KaTeX_Main-BoldItalic.ttf
+│       │   ├── KaTeX_Main-BoldItalic.woff
+│       │   ├── KaTeX_Main-BoldItalic.woff2
+│       │   ├── KaTeX_Main-Italic.ttf
+│       │   ├── KaTeX_Main-Italic.woff
+│       │   ├── KaTeX_Main-Italic.woff2
+│       │   ├── KaTeX_Main-Regular.ttf
+│       │   ├── KaTeX_Main-Regular.woff
+│       │   ├── KaTeX_Main-Regular.woff2
+│       │   ├── KaTeX_Math-BoldItalic.ttf
+│       │   ├── KaTeX_Math-BoldItalic.woff
+│       │   ├── KaTeX_Math-BoldItalic.woff2
+│       │   ├── KaTeX_Math-Italic.ttf
+│       │   ├── KaTeX_Math-Italic.woff
+│       │   ├── KaTeX_Math-Italic.woff2
+│       │   ├── KaTeX_SansSerif-Bold.ttf
+│       │   ├── KaTeX_SansSerif-Bold.woff
+│       │   ├── KaTeX_SansSerif-Bold.woff2
+│       │   ├── KaTeX_SansSerif-Italic.ttf
+│       │   ├── KaTeX_SansSerif-Italic.woff
+│       │   ├── KaTeX_SansSerif-Italic.woff2
+│       │   ├── KaTeX_SansSerif-Regular.ttf
+│       │   ├── KaTeX_SansSerif-Regular.woff
+│       │   ├── KaTeX_SansSerif-Regular.woff2
+│       │   ├── KaTeX_Script-Regular.ttf
+│       │   ├── KaTeX_Script-Regular.woff
+│       │   ├── KaTeX_Script-Regular.woff2
+│       │   ├── KaTeX_Size1-Regular.ttf
+│       │   ├── KaTeX_Size1-Regular.woff
+│       │   ├── KaTeX_Size1-Regular.woff2
+│       │   ├── KaTeX_Size2-Regular.ttf
+│       │   ├── KaTeX_Size2-Regular.woff
+│       │   ├── KaTeX_Size2-Regular.woff2
+│       │   ├── KaTeX_Size3-Regular.ttf
+│       │   ├── KaTeX_Size3-Regular.woff
+│       │   ├── KaTeX_Size3-Regular.woff2
+│       │   ├── KaTeX_Size4-Regular.ttf
+│       │   ├── KaTeX_Size4-Regular.woff
+│       │   ├── KaTeX_Size4-Regular.woff2
+│       │   ├── KaTeX_Typewriter-Regular.ttf
+│       │   ├── KaTeX_Typewriter-Regular.woff
+│       │   └── KaTeX_Typewriter-Regular.woff2
+│       ├── katex.css
+│       ├── katex.js
+│       ├── katex.min.css
+│       ├── katex.min.js
+│       └── katex.mjs
 └── themes/
     └── PaperMod/
         ├── .github/
