@@ -1,5 +1,5 @@
 ---
-title: 'Beifong: Your Junk-Free, Personalized Information and Podcasts'
+title: "Beifong: Your Junk-Free, Personalized Information and Podcasts"
 date: 2025-06-07T00:00:00.000Z
 draft: false
 categories: [projects]
@@ -17,7 +17,6 @@ ShowCodeCopyButtons: true
 Beifong manages your trusted articles and social media sources, generating podcasts from the content you trust and curate. It handles the complete pipeline - from data collection and analysis to the production of scripts, visuals, and audio content.
 
 {{< rawhtml >}}
-
 <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
  padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
  border-radius: 8px; will-change: transform;">
@@ -31,7 +30,6 @@ Beifong manages your trusted articles and social media sources, generating podca
 **Watch the full demo on YouTube:**
 
 {{< rawhtml >}}
-
 <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin: 1.5em 0;">
   <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
           src="https://www.youtube.com/embed/dB8FZY3x9EY" 
@@ -47,53 +45,53 @@ Beifong manages your trusted articles and social media sources, generating podca
 
 In today's information-saturated world, finding quality content that matters to you is increasingly challenging. Beifong solves this by:
 
--   **Eliminating Information Overload**: Automatically filters and curates content based on your preferences
--   **Personalized AI Analysis**: Uses advanced AI to understand and categorize content relevance
--   **Automated Podcast Generation**: Converts curated content into professional podcasts with multiple voice options
--   **Social Media Intelligence**: Monitors and analyzes your social feeds for meaningful insights
--   **End-to-End Automation**: Handles everything from content discovery to final audio production
+- **Eliminating Information Overload**: Automatically filters and curates content based on your preferences
+- **Personalized AI Analysis**: Uses advanced AI to understand and categorize content relevance
+- **Automated Podcast Generation**: Converts curated content into professional podcasts with multiple voice options
+- **Social Media Intelligence**: Monitors and analyzes your social feeds for meaningful insights
+- **End-to-End Automation**: Handles everything from content discovery to final audio production
 
 ## Core Features
 
-### 🤖 AI-Powered Content Processing
+### AI-Powered Content Processing
 
 Beifong's AI system is built on the agno framework and includes:
 
--   **Semantic Search**: Vector-based content discovery using FAISS
--   **Content Analysis**: Automated categorization, summarization, and quality assessment
--   **Social Media Monitoring**: Intelligent analysis of X.com and Facebook feeds
--   **Sentiment Analysis**: Understanding the emotional context of content
+- **Semantic Search**: Vector-based content discovery using FAISS
+- **Content Analysis**: Automated categorization, summarization, and quality assessment
+- **Social Media Monitoring**: Intelligent analysis of X.com and Facebook feeds
+- **Sentiment Analysis**: Understanding the emotional context of content
 
 {{< figure src="/images/beifong/image (1).png" alt="AI Content Processing Dashboard" caption="Figure: AI-powered content analysis and categorization interface" >}}
 
-### 📡 Multi-Platform Content Collection
+### Multi-Platform Content Collection
 
--   **RSS Feed Monitoring**: Automated tracking of your favorite news sources and blogs
--   **Social Media Scraping**: Real-time collection from X.com and Facebook
--   **Web Page Processing**: Intelligent extraction from any URL
--   **Browser Automation**: Full automation using Playwright for authenticated sessions
+- **RSS Feed Monitoring**: Automated tracking of your favorite news sources and blogs
+- **Social Media Scraping**: Real-time collection from X.com and Facebook
+- **Web Page Processing**: Intelligent extraction from any URL
+- **Browser Automation**: Full automation using Playwright for authenticated sessions
 
 {{< figure src="/images/beifong/image (2).png" alt="Content Collection Interface" caption="Figure: Multi-platform content collection dashboard showing various sources" >}}
 
-### 🎙️ Automated Podcast Generation
+### Automated Podcast Generation
 
 Transform your curated content into professional podcasts:
 
--   **Script Generation**: AI creates engaging podcast scripts from collected content
--   **Multiple TTS Engines**: Choose from OpenAI TTS, ElevenLabs, or open-source options like Kokoro
--   **Visual Assets**: Automatic generation of podcast covers and visual elements
--   **Audio Processing**: Professional-quality audio output with customizable settings
+- **Script Generation**: AI creates engaging podcast scripts from collected content
+- **Multiple TTS Engines**: Choose from OpenAI TTS, ElevenLabs, or open-source options like Kokoro
+- **Visual Assets**: Automatic generation of podcast covers and visual elements
+- **Audio Processing**: Professional-quality audio output with customizable settings
 
 {{< figure src="/images/beifong/image (3).png" alt="Podcast Generation Interface" caption="Figure: Podcast generation workflow with script preview and audio settings" >}}
 
-### 📊 Social Media Intelligence
+### Social Media Intelligence
 
 Get AI-powered insights from your social feeds:
 
--   **Sentiment Analysis**: Understand the emotional tone of your social interactions
--   **Topic Categorization**: Automatic grouping of content by themes and interests
--   **Engagement Insights**: Analysis of what content resonates with your network
--   **Trend Detection**: Identification of emerging topics and discussions
+- **Sentiment Analysis**: Understand the emotional tone of your social interactions
+- **Topic Categorization**: Automatic grouping of content by themes and interests
+- **Engagement Insights**: Analysis of what content resonates with your network
+- **Trend Detection**: Identification of emerging topics and discussions
 
 {{< figure src="/images/beifong/image (4).png" alt="Social Media Analytics" caption="Figure: Comprehensive social media analytics with sentiment and engagement insights" >}}
 
@@ -116,10 +114,10 @@ Playwright             # Browser automation
 
 The platform leverages multiple AI services for comprehensive content processing:
 
--   **Primary AI**: OpenAI API for content analysis and generation
--   **Voice Synthesis**: ElevenLabs for premium TTS, plus open-source alternatives
--   **Vector Search**: FAISS for semantic content discovery
--   **Browser Automation**: Intelligent web scraping and interaction
+- **Primary AI**: OpenAI API for content analysis and generation
+- **Voice Synthesis**: ElevenLabs for premium TTS, plus open-source alternatives
+- **Vector Search**: FAISS for semantic content discovery
+- **Browser Automation**: Intelligent web scraping and interaction
 
 {{< figure src="/images/beifong/image (5).png" alt="System Architecture" caption="Figure: Beifong's modular architecture showing AI integration and data flow" >}}
 
@@ -127,9 +125,9 @@ The platform leverages multiple AI services for comprehensive content processing
 
 Beifong offers flexibility in how you interact with the system:
 
-1.  **Interactive Web UI**: User-friendly interface for content management and podcast generation
-2.  **API Integration**: Programmatic access for custom applications and workflows  
-3.  **Automated Scheduling**: Set up recurring tasks for hands-off content processing
+1. **Interactive Web UI**: User-friendly interface for content management and podcast generation
+2. **API Integration**: Programmatic access for custom applications and workflows  
+3. **Automated Scheduling**: Set up recurring tasks for hands-off content processing
 
 ## Getting Started
 
@@ -137,10 +135,10 @@ Beifong offers flexibility in how you interact with the system:
 
 Before installing Beifong, ensure you have:
 
--   Python 3.11+
--   Redis Server
--   OpenAI API key
--   (Optional) ElevenLabs API key for premium voice synthesis
+- Python 3.11+
+- Redis Server
+- OpenAI API key
+- (Optional) ElevenLabs API key for premium voice synthesis
 
 ### Quick Installation
 
@@ -239,9 +237,9 @@ Beifong includes powerful browser automation for authenticated social media coll
 
 Interact with Beifong directly from your Slack workspace:
 
--   Direct messaging with BeifongAI in Slack channels
--   Each conversation creates a dedicated thread for context continuity
--   Real-time AI assistance for content curation and analysis
+- Direct messaging with BeifongAI in Slack channels
+- Each conversation creates a dedicated thread for context continuity
+- Real-time AI assistance for content curation and analysis
 
 {{< figure src="/images/beifong/image (8).png" alt="Slack Integration" caption="Figure: Beifong AI responding to queries in Slack with threaded conversations" >}}
 
@@ -251,19 +249,19 @@ Interact with Beifong directly from your Slack workspace:
 
 Beifong automatically discovers content from multiple sources:
 
--   RSS feeds from trusted publications
--   Social media posts and interactions
--   Manually submitted URLs and articles
--   Scheduled monitoring of specific sources
+- RSS feeds from trusted publications
+- Social media posts and interactions
+- Manually submitted URLs and articles
+- Scheduled monitoring of specific sources
 
 ### 2. AI Analysis
 
 Each piece of content undergoes comprehensive AI analysis:
 
--   **Quality Assessment**: Determines the value and reliability of content
--   **Topic Classification**: Categorizes content by themes and interests  
--   **Sentiment Analysis**: Understands emotional context and tone
--   **Relevance Scoring**: Matches content to your specific interests
+- **Quality Assessment**: Determines the value and reliability of content
+- **Topic Classification**: Categorizes content by themes and interests  
+- **Sentiment Analysis**: Understands emotional context and tone
+- **Relevance Scoring**: Matches content to your specific interests
 
 {{< figure src="/images/beifong/image (9).png" alt="Content Analysis Pipeline" caption="Figure: AI content analysis showing quality scores and topic classification" >}}
 
@@ -271,19 +269,19 @@ Each piece of content undergoes comprehensive AI analysis:
 
 Processed content is organized for easy consumption:
 
--   Automatic tagging and categorization
--   Duplicate detection and removal
--   Priority ranking based on relevance
--   Time-based organization for trending topics
+- Automatic tagging and categorization
+- Duplicate detection and removal
+- Priority ranking based on relevance
+- Time-based organization for trending topics
 
 ### 4. Podcast Generation
 
 Transform curated content into engaging podcasts:
 
--   AI-generated scripts with natural flow
--   Multiple voice options for different styles
--   Automatic pacing and emphasis
--   Background music and sound effects (optional)
+- AI-generated scripts with natural flow
+- Multiple voice options for different styles
+- Automatic pacing and emphasis
+- Background music and sound effects (optional)
 
 {{< figure src="/images/beifong/image (10).png" alt="Podcast Studio Interface" caption="Figure: Podcast generation studio with script editor and voice selection" >}}
 
@@ -293,15 +291,15 @@ Transform curated content into engaging podcasts:
 
 Current platform support includes:
 
--   **X.com (Twitter)**: Timeline monitoring, engagement analysis, trend detection
--   **Facebook**: Feed analysis, interaction insights, content categorization
+- **X.com (Twitter)**: Timeline monitoring, engagement analysis, trend detection
+- **Facebook**: Feed analysis, interaction insights, content categorization
 
 ### Setting Up Monitoring
 
-1.  **Navigate to Social Tab**: Access the social media configuration interface
-2.  **Setup Sessions**: Establish authenticated browser sessions for platforms
-3.  **Configure Feeds**: Customize which content types to monitor
-4.  **Schedule Collection**: Set automated collection frequency
+1. **Navigate to Social Tab**: Access the social media configuration interface
+2. **Setup Sessions**: Establish authenticated browser sessions for platforms
+3. **Configure Feeds**: Customize which content types to monitor
+4. **Schedule Collection**: Set automated collection frequency
 
 {{< figure src="/images/beifong/image (11).png" alt="Social Media Setup" caption="Figure: Social media monitoring configuration with platform selection and scheduling" >}}
 
@@ -309,10 +307,10 @@ Current platform support includes:
 
 View comprehensive analysis of your social media activity:
 
--   **Sentiment Trends**: Track emotional patterns in your content consumption
--   **Topic Evolution**: See how your interests change over time
--   **Engagement Patterns**: Understand what content resonates with you
--   **Network Analysis**: Insights into your social connections and influences
+- **Sentiment Trends**: Track emotional patterns in your content consumption
+- **Topic Evolution**: See how your interests change over time
+- **Engagement Patterns**: Understand what content resonates with you
+- **Network Analysis**: Insights into your social connections and influences
 
 ## Voice and Audio Generation
 
@@ -321,14 +319,12 @@ View comprehensive analysis of your social media activity:
 Beifong offers multiple text-to-speech options:
 
 **Commercial Options:**
-
--   **OpenAI TTS**: High-quality, natural-sounding voices
--   **ElevenLabs**: Premium voice synthesis with emotional expression
+- **OpenAI TTS**: High-quality, natural-sounding voices
+- **ElevenLabs**: Premium voice synthesis with emotional expression
 
 **Open Source Options:**
-
--   **Kokoro**: Free, high-quality voice generation
--   **Future engines**: Dia TTS, CSM, Orpheus-TTS (planned)
+- **Kokoro**: Free, high-quality voice generation
+- **Future engines**: Dia TTS, CSM, Orpheus-TTS (planned)
 
 ### Audio Customization
 
@@ -365,13 +361,11 @@ python main.py --host 0.0.0.0 --port 7000
 For external access, several options are available:
 
 **SSH Port Forwarding:**
-
 ```bash
 ssh -L 7000:localhost:7000 username@your-server-ip
 ```
 
 **Ngrok Tunneling:**
-
 ```bash
 ngrok http 7000
 ```
@@ -380,12 +374,12 @@ ngrok http 7000
 
 Beifong Cloud is coming soon with enhanced features:
 
--   ✅ More social media connectors
--   ✅ Multiple AI provider support (Claude, Gemini, OpenAI, Ollama)
--   ✅ Enhanced podcast customization
--   ✅ Advanced voice options
--   ✅ Improved data management
--   ✅ Built-in authentication
+- More social media connectors
+- Multiple AI provider support (Claude, Gemini, OpenAI, Ollama)
+- Enhanced podcast customization
+- Advanced voice options
+- Improved data management
+- Built-in authentication
 
 ## Troubleshooting
 
@@ -396,7 +390,6 @@ Kokoro is optional and only needed for open-source TTS. Skip if installation fai
 
 **Browser Automation Problems:**
 Ensure Playwright is properly installed:
-
 ```bash
 python -m playwright install
 ```
@@ -407,37 +400,32 @@ FAISS is only required for semantic search. The system works without it if insta
 ### Performance Optimization
 
 **Memory Usage:**
-
--   Monitor memory consumption during large content processing jobs
--   Consider reducing batch sizes for resource-constrained environments
+- Monitor memory consumption during large content processing jobs
+- Consider reducing batch sizes for resource-constrained environments
 
 **Storage Management:**
-
--   Regularly archive older podcast episodes
--   Implement cleanup policies for temporary files
--   Consider cloud storage integration for media assets
+- Regularly archive older podcast episodes
+- Implement cleanup policies for temporary files
+- Consider cloud storage integration for media assets
 
 ## Future Roadmap
 
 ### Upcoming Features
 
 **Enhanced Platform Support:**
-
--   LinkedIn, Reddit, and other social platforms
--   Support for multiple accounts per platform
--   Improved content source management
+- LinkedIn, Reddit, and other social platforms
+- Support for multiple accounts per platform
+- Improved content source management
 
 **Advanced AI Capabilities:**
-
--   Multiple AI provider integration
--   Enhanced content understanding
--   Improved podcast script generation
+- Multiple AI provider integration
+- Enhanced content understanding
+- Improved podcast script generation
 
 **User Experience Improvements:**
-
--   Advanced authentication system
--   Better mobile interface
--   Enhanced visualization and analytics
+- Advanced authentication system
+- Better mobile interface
+- Enhanced visualization and analytics
 
 ### Contributing
 
@@ -469,14 +457,7 @@ The platform's modular architecture and extensible design make it suitable for b
 
 **Ready to get started?** Visit the [GitHub repository](https://github.com/arun477/beifong) to begin your journey with AI-powered content curation.
 
-## References
+## Repository Links
 
-1.  Beifong GitHub Repository. [Online]. Available: <https://github.com/arun477/beifong>
-
-2.  Agno Framework Documentation. [Online]. Available: <https://github.com/arun477/agno>
-
-3.  Playwright Documentation. "Browser automation library." [Online]. Available: <https://playwright.dev/>
-
-4.  FAISS Documentation. "A library for efficient similarity search." [Online]. Available: <https://github.com/facebookresearch/faiss>
-
-5.  Kokoro TTS. "Open-source text-to-speech synthesis." [Online]. Available: <https://github.com/hexgrad/kokoro>
+- [Beifong GitHub Repository](https://github.com/arun477/beifong)
+- [Built Part of Agno Agent Hackathon](https://github.com/arun477/agno)
