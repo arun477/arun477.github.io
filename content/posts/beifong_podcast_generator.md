@@ -41,48 +41,6 @@ Beifong manages your trusted articles and social media sources, generating podca
 </div>
 {{< /rawhtml >}}
 
-## Platform Overview
-
-{{< rawhtml >}}
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5em; margin: 2em 0;">
-  <figure style="margin: 0;">
-    <img src="/images/beifong/image (1).png" alt="Beifong Interface" style="width: 100%; max-height: 250px; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); background: #f8f9fa;">
-  </figure>
-  <figure style="margin: 0;">
-    <img src="/images/beifong/image (2).png" alt="Beifong Interface" style="width: 100%; max-height: 250px; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); background: #f8f9fa;">
-  </figure>
-  <figure style="margin: 0;">
-    <img src="/images/beifong/image (3).png" alt="Beifong Interface" style="width: 100%; max-height: 250px; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); background: #f8f9fa;">
-  </figure>
-  <figure style="margin: 0;">
-    <img src="/images/beifong/image (4).png" alt="Beifong Interface" style="width: 100%; max-height: 250px; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); background: #f8f9fa;">
-  </figure>
-  <figure style="margin: 0;">
-    <img src="/images/beifong/image (5).png" alt="Beifong Interface" style="width: 100%; max-height: 250px; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); background: #f8f9fa;">
-  </figure>
-  <figure style="margin: 0;">
-    <img src="/images/beifong/image (6).png" alt="Beifong Interface" style="width: 100%; max-height: 250px; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); background: #f8f9fa;">
-  </figure>
-  <figure style="margin: 0;">
-    <img src="/images/beifong/image (7).png" alt="Beifong Interface" style="width: 100%; max-height: 250px; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); background: #f8f9fa;">
-  </figure>
-  <figure style="margin: 0;">
-    <img src="/images/beifong/image (8).png" alt="Beifong Interface" style="width: 100%; max-height: 250px; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); background: #f8f9fa;">
-  </figure>
-  <figure style="margin: 0;">
-    <img src="/images/beifong/image (9).png" alt="Beifong Interface" style="width: 100%; max-height: 250px; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); background: #f8f9fa;">
-  </figure>
-  <figure style="margin: 0;">
-    <img src="/images/beifong/image (10).png" alt="Beifong Interface" style="width: 100%; max-height: 250px; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); background: #f8f9fa;">
-  </figure>
-  <figure style="margin: 0;">
-    <img src="/images/beifong/image (11).png" alt="Beifong Interface" style="width: 100%; max-height: 250px; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); background: #f8f9fa;">
-  </figure>
-  <figure style="margin: 0;">
-    <img src="/images/beifong/image (12).png" alt="Beifong Interface" style="width: 100%; max-height: 250px; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); background: #f8f9fa;">
-  </figure>
-</div>
-{{< /rawhtml >}}
 
 ## Why Beifong?
 
