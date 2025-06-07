@@ -63,7 +63,7 @@ Beifong's AI system is built on the agno framework and includes:
 - **Social Media Monitoring**: Intelligent analysis of X.com and Facebook feeds
 - **Sentiment Analysis**: Understanding the emotional context of content
 
-{{< figure src="/images/beifong/image (1).png" alt="AI Content Processing Dashboard" caption="Figure: AI-powered content analysis and categorization interface" >}}
+{{< figure src="/images/beifong/image (1).png" alt="Podcasts Library" caption="Podcasts Library" >}}
 
 ### Multi-Platform Content Collection
 
