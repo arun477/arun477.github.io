@@ -24,7 +24,7 @@ Beifong manages your trusted articles and social media sources, generating podca
     src="https://www.canva.com/design/DAGoUfv8ICM/L34r-foQtTps02XXeUOUYA/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
   </iframe>
 </div>
-
+<a href="https://www.canva.com/design/DAGoUfv8ICM/L34r-foQtTps02XXeUOUYA/watch?utm_content=DAGoUfv8ICM&utm_campaign=designshare&utm_medium=embeds&utm_source=link" target="_blank" rel="noopener">beifong_demo_v2</a> by cool arun
 {{< /rawhtml >}}
 
 **Watch the full demo on YouTube:**
@@ -41,31 +41,48 @@ Beifong manages your trusted articles and social media sources, generating podca
 </div>
 {{< /rawhtml >}}
 
-## Gallery
+## Platform Overview
 
-{{< figure src="/images/beifong/image (1).png" alt="AI Content Processing Dashboard" caption="AI-powered content analysis and categorization interface" >}}
-
-{{< figure src="/images/beifong/image (2).png" alt="Content Collection Interface" caption="Multi-platform content collection dashboard showing various sources" >}}
-
-{{< figure src="/images/beifong/image (3).png" alt="Podcast Generation Interface" caption="Podcast generation workflow with script preview and audio settings" >}}
-
-{{< figure src="/images/beifong/image (4).png" alt="Social Media Analytics" caption="Comprehensive social media analytics with sentiment and engagement insights" >}}
-
-{{< figure src="/images/beifong/image (5).png" alt="System Architecture" caption="Beifong's modular architecture showing AI integration and data flow" >}}
-
-{{< figure src="/images/beifong/image (6).png" alt="Application Startup" caption="Beifong startup sequence showing all services running" >}}
-
-{{< figure src="/images/beifong/image (7).png" alt="Browser Automation" caption="Browser automation interface for social media session management" >}}
-
-{{< figure src="/images/beifong/image (8).png" alt="Slack Integration" caption="Beifong AI responding to queries in Slack with threaded conversations" >}}
-
-{{< figure src="/images/beifong/image (9).png" alt="Content Analysis Pipeline" caption="AI content analysis showing quality scores and topic classification" >}}
-
-{{< figure src="/images/beifong/image (10).png" alt="Podcast Studio Interface" caption="Podcast generation studio with script editor and voice selection" >}}
-
-{{< figure src="/images/beifong/image (11).png" alt="Social Media Setup" caption="Social media monitoring configuration with platform selection and scheduling" >}}
-
-{{< figure src="/images/beifong/image (12).png" alt="Audio Settings" caption="Advanced audio generation settings with voice selection and quality options" >}}
+{{< rawhtml >}}
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5em; margin: 2em 0;">
+  <figure>
+    <img src="/images/beifong/image (1).png" alt="Beifong Interface" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  </figure>
+  <figure>
+    <img src="/images/beifong/image (2).png" alt="Beifong Interface" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  </figure>
+  <figure>
+    <img src="/images/beifong/image (3).png" alt="Beifong Interface" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  </figure>
+  <figure>
+    <img src="/images/beifong/image (4).png" alt="Beifong Interface" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  </figure>
+  <figure>
+    <img src="/images/beifong/image (5).png" alt="Beifong Interface" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  </figure>
+  <figure>
+    <img src="/images/beifong/image (6).png" alt="Beifong Interface" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  </figure>
+  <figure>
+    <img src="/images/beifong/image (7).png" alt="Beifong Interface" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  </figure>
+  <figure>
+    <img src="/images/beifong/image (8).png" alt="Beifong Interface" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  </figure>
+  <figure>
+    <img src="/images/beifong/image (9).png" alt="Beifong Interface" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  </figure>
+  <figure>
+    <img src="/images/beifong/image (10).png" alt="Beifong Interface" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  </figure>
+  <figure>
+    <img src="/images/beifong/image (11).png" alt="Beifong Interface" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  </figure>
+  <figure>
+    <img src="/images/beifong/image (12).png" alt="Beifong Interface" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  </figure>
+</div>
+{{< /rawhtml >}}
 
 ## Why Beifong?
 
