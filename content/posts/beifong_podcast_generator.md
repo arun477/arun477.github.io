@@ -14,7 +14,7 @@ ShowCodeCopyButtons: true
 
 **Beifong** is an AI content curation platform that monitors your feeds, analyzes content, and generates podcasts from the stuff you actually care about. Named after Toph Beifong.
 
-It handles RSS feeds, social media scraping, content analysis, and converts everything into audio content. Basically automates the process of finding good content and turning it into podcasts.
+It handles RSS feeds, social media scraping, content analysis, and converts everything into audio content. Built for the [Global Agent Hackathon (May 2025)](https://github.com/global-agent-hackathon/global-agent-hackathon-may-2025/pull/129), where it placed 3rd overall and 1st in browser use agent category.
 
 {{< rawhtml >}}
 <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
@@ -27,12 +27,6 @@ It handles RSS feeds, social media scraping, content analysis, and converts ever
 {{< /rawhtml >}}
 
 **Demo:** [Watch on YouTube](https://www.youtube.com/watch?v=dB8FZY3x9EY)
-
-## Awards
-
-Beifong was part of the [Global Agent Hackathon (May 2025)](https://github.com/global-agent-hackathon/global-agent-hackathon-may-2025/pull/129) and won:
-- **🥉 3rd Place Overall Agent**
-- **🥇 1st Prize Browser Use Agent**
 
 ## Core Features
 
