@@ -26,19 +26,7 @@ It handles RSS feeds, social media scraping, content analysis, and converts ever
 </div>
 {{< /rawhtml >}}
 
-**Demo:**
-
-{{< rawhtml >}}
-<div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin: 1.5em 0;">
-  <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-          src="https://www.youtube.com/embed/dB8FZY3x9EY" 
-          title="Beifong Demo" 
-          frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-  </iframe>
-</div>
-{{< /rawhtml >}}
+**Demo:** [Watch on YouTube](https://www.youtube.com/watch?v=dB8FZY3x9EY)
 
 ## Core Features
 
