@@ -1,3 +1,30 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Python on Arun</title><link>https://arun477.github.io/tags/python/</link><description>Recent content in Python on Arun</description><generator>Hugo -- 0.145.0</generator><language>en</language><lastBuildDate>Sat, 07 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://arun477.github.io/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>llmdirtree: Directory Visualization and Context Generator for LLM Workflows</title><link>https://arun477.github.io/utilities/directory-tree-generator/</link><pubDate>Sat, 15 Mar 2025 00:00:00 +0000</pubDate><guid>https://arun477.github.io/utilities/directory-tree-generator/</guid><description>A Python CLI tool that generates both directory trees and code context summaries optimized for LLM interactions</description></item><item><title>Beifong: Your Junk-Free, Personalized Information and Podcasts</title><link>https://arun477.github.io/posts/beifong_podcast_generator/</link><pubDate>Sat, 07 Jun 2025 00:00:00 +0000</pubDate><guid>https://arun477.github.io/posts/beifong_podcast_generator/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>🦉 &lt;strong>Beifong&lt;/strong> is a sophisticated AI-powered content curation and podcast generation platform that transforms how you consume and interact with information. Named after the legendary earthbender Toph Beifong, this platform cuts through the noise to deliver personalized, high-quality content automatically.&lt;/p>
-&lt;p>Beifong manages your trusted articles and social media sources, generating podcasts from the content you trust and curate. It handles the complete pipeline - from data collection and analysis to the production of scripts, visuals, and audio content.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Python on Arun</title><link>https://arun477.github.io/tags/python/</link><description>Recent content in Python on Arun</description><generator>Hugo -- 0.145.0</generator><language>en</language><lastBuildDate>Sat, 07 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://arun477.github.io/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>llmdirtree: Directory Visualization and Context Generator for LLM Workflows</title><link>https://arun477.github.io/utilities/directory-tree-generator/</link><pubDate>Sat, 15 Mar 2025 00:00:00 +0000</pubDate><guid>https://arun477.github.io/utilities/directory-tree-generator/</guid><description>A Python CLI tool that generates both directory trees and code context summaries optimized for LLM interactions</description></item><item><title>Beifong: AI-Powered Content Curation and Podcast Generation</title><link>https://arun477.github.io/posts/beifong_podcast_generator/</link><pubDate>Sat, 07 Jun 2025 00:00:00 +0000</pubDate><guid>https://arun477.github.io/posts/beifong_podcast_generator/</guid><description>&lt;h2 id="what-it-does">What It Does&lt;/h2>
+&lt;p>&lt;strong>Beifong&lt;/strong> is an AI content curation platform that monitors your feeds, analyzes content, and generates podcasts from the stuff you actually care about. Named after Toph Beifong.&lt;/p>
+&lt;p>It handles RSS feeds, social media scraping, content analysis, and converts everything into audio content. Basically automates the process of finding good content and turning it into podcasts.&lt;/p>
+&lt;div class="custom-html-container " id="">
+&lt;div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
+padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+border-radius: 8px; will-change: transform;">
+&lt;iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+src="https://www.canva.com/design/DAGoUfv8ICM/L34r-foQtTps02XXeUOUYA/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+&lt;/iframe>
+&lt;/div>
+&lt;/div>
+&lt;script>
+document.addEventListener('DOMContentLoaded', function() {
+const container = document.getElementById('');
+if (container) {
+const scripts = container.getElementsByTagName('script');
+for (let i = 0; i &lt; scripts.length; i++) {
+const script = document.createElement('script');
+if (scripts[i].src) {
+script.src = scripts[i].src;
+} else {
+script.textContent = scripts[i].textContent;
+}
+document.body.appendChild(script);
+}
+}
+});
+&lt;/script>
+&lt;p>&lt;strong>Demo:&lt;/strong>&lt;/p></description></item></channel></rss>
