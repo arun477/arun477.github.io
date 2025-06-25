@@ -49,6 +49,7 @@ It handles RSS feeds, social media scraping, content analysis, and converts ever
 - Multiple TTS engines (OpenAI, ElevenLabs, Kokoro)
 - Automatic cover generation
 - Audio processing
+- Chat assistant for interactive podcast creation
 
 ### Social Media Analysis
 - Sentiment tracking
@@ -59,6 +60,12 @@ It handles RSS feeds, social media scraping, content analysis, and converts ever
 ### Voice Options
 - **Commercial**: OpenAI TTS, ElevenLabs
 - **Open Source**: Kokoro, with more engines planned
+
+## Awards
+
+Beifong was part of the [Global Agent Hackathon (May 2025)](https://github.com/global-agent-hackathon/global-agent-hackathon-may-2025/pull/129) and won:
+- **🥉 3rd Place Overall Agent**
+- **🥇 1st Prize Browser Use Agent**
 
 ## Usage
 
