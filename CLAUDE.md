@@ -24,10 +24,12 @@ Personal site, live at https://arun477.github.io/. Hugo, no theme, almost no Jav
 Swiss-style minimal: strict alignment, symmetry, sharp edges. One 44rem column (`main` and `.in`); header and footer are full-width bars whose contents align to that column.
 
 - Edges: zero border-radius everywhere (enforced globally in `style.css`). Hairline rules, not boxes.
-- Alignment: every element starts and ends on the column edges. Hover fills may bleed past them (negative margin), text never does.
+- Alignment: every element, rule and fill starts and ends on the column edges.
 - Type: Newsreader (self-hosted in `static/fonts/`) for headings, reading text and list titles; system sans in uppercase tracking for UI (header, footer, labels, chips); system mono for data (indices, dates, counts) and code.
-- Home: hero (role kicker from `content/_index.md` `role`, large name, a build-time generated waveform of 96 bars in `home.html`, tagline + links), then one numbered index per section.
+- Home: hero (role kicker from `content/_index.md` `role`, large name, a build-time generated waveform of 96 bars in `home.html` with a CSS playhead (`@property --p`), tagline + links), then one numbered index per section.
 - Colour: tokens at the top of `style.css`; dark tokens appear twice (system preference and `[data-theme="dark"]`); change both.
+- Accent is signal orange, used only as a signal (REC marker, waveform playhead, reading-progress bar). Never for links or text: links stay ink with an underline, so nothing reads as "link blue".
+- Hover fills stay exactly within the column rules; content slides inward (transform) instead of the fill bleeding outward.
 - Theme toggle is the only JS (inline in `baseof.html`).
 - Motion is CSS-only: view transitions between pages, staggered list entrance (`--i`), the pulsing waveform (faster on hover), inverted sweep on list rows, scroll-driven progress bar. All disabled under `prefers-reduced-motion`.
 

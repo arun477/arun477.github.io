@@ -1,13 +1,13 @@
 {{ define "main" }}
 <section class="hero">
-<p class="kicker"><span>{{ .Params.role }}</span><span>Index / {{ now.Year }}</span></p>
+<p class="kicker"><span class="rec">{{ .Params.role }}</span><span>Index / {{ now.Year }}</span></p>
 <h1>{{ site.Title }}</h1>
 <div class="wave" aria-hidden="true">
 {{- range $i := seq 0 95 }}
 {{- $x := div (float $i) 95 }}
 {{- $env := add 0.18 (mul 0.82 (mul (math.Abs (math.Sin (mul $i 0.19))) (add 0.55 (mul 0.45 (math.Sin (add (mul $i 0.061) 1.2)))))) }}
 {{- $h := math.Min 1 (add $env (mul 0.22 (div (float (math.Mod (mul $i 37) 17)) 17))) }}
-<i style="--h:{{ printf "%.3f" $h }};--x:{{ printf "%.0f" (mul $x 100) }}%;--d:-{{ printf "%.2f" (mul 1.8 (div (float (math.Mod (mul $i 73) 100)) 100)) }}s"></i>
+<i style="--h:{{ printf "%.3f" $h }};--x:{{ printf "%.3f" $x }};--d:-{{ printf "%.2f" (mul 1.8 (div (float (math.Mod (mul $i 73) 100)) 100)) }}s"></i>
 {{- end }}
 </div>
 <div class="hero-foot">{{ .Content }}</div>
