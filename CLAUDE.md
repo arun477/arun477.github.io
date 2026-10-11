@@ -8,7 +8,7 @@ Personal site, live at https://arun477.github.io/. Hugo, no theme, almost no Jav
 - `content/_index.md` — home page intro.
 - `layouts/` — the whole theme: `baseof.html`, `home.html`, `section.html`, `page.html`, `taxonomy.html`, `term.html`, `404.html`.
 - `assets/style.css` — the only stylesheet.
-- `static/images/`, `static/audio/` — media, referenced as `/images/x.png`.
+- `assets/images/` — images, referenced as `/images/x.png`; processed at build time. `static/audio/` — audio files.
 
 ## Writing
 
@@ -17,7 +17,7 @@ Personal site, live at https://arun477.github.io/. Hugo, no theme, almost no Jav
 - Unpublish without deleting: add `draft: true` to front matter.
 - Display math: `$$ ... $$` on its own lines. It is rendered to MathML at build time; inline `$` math is not enabled.
 - Raw HTML is allowed in Markdown (e.g. `<audio controls src="/audio/x.wav"></audio>`).
-- Images: `![alt](/images/x.png)` or `{{< figure src="/images/x.png" caption="..." >}}`.
+- Images: drop the file in `assets/images/` and write `![alt](/images/x.png "optional caption")` on its own line. `layouts/_markup/render-image.html` handles the rest: full-column width, resize above 1600px, width/height attributes, and a matte sampled from the image's left edge so tall images never show grey bars. A missing image fails the build. Don't use the `figure` shortcode or raw `<img>`.
 
 ## Design rules
 

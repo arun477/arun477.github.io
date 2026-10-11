@@ -19,6 +19,9 @@ capitalizeListTitles = false
 [markup.goldmark.renderer]
   unsafe = true
 
+[markup.goldmark.parser]
+  wrapStandAloneImageWithinParagraph = false
+
 [markup.goldmark.extensions.passthrough]
   enable = true
   [markup.goldmark.extensions.passthrough.delimiters]

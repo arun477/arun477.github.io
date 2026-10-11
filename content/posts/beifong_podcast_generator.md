@@ -22,7 +22,7 @@ It handles RSS feeds, social media scraping, content analysis, and converts ever
 - Social media monitoring (X.com, Facebook)
 - Sentiment analysis
 
-{{< figure src="/images/beifong-library.jpg" alt="Podcasts library" caption="Podcasts library" >}}
+![Podcasts library](/images/beifong-library.jpg "Podcasts library")
 
 ### Content Collection
 - RSS feed monitoring

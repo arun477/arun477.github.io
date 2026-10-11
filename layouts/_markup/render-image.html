@@ -1,0 +1,7 @@
+{{- $r := resources.Get (strings.TrimPrefix "/" .Destination) -}}
+{{- if not $r }}{{ errorf "%s: image not found: %s (put it in assets/images/)" .Page.File.Path .Destination }}{{ end -}}
+{{- $img := $r -}}
+{{- if gt $r.Width 1600 }}{{ $img = $r.Resize "1600x q82" }}{{ end -}}
+{{- $matte := index ($r.Crop (printf "8x%d TopLeft" $r.Height)).Colors 0 -}}
+<figure class="img"><img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="{{ .Text }}" loading="lazy" decoding="async" style="{{ printf "background-color:%s" $matte | safeCSS }}">{{ with .Title }}<figcaption>{{ . }}</figcaption>{{ end }}</figure>
+{{- /**/ -}}

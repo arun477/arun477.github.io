@@ -305,8 +305,8 @@ main a:hover { text-decoration-color: currentColor; }
 code { font-family: var(--mono); font-size: .8em; }
 :not(pre) > code { padding: .1em .35em; border: 1px solid var(--line); background: var(--hover); }
 pre { margin: 1.5rem 0; padding: 1rem 1.15rem; overflow-x: auto; border: 1px solid var(--line); font-size: .95rem; line-height: 1.6; }
-/* Every image spans the column exactly; tall ones are contained in a neutral frame rather than shrinking off the edge. */
-img { display: block; box-sizing: border-box; width: 100%; height: auto; max-height: 40rem; object-fit: contain; background: var(--hover); border: 1px solid var(--line); }
+/* Every image spans the column exactly; tall ones sit in a matte of their own dominant colour (set by render-image.html). */
+img { display: block; box-sizing: border-box; width: 100%; height: auto; max-height: 40rem; object-fit: contain; background-color: var(--hover); border: 1px solid var(--line); }
 figure { margin: 2rem 0; }
 figcaption { margin-top: .5rem; font: .8rem/1.5 var(--mono); color: var(--muted); }
 blockquote { margin: 1.5rem 0; padding-left: 1rem; border-left: 2px solid var(--text); color: var(--muted); font-style: italic; }

@@ -272,7 +272,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-{{< figure src="/images/melspectrogram.png" alt="Mel Spectrogram" caption="Mel spectrogram with 80 mel bands. Notice how the frequency axis is now non-linear with more resolution in lower frequencies." >}}
+![Mel Spectrogram](/images/melspectrogram.png "Mel spectrogram with 80 mel bands. Notice how the frequency axis is now non-linear with more resolution in lower frequencies.")
 
 You can see how the Mel spectrogram differs from the regular STFT spectrogram we generated earlier. The Mel spectrogram has more resolution in the lower frequency ranges, which better matches human perception of sound. This is why Mel spectrograms are commonly used in speech recognition and music analysis applications.
 

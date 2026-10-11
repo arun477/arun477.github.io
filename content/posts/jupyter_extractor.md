@@ -7,7 +7,7 @@ aliases: ["/utilities/jupyter_extractor/"]
 ---
 
 A Chrome extension that extracts content from Jupyter notebooks for use with large language models.
-{{< figure src="/images/notebook_extractor.png" alt="Jupyter to LLM Extractor" caption="Jupyter to LLM Extractor" >}}
+![Jupyter to LLM Extractor](/images/notebook_extractor.png "Jupyter to LLM Extractor")
 
 ## Features
 
