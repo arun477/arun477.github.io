@@ -21,13 +21,15 @@ Personal site, live at https://arun477.github.io/. Hugo, no theme, almost no Jav
 
 ## Design rules
 
-Modern minimal, modelled on long-lived personal blogs (leerob.com, paco.me, overreacted.io, stephango.com): one ~42rem column, generous whitespace, text first.
+Swiss-style minimal: strict alignment, symmetry, sharp edges. One 44rem column (`main` and `.in`); header and footer are full-width bars whose contents align to that column.
 
-- Type: Newsreader (self-hosted in `static/fonts/`, latin subset) for headings, reading text and list titles; system sans for UI (nav, dates, labels, chips, footer); system mono for code. No other web fonts.
-- Colour: all colours are tokens at the top of `style.css`. Dark tokens appear twice (system `prefers-color-scheme` and `[data-theme="dark"]` from the toggle); change both together.
-- Theme toggle: the only JS. An inline head script applies the saved theme before paint; `toggleTheme()` in `baseof.html` flips it inside a view transition.
-- Motion is CSS-only and subtle: cross-page view transitions (post titles morph from list to heading; the site name morphs between home hero and header), staggered list entrance using `--i`, hover details, and a scroll-driven reading-progress bar. Everything is disabled under `prefers-reduced-motion: reduce`.
-- No icon sets, cover images, or decorative imagery.
+- Edges: zero border-radius everywhere (enforced globally in `style.css`). Hairline rules, not boxes.
+- Alignment: every element starts and ends on the column edges. Hover fills may bleed past them (negative margin), text never does.
+- Type: Newsreader (self-hosted in `static/fonts/`) for headings, reading text and list titles; system sans in uppercase tracking for UI (header, footer, labels, chips); system mono for data (indices, dates, counts) and code.
+- Home: hero (role kicker from `content/_index.md` `role`, large name, a build-time generated waveform of 96 bars in `home.html`, tagline + links), then one numbered index per section.
+- Colour: tokens at the top of `style.css`; dark tokens appear twice (system preference and `[data-theme="dark"]`); change both.
+- Theme toggle is the only JS (inline in `baseof.html`).
+- Motion is CSS-only: view transitions between pages, staggered list entrance (`--i`), the pulsing waveform (faster on hover), inverted sweep on list rows, scroll-driven progress bar. All disabled under `prefers-reduced-motion`.
 
 ## Build and deploy
 

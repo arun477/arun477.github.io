@@ -17,7 +17,8 @@
 <body>
 {{ if .IsPage }}<div class="progress" aria-hidden="true"></div>{{ end }}
 <header>
-{{ if .IsHome }}<span></span>{{ else }}<a class="name" href="/">{{ site.Title }}</a>{{ end }}
+<div class="in">
+<a class="name" href="/">{{ site.Title }}</a>
 <nav>
 {{ $cur := . }}{{ range site.Sections }}<a href="{{ .RelPermalink }}"{{ if eq $cur.Section .Section }} aria-current="page"{{ end }}>{{ .Title }}</a>{{ end }}
 <a href="/tags/"{{ if eq .Type "tags" }} aria-current="page"{{ end }}>Tags</a>
@@ -26,11 +27,12 @@
 <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
 </button>
 </nav>
+</div>
 </header>
 <main>
 {{ block "main" . }}{{ end }}
 </main>
-<footer><span>© {{ now.Year }} {{ site.Title }}</span><a href="https://github.com/arun477">GitHub</a><a href="/index.xml">RSS</a></footer>
+<footer><div class="in"><span>© {{ now.Year }} {{ site.Title }}</span><a href="https://github.com/arun477">GitHub</a><a href="/index.xml">RSS</a></div></footer>
 <script>
 function toggleTheme() {
   var d = document.documentElement;
