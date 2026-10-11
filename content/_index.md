@@ -1,6 +1,6 @@
 ---
 title: "Arun Arumugam"
-role: "Agentic Engineering"
+role: "Agent Engineering"
 links:
   - { name: "GitHub", url: "https://github.com/arun477" }
   - { name: "LinkedIn", url: "https://linkedin.com/in/arun477" }
