@@ -11,7 +11,8 @@
 {{- end }}
 </div>
 <div class="facts">
-<div><p class="label">Now</p><p class="tagline">{{ .Params.tagline }}</p></div>
+<div class="about"><p class="label">About</p><p class="tagline">{{ .Params.tagline }}</p>
+{{ range first 1 (where site.RegularPages "Section" "posts").ByDate.Reverse }}<a class="latest" href="{{ .RelPermalink }}"><span>Latest</span>{{ .Title }}</a>{{ end }}</div>
 <div><p class="label">Elsewhere</p><ul class="links">{{ range .Params.links }}<li><a href="{{ .url }}">{{ .name }}<span aria-hidden="true">↗</span></a></li>{{ end }}</ul></div>
 </div>
 </section>

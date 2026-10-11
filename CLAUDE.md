@@ -26,7 +26,7 @@ Swiss-style minimal: strict alignment, symmetry, sharp edges. One 44rem column (
 - Edges: zero border-radius everywhere (enforced globally in `style.css`). Hairline rules, not boxes.
 - Alignment: every element, rule and fill starts and ends on the column edges.
 - Type: Newsreader (self-hosted in `static/fonts/`) for headings, reading text and list titles; system sans in uppercase tracking for UI (header, footer, labels, chips); system mono for data (indices, dates, counts) and code.
-- Home: hero (role kicker from `content/_index.md` `role`, large name, a build-time generated waveform of 96 bars in `home.html` with a CSS playhead (`@property --p`), tagline + links), then a two-column Now / Elsewhere block, then one numbered index per section. Role, tagline and links live in `content/_index.md` front matter (`role`, `tagline`, `links`).
+- Home: hero (role kicker from `content/_index.md` `role`, large name, a build-time generated waveform of 96 bars in `home.html` with a CSS playhead (`@property --p`), tagline + links), then a two-column About (tagline + latest post) / Elsewhere block, then one numbered index per section. Role, tagline and links live in `content/_index.md` front matter (`role`, `tagline`, `links`).
 - Colour: tokens at the top of `style.css`; dark tokens appear twice (system preference and `[data-theme="dark"]`); change both.
 - Accent is signal orange, used only as a signal (REC marker, waveform playhead, reading-progress bar). Never for links or text: links stay ink with an underline, so nothing reads as "link blue".
 - Hover fills stay exactly within the column rules; content slides inward (transform) instead of the fill bleeding outward.
