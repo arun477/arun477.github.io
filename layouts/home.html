@@ -1,6 +1,6 @@
 {{ define "main" }}
 <section class="hero">
-<p class="kicker"><span class="rec">{{ .Params.role }}</span><span>Index / {{ now.Year }}</span></p>
+<p class="kicker"><span class="rec">{{ .Params.role }}</span></p>
 <h1>{{ site.Title }}</h1>
 <div class="wave" aria-hidden="true">
 {{- range $i := seq 0 95 }}
@@ -10,7 +10,10 @@
 <i style="--h:{{ printf "%.3f" $h }};--x:{{ printf "%.3f" $x }};--d:-{{ printf "%.2f" (mul 1.8 (div (float (math.Mod (mul $i 73) 100)) 100)) }}s"></i>
 {{- end }}
 </div>
-<div class="hero-foot">{{ .Content }}</div>
+<div class="facts">
+<div><p class="label">Now</p><p class="tagline">{{ .Params.tagline }}</p></div>
+<div><p class="label">Elsewhere</p><ul class="links">{{ range .Params.links }}<li><a href="{{ .url }}">{{ .name }}<span aria-hidden="true">↗</span></a></li>{{ end }}</ul></div>
+</div>
 </section>
 {{ range site.Sections }}
 <section class="index">
