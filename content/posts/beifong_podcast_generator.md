@@ -1,6 +1,7 @@
 ---
 title: "Beifong: AI-Powered Content Curation and Podcast Generation"
 date: 2025-06-07
+description: "Point it at your feeds. It collects RSS and social posts, curates what matters to you and turns it into podcasts you can listen to."
 tags: [ai, automation, podcast, content-curation, python, social-media]
 ---
 
