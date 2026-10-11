@@ -197,20 +197,37 @@ main a:hover { text-decoration-color: currentColor; }
 @keyframes blink { 50% { opacity: .15; } }
 .hero h1 { font-size: clamp(3rem, 11vw, 5.25rem); line-height: .95; letter-spacing: -.035em; margin: 0; }
 
-/* Hero banner: the hive plays behind a frosted-glass strip that carries the name. */
-.banner { position: relative; margin: 0 0 2.75rem; border-block: 1px solid var(--line); overflow: hidden; }
-.hive { display: block; width: 100%; height: auto; aspect-ratio: 1140 / 620; }
-.glass {
-  position: absolute;
-  inset: 0 0 auto;
-  padding: 1.4rem 0 1.2rem;
-  background: color-mix(in srgb, var(--bg) 50%, transparent);
-  -webkit-backdrop-filter: blur(14px) saturate(160%);
-  backdrop-filter: blur(14px) saturate(160%);
-  border-bottom: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+/* Hero banner: the hive is the background; the name floats over it on frosted glass. */
+.banner { position: relative; margin: -1rem 0 2.75rem; }
+.hive {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1140 / 540;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 7%, #000 88%, transparent 100%), linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to bottom, transparent 0, #000 7%, #000 88%, transparent 100%), linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+  mask-composite: intersect;
 }
-.glass .kicker { margin-bottom: .9rem; }
-@media (max-width: 34rem) { .glass { padding: 1rem 0 .9rem; } .glass .kicker { margin-bottom: .6rem; } .glass h1 { font-size: 2.3rem; } }
+.glass {
+  z-index: 1;
+  position: absolute;
+  top: 2%;
+  left: 0;
+  padding: .9rem 1.4rem 1rem 1.15rem;
+  background: color-mix(in srgb, var(--bg) 55%, transparent);
+  -webkit-backdrop-filter: blur(10px) saturate(170%);
+  backdrop-filter: blur(10px) saturate(170%);
+  border: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+  box-shadow: 0 10px 30px -12px rgba(30, 20, 5, .18), inset 0 1px 0 color-mix(in srgb, #fff 55%, transparent);
+}
+.glass .kicker { margin-bottom: .55rem; }
+.glass h1 { font-size: clamp(2.4rem, 5.6vw, 3.5rem); }
+@media (max-width: 34rem) {
+  .banner { margin-top: 0; }
+  .glass { position: static; padding: 0 0 .25rem; background: none; border: 0; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .glass h1 { font-size: 2.3rem; }
+}
 
 .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2.5rem; }
 .facts .label { padding-bottom: .75rem; border-bottom: 1px solid var(--text); }

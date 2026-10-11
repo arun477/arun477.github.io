@@ -224,7 +224,7 @@ function between(from, to, v, t, inner) { const [x1, y1] = pos(from, t), [x2, y2
 function render(t) {
   const k = { text: css("--text"), line: css("--line"), card: css("--card"), bg: css("--bg") }, o = [], night = nightAt(t);
   // sky, stars, the chain of days
-  if (night > 0) { o.push(`<rect width="1200" height="500" fill="url(#sky)" opacity="${night.toFixed(3)}"/>`); STARS.forEach(([x, y, ph, r]) => o.push(`<circle cx="${x}" cy="${y}" r="${r}" fill="${k.text}" opacity="${(night * (.12 + .22 * (Math.sin(t * 1.3 + ph) + 1) / 2)).toFixed(2)}"/>`)); }
+  if (night > 0) { STARS.forEach(([x, y, ph, r]) => o.push(`<circle cx="${x}" cy="${y}" r="${r}" fill="${k.text}" opacity="${(night * (.2 + .35 * (Math.sin(t * 1.3 + ph) + 1) / 2)).toFixed(2)}"/>`)); }
   days.forEach((d, i) => {
     const [x, y] = daySlot(d.n), today = d.loop === loop, rise = today ? ease(seg(t, 31.2, 32.4)) : 1;
     if (today && t < 31.2) return;
