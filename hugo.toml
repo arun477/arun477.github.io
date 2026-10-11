@@ -25,7 +25,7 @@ capitalizeListTitles = false
     block = [["$$", "$$"]]
 
 [markup.highlight]
-  style = "github"
+  style = "github-dark"
 
 [minify]
   minifyOutput = true

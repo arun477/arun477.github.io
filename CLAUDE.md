@@ -21,7 +21,9 @@ Personal site, live at https://arun477.github.io/. Hugo, no theme, no JavaScript
 
 ## Design rules
 
-Keep it plain: one column, system fonts, text first. No theme, no JS, no web fonts, no icons, no animations, no cover images. Add CSS only when a page actually needs it.
+Modern minimal: one column, system fonts, text first, automatic light/dark via CSS tokens at the top of `style.css`. No theme, no JS, no web fonts, no icon sets, no cover images.
+
+Motion is CSS-only and subtle: cross-page view transitions (a post title morphs from the list into the page heading via a shared `view-transition-name`), staggered list entrance using the `--i` index, hover details, and a scroll-driven reading-progress bar on pages. Keep every animation under `prefers-reduced-motion: reduce` disabled.
 
 ## Build and deploy
 

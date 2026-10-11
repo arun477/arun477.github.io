@@ -1,6 +1,6 @@
 {{ define "main" }}
 <h1>Tags</h1>
 <ul class="tags">
-{{ range .Data.Terms.Alphabetical }}<li><a href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}</a> <span class="meta">{{ .Count }}</span></li>
+{{ range $i, $t := .Data.Terms.Alphabetical }}<li style="--i:{{ $i }}"><a class="chip" href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }} <span>{{ .Count }}</span></a></li>
 {{ end }}</ul>
 {{ end }}
