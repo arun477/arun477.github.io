@@ -35,7 +35,7 @@ Swiss-style minimal: strict alignment, symmetry, sharp edges. One 44rem column (
 
 ## Build and deploy
 
-- Hugo version is pinned in `scripts/install-hugo.sh` (cloud sessions run it on start; on macOS use `brew install hugo`).
+- Hugo version is pinned in `scripts/install-hugo.sh` (and `HUGO_VERSION` in `netlify.toml`; change both) (cloud sessions run it on start; on macOS use `brew install hugo`).
 - Check: `hugo` must build with no ERROR or WARN lines. Preview: `hugo server`.
-- Deploy: push to `main`. `.github/workflows/deploy.yml` builds and force-pushes `public/` to the `gh-pages` branch, which GitHub Pages serves. Pull requests build but do not deploy.
+- Deploy: push to `main`. `.github/workflows/deploy.yml` builds and force-pushes `public/` to the `gh-pages` branch, which GitHub Pages serves. Pull requests build but do not deploy; Netlify builds a preview of each from `netlify.toml`.
 - Never commit `public/` or edit the `gh-pages` branch by hand; everything served must come from this source.

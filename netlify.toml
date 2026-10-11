@@ -1,0 +1,11 @@
+# Netlify only builds pull-request previews; the live site deploys to GitHub Pages
+# (.github/workflows/deploy.yml). Keep HUGO_VERSION in step with scripts/install-hugo.sh.
+[build]
+  command = "hugo"
+  publish = "public"
+
+[build.environment]
+  HUGO_VERSION = "0.167.0"
+
+[context.deploy-preview]
+  command = "hugo --baseURL \"$DEPLOY_PRIME_URL/\""
