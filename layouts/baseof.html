@@ -18,7 +18,7 @@
 {{ if .IsPage }}<div class="progress" aria-hidden="true"></div>{{ end }}
 <header>
 <div class="in">
-<a class="name" href="/">{{ site.Title }}</a>
+{{ $n := split site.Title " " }}<a class="name" href="/">{{ index $n 0 }}<span> {{ delimit (after 1 $n) " " }}</span></a>
 <nav>
 {{ $cur := . }}{{ range site.Sections }}<a href="{{ .RelPermalink }}"{{ if eq $cur.Section .Section }} aria-current="page"{{ end }}>{{ .Title }}</a>{{ end }}
 <a href="/tags/"{{ if eq .Type "tags" }} aria-current="page"{{ end }}>Tags</a>
