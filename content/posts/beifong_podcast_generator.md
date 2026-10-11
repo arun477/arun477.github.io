@@ -10,7 +10,7 @@ tags: [ai, automation, podcast, content-curation, python, social-media]
 
 It handles RSS feeds, social media scraping, content analysis, and converts everything into audio content. Built for the Global Agent Hackathon (May 2025), where it placed 3rd overall and 1st in browser use agent category.
 
-![Beifong podcast player](/images/beifong.png)
+![Beifong podcast player](/images/beifong.jpg)
 
 **Demo:** [Watch on YouTube](https://www.youtube.com/watch?v=dB8FZY3x9EY) · [Slides](https://www.canva.com/design/DAGoUfv8ICM/L34r-foQtTps02XXeUOUYA/watch)
 
@@ -22,7 +22,7 @@ It handles RSS feeds, social media scraping, content analysis, and converts ever
 - Social media monitoring (X.com, Facebook)
 - Sentiment analysis
 
-{{< figure src="/images/beifong-library.png" alt="Podcasts library" caption="Podcasts library" >}}
+{{< figure src="/images/beifong-library.jpg" alt="Podcasts library" caption="Podcasts library" >}}
 
 ### Content Collection
 - RSS feed monitoring

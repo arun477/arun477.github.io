@@ -1,3 +1,4 @@
 ---
 title: "Posts"
+aliases: ["/utilities/"]
 ---

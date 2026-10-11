@@ -3,6 +3,7 @@ title: "llmdirtree: Directory Visualization and Context Generator for LLM Workfl
 date: 2025-03-15
 description: "A Python CLI tool that generates both directory trees and code context summaries optimized for LLM interactions"
 tags: ["python", "cli", "filesystem", "llm", "developer-tools", "security"]
+aliases: ["/utilities/directory-tree-generator/"]
 ---
 
 `llmdirtree` is a specialized developer tool with two powerful capabilities:

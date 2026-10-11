@@ -13,7 +13,7 @@
 <div class="facts">
 <div class="about"><p class="label">Latest</p>
 {{ range first 1 (where site.RegularPages "Section" "posts").ByDate.Reverse }}<a class="latest" href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong>{{ with .Description }}<span>{{ . }}</span>{{ end }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01" }}</time></a>{{ end }}</div>
-<div><p class="label">Elsewhere</p><ul class="links">{{ range .Params.links }}<li><a href="{{ .url }}">{{ .name }}<span aria-hidden="true">↗</span></a></li>{{ end }}</ul></div>
+<div><p class="label">Elsewhere</p><ul class="links">{{ range .Params.links }}<li><a href="{{ .url }}"><b>{{ .name }}</b><span aria-hidden="true">↗</span></a></li>{{ end }}</ul></div>
 </div>
 </section>
 {{ range site.Sections }}

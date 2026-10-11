@@ -4,7 +4,7 @@ Personal site, live at https://arun477.github.io/. Hugo, no theme, almost no Jav
 
 ## Layout
 
-- `content/<section>/` — one Markdown file per page (`posts`, `utilities`). Front matter is only `title`, `date`, optional `description`, `tags`.
+- `content/posts/` — one Markdown file per post (writing, projects and tools all live here). Old `/utilities/` URLs redirect via `aliases`. Front matter is only `title`, `date`, optional `description`, `tags`.
 - `content/_index.md` — home page intro.
 - `layouts/` — the whole theme: `baseof.html`, `home.html`, `section.html`, `page.html`, `taxonomy.html`, `term.html`, `404.html`.
 - `assets/style.css` — the only stylesheet.

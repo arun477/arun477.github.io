@@ -237,10 +237,10 @@ main a:hover { text-decoration-color: currentColor; }
   color: var(--text);
   text-decoration: none;
 }
+.latest > * { max-width: calc(100% - 1.5rem); }
 .latest strong { font: 500 1.3rem/1.3 var(--serif); }
 .latest span { font: 1.05rem/1.45 var(--serif); color: var(--muted); text-wrap: pretty; }
 .latest time { margin-top: auto; padding-top: .75rem; font: .75rem/1 var(--mono); color: var(--muted); }
-.latest:hover strong { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .18em; }
 .links { list-style: none; margin: 0; padding: 0; }
 .links li { border-bottom: 1px solid var(--line); }
 .links a {
@@ -252,8 +252,8 @@ main a:hover { text-decoration-color: currentColor; }
   color: var(--text);
   text-decoration: none;
 }
+.links b { font-weight: inherit; }
 .links span { font: .9rem/1 var(--mono); color: var(--muted); transition: transform .35s var(--ease), color .2s; }
-.links a:hover span { color: var(--text); transform: translate(3px, -3px); }
 
 .index { margin-bottom: 3.5rem; }
 
@@ -268,15 +268,18 @@ main a:hover { text-decoration-color: currentColor; }
   padding: .9rem 0;
   color: var(--text);
   text-decoration: none;
+}
+
+/* One hover for every row-like link: an inverted fill sweeps in, contents slide inward. */
+:is(.list a, .links a, .latest) {
   background: linear-gradient(var(--text), var(--text)) no-repeat left / 0 100%;
   transition: background-size .45s var(--ease), color .3s;
 }
-.list a:hover { color: var(--bg); background-size: 100% 100%; }
-.list a > * { transition: transform .45s var(--ease), color .3s; }
-.list a:hover > :is(.n, .t) { transform: translateX(.75rem); }
-.list a:hover > time { transform: translateX(-.75rem); }
+:is(.list a, .links a, .latest):hover { color: var(--bg); background-size: 100% 100%; }
+:is(.list a, .links a, .latest) > * { transition: transform .45s var(--ease), color .3s; }
+:is(.list a, .links a, .latest):hover > * { color: var(--bg); transform: translateX(.75rem); }
+.list a:hover > time, .links a:hover > span { transform: translateX(-.75rem); }
 .list .n, .list time { font: .75rem/1 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
-.list a:hover :is(.n, time) { color: var(--bg); }
 .list .t { min-width: 0; font: 1.2rem/1.35 var(--serif); }
 
 /* Page meta and tags */
@@ -302,12 +305,14 @@ main a:hover { text-decoration-color: currentColor; }
 code { font-family: var(--mono); font-size: .8em; }
 :not(pre) > code { padding: .1em .35em; border: 1px solid var(--line); background: var(--hover); }
 pre { margin: 1.5rem 0; padding: 1rem 1.15rem; overflow-x: auto; border: 1px solid var(--line); font-size: .95rem; line-height: 1.6; }
-img { display: block; max-width: 100%; max-height: 32rem; width: auto; height: auto; border: 1px solid var(--line); }
+/* Every image spans the column exactly; tall ones are contained in a neutral frame rather than shrinking off the edge. */
+img { display: block; box-sizing: border-box; width: 100%; height: auto; max-height: 40rem; object-fit: contain; background: var(--hover); border: 1px solid var(--line); }
 figure { margin: 2rem 0; }
 figcaption { margin-top: .5rem; font: .8rem/1.5 var(--mono); color: var(--muted); }
 blockquote { margin: 1.5rem 0; padding-left: 1rem; border-left: 2px solid var(--text); color: var(--muted); font-style: italic; }
 hr { border: 0; border-top: 1px solid var(--line); margin: 3rem 0; }
-audio { display: block; width: 100%; }
+audio { display: block; box-sizing: border-box; width: 100%; border: 1px solid var(--line); }
+audio::-webkit-media-controls-enclosure { border-radius: 0; background: var(--hover); }
 math { font-size: 1.05em; }
 math[display="block"] { margin: 1.25rem 0; overflow-x: auto; }
 mtable mtd:nth-child(odd) { text-align: right; padding-right: 0; }

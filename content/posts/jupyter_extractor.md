@@ -3,6 +3,7 @@ title: "Jupyter to LLM Extractor"
 date: 2025-03-27
 description: "A Chrome extension that extracts content from Jupyter notebooks for more effective interactions with large language models"
 tags: ["jupyter", "chrome-extension", "llm", "data-science", "productivity", "developer-tools"]
+aliases: ["/utilities/jupyter_extractor/"]
 ---
 
 A Chrome extension that extracts content from Jupyter notebooks for use with large language models.
