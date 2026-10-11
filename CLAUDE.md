@@ -1,6 +1,6 @@
 # arun477.github.io
 
-Personal site, live at https://arun477.github.io/. Hugo, no theme, no JavaScript.
+Personal site, live at https://arun477.github.io/. Hugo, no theme, almost no JavaScript (only the theme toggle).
 
 ## Layout
 
@@ -21,9 +21,13 @@ Personal site, live at https://arun477.github.io/. Hugo, no theme, no JavaScript
 
 ## Design rules
 
-Modern minimal: one column, system fonts, text first, automatic light/dark via CSS tokens at the top of `style.css`. No theme, no JS, no web fonts, no icon sets, no cover images.
+Modern minimal, modelled on long-lived personal blogs (leerob.com, paco.me, overreacted.io, stephango.com): one ~42rem column, generous whitespace, text first.
 
-Motion is CSS-only and subtle: cross-page view transitions (a post title morphs from the list into the page heading via a shared `view-transition-name`), staggered list entrance using the `--i` index, hover details, and a scroll-driven reading-progress bar on pages. Keep every animation under `prefers-reduced-motion: reduce` disabled.
+- Type: Newsreader (self-hosted in `static/fonts/`, latin subset) for headings, reading text and list titles; system sans for UI (nav, dates, labels, chips, footer); system mono for code. No other web fonts.
+- Colour: all colours are tokens at the top of `style.css`. Dark tokens appear twice (system `prefers-color-scheme` and `[data-theme="dark"]` from the toggle); change both together.
+- Theme toggle: the only JS. An inline head script applies the saved theme before paint; `toggleTheme()` in `baseof.html` flips it inside a view transition.
+- Motion is CSS-only and subtle: cross-page view transitions (post titles morph from list to heading; the site name morphs between home hero and header), staggered list entrance using `--i`, hover details, and a scroll-driven reading-progress bar. Everything is disabled under `prefers-reduced-motion: reduce`.
+- No icon sets, cover images, or decorative imagery.
 
 ## Build and deploy
 
