@@ -1,6 +1,7 @@
 ---
 title: "Bharat-NanoBEIR: Indian Language Information Retrieval Dataset"
 date: 2025-03-13
+description: "NanoBEIR for Indian languages. Small retrieval datasets of 50 queries and up to 10K documents each, for evaluating search and embedding models."
 tags: ["dataset", "information retrieval", "indian languages", "nlp"]
 ---
 

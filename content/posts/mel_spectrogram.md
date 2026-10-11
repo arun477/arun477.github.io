@@ -1,6 +1,7 @@
 ---
 title: Mel Spectrogram
 date: 2025-03-23
+description: "How raw audio becomes a mel spectrogram: sampling, the Fourier transform, spectrograms and mel filterbanks, with code to build one and turn it back into sound."
 tags: [audio, signal-processing]
 ---
 
