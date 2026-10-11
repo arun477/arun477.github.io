@@ -1,15 +1,7 @@
 ---
 title: "Arun Arumugam"
-date: 2025-03-13
-draft: false
 ---
 
-# Hello, I'm Arun 👋
+Software engineer. Mostly personal notes and reminders for me.
 
-![Arun Banner](images/arun_banner.jpg)
-```python
-Software Engineer.
-Mostly personal notes and reminders for me.
-```
-
-[GitHub](https://github.com/arun477) [LinkedIn](https://linkedin.com/in/arun477) [X](https://x.com/feynman477) [HuggingFace](https://huggingface.co/carlfeynman)
+[GitHub](https://github.com/arun477) · [LinkedIn](https://linkedin.com/in/arun477) · [X](https://x.com/feynman477) · [Hugging Face](https://huggingface.co/carlfeynman)

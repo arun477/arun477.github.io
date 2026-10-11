@@ -1,82 +1,31 @@
 baseURL = "https://arun477.github.io/"
-title = "Arun"
-paginate = 5
-theme = "PaperMod"
-
+title = "Arun Arumugam"
+locale = "en"
 enableRobotsTXT = true
-buildDrafts = false
-buildFuture = false
-buildExpired = false
-
-minifyOutput = true
-
-# Required for index.html generation
-[outputs]
-  home = ["HTML", "RSS", "JSON"]
+capitalizeListTitles = false
 
 [params]
-  env = "production"
-  showCodeCopyButtons = true
-  title = "Arun"
-  description = "My personal website and blog"
-  keywords = ["Blog", "Portfolio", "Personal"]
-  author = "Arun"
-  DateFormat = "January 2, 2006"
-  defaultTheme = "light"  
-  disableThemeToggle = false
+  description = "Software engineer. Mostly personal notes and reminders for me."
 
-  ShowReadingTime = true
-  ShowShareButtons = true
-  ShowPostNavLinks = true
-  ShowBreadCrumbs = true
-  ShowWordCount = true
-  ShowRssButtonInSectionTermList = true
-  UseHugoToc = true
-  disableSpecial1stPost = true
-  disableScrollToTop = false
-  hidefooter = false
-  ShowFullTextinRSS = false
+[taxonomies]
+  tag = "tags"
 
-  [[params.socialIcons]]
-    name = "github"
-    url = "https://github.com/arun477"
+[outputs]
+  home = ["html", "rss"]
+  section = ["html", "rss"]
+  taxonomy = ["html"]
+  term = ["html"]
 
-  [params.themeColor]
-    primary = "#3b82f6"     # Blue - for links and accents
-    secondary = "#4f46e5"   # Indigo - for secondary elements
-    background = "#FDFBEE"  # Cream background - soft and easy on the eyes
-    text = "#1e293b"        # Dark slate - for readable text
+[markup.goldmark.renderer]
+  unsafe = true
 
+[markup.goldmark.extensions.passthrough]
+  enable = true
+  [markup.goldmark.extensions.passthrough.delimiters]
+    block = [["$$", "$$"]]
 
-[[menu.main]]
-  identifier = "home"
-  name = "Home"
-  url = "/"
-  weight = 10
+[markup.highlight]
+  style = "github"
 
-[[menu.main]]
-  identifier = "posts"
-  name = "Posts"
-  url = "/posts/"
-  weight = 20
-
-[[menu.main]]
-  identifier = "utilities"
-  name = "Utilities"
-  url = "/utilities/"
-  weight = 40
-
-[[menu.main]]
-  identifier = "tags"
-  name = "Tags"
-  url = "/tags/"
-  weight = 30
-
-
-[markup]
-  [markup.highlight]
-    codeFences = true
-    guessSyntax = true
-    lineNos = false
-    lineNumbersInTable = true
-    style = "evergarden"
+[minify]
+  minifyOutput = true

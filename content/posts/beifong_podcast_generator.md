@@ -1,13 +1,7 @@
 ---
 title: "Beifong: AI-Powered Content Curation and Podcast Generation"
-date: 2025-06-07T00:00:00.000Z
-draft: false
-categories: [projects]
+date: 2025-06-07
 tags: [ai, automation, podcast, content-curation, python, social-media]
-cover: {image: images/beifong/image.png, alt: Beifong Banner, caption: Beifong - AI Content Curation Platform, hiddenInList: true}
-ShowToc: true
-TocOpen: true
-ShowCodeCopyButtons: true
 ---
 
 ## What It Does
@@ -16,17 +10,9 @@ ShowCodeCopyButtons: true
 
 It handles RSS feeds, social media scraping, content analysis, and converts everything into audio content. Built for the Global Agent Hackathon (May 2025), where it placed 3rd overall and 1st in browser use agent category.
 
-{{< rawhtml >}}
-<div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
- padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
- border-radius: 8px; will-change: transform;">
-  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-    src="https://www.canva.com/design/DAGoUfv8ICM/L34r-foQtTps02XXeUOUYA/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-  </iframe>
-</div>
-{{< /rawhtml >}}
+![Beifong podcast player](/images/beifong.png)
 
-**Demo:** [Watch on YouTube](https://www.youtube.com/watch?v=dB8FZY3x9EY)
+**Demo:** [Watch on YouTube](https://www.youtube.com/watch?v=dB8FZY3x9EY) · [Slides](https://www.canva.com/design/DAGoUfv8ICM/L34r-foQtTps02XXeUOUYA/watch)
 
 ## Core Features
 
@@ -36,7 +22,7 @@ It handles RSS feeds, social media scraping, content analysis, and converts ever
 - Social media monitoring (X.com, Facebook)
 - Sentiment analysis
 
-{{< figure src="/images/beifong/image (1).png" alt="Podcasts Library" caption="Podcasts Library" >}}
+{{< figure src="/images/beifong-library.png" alt="Podcasts library" caption="Podcasts library" >}}
 
 ### Content Collection
 - RSS feed monitoring

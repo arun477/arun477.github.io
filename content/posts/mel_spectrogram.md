@@ -1,13 +1,7 @@
 ---
 title: Mel Spectrogram
-date: 2025-03-23T00:00:00.000Z
-draft: false
-categories: [posts]
+date: 2025-03-23
 tags: [audio, signal-processing]
-cover: {image: images/mel_spectrogram.jpeg, alt: Mel Spectrogram Banner, caption: Mel Spectrogram, hiddenInList: true}
-ShowToc: true
-TocOpen: true
-ShowCodeCopyButtons: true
 ---
 
 ## Introduction
@@ -118,12 +112,7 @@ In the above code, **sr** is a sampling rate and **audio** is our actual audio d
 
 Following is the original audio.
 
-{{< rawhtml >}}
-<audio controls>
-  <source src="/audio/libri1_voice.wav" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-{{< /rawhtml >}}
+<audio controls src="/audio/libri1_voice.wav"></audio>
 
 ### Setup FFT Parameters
 
@@ -178,8 +167,11 @@ print(f"stft output: {D.shape} = (frq_bins, time_frame_points)")
 ### Amplitude Extraction
 
 STFT contains both amplitude and phase information. Usually we take only amplitude information and discard the phase information. There is some subtlety here - np.abs for real part works just by taking normal abs, but if it's a complex number, in this case it will calculate abs by taking Euclidean norm of the real and complex parts. Equivalent in PyTorch would be the following:
+
+```python
 x = torch.tensor([D[1][0].real, D[1][0].imag])
 torch.sqrt(x.pow(2).sum(-1))
+```
 
 Amplitude is the strength of each frequency bin which is the one visualized in spectrograms.
 
@@ -203,7 +195,7 @@ plt.colorbar(format='%+2.0f dB')
 plt.show()
 ```
 
-![Plot Description](/images/spectrogram.png)
+![Spectrogram](/images/spectrogram.png)
 
 ### Audio Reconstruction with Griffin-Lim Algorithm
 
@@ -230,16 +222,10 @@ print(f"reconstructed audio shape: {reconstructed_audio.shape}")
 ipy.display.Audio(reconstructed_audio, rate=sr)
 ```
 
-{{< rawhtml >}}
 <figure>
-  <figcaption>Reconstructed Audio from Spectrogram</figcaption>
-  <audio controls 
-         src="/audio/reconstructed_libri1_voice.wav"
-         style="width: 100%">
-    <a href="/audio/reconstructed_libri1_voice.wav">Download the reconstructed audio file</a>
-  </audio>
+<audio controls src="/audio/reconstructed_libri1_voice.wav"></audio>
+<figcaption>Reconstructed audio from spectrogram</figcaption>
 </figure>
-{{< /rawhtml >}}
 
 You can hear that the reconstructed audio is not exactly the same as the original. This is because the phase information was estimated rather than preserved from the original signal. The Griffin-Lim algorithm provides a reasonable approximation, but there will always be some differences compared to the original audio.
 
@@ -286,7 +272,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-{{< figure src="/images/melspectrogram.png" alt="Mel Spectrogram" caption="Figure: Mel Spectrogram with 80 mel bands. Notice how the frequency axis is now non-linear with more resolution in lower frequencies." >}}
+{{< figure src="/images/melspectrogram.png" alt="Mel Spectrogram" caption="Mel spectrogram with 80 mel bands. Notice how the frequency axis is now non-linear with more resolution in lower frequencies." >}}
 
 You can see how the Mel spectrogram differs from the regular STFT spectrogram we generated earlier. The Mel spectrogram has more resolution in the lower frequency ranges, which better matches human perception of sound. This is why Mel spectrograms are commonly used in speech recognition and music analysis applications.
 
@@ -318,16 +304,10 @@ mel_reconstructed_audio = librosa.griffinlim(linear_spec_approx, n_iter=32, hop_
 ipy.display.Audio(mel_reconstructed_audio, rate=sr)
 ```
 
-{{< rawhtml >}}
 <figure>
-  <figcaption>Audio Reconstructed from Mel Spectrogram</figcaption>
-  <audio controls 
-         src="/audio/mel_reconstructed_libri1_voice.wav"
-         style="width: 100%">
-    <a href="/audio/mel_reconstructed_libri1_voice.wav">Download the Mel reconstructed audio file</a>
-  </audio>
+<audio controls src="/audio/mel_reconstructed_libri1_voice.wav"></audio>
+<figcaption>Audio reconstructed from mel spectrogram</figcaption>
 </figure>
-{{< /rawhtml >}}
 
 Notice how the audio quality from the Mel spectrogram reconstruction is generally lower than the reconstruction from the original STFT. This is because the Mel transformation is a dimensionality reduction process - we compress the frequency information from the full STFT bins (which was 513 frequency bins) down to just 80 Mel bands. 
 

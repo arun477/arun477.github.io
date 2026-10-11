@@ -1,19 +1,12 @@
 ---
 title: "Jupyter to LLM Extractor"
 date: 2025-03-27
-lastmod: 2025-03-27
 description: "A Chrome extension that extracts content from Jupyter notebooks for more effective interactions with large language models"
-summary: "Extract and format Jupyter notebook content for LLMs with support for cell filtering, templates, and selective extraction."
 tags: ["jupyter", "chrome-extension", "llm", "data-science", "productivity", "developer-tools"]
-categories: ["tools", "chrome-extensions", "llm"]
-ShowToc: true
-TocOpen: true
-ShowCodeCopyButtons: true
-weight: 1
 ---
 
 A Chrome extension that extracts content from Jupyter notebooks for use with large language models.
-{{< figure src="/images/notebook_extractor.png" alt="notebook_extractor" caption="Figure: Jupyter to LLM Extractor" >}}
+{{< figure src="/images/notebook_extractor.png" alt="Jupyter to LLM Extractor" caption="Jupyter to LLM Extractor" >}}
 
 ## Features
 

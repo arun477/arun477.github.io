@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify | truncate 160 }}{{ else }}{{ site.Params.description }}{{ end }}{{ end }}">
+<link rel="canonical" href="{{ .Permalink }}">
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+{{ with site.Home.OutputFormats.Get "rss" }}<link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}">{{ end }}
+{{ template "_internal/opengraph.html" . }}
+{{ with resources.Get "style.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ .RelPermalink }}">{{ end }}
+</head>
+<body>
+<header>
+<a class="name" href="/">{{ site.Title }}</a>
+<nav>{{ range site.Sections }}<a href="{{ .RelPermalink }}">{{ .Title }}</a> {{ end }}<a href="/tags/">Tags</a></nav>
+</header>
+<main>
+{{ block "main" . }}{{ end }}
+</main>
+<footer><a href="https://github.com/arun477">GitHub</a> · <a href="/index.xml">RSS</a></footer>
+</body>
+</html>
