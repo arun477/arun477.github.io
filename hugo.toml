@@ -1,0 +1,31 @@
+baseURL = "https://arun477.github.io/"
+title = "Arun Arumugam"
+locale = "en"
+enableRobotsTXT = true
+capitalizeListTitles = false
+
+[params]
+  description = "Software engineer. Mostly personal notes and reminders for me."
+
+[taxonomies]
+  tag = "tags"
+
+[outputs]
+  home = ["html", "rss"]
+  section = ["html", "rss"]
+  taxonomy = ["html"]
+  term = ["html"]
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[markup.goldmark.extensions.passthrough]
+  enable = true
+  [markup.goldmark.extensions.passthrough.delimiters]
+    block = [["$$", "$$"]]
+
+[markup.highlight]
+  style = "github"
+
+[minify]
+  minifyOutput = true
