@@ -197,14 +197,20 @@ main a:hover { text-decoration-color: currentColor; }
 @keyframes blink { 50% { opacity: .15; } }
 .hero h1 { font-size: clamp(3rem, 11vw, 5.25rem); line-height: .95; letter-spacing: -.035em; margin: 0; }
 
-.hive {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1140 / 450;
-  margin: 2rem 0 2.25rem;
-  border-block: 1px solid var(--line);
+/* Hero banner: the hive plays behind a frosted-glass strip that carries the name. */
+.banner { position: relative; margin: 0 0 2.75rem; border-block: 1px solid var(--line); overflow: hidden; }
+.hive { display: block; width: 100%; height: auto; aspect-ratio: 1140 / 620; }
+.glass {
+  position: absolute;
+  inset: 0 0 auto;
+  padding: 1.4rem 0 1.2rem;
+  background: color-mix(in srgb, var(--bg) 50%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
 }
+.glass .kicker { margin-bottom: .9rem; }
+@media (max-width: 34rem) { .glass { padding: 1rem 0 .9rem; } .glass .kicker { margin-bottom: .6rem; } .glass h1 { font-size: 2.3rem; } }
 
 .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2.5rem; }
 .facts .label { padding-bottom: .75rem; border-bottom: 1px solid var(--text); }

@@ -1,9 +1,10 @@
 {{ define "main" }}
 <section class="hero">
-<p class="kicker"><span class="rec">{{ .Params.role }}</span></p>
-<h1>{{ site.Title }}</h1>
-<svg id="hive" class="hive" viewBox="40 40 1140 450" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Five agent bees take a request, plan it together, build it, deliver it, then remember the day"></svg>
+<div class="banner">
+<svg id="hive" class="hive" viewBox="40 -130 1140 620" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Five agent bees take a request, plan it together, build it, deliver it, then remember the day"></svg>
 {{ with resources.Get "hive.js" | minify | fingerprint }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}
+<div class="glass"><p class="kicker"><span class="rec">{{ .Params.role }}</span></p><h1>{{ site.Title }}</h1></div>
+</div>
 <div class="facts">
 <div class="about"><p class="label">Latest</p>
 {{ range first 1 (where site.RegularPages "Section" "posts").ByDate.Reverse }}<a class="latest" href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong>{{ with .Description }}<span>{{ . }}</span>{{ end }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01" }}</time></a>{{ end }}</div>
