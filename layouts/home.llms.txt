@@ -1,0 +1,13 @@
+# {{ site.Title }}
+
+> {{ site.Params.description }}{{ with .Params.role }} Role: {{ . }}.{{ end }}
+
+Every post below is also available as clean Markdown: append `index.md` to its URL. Full sitemap: {{ "sitemap.xml" | absURL }}. Feed: {{ "index.xml" | absURL }}.
+{{ range site.Sections }}
+## {{ .Title }}
+{{ range .Pages }}
+- [{{ .Title }}]({{ with .OutputFormats.Get "markdown" }}{{ .Permalink }}{{ else }}{{ .Permalink }}{{ end }}){{ with .Description }}: {{ . }}{{ end }}{{ end }}
+{{ end }}
+## Elsewhere
+{{ range .Params.links }}
+- [{{ .name }}]({{ .url }}){{ end }}

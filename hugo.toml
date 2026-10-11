@@ -10,9 +10,17 @@ capitalizeListTitles = false
 [taxonomies]
   tag = "tags"
 
+[outputFormats.llms]
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+  root = true
+  rel = "alternate"
+
 [outputs]
-  home = ["html", "rss"]
+  home = ["html", "rss", "llms"]
   section = ["html", "rss"]
+  page = ["html", "markdown"]
   taxonomy = ["html"]
   term = ["html"]
 

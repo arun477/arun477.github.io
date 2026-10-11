@@ -7,6 +7,7 @@ Personal site, live at https://arun477.github.io/. Hugo, no theme, minimal JavaS
 - `content/posts/` — one Markdown file per post (writing, projects and tools all live here). Old `/utilities/` URLs redirect via `aliases`. Front matter is only `title`, `date`, optional `description`, `tags`.
 - `content/_index.md` — home page intro.
 - `layouts/` — the whole theme: `baseof.html`, `home.html`, `section.html`, `page.html`, `taxonomy.html`, `term.html`, `404.html`.
+- Agent/crawler outputs, all generated: `layouts/robots.txt` (allow all + sitemap), `layouts/home.llms.txt` (`/llms.txt` index), `layouts/page.md` (every post also at `<url>/index.md`), `layouts/rss.xml` (full-content feed), `layouts/_partials/jsonld.html` (Person / BlogPosting JSON-LD). New posts appear in all of them automatically.
 - `assets/style.css` — the only stylesheet.
 - `assets/images/` — images, referenced as `/images/x.png`; processed at build time. `static/audio/` — audio files.
 
