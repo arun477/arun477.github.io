@@ -15,6 +15,7 @@
 
 :root {
   --bg: #fbfbf9;
+  --card: #fffdf9;
   --text: #161615;
   --muted: #6c6b66;
   --line: #e3e2dc;
@@ -29,6 +30,7 @@
 }
 :root[data-theme="dark"] {
   --bg: #0f0f0e;
+  --card: #181613;
   --text: #ebe9e4;
   --muted: #94928b;
   --line: #262624;
@@ -39,6 +41,7 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0f0f0e;
+  --card: #181613;
     --text: #ebe9e4;
     --muted: #94928b;
     --line: #262624;
@@ -194,35 +197,14 @@ main a:hover { text-decoration-color: currentColor; }
 @keyframes blink { 50% { opacity: .15; } }
 .hero h1 { font-size: clamp(3rem, 11vw, 5.25rem); line-height: .95; letter-spacing: -.035em; margin: 0; }
 
-@property --p { syntax: "<number>"; inherits: true; initial-value: 0; }
-.wave {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  height: 5.5rem;
-  margin: 2.25rem 0;
+.hive {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1140 / 450;
+  margin: 2rem 0 2.25rem;
   border-block: 1px solid var(--line);
-  animation: play 9s linear infinite;
 }
-.wave::after {
-  content: "";
-  position: absolute;
-  inset: -1px auto -1px calc(var(--p) * 100%);
-  width: 2px;
-  background: var(--accent);
-}
-.wave i {
-  flex: 1;
-  height: calc(var(--h) * 82%);
-  background: var(--text);
-  opacity: clamp(.16, (var(--p) - var(--x)) * 60 + 1, 1);
-  transform-origin: center;
-  animation: pulse 1.8s ease-in-out var(--d) infinite alternate;
-}
-.hero:hover .wave i { animation-duration: .7s; }
-@keyframes pulse { from { transform: scaleY(.3); } to { transform: scaleY(1); } }
-@keyframes play { from { --p: 0; } to { --p: 1; } }
 
 .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2.5rem; }
 .facts .label { padding-bottom: .75rem; border-bottom: 1px solid var(--text); }
@@ -340,7 +322,6 @@ mtable mtd:nth-child(even) { text-align: left; padding-left: 0; }
   nav, footer .in { gap: 1rem; }
   h1 { font-size: 2rem; }
   article { font-size: 1.125rem; }
-  .wave { height: 4rem; }
   .facts { grid-template-columns: 1fr; gap: 2.5rem; }
   .list a { grid-template-columns: 2rem 1fr; column-gap: 1rem; }
   .list a:hover > time { transform: translateX(.75rem); }
@@ -358,6 +339,4 @@ mtable mtd:nth-child(even) { text-align: left; padding-left: 0; }
 @media (prefers-reduced-motion: reduce) {
   @view-transition { navigation: none; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  .wave { --p: 1; }
-  .wave::after { display: none; }
 }

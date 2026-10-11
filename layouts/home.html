@@ -2,14 +2,8 @@
 <section class="hero">
 <p class="kicker"><span class="rec">{{ .Params.role }}</span></p>
 <h1>{{ site.Title }}</h1>
-<div class="wave" aria-hidden="true">
-{{- range $i := seq 0 95 }}
-{{- $x := div (float $i) 95 }}
-{{- $env := add 0.18 (mul 0.82 (mul (math.Abs (math.Sin (mul $i 0.19))) (add 0.55 (mul 0.45 (math.Sin (add (mul $i 0.061) 1.2)))))) }}
-{{- $h := math.Min 1 (add $env (mul 0.22 (div (float (math.Mod (mul $i 37) 17)) 17))) }}
-<i style="--h:{{ printf "%.3f" $h }};--x:{{ printf "%.3f" $x }};--d:-{{ printf "%.2f" (mul 1.8 (div (float (math.Mod (mul $i 73) 100)) 100)) }}s"></i>
-{{- end }}
-</div>
+<svg id="hive" class="hive" viewBox="40 40 1140 450" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Five agent bees take a request, plan it together, build it, deliver it, then remember the day"></svg>
+{{ with resources.Get "hive.js" | minify | fingerprint }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}
 <div class="facts">
 <div class="about"><p class="label">Latest</p>
 {{ range first 1 (where site.RegularPages "Section" "posts").ByDate.Reverse }}<a class="latest" href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong>{{ with .Description }}<span>{{ . }}</span>{{ end }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01" }}</time></a>{{ end }}</div>
