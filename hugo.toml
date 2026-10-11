@@ -5,7 +5,7 @@ enableRobotsTXT = true
 capitalizeListTitles = false
 
 [params]
-  description = "Arun Arumugam. Agentic engineering: projects and notes."
+  description = "Arun Arumugam. Agent engineering: projects and notes."
 
 [taxonomies]
   tag = "tags"
