@@ -266,7 +266,7 @@ main a:hover { text-decoration-color: currentColor; }
   display: grid;
   grid-template-columns: 2rem 1fr auto;
   align-items: baseline;
-  gap: .35rem 1.75rem;
+  gap: .35rem 2.5rem;
   padding: .9rem 0;
   color: var(--text);
   text-decoration: none;
@@ -282,7 +282,7 @@ main a:hover { text-decoration-color: currentColor; }
 :is(.list a, .links a, .latest):hover > * { color: var(--bg); transform: translateX(.75rem); }
 .list a:hover > time, .links a:hover > span { transform: translateX(-.75rem); }
 .list .n, .list time { font: .75rem/1 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
-.list .t { min-width: 0; font: 1.2rem/1.35 var(--serif); }
+.list .t { min-width: 0; font: 1.2rem/1.35 var(--serif); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 /* Page meta and tags */
 .meta { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin: 0 0 3rem; font: .8rem/1.6 var(--mono); color: var(--muted); }
