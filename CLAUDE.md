@@ -31,7 +31,7 @@ Swiss-style minimal: strict alignment, symmetry, sharp edges. One 44rem column (
 - Accent is signal orange, used only as a signal (REC marker, waveform playhead, reading-progress bar). Never for links or text: links stay ink with an underline, so nothing reads as "link blue".
 - Hover fills stay exactly within the column rules; content slides inward (transform) instead of the fill bleeding outward.
 - JS is limited to the theme toggle (inline in `baseof.html`) and `assets/hive.js` on the home page. The bee characters, palette and choreography live in that one file.
-- Motion is CSS-only: view transitions between pages, staggered list entrance (`--i`), the hive banner, inverted sweep on list rows, scroll-driven progress bar. All disabled under `prefers-reduced-motion`.
+- Motion is CSS-only except the hive banner: view transitions between pages, staggered list entrance (`--i`), inverted sweep on list rows, scroll-driven progress bar. All disabled under `prefers-reduced-motion`.
 
 ## Build and deploy
 
