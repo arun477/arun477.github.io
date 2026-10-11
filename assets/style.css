@@ -267,7 +267,7 @@ main a:hover { text-decoration-color: currentColor; }
 
 .index { margin-bottom: 3.5rem; }
 
-/* Lists: an index of rows that fill with an inverted sweep on hover. */
+/* Lists: an index of rows that draw an ink rule on hover. */
 .list { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--text); }
 .list li { border-bottom: 1px solid var(--line); animation: rise .5s var(--ease) both; animation-delay: calc(var(--i, 0) * 45ms + 100ms); }
 .list a {
@@ -280,15 +280,33 @@ main a:hover { text-decoration-color: currentColor; }
   text-decoration: none;
 }
 
-/* One hover for every row-like link: an inverted fill sweeps in, contents slide inward. */
-:is(.list a, .links a, .latest) {
-  background: linear-gradient(var(--text), var(--text)) no-repeat left / 0 100%;
-  transition: background-size .45s var(--ease), color .3s;
+/* One hover for every row-like link: an ink rule draws along the row's bottom edge, contents slide inward.
+   No fill or colour inversion, so the row looks the same in the page-transition snapshot taken on click. */
+:is(.list a, .links a, .latest) { position: relative; -webkit-tap-highlight-color: transparent; }
+:is(.list a, .links a, .latest)::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -1px;
+  height: 1px;
+  background: var(--text);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .45s var(--ease);
 }
-:is(.list a, .links a, .latest):hover { color: var(--bg); background-size: 100% 100%; }
 :is(.list a, .links a, .latest) > * { transition: transform .45s var(--ease), color .3s; }
-:is(.list a, .links a, .latest):hover > * { color: var(--bg); transform: translateX(.75rem); }
-.list a:hover > time, .links a:hover > span { transform: translateX(-.75rem); }
+:is(.list a, .links a, .latest):focus-visible { outline: none; }
+:is(.list a, .links a, .latest):focus-visible::after { transform: scaleX(1); }
+:is(.list a, .links a, .latest):focus-visible > * { color: var(--text); transform: translateX(.5rem); }
+.list a:focus-visible > time, .links a:focus-visible > span { transform: translateX(-.5rem); }
+@media (hover: hover) and (pointer: fine) {
+  :is(.list a, .links a, .latest):hover::after { transform: scaleX(1); }
+  :is(.list a, .links a, .latest):hover > * { color: var(--text); transform: translateX(.5rem); }
+  .list a:hover > time, .links a:hover > span { transform: translateX(-.5rem); }
+}
+/* Touch: no sticky hover; a tap just shows the rule. */
+@media (hover: none) {
+  :is(.list a, .links a, .latest):active::after { transform: scaleX(1); transition: none; }
+}
 .list .n, .list time { font: .75rem/1 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
 .list .t { min-width: 0; font: 1.2rem/1.35 var(--serif); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
@@ -350,7 +368,8 @@ mtable mtd:nth-child(even) { text-align: left; padding-left: 0; }
   article { font-size: 1.125rem; }
   .facts { grid-template-columns: 1fr; gap: 2.5rem; }
   .list a { grid-template-columns: 2rem 1fr; column-gap: 1rem; }
-  .list a:hover > time { transform: translateX(.75rem); }
+  .list a:focus-visible > time { transform: translateX(.5rem); }
+  @media (hover: hover) and (pointer: fine) { .list a:hover > time { transform: translateX(.5rem); } }
   .list time { grid-column: 2; }
 }
 

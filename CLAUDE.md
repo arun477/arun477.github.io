@@ -29,9 +29,9 @@ Swiss-style minimal: strict alignment, symmetry, sharp edges. One 44rem column (
 - Home: hero banner = the hive as a background (soft-faded edges, no box), with the role kicker and name floating freely over its sky: no border, shadow or panel, only a feathered backdrop blur behind the letters (static above the scene on phones) (role from `content/_index.md` `role`); the hive (`assets/hive.js`, home page only): five agent bees take a request, brief, work together face to face, deliver, remember and dream in a 36s loop; pauses off-screen, shows a still frame under reduced motion, `?hive=<seconds>` freezes a moment for checking), then a two-column Latest (newest post with its description) / Elsewhere block, then one numbered index per section. Role and links live in `content/_index.md` front matter (`role`, `links`).
 - Colour: tokens at the top of `style.css`; dark tokens appear twice (system preference and `[data-theme="dark"]`); change both.
 - Accent is signal orange, used only as a signal (REC marker, waveform playhead, reading-progress bar). Never for links or text: links stay ink with an underline, so nothing reads as "link blue".
-- Hover fills stay exactly within the column rules; content slides inward (transform) instead of the fill bleeding outward.
+- Row hovers stay exactly within the column rules; content slides inward (transform) instead of anything bleeding outward.
 - JS is limited to the theme toggle (inline in `baseof.html`) and `assets/hive.js` on the home page. The bee characters, palette and choreography live in that one file.
-- Motion is CSS-only except the hive banner: view transitions between pages, staggered list entrance (`--i`), inverted sweep on list rows, scroll-driven progress bar. All disabled under `prefers-reduced-motion`.
+- Motion is CSS-only except the hive banner: view transitions between pages, staggered list entrance (`--i`), an ink rule drawn along the bottom of hovered list rows (no fill or colour inversion: it would flash in the view-transition snapshot on click; hover is mouse-only, touch gets the rule on tap), scroll-driven progress bar. All disabled under `prefers-reduced-motion`.
 
 ## Build and deploy
 
