@@ -214,18 +214,21 @@ main a:hover { text-decoration-color: currentColor; }
   position: absolute;
   top: 2%;
   left: 0;
-  padding: .9rem 1.4rem 1rem 1.15rem;
-  background: color-mix(in srgb, var(--bg) 55%, transparent);
-  -webkit-backdrop-filter: blur(10px) saturate(170%);
-  backdrop-filter: blur(10px) saturate(170%);
-  border: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
-  box-shadow: 0 10px 30px -12px rgba(30, 20, 5, .18), inset 0 1px 0 color-mix(in srgb, #fff 55%, transparent);
+  padding: 1.3rem 4rem 2.2rem 0;
+  margin-top: -.4rem;
+  background: color-mix(in srgb, var(--bg) 30%, transparent);
+  -webkit-backdrop-filter: blur(9px) saturate(150%);
+  backdrop-filter: blur(9px) saturate(150%);
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 3.5rem), transparent), linear-gradient(to bottom, transparent 0, #000 1.4rem, #000 calc(100% - 2rem), transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, #000 calc(100% - 3.5rem), transparent), linear-gradient(to bottom, transparent 0, #000 1.4rem, #000 calc(100% - 2rem), transparent);
+  mask-composite: intersect;
 }
 .glass .kicker { margin-bottom: .55rem; }
 .glass h1 { font-size: clamp(2.4rem, 5.6vw, 3.5rem); }
 @media (max-width: 34rem) {
   .banner { margin-top: 0; }
-  .glass { position: static; padding: 0 0 .25rem; background: none; border: 0; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .glass { position: static; padding: 0 0 .25rem; background: none; -webkit-backdrop-filter: none; backdrop-filter: none; -webkit-mask-image: none; mask-image: none; }
   .glass h1 { font-size: 2.3rem; }
 }
 
