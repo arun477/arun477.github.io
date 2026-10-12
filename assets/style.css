@@ -364,17 +364,15 @@ mtable mtd:nth-child(even) { text-align: left; padding-left: 0; }
   main, .in { padding-inline: 1.1rem; }
   header { margin-bottom: 2.5rem; }
   nav, footer .in { gap: 1rem; }
-  /* Phones: the footer is the last thing on the page, so it gets room to breathe
-     (and clears the home indicator) with the copyright stacked above the links. */
+  /* Phones: the footer is the last thing on the page, so it gets a little more
+     height than the header bar and clears the home indicator; one row, wrapping
+     only on the narrowest screens. */
   footer { height: auto; }
   footer .in {
     flex-wrap: wrap;
-    justify-content: flex-start;
-    row-gap: 1.25rem;
-    column-gap: 1.5rem;
-    padding-block: 2rem max(2rem, env(safe-area-inset-bottom));
+    row-gap: .75rem;
+    padding-block: 1.5rem max(1.5rem, env(safe-area-inset-bottom));
   }
-  footer span { flex-basis: 100%; }
   h1 { font-size: 2rem; }
   article { font-size: 1.125rem; }
   .facts { grid-template-columns: 1fr; gap: 2.5rem; }
