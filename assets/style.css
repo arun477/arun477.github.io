@@ -364,6 +364,17 @@ mtable mtd:nth-child(even) { text-align: left; padding-left: 0; }
   main, .in { padding-inline: 1.1rem; }
   header { margin-bottom: 2.5rem; }
   nav, footer .in { gap: 1rem; }
+  /* Phones: the footer is the last thing on the page, so it gets room to breathe
+     (and clears the home indicator) with the copyright stacked above the links. */
+  footer { height: auto; }
+  footer .in {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    row-gap: 1.25rem;
+    column-gap: 1.5rem;
+    padding-block: 2rem max(2rem, env(safe-area-inset-bottom));
+  }
+  footer span { flex-basis: 100%; }
   h1 { font-size: 2rem; }
   article { font-size: 1.125rem; }
   .facts { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -375,7 +386,7 @@ mtable mtd:nth-child(even) { text-align: left; padding-left: 0; }
 
 @media (max-width: 25rem) {
   header, footer { letter-spacing: .04em; }
-  nav, footer .in { gap: .75rem; }
+  nav { gap: .75rem; }
 }
 @media (max-width: 22rem) {
   .name span { display: none; }
