@@ -1,0 +1,49 @@
+{{- /* Ensō: an open circle of ginkgo, maple and willow leaves in the leaf palette around a red sun disc.
+       Takes a dict (all optional):
+         size    box in px (default 190); the SVG is size x size and scales with CSS width
+         leaves  leaves along the ring (default 28; the first 45% get a second, inner leaf)
+         seed    shifts the pseudo-random layout so two ensō on one page differ (default 0)
+         sun     red disc in the centre (default true)
+         falling three loose leaves drifting off the top right (default true)
+         draw    leaves fade and settle in, in sequence, once (home only; default false)
+         class   extra classes on the svg
+       Layout is computed at build time (no JS) and cached per argument set: call it with partialCached. */ -}}
+{{- $o := cond (reflect.IsMap .) . dict -}}
+{{- $box := float ($o.size | default 190) -}}
+{{- $n := int ($o.leaves | default 28) -}}
+{{- $seed := int ($o.seed | default 0) -}}
+{{- $sun := cond (isset $o "sun") $o.sun true -}}
+{{- $fall := cond (isset $o "falling") $o.falling true -}}
+{{- $R := mul $box 0.38 -}}
+{{- $c := div $box 2.0 -}}
+{{- $k := math.Max (div $box 440.0) 0.6 -}}
+{{- $pal := slice "#c49a3e" "#b0842f" "#d0ad5a" "#a3412e" "#b85c38" "#8c3b2a" "#5e7f86" "#7d7a4e" -}}
+{{- $shapes := slice "ginkgo" "ginkgo" "momiji" "yanagi" "ginkgo" "momiji" -}}
+{{- $out := slice -}}
+{{- range $i := seq 0 (sub $n 1) -}}
+  {{- $t := div (float $i) (sub $n 1) -}}
+  {{- $j := add $i $seed -}}
+  {{- $deg := add -58 (mul $t 296) -}}
+  {{- $a := math.ToRadians $deg -}}
+  {{- $r := add $R (mul (sub (partial "ornament/rnd.html" (slice $j 1)) 0.5) $R 0.22 (sub 1.2 $t)) -}}
+  {{- $s := mul (sub 1.3 (mul 0.7 $t)) (add 0.8 (mul (partial "ornament/rnd.html" (slice $j 2)) 0.4)) $k -}}
+  {{- $out = $out | append (dict "j" $j "x" (add $c (mul $r (math.Cos $a))) "y" (add $c (mul $r (math.Sin $a))) "rot" (add $deg 90 (mul (sub (partial "ornament/rnd.html" (slice $j 3)) 0.5) 80)) "s" $s) -}}
+  {{- if lt $t 0.45 -}}
+    {{- $r2 := sub $r (mul 18 $k) -}}
+    {{- $out = $out | append (dict "j" (add $j 100) "x" (add $c (mul $r2 (math.Cos (add $a 0.05)))) "y" (add $c (mul $r2 (math.Sin (add $a 0.05)))) "rot" (add $deg (mul (sub (partial "ornament/rnd.html" (slice $j 6)) 0.5) 120)) "s" (mul $s 0.8)) -}}
+  {{- end -}}
+{{- end -}}
+{{- if $fall -}}
+  {{- range $m, $f := slice (slice 0.86 -0.82 0.7) (slice 0.98 -0.6 0.55) (slice 1.1 -0.95 0.5) -}}
+    {{- $out = $out | append (dict "j" (add 200 $m $seed) "x" (add $c (mul (index $f 0) $R)) "y" (add $c (mul (index $f 1) $R)) "rot" (float (add 30 (mul $m 70))) "s" (mul (index $f 2) (div $box 440.0)) "drift" (lt $m 2)) -}}
+  {{- end -}}
+{{- end -}}
+<svg class="enso{{ if $o.draw }} draw{{ end }}{{ with $o.class }} {{ . }}{{ end }}" viewBox="0 0 {{ $box }} {{ $box }}" width="{{ $box }}" height="{{ $box }}" aria-hidden="true" focusable="false">
+{{- if $sun }}<circle class="enso-sun" cx="{{ $c }}" cy="{{ $c }}" r="{{ printf "%.1f" (mul $box 0.08) }}"/>{{ end }}
+{{- range $i, $l := $out -}}
+{{- $shape := index $shapes (int (math.Floor (mul (partial "ornament/rnd.html" (slice $l.j 5)) (len $shapes)))) -}}
+{{- $fill := index $pal (int (math.Floor (mul (partial "ornament/rnd.html" (slice $l.j 4)) (len $pal)))) -}}
+<g transform="translate({{ printf "%.1f %.1f" $l.x (sub $l.y 1) }}) rotate({{ printf "%.0f" $l.rot }}) scale({{ printf "%.2f" $l.s }}) translate(0 11)"><use href="#lf-{{ $shape }}" fill="{{ $fill }}"{{ if $l.drift }} class="drift"{{ end }} style="--i:{{ $i }}"/></g>
+{{- end -}}
+</svg>
+{{- /**/ -}}

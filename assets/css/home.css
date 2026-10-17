@@ -1,0 +1,12 @@
+/* home.css: the home page (layouts/home.html, _partials/latest.html). Edited by the home agent only. */
+.index { margin-bottom: var(--s7); }
+.note { margin: 0 0 var(--s5); }
+
+/* Latest: the first rows show, the rest open under Show more (a details element). */
+.showmore > summary { display: flex; padding: var(--s4) 0 0; list-style: none; cursor: pointer; font: 500 var(--t-ui)/1 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; color: var(--ink); }
+.showmore > summary::-webkit-details-marker { display: none; }
+.showmore > summary:hover { text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: .4em; }
+/* Opened, the button gives way to the batch; the next batch's button sits under it. */
+.showmore[open] > summary { display: none; }
+.older { margin: var(--s5) 0 0; }
+.showmore .feed { border-top: 0; }

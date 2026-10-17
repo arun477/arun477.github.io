@@ -1,0 +1,3 @@
+/* themes.css: Themes index and theme pages (layouts/themes/, _partials/themes/). Edited by the themes agent only.
+   Rows reuse the shared row grammar (.feed in base.css); status colours live there too. */
+.themes .s { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }

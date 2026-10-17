@@ -1,0 +1,37 @@
+/* about.css: the About page (layouts/about.html, assets/hive.js). Edited by the about agent only. */
+.kicker {
+  display: flex;
+  margin: 0 0 .55rem;
+  font: 500 var(--t-ui)/1 var(--gothic);
+  letter-spacing: var(--track-ui);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.who h1 { font-size: clamp(2.3rem, 5.6vw, 3.5rem); line-height: 1; margin: 0; }
+.who .lead { margin: 1rem 0 0; max-width: 36rem; }
+.who .lead p { margin: 0; }
+.hive {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1140 / 540;
+  margin: 1.5rem 0 0;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 7%, #000 88%, transparent 100%), linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to bottom, transparent 0, #000 7%, #000 88%, transparent 100%), linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+  mask-composite: intersect;
+}
+/* How the site runs, one hairline row per part: name, then who runs it and what it does. */
+.runs { margin: 3rem 0 0; }
+.runs dl { margin: 0; border-top: 1px solid var(--ink); }
+.runs dl > div { display: grid; grid-template-columns: 7rem 1fr; column-gap: 1.25rem; padding: .9rem 0; border-bottom: 1px solid var(--rule); }
+.runs dt { font: 600 var(--t-ui)/1.6 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; }
+.runs dt a { color: var(--ink); }
+.runs dd { margin: 0; font: 1.05rem/1.5 var(--mincho); color: var(--muted); }
+.runs dd b { display: block; font: 500 var(--t-ui)/1.6 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; color: var(--ink); }
+.runs .brief { margin: 1.25rem 0 0; font-size: 1.05rem; }
+/* Social links: one compact row of UI labels under the name. */
+.social { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; list-style: none; margin: 1rem 0 0; padding: 0; font: 500 var(--t-ui)/1 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; }
+.social a { display: inline-flex; gap: .3rem; padding: .3rem 0; color: var(--muted); text-decoration: none; transition: color .2s; }
+.social a:hover { color: var(--ink); text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: .35em; }
+.social span { font-family: var(--mono); letter-spacing: 0; }

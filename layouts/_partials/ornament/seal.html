@@ -1,0 +1,8 @@
+{{- /* Hanko: a red square name seal, slightly rotated, with a double inner rule.
+       Takes a dict (all optional): text (default "AA"; two or three letters), size (px, default 34), class.
+       Colours come from CSS (.seal in base.css): red ground, paper-coloured rules and letters. */ -}}
+{{- $o := cond (reflect.IsMap .) . dict -}}
+{{- $t := $o.text | default "AA" -}}
+{{- $sz := $o.size | default 34 -}}
+<svg class="seal{{ with $o.class }} {{ . }}{{ end }}" viewBox="0 0 40 40" width="{{ $sz }}" height="{{ $sz }}" aria-hidden="true" focusable="false"><rect class="seal-bg" width="40" height="40"/><rect class="seal-rule" x="2.5" y="2.5" width="35" height="35" stroke-width="1.2"/><rect class="seal-rule" x="5" y="5" width="30" height="30" stroke-width=".6"/><text x="20" y="21" text-anchor="middle" dominant-baseline="middle" font-size="{{ cond (gt (len $t) 2) 10.5 15 }}">{{ $t }}</text></svg>
+{{- /**/ -}}

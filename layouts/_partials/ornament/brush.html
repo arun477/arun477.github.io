@@ -1,0 +1,10 @@
+{{- /* A brush stroke: a heavy stroke with round caps and a thin second stroke beside it, in currentColor (red by default via .brush).
+       Takes a dict (all optional): kind "under" (horizontal, under a heading; default) or "vertical" (a rule beside a column heading),
+       length (px; default 190 under, 150 vertical), class. The stroke stretches to the given length. */ -}}
+{{- $o := cond (reflect.IsMap .) . dict -}}
+{{- if eq $o.kind "vertical" -}}
+<svg class="brush brush-v{{ with $o.class }} {{ . }}{{ end }}" viewBox="0 0 16 150" preserveAspectRatio="none" width="16" height="{{ $o.length | default 150 }}" aria-hidden="true" focusable="false"><path d="M8 4C6 40 10 80 7 118C6.5 128 8 138 8.5 146" stroke-width="4.5" opacity=".8" vector-effect="non-scaling-stroke"/><path d="M10 10C9 50 11 90 9 120" stroke-width="1.2" opacity=".35" vector-effect="non-scaling-stroke"/></svg>
+{{- else -}}
+<svg class="brush brush-u{{ with $o.class }} {{ . }}{{ end }}" viewBox="0 0 190 14" preserveAspectRatio="none" width="{{ $o.length | default 190 }}" height="14" aria-hidden="true" focusable="false"><path d="M3 9C40 4 96 3 140 6C160 7 176 8 187 5" stroke-width="5" opacity=".85" vector-effect="non-scaling-stroke"/><path d="M20 11C70 8 120 8 170 9" stroke-width="1" opacity=".5" vector-effect="non-scaling-stroke"/></svg>
+{{- end -}}
+{{- /**/ -}}

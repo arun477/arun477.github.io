@@ -1,0 +1,529 @@
+/* base.css: fonts, tokens, reset, type, header, footer, shared rows, glyphs, chips, buttons, ornaments, motion.
+   Only the foundation edits this file; page partials (home, posts, feed, themes, about) build on its tokens and classes. */
+
+/* Fonts: self-hosted latin subsets. Shippori Mincho B1 for headings and reading text, Zen Kaku Gothic New for UI labels. */
+@font-face { font-family: "Shippori Mincho B1"; src: url("/fonts/shippori-mincho-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Shippori Mincho B1"; src: url("/fonts/shippori-mincho-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Shippori Mincho B1"; src: url("/fonts/shippori-mincho-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Shippori Mincho B1"; src: url("/fonts/shippori-mincho-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Zen Kaku Gothic New"; src: url("/fonts/zen-kaku-gothic-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Zen Kaku Gothic New"; src: url("/fonts/zen-kaku-gothic-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Zen Kaku Gothic New"; src: url("/fonts/zen-kaku-gothic-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* Tokens. Colour: washi ground, paper, mist, sumi ink, muted, rule, seal red, slate (footer wave band).
+   Dark tokens appear twice (system preference and [data-theme="dark"]); change both. */
+:root {
+  --ground: #ede4d2;
+  --paper: #f5efe3;
+  --mist: #e5dac6;
+  --mist-2: #e0ddcf;
+  --ink: #2c2620;
+  --muted: #74685a;
+  --rule: #d5c8b0;
+  --red: #a3412e;
+  --on-red: #f5efe3;
+  --slate: #3f5558;
+  --slate-2: #4b6467;
+  --on-slate: #efe7d6;
+  --vein: rgba(40, 30, 20, .3);
+
+  /* Leaf palette for illustrations (same in both modes). */
+  --leaf-ochre: #c49a3e;
+  --leaf-ochre-2: #b0842f;
+  --leaf-ochre-3: #d0ad5a;
+  --leaf-rust: #a3412e;
+  --leaf-rust-2: #b85c38;
+  --leaf-rust-3: #8c3b2a;
+  --leaf-teal: #5e7f86;
+  --leaf-olive: #7d7a4e;
+
+  /* Type */
+  --mincho: "Shippori Mincho B1", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --gothic: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --t-ui-sm: .625rem;   /* 10px: tiny UI labels (role line, vertical dates) */
+  --t-ui: .6875rem;     /* 11px: UI labels, nav, meta, chips, buttons */
+  --t-sm: .875rem;      /* 14px: captions, small print */
+  --t-body: 1rem;       /* 16px: summaries, UI body */
+  --t-read: 1.125rem;   /* 18px: reading text */
+  --t-lg: 1.375rem;     /* 22px: row titles, lead lines */
+  --t-xl: 1.75rem;      /* 28px: section titles, h2 */
+  --t-2xl: 2.25rem;     /* 36px: page titles */
+  --t-3xl: 3rem;        /* 48px: display titles */
+  --track-ui: .22em;    /* uppercase UI tracking */
+  --track-wide: .3em;   /* kickers, role line */
+
+  /* Spacing scale: use these for every margin, padding and gap. */
+  --s1: .25rem;  /*  4px */
+  --s2: .5rem;   /*  8px */
+  --s3: .75rem;  /* 12px */
+  --s4: 1rem;    /* 16px */
+  --s5: 1.5rem;  /* 24px */
+  --s6: 2rem;    /* 32px */
+  --s7: 3rem;    /* 48px */
+  --s8: 4rem;    /* 64px */
+  --s9: 6rem;    /* 96px */
+
+  /* Layout */
+  --wrap: 60rem;       /* the column: header, footer, main and every band align to it */
+  --measure: 42rem;    /* reading width for prose */
+  --gutter: var(--s6); /* side padding of the column (16px on phones) */
+  --bar: 4rem;         /* header height */
+  --tap: 2.75rem;      /* minimum tap target (44px) */
+  --hair: 1px;
+
+  --ease: cubic-bezier(.2, .8, .2, 1);
+
+  /* Old names, kept so existing rules and assets/hive.js keep working. New rules use the names above. */
+  --bg: var(--ground);
+  --card: var(--paper);
+  --text: var(--ink);
+  --line: var(--rule);
+  --hover: var(--mist);
+  --accent: var(--red);
+  --serif: var(--mincho);
+  --sans: var(--gothic);
+
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --ground: #1c1a17;
+  --paper: #24211d;
+  --mist: #2a2722;
+  --mist-2: #252826;
+  --ink: #ece3d2;
+  --muted: #a69a88;
+  --rule: #3a352e;
+  --red: #c8664d;
+  --on-red: #1c1a17;
+  --slate: #12110f;
+  --slate-2: #1d1c19;
+  --on-slate: #ece3d2;
+  --vein: rgba(20, 14, 8, .35);
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #1c1a17;
+    --paper: #24211d;
+    --mist: #2a2722;
+    --mist-2: #252826;
+    --ink: #ece3d2;
+    --muted: #a69a88;
+    --rule: #3a352e;
+    --red: #c8664d;
+    --on-red: #1c1a17;
+    --slate: #12110f;
+    --slate-2: #1d1c19;
+    --on-slate: #ece3d2;
+    --vein: rgba(20, 14, 8, .35);
+    color-scheme: dark;
+  }
+}
+
+/* Reset. Rectangles stay sharp everywhere; circles are drawn in SVG. */
+*, *::before, *::after { box-sizing: border-box; border-radius: 0 !important; }
+
+@view-transition { navigation: auto; }
+/* Page changes are one short cross-fade with the header held still. Nothing else animates on load: an entrance
+   animation on main or on list rows ran inside the transition's snapshot and made rows pop in one by one (jitter). */
+::view-transition-old(root),
+::view-transition-new(root) { animation-duration: .2s; animation-timing-function: ease-out; }
+
+html { background: var(--ground); }
+/* Short and long pages keep the column in the same place (desktop; phones use overlay scrollbars). */
+@media (min-width: 40.01rem) { html { scrollbar-gutter: stable; } }
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+  margin: 0;
+  overflow-x: clip;
+  font: 400 var(--t-body)/1.7 var(--mincho);
+  color: var(--ink);
+  background: var(--ground);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection { background: var(--ink); color: var(--ground); }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } }
+@keyframes blink { 50% { opacity: .15; } }
+
+/* The column. main starts --s6 under the header; a page that opens on a band pulls it up with margin-top: calc(-1 * var(--s6)). */
+main, .in { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--gutter); }
+main { flex: 1; padding-block: var(--s6) 0; }
+.in { display: flex; align-items: center; }
+/* Full-bleed band inside main (seigaiha strip, top bands): spans the viewport, contents re-align with .in. */
+.bleed { margin-inline: calc(50% - 50vw); }
+
+/* Type */
+h1, h2, h3 { font-family: var(--mincho); font-weight: 600; line-height: 1.25; letter-spacing: .01em; }
+h1 { font-size: var(--t-2xl); font-weight: 700; line-height: 1.15; margin: 0 0 var(--s4); }
+h2 { font-size: var(--t-xl); margin: var(--s7) 0 var(--s3); }
+h3 { font-size: var(--t-lg); margin: var(--s6) 0 var(--s2); }
+p { margin: 0 0 var(--s4); }
+
+/* Links stay ink with a red underline. */
+main a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--red);
+  text-underline-offset: .28em;
+  transition: text-decoration-color .2s, text-decoration-thickness .2s;
+}
+main a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
+
+/* UI type: Zen Kaku Gothic, uppercase, wide tracking. */
+.ui { font: 500 var(--t-ui)/1.4 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* ---------------------------------------------------------------- Header: crest + name and role, nav, theme toggle. */
+header.site {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: var(--bar);
+  border-bottom: 1px solid var(--rule);
+  background: color-mix(in srgb, var(--ground) 92%, transparent);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
+  backdrop-filter: saturate(140%) blur(10px);
+  view-transition-name: site-header;
+}
+header.site .in { height: 100%; gap: var(--s6); }
+header.site a { color: inherit; text-decoration: none; }
+.brand { display: flex; align-items: center; gap: var(--s3); min-height: var(--tap); white-space: nowrap; }
+.crest { flex: none; display: block; width: var(--tap); height: var(--tap); }
+.crest-ring { fill: none; stroke: var(--ink); stroke-width: 1; }
+.brand-t { display: flex; flex-direction: column; gap: var(--s1); }
+.brand .name { font: 600 1.2rem/1.1 var(--mincho); letter-spacing: .03em; color: var(--ink); }
+.brand .role { font: 500 var(--t-ui-sm)/1.2 var(--gothic); letter-spacing: var(--track-wide); text-transform: uppercase; color: var(--muted); }
+
+header.site nav { display: flex; align-items: center; gap: var(--s6); margin-left: auto; font: 500 var(--t-ui)/1 var(--gothic); letter-spacing: .26em; text-transform: uppercase; }
+header.site nav a { position: relative; display: flex; align-items: center; min-height: var(--tap); margin-right: -.26em; color: var(--muted); white-space: nowrap; transition: color .25s; } /* the trailing tracking is pulled back so the last label ends on the column edge */
+header.site nav a:hover, header.site nav a[aria-current] { color: var(--ink); }
+/* The brush underline: a tapered stroke drawn left to right. Red marks the current page, ink follows the pointer. */
+header.site nav a::after {
+  content: "";
+  position: absolute;
+  left: -.1em;
+  right: .16em;
+  bottom: .55rem;
+  height: 4px;
+  background: var(--muted);
+  -webkit-mask: var(--brush) 0 0 / 100% 100% no-repeat;
+  mask: var(--brush) 0 0 / 100% 100% no-repeat;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path .45s var(--ease);
+}
+header.site nav a:hover::after { clip-path: inset(0 0 0 0); }
+header.site nav a[aria-current]::after { background: var(--red); clip-path: inset(0 0 0 0); }
+:root { --brush: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 4' preserveAspectRatio='none'%3E%3Cpath d='M0 2.3C18 1.1 42 .7 66 1.1S92 1.8 100 1.4V2.4C86 3.3 52 3.7 22 3.4 12 3.3 4 3.1 0 2.8Z'/%3E%3C/svg%3E"); }
+
+.theme {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: var(--tap);
+  height: var(--tap);
+  margin-right: calc(-1 * (var(--tap) - 1rem) / 2); /* the icon, not its tap area, ends on the column edge */
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color .2s;
+}
+.theme:hover { color: var(--ink); }
+.theme svg {
+  grid-area: 1 / 1;
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  transition: transform .5s var(--ease), opacity .3s;
+}
+.moon { opacity: 0; transform: rotate(-90deg) scale(.5); }
+:root[data-theme="dark"] .sun { opacity: 0; transform: rotate(90deg) scale(.5); }
+:root[data-theme="dark"] .moon { opacity: 1; transform: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .sun { opacity: 0; transform: rotate(90deg) scale(.5); }
+  :root:not([data-theme="light"]) .moon { opacity: 1; transform: none; }
+}
+.menu, .menu-btn { display: none; }
+
+/* ---------------------------------------------------------------- Footer: Fuji on the seigaiha band, then the slate bar. */
+footer.site { margin-top: var(--s8); }
+.fuji { display: block; width: 100%; max-width: 720px; height: auto; margin: 0 auto -1px; padding-inline: var(--gutter); }
+.fuji-sun { fill: var(--red); opacity: .9; }
+.fuji-hill { fill: none; stroke: var(--muted); stroke-width: 1.2; }
+.fuji-line { fill: none; stroke: var(--ink); stroke-width: 1.4; stroke-linejoin: round; }
+.fuji-snow { fill: var(--paper); stroke: var(--ink); stroke-width: 1.1; stroke-linejoin: round; }
+.fuji-bird { fill: none; stroke: var(--ink); stroke-width: 1.2; stroke-linecap: round; }
+footer.site .seigaiha { height: var(--s7); }
+.foot-bar { background: var(--slate); color: var(--on-slate); font: 500 var(--t-ui)/1 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; }
+.foot-bar .in { flex-wrap: wrap; gap: var(--s2) var(--s6); padding-block: var(--s5) max(var(--s5), env(safe-area-inset-bottom)); }
+.foot-bar .copy { margin-right: auto; white-space: nowrap; }
+.foot-bar nav { display: flex; flex-wrap: wrap; gap: 0 var(--s5); margin-right: calc(-1 * var(--track-ui)); }
+.foot-bar a { position: relative; display: inline-flex; align-items: center; min-height: var(--tap); color: inherit; text-decoration: none; opacity: .78; white-space: nowrap; transition: opacity .2s; }
+.foot-bar a:hover { opacity: 1; }
+.foot-bar a::after { content: ""; position: absolute; left: 0; right: var(--track-ui); bottom: .7rem; height: 3px; background: currentColor; -webkit-mask: var(--brush) 0 0 / 100% 100% no-repeat; mask: var(--brush) 0 0 / 100% 100% no-repeat; clip-path: inset(0 100% 0 0); transition: clip-path .45s var(--ease); }
+.foot-bar a:hover::after { clip-path: inset(0 0 0 0); }
+
+/* ---------------------------------------------------------------- Labels, section heads, meta, briefs, pagers. */
+.label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s4);
+  margin: 0 0 var(--s3);
+  font: 500 var(--t-ui)/1.4 var(--gothic);
+  letter-spacing: var(--track-ui);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.label a { color: inherit; text-decoration: none; }
+.label a:hover { color: var(--ink); }
+.label span { font-family: var(--gothic); }
+.label time { font-family: var(--mono); letter-spacing: .08em; }
+.label .to { display: flex; flex-wrap: wrap; gap: var(--s4); }
+/* REC marker: a small red square, the one live signal on a label. */
+.rec { display: inline-flex; align-items: center; gap: var(--s2); color: var(--red); }
+.rec::before { content: ""; width: .4rem; height: .4rem; background: var(--red); animation: blink 2s steps(1) infinite; }
+
+/* Section pages: one slim line (title left, date and chips right), so the list starts near the top. */
+.sechead { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--s2) var(--s5); margin: 0 0 var(--s5); }
+.sechead h1 { margin: 0; font-size: var(--t-xl); }
+.sechead .meta { margin: 0; }
+
+.meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2); margin: 0 0 var(--s6); font: var(--t-sm)/1.6 var(--mono); color: var(--muted); }
+.meta :is(time, span) { margin-right: var(--s2); }
+.brief { margin: 0 0 var(--s5); font: 400 var(--t-read)/1.75 var(--mincho); color: var(--muted); }
+.brief.lead { font-size: var(--t-lg); line-height: 1.55; color: var(--ink); }
+.day { margin-bottom: var(--s7); }
+
+.more, .pager { display: flex; justify-content: space-between; align-items: center; gap: var(--s4); font: 500 var(--t-ui)/1 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; color: var(--muted); }
+.more { margin: var(--s4) 0 0; }
+.pager { margin-top: var(--s7); padding-top: var(--s2); border-top: 1px solid var(--ink); }
+:is(.more, .pager) a { display: inline-flex; align-items: center; min-height: var(--tap); color: var(--ink); text-decoration: none; }
+:is(.more, .pager) a:hover { text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: .4em; }
+.more span, .pager > span { font-family: var(--mono); letter-spacing: .08em; }
+
+/* ---------------------------------------------------------------- Chips and buttons. */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: var(--s1) var(--s3);
+  border: 1px solid var(--rule);
+  font: 500 var(--t-ui)/1.2 var(--gothic);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none !important;
+  transition: color .2s, border-color .2s, background-color .2s;
+}
+.chip:hover { color: var(--ground) !important; background: var(--ink); border-color: var(--ink); }
+.chip span { margin-left: var(--s2); font-family: var(--mono); letter-spacing: 0; opacity: .7; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap);
+  padding: 0 var(--s5);
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--ground) !important;
+  font: 500 var(--t-ui)/1 var(--gothic);
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: background-color .2s, color .2s;
+}
+.btn:hover { background: transparent; color: var(--ink) !important; }
+.btn.ghost { background: transparent; color: var(--ink) !important; }
+.btn.ghost:hover { background: var(--ink); color: var(--ground) !important; }
+
+/* ---------------------------------------------------------------- Rows: the one grammar for every list.
+   ol.feed > li.post > a > [time.vd] span.av (seal-outline glyph box) span.b (span.m meta, strong title, span.s summary).
+   .vd is an optional vertical date; li.spike fills the box red; li.pin outlines it in ink; theme statuses tint it. */
+.feed { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--ink); }
+.feed li { border-bottom: 1px solid var(--rule); }
+.feed a { display: flex; align-items: flex-start; gap: var(--s5); padding: var(--s5) 0; color: var(--ink); text-decoration: none; }
+.vd { flex: none; writing-mode: vertical-rl; min-height: 5rem; font: var(--t-ui-sm)/1 var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+.av { flex: none; display: grid; place-items: center; width: var(--tap); height: var(--tap); border: 1px solid var(--red); color: var(--red); }
+.spike .av { background: var(--red); color: var(--on-red); }
+.spike .av .hot { stroke: currentColor; }
+.spike .av .f.hot { fill: currentColor; }
+.pin .av { border-color: var(--ink); color: var(--ink); }
+.steady .av { border-color: var(--muted); color: var(--ink); }
+.fading .av { border-color: var(--rule); color: var(--muted); }
+.feed .b { flex: 1; display: flex; flex-direction: column; gap: var(--s2); min-width: 0; overflow-wrap: break-word; }
+.feed .m { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s1) var(--s4); font: 500 var(--t-ui)/1.5 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; color: var(--muted); }
+.feed .m b { font-weight: 500; color: var(--ink); }
+.feed .m em { font-style: normal; color: var(--red); }
+.feed .m time { font: var(--t-ui)/1.5 var(--mono); letter-spacing: .06em; text-transform: none; }
+.feed strong { font: 600 var(--t-lg)/1.45 var(--mincho); }
+.feed .s { font: 400 var(--t-body)/1.8 var(--mincho); color: var(--muted); }
+.feed .go { display: none; } /* rows carry no action glyphs */
+/* Compact rows: titles and the meta line only. */
+.feed.compact a { padding: var(--s4) 0; }
+.feed.compact strong { font-size: var(--t-read); }
+.feed.compact .s { display: none; }
+
+/* Row hover: a brush rule draws along the row's bottom edge and the contents slide inward. No fill or colour
+   inversion, so the row looks the same in the page-transition snapshot taken on click. Hover is mouse-only. */
+:is(.feed, .list) a { position: relative; -webkit-tap-highlight-color: transparent; }
+:is(.feed, .list) a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 4px;
+  background: var(--ink);
+  -webkit-mask: var(--brush) 0 0 / 100% 100% no-repeat;
+  mask: var(--brush) 0 0 / 100% 100% no-repeat;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path .6s var(--ease);
+  pointer-events: none;
+}
+:is(.feed, .list) a > * { transition: transform .45s var(--ease), color .3s; }
+:is(.feed, .list) a:focus-visible { outline: none; }
+:is(.feed, .list) a:focus-visible::after { clip-path: inset(0 0 0 0); }
+:is(.feed, .list) a:focus-visible > * { transform: translateX(var(--s2)); }
+@media (hover: hover) and (pointer: fine) {
+  :is(.feed, .list) a:hover::after { clip-path: inset(0 0 0 0); }
+  :is(.feed, .list) a:hover > * { transform: translateX(var(--s2)); }
+}
+@media (hover: none) {
+  :is(.feed, .list) a:active::after { clip-path: inset(0 0 0 0); transition: none; }
+}
+
+/* Theme status words (labels and meta lines): a small square, red when rising. */
+.status { display: inline-flex; align-items: center; gap: var(--s2); font-family: var(--gothic); }
+.status::before { content: ""; width: .4rem; height: .4rem; border: 1px solid currentColor; }
+.status.rising { color: var(--red); }
+.status.rising::before { background: var(--red); border-color: var(--red); }
+.status.steady { color: var(--ink); }
+.status.steady::before { background: currentColor; }
+.status.fading { color: var(--muted); }
+
+/* Glyphs (icon.html): fine line, square caps; "f" parts fill, "t" is the brush trend, "hot" is red. */
+.ic { display: block; width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: square; stroke-linejoin: miter; }
+.ic .f { fill: currentColor; stroke: none; }
+.ic .t { stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.ic .hot { stroke: var(--red); }
+.ic .f.hot { fill: var(--red); stroke: none; }
+
+/* ---------------------------------------------------------------- Ornaments (layouts/_partials/ornament/). Use sparingly. */
+.defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+.vein { fill: none; stroke: var(--vein); stroke-width: .8; }
+.enso { display: block; overflow: visible; }
+.enso-sun { fill: var(--red); opacity: .9; }
+/* The home ensō draws in once: leaves fade and settle in sequence (well under 1.2s). Size is fixed, so nothing shifts. */
+.enso.draw use { animation: leaf-in .38s var(--ease) both; animation-delay: calc(var(--i) * 16ms); }
+.enso.draw .enso-sun { animation: sun-in .6s var(--ease) .3s both; }
+@keyframes leaf-in { from { opacity: 0; transform: translate(0, -6px) rotate(-14deg) scale(.8); } }
+@keyframes sun-in { from { opacity: 0; } }
+/* At most a very subtle idle drift on the two loose leaves. */
+.enso use.drift { animation: drift 9s ease-in-out infinite alternate; }
+.enso.draw use.drift { animation: leaf-in .38s var(--ease) both, drift 9s ease-in-out 1.2s infinite alternate; animation-delay: calc(var(--i) * 16ms), 1.2s; }
+@keyframes drift { to { transform: translate(1.5px, 2px) rotate(6deg); } }
+
+.seal { display: block; flex: none; transform: rotate(-4deg); }
+.seal-bg { fill: var(--red); }
+.seal-rule { fill: none; stroke: var(--on-red); }
+.seal text { fill: var(--on-red); font-family: var(--mincho); font-weight: 700; letter-spacing: .06em; }
+
+.brush { display: block; color: var(--red); overflow: visible; }
+.brush path { fill: none; stroke: currentColor; stroke-linecap: round; }
+.brush-u { max-width: 100%; }
+
+/* Corner quote marks: two red L-shaped corners around a key statement. */
+.corners { position: relative; padding: var(--s2) var(--s4); }
+.corners::before, .corners::after { content: ""; position: absolute; width: var(--s3); height: var(--s3); border: 0 solid var(--red); pointer-events: none; }
+.corners::before { left: 0; top: 0; border-left-width: 2px; border-top-width: 2px; }
+.corners::after { right: 0; bottom: 0; border-right-width: 2px; border-bottom-width: 2px; }
+
+/* Seigaiha wave band (slate). Set the height where it is used; 24px under a top band, --s7 in the footer. */
+.seigaiha {
+  display: block;
+  height: var(--s5);
+  background-color: var(--slate);
+  background-image:
+    radial-gradient(circle at 100% 150%, var(--slate) 24%, var(--slate-2) 24%, var(--slate-2) 28%, var(--slate) 28%, var(--slate) 36%, var(--slate-2) 36%, var(--slate-2) 40%, transparent 40%, transparent),
+    radial-gradient(circle at 0 150%, var(--slate) 24%, var(--slate-2) 24%, var(--slate-2) 28%, var(--slate) 28%, var(--slate) 36%, var(--slate-2) 36%, var(--slate-2) 40%, transparent 40%, transparent),
+    radial-gradient(circle at 50% 100%, var(--slate-2) 10%, var(--slate) 10%, var(--slate) 23%, var(--slate-2) 23%, var(--slate-2) 30%, var(--slate) 30%, var(--slate) 43%, var(--slate-2) 43%, var(--slate-2) 50%, var(--slate) 50%, var(--slate) 63%, var(--slate-2) 63%, var(--slate-2) 71%, transparent 71%, transparent),
+    radial-gradient(circle at 100% 50%, var(--slate-2) 5%, var(--slate) 5%, var(--slate) 15%, var(--slate-2) 15%, var(--slate-2) 20%, var(--slate) 20%, var(--slate) 29%, var(--slate-2) 29%, var(--slate-2) 34%, var(--slate) 34%, var(--slate) 44%, var(--slate-2) 44%, var(--slate-2) 49%, transparent 49%, transparent),
+    radial-gradient(circle at 0 50%, var(--slate-2) 5%, var(--slate) 5%, var(--slate) 15%, var(--slate-2) 15%, var(--slate-2) 20%, var(--slate) 20%, var(--slate) 29%, var(--slate-2) 29%, var(--slate-2) 34%, var(--slate) 34%, var(--slate) 44%, var(--slate-2) 44%, var(--slate-2) 49%, transparent 49%, transparent);
+  background-size: 64px 32px;
+}
+/* Vertical text (headings beside a column); English only, set sideways. */
+.tate { writing-mode: vertical-rl; }
+
+/* Reading progress (post pages): a thin red bar along the top, driven by scroll. */
+.progress {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 20;
+  height: 3px;
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: progress linear both;
+  animation-timeline: scroll(root);
+}
+@keyframes progress { to { transform: scaleX(1); } }
+@supports not (animation-timeline: scroll()) { .progress { display: none; } }
+
+/* ---------------------------------------------------------------- Phones. */
+@media (max-width: 48rem) {
+  header.site nav { gap: var(--s5); }
+}
+@media (max-width: 40rem) {
+  :root { --gutter: var(--s4); }
+  main { padding-block-start: var(--s5); }
+  header.site .in { gap: 0; }
+  /* The nav folds behind a two-rule menu button (CSS only: a checkbox) and opens as a full-width panel of hairline rows. */
+  .menu { display: block; position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+  .menu-btn { display: grid; place-items: center; width: var(--tap); height: var(--tap); margin-left: auto; color: var(--muted); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .menu-btn svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: square; }
+  .menu-btn path { transition: transform .35s var(--ease); transform-origin: 8px 8px; }
+  .menu:checked + .menu-btn { color: var(--ink); }
+  .menu:checked + .menu-btn .a { transform: translateY(2.5px) rotate(45deg); }
+  .menu:checked + .menu-btn .b { transform: translateY(-2.5px) rotate(-45deg); }
+  .menu:focus-visible + .menu-btn { outline: 1px solid var(--ink); outline-offset: -4px; }
+  header.site nav { display: none; position: absolute; inset: var(--bar) 0 auto; margin: 0; padding: 0 var(--gutter); flex-direction: column; align-items: stretch; gap: 0; background: var(--ground); border-bottom: 1px solid var(--ink); font-size: var(--t-ui); }
+  .menu:checked ~ nav { display: flex; animation: rise .3s var(--ease) both; }
+  header.site nav a { min-height: 3.25rem; margin-right: 0; border-top: 1px solid var(--rule); }
+  header.site nav a:first-child { border-top: 0; }
+  header.site nav a::after { left: 0; right: auto; width: 4rem; bottom: .9rem; }
+  .theme { margin-right: calc(-1 * (var(--tap) - 1rem) / 2); }
+  .brand .name { font-size: 1.1rem; }
+  .crest { width: 2.5rem; height: 2.5rem; }
+  .foot-bar .in { gap: 0 var(--s5); padding-block-start: var(--s4); }
+  .foot-bar .copy { flex-basis: 100%; padding-block: var(--s3) var(--s1); }
+  .foot-bar nav { display: grid; grid-template-columns: repeat(3, auto); justify-content: space-between; flex-basis: 100%; gap: 0 var(--s4); margin-right: 0; }
+  footer.site .seigaiha { height: var(--s6); }
+  h1 { font-size: var(--t-xl); }
+  .sechead h1 { font-size: var(--t-lg); }
+  .feed a { gap: var(--s4); }
+  .feed strong { font-size: 1.2rem; }
+  .av { width: 2.5rem; height: 2.5rem; }
+}
+@media (max-width: 23rem) {
+  .brand .role { letter-spacing: .2em; }
+}
+
+/* ---------------------------------------------------------------- Reduced motion: everything still. */
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
