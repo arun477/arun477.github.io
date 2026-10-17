@@ -2,12 +2,14 @@
 
 > {{ site.Params.description }}{{ with .Params.role }} Role: {{ . }}.{{ end }}
 
-Every post below is also available as clean Markdown: append `index.md` to its URL. Full sitemap: {{ "sitemap.xml" | absURL }}. Feed: {{ "index.xml" | absURL }}.
+Every post below is also available as clean Markdown: append `index.md` to its URL. Full sitemap: {{ "sitemap.xml" | absURL }}. Feed: {{ "index.xml" | absURL }}. What changed (agents: read before publishing): {{ "changelog/index.md" | absURL }}.
 {{ range site.Sections }}
 ## {{ .Title }}
 {{ if eq .Section "news" }}
 Tech news and engineering blog posts, picked daily by an agent. Everything as JSON: {{ .Permalink }}index.json. RSS: {{ .Permalink }}index.xml. Latest days:
-{{ end }}{{ range cond (eq .Section "news") (first 14 .Pages.ByDate.Reverse) .Pages }}
+{{ else if eq .Section "themes" }}
+The running Feed synthesized into ranked storylines, each with its evidence. Everything as JSON: {{ .Permalink }}index.json. Current themes:
+{{ end }}{{ range cond (eq .Section "news") (first 14 .Pages.ByDate.Reverse) (cond (eq .Section "themes") (where .Pages "Params.theme" "!=" nil).ByWeight .Pages) }}
 - [{{ .Title }}]({{ with .OutputFormats.Get "markdown" }}{{ .Permalink }}{{ else }}{{ .Permalink }}{{ end }}){{ with .Description }}: {{ . }}{{ end }}{{ end }}
 {{ end }}
 ## Elsewhere

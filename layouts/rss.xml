@@ -1,6 +1,6 @@
 {{- $pages := .RegularPagesRecursive.ByDate.Reverse -}}
-{{- /* The feed (content/news) has its own RSS at /feed/index.xml; the main feed stays posts. */ -}}
-{{- if .IsHome }}{{ $pages = where $pages "Section" "ne" "news" }}{{ end -}}
+{{- /* The feed (content/news) has its own RSS at /feed/index.xml, and Themes is a ranked snapshot, not a stream; the main feed stays posts. */ -}}
+{{- if .IsHome }}{{ $pages = where $pages "Section" "not in" (slice "news" "themes") }}{{ end -}}
 {{- with site.Config.Services.RSS.Limit }}{{ if ge . 1 }}{{ $pages = first . $pages }}{{ end }}{{ end -}}
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">

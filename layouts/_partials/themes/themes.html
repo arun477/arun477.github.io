@@ -2,7 +2,7 @@
        Each theme gains "evidence": its Feed items, newest first, and "kinds": a count per kind.
        A malformed snapshot fails the build, so a bad push never reaches the live site. */ -}}
 {{- $feed := partial "themes/feed-index.html" . -}}
-{{- $out := slice }}{{ $seen := slice -}}
+{{- $out := slice }}{{ $seen := slice }}{{ $slugs := slice -}}
 {{- if not .Params.themes }}{{ errorf "themes: %s has no themes" .File.Path }}{{ end -}}
 {{- if gt (len .Params.themes) 12 }}{{ errorf "themes: %s has %d themes; the limit is 12" .File.Path (len .Params.themes) }}{{ end -}}
 {{- if trim .RawContent " \n\r\t" }}{{ errorf "themes: %s has body text; put everything in front matter fields" .File.Path }}{{ end -}}
@@ -11,6 +11,9 @@
   {{- range slice "title" "summary" "status" "first_seen" "last_updated" "items" }}{{ if not (index $t .) }}{{ errorf "themes: %s, theme %d has no %q" $.File.Path $n . }}{{ end }}{{ end -}}
   {{- if gt (len $t.title) 70 }}{{ errorf "themes: %s, theme %d: title is over 70 characters" $.File.Path $n }}{{ end -}}
   {{- if in $seen (lower $t.title) }}{{ errorf "themes: %s, theme %d: duplicate title %q" $.File.Path $n $t.title }}{{ end }}{{ $seen = $seen | append (lower $t.title) -}}
+  {{- $slug := $t.slug | default (urlize $t.title) -}}
+  {{- if not (findRE `^[a-z0-9]+(-[a-z0-9]+)*$` $slug) }}{{ errorf "themes: %s, theme %d: slug %q must be lowercase words joined by hyphens" $.File.Path $n $slug }}{{ end -}}
+  {{- if in $slugs $slug }}{{ errorf "themes: %s, theme %d: duplicate slug %q" $.File.Path $n $slug }}{{ end }}{{ $slugs = $slugs | append $slug -}}
   {{- if not (in (slice "rising" "steady" "fading") $t.status) }}{{ errorf "themes: %s, theme %d: status %q is not one of rising, steady, fading" $.File.Path $n $t.status }}{{ end -}}
   {{- $ev := slice }}{{ $kinds := dict -}}
   {{- range $t.items -}}

@@ -1,0 +1,11 @@
+{{- /* The newest snapshot's themes, validated and resolved (see themes.html), each with "page": its own page at /themes/<slug>/.
+       Takes the themes section. Cache it with partialCached, keyed by nothing: there is one current snapshot. */ -}}
+{{- $out := slice -}}
+{{- with first 1 (where .Pages "Params.themes" "!=" nil).ByDate.Reverse -}}
+  {{- $snap := index . 0 -}}
+  {{- $pages := dict }}{{ range where $.Pages "Params.theme" "!=" nil }}{{ $pages = merge $pages (dict (string .Params.rank) .) }}{{ end -}}
+  {{- range partial "themes/themes.html" $snap -}}
+    {{- $out = $out | append (merge . (dict "page" (index $pages (string .rank)) "snapshot" $snap)) -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

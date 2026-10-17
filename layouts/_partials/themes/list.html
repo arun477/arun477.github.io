@@ -1,0 +1,6 @@
+{{- /* Themes as rows, one per storyline: rank, status, span, evidence mix, title, summary. Each opens its theme page.
+       Takes a slice of resolved themes (themes/current.html). Reuses the Feed's row styles. */ -}}
+{{- $kinds := partial "news/kinds.html" . }}
+<ol class="feed themes">
+{{ range $i, $t := . }}<li class="post" style="--i:{{ $i }}"><a href="{{ .page.RelPermalink }}"><span class="av" aria-hidden="true">{{ printf "%02d" .rank }}</span><span class="b"><span class="m"><span class="status {{ .status }}">{{ .status }}</span>{{ partial "themes/span.html" . }}<span>{{ len .evidence }} posts</span></span><strong>{{ .title }}</strong><span class="s">{{ .summary }}</span></span><span class="go" aria-hidden="true">→</span></a></li>
+{{ end }}</ol>

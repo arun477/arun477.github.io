@@ -1,0 +1,2 @@
+{{- /* A theme's date span, first evidence to newest. Takes a resolved theme. */ -}}
+<time datetime="{{ dateFormat "2006-01-02" .last_updated }}">{{ dateFormat "2 Jan" .first_seen }} – {{ dateFormat "2 Jan" .last_updated }}</time>

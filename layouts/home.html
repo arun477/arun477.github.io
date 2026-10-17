@@ -7,13 +7,16 @@
 </div>
 <div class="facts">
 <div class="about"><p class="label">Latest</p>
-{{ range first 1 site.RegularPages.ByLastmod.Reverse }}<a class="latest" href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong>{{ with .Description }}<span>{{ . }}</span>{{ end }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .CurrentSection.Title }} · {{ .Date.Format (cond (eq .Section "news") "2006.01.02" "2006.01") }}</time></a>{{ end }}</div>
+{{ $latest := first 1 site.RegularPages.ByLastmod.Reverse }}
+{{- /* Every theme page shares its snapshot's lastmod, so when Themes is newest, show the top-ranked theme. */ -}}
+{{ with $latest }}{{ if eq (index . 0).Section "themes" }}{{ $latest = first 1 (where (index . 0).CurrentSection.Pages "Params.theme" "!=" nil).ByWeight }}{{ end }}{{ end }}
+{{ range $latest }}<a class="latest" href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong>{{ with .Description }}<span>{{ . }}</span>{{ end }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .CurrentSection.Title }} · {{ .Date.Format (cond (in (slice "news" "themes") .Section) "2006.01.02" "2006.01") }}</time></a>{{ end }}</div>
 <div><p class="label">Elsewhere</p><ul class="links">{{ range .Params.links }}<li><a href="{{ .url }}"><b>{{ .name }}</b><span aria-hidden="true">↗</span></a></li>{{ end }}</ul></div>
 </div>
 </section>
 {{ range site.Sections }}
 <section class="index">
-{{ if eq .Section "news" }}{{ partial "news/home.html" . }}{{ else }}
+{{ if eq .Section "news" }}{{ partial "news/home.html" . }}{{ else if eq .Section "themes" }}{{ partial "themes/home.html" . }}{{ else }}
 <h2 class="label"><a href="{{ .RelPermalink }}">{{ .Title }}</a><span>{{ printf "%02d" (len .Pages) }}</span></h2>
 {{ partial "list.html" .Pages }}{{ end }}
 </section>
