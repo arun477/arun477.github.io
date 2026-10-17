@@ -1,5 +1,4 @@
 {{ define "main" }}
-<p class="label">Tag</p>
-<h1>{{ .Title }}</h1>
+<div class="sechead"><h1>{{ .Title }}</h1><p class="meta"><a class="chip" href="/tags/">Tag</a></p></div>
 {{ partial "list.html" .Pages }}
 {{ end }}

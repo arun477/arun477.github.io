@@ -1,0 +1,10 @@
+{{- /* Home: what changed most recently, across every section, newest first, as glyph rows. Takes the number of rows.
+       A post or a Feed day counts at its date; Themes count once, as the top theme, at the snapshot's time. */ -}}
+{{- $rows := slice -}}
+{{- range site.RegularPages -}}
+  {{- if ne .Section "themes" }}{{ $rows = $rows | append (dict "p" . "d" .Date "g" (cond (eq .Section "news") "news" "post")) }}
+  {{- else if eq .Params.rank 1 }}{{ $rows = $rows | append (dict "p" . "d" .Lastmod "g" .Params.theme.status) }}{{ end -}}
+{{- end -}}
+<ol class="list">
+{{ range $i, $r := first . (sort $rows "d" "desc") }}{{ with $r.p }}<li style="--i:{{ $i }}"><a href="{{ .RelPermalink }}" title="{{ .Title }}"><span class="n">{{ partial "icon.html" $r.g }}</span><span class="t">{{ .Title }}</span><time datetime="{{ $r.d.Format "2006-01-02" }}">{{ .CurrentSection.Title }} · {{ $r.d.Format (cond (eq .Section "posts") "2006.01" "01.02") }}</time></a></li>
+{{ end }}{{ end }}</ol>

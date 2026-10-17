@@ -1,7 +1,7 @@
-{{- /* The item kinds the feed accepts, with their singular and plural labels. Add a kind here, in the order list in layouts/news/section.html, in style.css (filter rules) and in docs/feed-agent.md. */ -}}
+{{- /* The item kinds the feed accepts, with their singular and plural labels. Add a kind here (and its glyph in icon.html), in the order list in layouts/news/section.html, in style.css (filter rules) and in docs/feed-agent.md. */ -}}
 {{- return dict
-  "news" (dict "one" "News" "many" "News")
-  "blog" (dict "one" "Blog" "many" "Blogs")
-  "paper" (dict "one" "Paper" "many" "Papers")
-  "release" (dict "one" "Release" "many" "Releases")
+  "news" (dict "icon" "news" "one" "News" "many" "News")
+  "blog" (dict "icon" "blog" "one" "Blog" "many" "Blogs")
+  "paper" (dict "icon" "paper" "one" "Paper" "many" "Papers")
+  "release" (dict "icon" "release" "one" "Release" "many" "Releases")
 -}}

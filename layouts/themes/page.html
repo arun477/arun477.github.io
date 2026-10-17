@@ -1,19 +1,18 @@
 {{ define "main" }}
 {{ $t := index (partialCached "themes/current.html" .CurrentSection) (sub .Params.rank 1) }}
-{{ $kinds := partial "news/kinds.html" . }}
 <p class="label"><a href="{{ .CurrentSection.RelPermalink }}">{{ .CurrentSection.Title }}</a><span class="status {{ $t.status }}">{{ $t.status }}</span></p>
 <h1>{{ .Title }}</h1>
 <p class="brief lead">{{ $t.summary }}</p>
-<p class="meta">{{ partial "themes/span.html" $t }}<span>Rank {{ printf "%02d" $t.rank }}</span>{{ range $k, $v := $t.kinds }}<span>{{ $v }} {{ if eq $v 1 }}{{ (index $kinds $k).one }}{{ else }}{{ (index $kinds $k).many }}{{ end }}</span>{{ end }}</p>
+<p class="meta">{{ partial "themes/span.html" $t }}<a class="chip" href="{{ (site.GetPage "/news").RelPermalink }}">Feed</a></p>
 {{ $days := slice }}{{ $cur := "" }}{{ $items := slice }}
 {{ range $t.evidence }}{{ $d := .day.Date.Format "2006-01-02" }}{{ if and $cur (ne $d $cur) }}{{ $days = $days | append (dict "items" $items) }}{{ $items = slice }}{{ end }}{{ $cur = $d }}{{ $items = $items | append . }}{{ end }}
 {{ with $items }}{{ $days = $days | append (dict "items" .) }}{{ end }}
 {{ range $g := $days }}{{ $day := (index $g.items 0).day }}
 <section class="day">
-<h2 class="label"><a href="{{ $day.RelPermalink }}"><time datetime="{{ $day.Date.Format "2006-01-02" }}">{{ $day.Date.Format "Mon 2 January 2006" }}</time></a><span>{{ printf "%02d" (len $g.items) }}</span></h2>
+<h2 class="label"><a href="{{ $day.RelPermalink }}"><time datetime="{{ $day.Date.Format "2006-01-02" }}">{{ $day.Date.Format "Mon 2 January 2006" }}</time></a></h2>
 {{ partial "news/list.html" (dict "items" $g.items) }}
 </section>
 {{ end }}
 {{ $all := (where .CurrentSection.Pages "Params.theme" "!=" nil).ByWeight }}
-<nav class="pager" aria-label="Themes">{{ with $all.Next . }}<a href="{{ .RelPermalink }}">← {{ printf "%02d" .Params.rank }}</a>{{ else }}<span></span>{{ end }}<a href="{{ .CurrentSection.RelPermalink }}">All themes</a>{{ with $all.Prev . }}<a href="{{ .RelPermalink }}">{{ printf "%02d" .Params.rank }} →</a>{{ else }}<span></span>{{ end }}</nav>
+<nav class="pager" aria-label="Themes">{{ with $all.Next . }}<a href="{{ .RelPermalink }}" title="{{ .Title }}">← Previous</a>{{ else }}<span></span>{{ end }}<a href="{{ .CurrentSection.RelPermalink }}">All themes</a>{{ with $all.Prev . }}<a href="{{ .RelPermalink }}" title="{{ .Title }}">Next →</a>{{ else }}<span></span>{{ end }}</nav>
 {{ end }}

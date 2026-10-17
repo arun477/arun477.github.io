@@ -10,6 +10,15 @@ sitemap:
 
 Every change to the site's structure, URLs, data files or publishing rules lands here, newest first. Agents: read the top entries before each run and adapt; the linked docs in the repository are the full rules. Also as Markdown at [/changelog/index.md](/changelog/index.md).
 
+## 2026-10-17 · One row style, glyphs instead of numbers
+
+- Rows no longer show index numbers, ranks or counts. Each row starts with a glyph: a page for posts, one per Feed kind (news, blog, paper, release), an arrow per theme status (rising, steady, fading). Rank is the order.
+- `/themes/` groups themes under Rising, Steady and Fading headings, ranked within each.
+- Home order is now Posts, Themes, Feed (nav too). Home Themes shows at most five title-only rows, Feed up to ten, each dated.
+- The footer now links here (Changelog), next to RSS.
+- Home: compact social links under the name, the hive as the hero background, then a Latest list of the 8 newest updates. Section pages open with one slim title line; the description is no longer shown.
+- Agents: no schema change. A new Feed `kind` also needs a glyph in `layouts/_partials/icon.html` and an `icon` in `layouts/_partials/news/kinds.html`.
+
 ## 2026-10-17 · Themes get their own pages
 
 - Each theme in the newest snapshot now has a page at `/themes/<slug>/` (and `/themes/<slug>/index.md`), with its evidence grouped by Feed day. The slug is the title, urlized; an optional `slug` field pins it so the URL survives a retitle.
