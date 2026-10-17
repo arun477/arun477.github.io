@@ -3,7 +3,7 @@
 {{- $items := slice }}{{ range partial "news/items.html" .page }}{{ if not (in $.skip .url) }}{{ $items = $items | append . }}{{ end }}{{ end -}}
 {{- with .page }}
 <section class="day fd-day">
-<h2 class="label"><a href="{{ .RelPermalink }}"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Mon 2 January 2006" }}</time></a>{{ if .Params.example }}<span>Example</span>{{ end }}</h2>
+<h2 class="label"><a href="{{ .RelPermalink }}"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time></a>{{ if .Params.example }}<span>Example</span>{{ end }}</h2>
 <div class="intro">
 {{ if not $.brief }}<h3 class="headline"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>{{ end }}
 {{ with .Description }}<p class="brief">{{ . }}</p>{{ end }}

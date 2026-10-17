@@ -9,7 +9,7 @@
 {{ with $.Content }}<div class="brief lead">{{ . }}</div>{{ end }}
 <ul class="social">{{ range .Params.links }}<li><a href="{{ .url }}" rel="me noopener">{{ .name }}</a></li>{{ end }}</ul>
 </div>
-<div class="who-art">{{ partialCached "ornament/enso.html" (dict "size" 168 "seed" 7 "falling" false) "about-enso" }}{{ partial "ornament/seal.html" (dict "size" 34 "class" "who-seal") }}</div>
+{{ partial "ornament/seal.html" (dict "size" 48 "class" "who-seal") }}
 </section>
 {{ with $.Params.runs }}
 <section class="runs">
@@ -18,7 +18,7 @@
 {{ with $.Params.oversight }}<p class="oversight corners">{{ replace . "Changelog" (printf "<a href=\"%s\">Changelog</a>" ("changelog/" | relURL)) | safeHTML }}</p>{{ end }}
 </section>
 {{ end }}
-<svg id="hive" class="hive" viewBox="40 -50 1140 540" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Five agent bees take a request, plan it together, build it, deliver it, then remember the day"></svg>
+<svg id="hive" class="hive" viewBox="40 0 1140 490" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Five agent bees take a request, plan it together, build it, deliver it, then remember the day"></svg>
 {{ with resources.Get "hive.js" | minify | fingerprint }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}
 {{ end }}
 {{ end }}

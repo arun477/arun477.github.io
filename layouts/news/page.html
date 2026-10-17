@@ -1,9 +1,9 @@
 {{ define "main" }}
 {{ $items := partial "news/items.html" . }}
 {{ $kinds := slice }}{{ range slice "news" "blog" "paper" "release" }}{{ if where $items "kind" . }}{{ $kinds = $kinds | append . }}{{ end }}{{ end }}
-<header class="fd-head day">
+<header class="fd-head is-day">
 <div class="fd-title">
-<p class="fd-kick"><a href="{{ .CurrentSection.RelPermalink }}">{{ .CurrentSection.Title }}</a><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Monday, 2 January 2006" }}</time>{{ if ne .Lastmod .Date }}<span>Updated {{ .Lastmod.UTC.Format "15:04" }} UTC</span>{{ end }}{{ if .Params.example }}<span>Example</span>{{ end }}</p>
+<p class="fd-kick"><a href="{{ .CurrentSection.RelPermalink }}">{{ .CurrentSection.Title }}</a><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>{{ if ne .Lastmod .Date }}<span>Updated {{ .Lastmod.UTC.Format "15:04" }} UTC</span>{{ end }}{{ if .Params.example }}<span>Example</span>{{ end }}</p>
 <h1>{{ .Title }}</h1>
 {{ partial "ornament/brush.html" (dict "length" 168 "class" "fd-brush") }}
 </div>
@@ -14,7 +14,9 @@
 {{ if $lead.spike }}<section class="spikes" aria-label="Spike">{{ partial "news/lead.html" (dict "item" $lead) }}</section>{{ $items = after 1 $items }}{{ end }}
 {{ with $items }}{{ partial "news/list.html" (dict "items" . "grid" true) }}{{ end }}
 {{ $days := .CurrentSection.Pages.ByDate }}
-{{ $l := dict }}{{ with $days.Next . }}{{ $l = dict "url" .RelPermalink "label" (printf "Earlier: %s" (.Date.Format "2 January")) }}{{ end }}
-{{ $r := dict "url" .CurrentSection.RelPermalink "label" "All days" }}{{ with $days.Prev . }}{{ $r = dict "url" .RelPermalink "label" (printf "Later: %s" (.Date.Format "2 January")) }}{{ end }}
-{{ partial "news/nav.html" (dict "label" "Days" "left" $l "right" $r) }}
+{{- /* Earlier on the left, later on the right; the oldest and newest days fall back to All days. */ -}}
+{{ $all := dict "url" .CurrentSection.RelPermalink "label" "All days" }}
+{{ $l := $all }}{{ with $days.Next . }}{{ $l = dict "url" .RelPermalink "pre" "Earlier: " "label" (.Date.Format "2 Jan 2006") }}{{ end }}
+{{ $r := $all }}{{ with $days.Prev . }}{{ $r = dict "url" .RelPermalink "pre" "Later: " "label" (.Date.Format "2 Jan 2006") }}{{ end }}
+{{ partial "news/nav.html" (dict "label" "Days" "left" $l "right" $r "class" "is-days") }}
 {{ end }}

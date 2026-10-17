@@ -9,15 +9,17 @@
 /* Theme page: kicker (section and status), title over a brush stroke, the summary between corner marks, then its dates. */
 .th-head { margin: 0 0 var(--s7); }
 .th-head h1 { max-width: var(--measure); margin: 0; line-height: 1.2; }
-.th-head .fd-brush { margin-top: var(--s2); }
 /* Summary and dates side by side: the summary at reading width between corner marks, the dates in a narrow column ending on the right edge. */
-.th-body { display: grid; grid-template-columns: minmax(0, 1fr) 12rem; align-items: start; gap: var(--s5) var(--s7); margin-top: var(--s5); }
-.th-sum { max-width: calc(var(--measure) + 2 * var(--s4)); margin: 0; padding: var(--s3) var(--s4); font: 400 var(--t-lg)/1.6 var(--mincho); color: var(--ink); }
+.th-body { display: grid; grid-template-columns: minmax(0, 1fr) 13rem; align-items: start; gap: var(--s5) var(--s7); margin-top: var(--s4); }
+/* Padding comes from the shared .corners rule, so every corner-marked statement has the same inset. */
+.th-sum { max-width: calc(var(--measure) + 2 * var(--s4)); margin: 0; font: 400 var(--t-lg)/1.6 var(--mincho); color: var(--ink); }
 .th-meta { display: flex; flex-direction: column; align-items: flex-start; gap: var(--s4); padding-left: var(--s5); border-left: 1px solid var(--rule); }
 .th-meta dl { display: flex; flex-direction: column; gap: var(--s3); margin: 0; }
 .th-meta dt { margin: 0 0 var(--s1); font: 500 var(--t-ui-sm)/1.4 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; color: var(--muted); }
 .th-meta dd { margin: 0; font: var(--t-sm)/1.4 var(--mono); color: var(--ink); }
 .th-day .label { margin-bottom: var(--s4); }
+/* The day link keeps the label's line height but gets a full tap target. */
+.th-day .label a { display: inline-flex; align-items: center; min-height: var(--tap); margin-block: calc((1.4em - var(--tap)) / 2); }
 
 @media (max-width: 48rem) {
   .th-head { margin-bottom: var(--s6); }
@@ -27,4 +29,15 @@
   .th-meta { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; padding: var(--s4) 0 0; border-left: 0; border-top: 1px solid var(--rule); }
   .th-meta dl { display: grid; grid-template-columns: repeat(2, max-content); gap: var(--s3) var(--s6); }
   .th-meta dl > div:last-child { grid-column: 1 / -1; }
+}
+@media (max-width: 40rem) {
+  /* Compact top: the first story row starts high on the first screen. */
+  .th-head { margin-bottom: var(--s5); }
+  .th-sum { font-size: var(--t-body); line-height: 1.7; }
+  .th-body { gap: var(--s4); }
+  .th-meta { padding-top: var(--s3); }
+  .th-meta dl { gap: var(--s2) var(--s5); }
+  .th-meta dt { margin-bottom: 0; }
+  /* Phone rhythm: one 32px gap between sections. */
+  .th-day, .th-group { margin-bottom: var(--s6); }
 }

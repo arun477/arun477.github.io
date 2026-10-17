@@ -1,5 +1,5 @@
 /* base.css: fonts, tokens, reset, type, header, footer, shared rows, glyphs, chips, buttons, ornaments, motion.
-   Only the foundation edits this file; page partials (home, posts, feed, themes, about) build on its tokens and classes. */
+   Shared rules live here; page partials (home, posts, feed, themes, about) build on its tokens and classes. */
 
 /* Fonts: self-hosted latin subsets. Shippori Mincho B1 for headings and reading text, Zen Kaku Gothic New for UI labels. */
 @font-face { font-family: "Shippori Mincho B1"; src: url("/fonts/shippori-mincho-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
@@ -18,7 +18,7 @@
   --mist: #e5dac6;
   --mist-2: #e0ddcf;
   --ink: #2c2620;
-  --muted: #74685a;
+  --muted: #6a5e51;   /* 4.99:1 on ground, 4.55:1 on mist */
   --rule: #d5c8b0;
   --red: #a3412e;
   --on-red: #f5efe3;
@@ -41,7 +41,7 @@
   --mincho: "Shippori Mincho B1", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --gothic: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --t-ui-sm: .625rem;   /* 10px: tiny UI labels (role line, vertical dates) */
+  --t-ui-sm: .625rem;   /* 10px: tiny labels (role line, scroll tag, small kickers) */
   --t-ui: .6875rem;     /* 11px: UI labels, nav, meta, chips, buttons */
   --t-sm: .875rem;      /* 14px: captions, small print */
   --t-body: 1rem;       /* 16px: summaries, UI body */
@@ -67,7 +67,7 @@
   /* Layout */
   --wrap: 60rem;       /* the column: header, footer, main and every band align to it */
   --measure: 42rem;    /* reading width for prose */
-  --gutter: var(--s6); /* side padding of the column (16px on phones) */
+  --gutter: var(--s6); /* side padding of the column (16px on phones); never less than a notch's safe area */
   --bar: 4rem;         /* header height */
   --tap: 2.75rem;      /* minimum tap target (44px) */
   --hair: 1px;
@@ -96,8 +96,8 @@
   --rule: #3a352e;
   --red: #c8664d;
   --on-red: #1c1a17;
-  --slate: #12110f;
-  --slate-2: #2a2c2b;
+  --slate: #1a1f20;
+  --slate-2: #263033;
   --on-slate: #ece3d2;
   --vein: rgba(20, 14, 8, .35);
   color-scheme: dark;
@@ -113,8 +113,8 @@
     --rule: #3a352e;
     --red: #c8664d;
     --on-red: #1c1a17;
-    --slate: #12110f;
-    --slate-2: #2a2c2b;
+    --slate: #1a1f20;
+    --slate-2: #263033;
     --on-slate: #ece3d2;
     --vein: rgba(20, 14, 8, .35);
     color-scheme: dark;
@@ -148,14 +148,15 @@ body {
 }
 ::selection { background: var(--ink); color: var(--ground); }
 @keyframes rise { from { opacity: 0; transform: translateY(8px); } }
-@keyframes blink { 50% { opacity: .15; } }
 
 /* The column. main starts --s6 under the header; a page that opens on a band pulls it up with margin-top: calc(-1 * var(--s6)). */
-main, .in { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--gutter); }
+main, .in { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: max(var(--gutter), env(safe-area-inset-left)) max(var(--gutter), env(safe-area-inset-right)); }
 main { flex: 1; padding-block: var(--s6) 0; }
 .in { display: flex; align-items: center; }
-/* Full-bleed band inside main (seigaiha strip, top bands): spans the viewport, contents re-align with .in. */
-.bleed { margin-inline: calc(50% - 50vw); }
+/* Full-bleed band inside main: spans the body's width (the viewport minus any scrollbar, via the body container),
+   so it ends exactly where the header and footer bars end. */
+body { container: page / inline-size; }
+.bleed { margin-inline: calc(50% - 50vw); margin-inline: calc(50% - 50cqw); }
 
 /* Type */
 h1, h2, h3 { font-family: var(--mincho); font-weight: 600; line-height: 1.25; letter-spacing: .01em; }
@@ -175,9 +176,8 @@ main a {
 }
 main a:hover { text-decoration-thickness: 2px; }
 :focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
+.foot-bar :focus-visible { outline-color: var(--on-slate); }
 
-/* UI type: Zen Kaku Gothic, uppercase, wide tracking. */
-.ui { font: 500 var(--t-ui)/1.4 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; }
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
 /* ---------------------------------------------------------------- Header: crest + name and role, nav, theme toggle. */
@@ -259,7 +259,8 @@ header.site nav a[aria-current]::after { background: var(--red); clip-path: inse
 
 /* ---------------------------------------------------------------- Footer: Fuji on the seigaiha band, then the slate bar. */
 footer.site { margin-top: var(--s8); }
-.fuji { display: block; width: 100%; max-width: 720px; height: auto; margin: 0 auto -1px; padding-inline: var(--gutter); }
+/* Column-wide; the drawing keeps its 110px height (less on phones, where it scales to the column) and its hills run to the edges. */
+.fuji { display: block; width: 100%; max-width: var(--wrap); height: min(110px, calc((min(100cqw, var(--wrap)) - 2 * var(--gutter)) * 110 / 720)); margin: 0 auto -1px; padding-inline: max(var(--gutter), env(safe-area-inset-left)) max(var(--gutter), env(safe-area-inset-right)); }
 .fuji-sun { fill: var(--red); opacity: .9; }
 .fuji-hill { fill: none; stroke: var(--muted); stroke-width: 1.2; }
 .fuji-line { fill: none; stroke: var(--ink); stroke-width: 1.4; stroke-linejoin: round; }
@@ -272,29 +273,32 @@ footer.site .seigaiha { height: var(--s7); }
 .foot-bar nav { display: flex; flex-wrap: wrap; gap: 0 var(--s5); margin-right: calc(-1 * var(--track-ui)); }
 .foot-bar a { position: relative; display: inline-flex; align-items: center; min-height: var(--tap); color: inherit; text-decoration: none; opacity: .78; white-space: nowrap; transition: opacity .2s; }
 .foot-bar a:hover { opacity: 1; }
+/* Short links (X, RSS) get a 44px-wide hit area, centred and reaching only into the gaps, so nothing moves. */
+.foot-bar a::before { content: ""; position: absolute; inset: 0 auto 0 50%; width: max(100%, var(--tap)); transform: translateX(-50%); }
 .foot-bar a::after { content: ""; position: absolute; left: 0; right: var(--track-ui); bottom: .7rem; height: 3px; background: currentColor; -webkit-mask: var(--brush) 0 0 / 100% 100% no-repeat; mask: var(--brush) 0 0 / 100% 100% no-repeat; clip-path: inset(0 100% 0 0); transition: clip-path .45s var(--ease); }
 .foot-bar a:hover::after { clip-path: inset(0 0 0 0); }
 
-/* ---------------------------------------------------------------- Labels, section heads, meta, briefs, pagers. */
+/* ---------------------------------------------------------------- Labels, section heads, meta, briefs. */
 .label {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   gap: var(--s4);
-  margin: 0 0 var(--s3);
+  margin: 0 0 var(--s4);
   font: 500 var(--t-ui)/1.4 var(--gothic);
   letter-spacing: var(--track-ui);
   text-transform: uppercase;
   color: var(--muted);
 }
-.label a { color: inherit; text-decoration: none; }
+/* Label links keep the 11px line but get a 44px tap target. */
+.label a { display: inline-flex; align-items: center; min-height: var(--tap); margin-block: calc((1.4em - var(--tap)) / 2); color: inherit; text-decoration: none; }
 .label a:hover { color: var(--ink); }
 .label span { font-family: var(--gothic); }
 .label time { font-family: var(--mono); letter-spacing: .08em; }
 .label .to { display: flex; flex-wrap: wrap; gap: var(--s4); }
-/* REC marker: a small red square, the one live signal on a label. */
-.rec { display: inline-flex; align-items: center; gap: var(--s2); color: var(--red); }
-.rec::before { content: ""; width: .4rem; height: .4rem; background: var(--red); animation: blink 2s steps(1) infinite; }
+/* REC marker: a small red square, the one live signal on a label. Static: no blinking. */
+.rec { display: inline-flex; align-items: baseline; gap: var(--s2); color: var(--red); }
+.rec::before { content: ""; align-self: center; width: .4rem; height: .4rem; background: var(--red); }
 
 /* Section pages: one slim line (title left, date and chips right), so the list starts near the top. */
 .sechead { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--s2) var(--s5); margin: 0 0 var(--s5); }
@@ -307,19 +311,14 @@ footer.site .seigaiha { height: var(--s7); }
 .brief.lead { font-size: var(--t-lg); line-height: 1.55; color: var(--ink); }
 .day { margin-bottom: var(--s7); }
 
-.more, .pager { display: flex; justify-content: space-between; align-items: center; gap: var(--s4); font: 500 var(--t-ui)/1 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; color: var(--muted); }
-.more { margin: var(--s4) 0 0; }
-.pager { margin-top: var(--s7); padding-top: var(--s2); border-top: 1px solid var(--ink); }
-:is(.more, .pager) a { display: inline-flex; align-items: center; min-height: var(--tap); color: var(--ink); text-decoration: none; }
-:is(.more, .pager) a:hover { text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: .4em; }
-.more span, .pager > span { font-family: var(--mono); letter-spacing: .08em; }
-
 /* ---------------------------------------------------------------- Chips and buttons. */
+/* Chips: 32px to the eye, a 44px tap target (::before). The right padding gives back the trailing tracking so the label sits centred. */
 .chip {
+  position: relative;
   display: inline-flex;
   align-items: center;
   min-height: 2rem;
-  padding: var(--s1) var(--s3);
+  padding: 0 calc(var(--s3) - .18em) 0 var(--s3);
   border: 1px solid var(--rule);
   font: 500 var(--t-ui)/1.2 var(--gothic);
   letter-spacing: .18em;
@@ -328,6 +327,8 @@ footer.site .seigaiha { height: var(--s7); }
   text-decoration: none !important;
   transition: color .2s, border-color .2s, background-color .2s;
 }
+.chip::before { content: ""; position: absolute; inset: calc((2rem - var(--tap)) / 2) -1px; }
+.chip:has(span) { padding-right: var(--s3); } /* ends on the untracked mono count */
 .chip:hover { color: var(--ground) !important; background: var(--ink); border-color: var(--ink); }
 .chip span { margin-left: var(--s2); font-family: var(--mono); letter-spacing: 0; opacity: .7; }
 .btn {
@@ -341,6 +342,7 @@ footer.site .seigaiha { height: var(--s7); }
   color: var(--ground) !important;
   font: 500 var(--t-ui)/1 var(--gothic);
   letter-spacing: .26em;
+  text-indent: .26em; /* balances the trailing tracking so the label sits in the true centre */
   text-transform: uppercase;
   text-decoration: none !important;
   cursor: pointer;
@@ -356,23 +358,23 @@ footer.site .seigaiha { height: var(--s7); }
 .feed { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--ink); }
 .feed li { border-bottom: 1px solid var(--rule); }
 .feed a { display: flex; align-items: flex-start; gap: var(--s5); padding: var(--s5) 0; color: var(--ink); text-decoration: none; }
-.vd { flex: none; writing-mode: vertical-rl; min-height: 5rem; font: var(--t-ui-sm)/1 var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+.vd { flex: none; writing-mode: vertical-rl; min-height: 5rem; font: var(--t-ui)/1 var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
 .av { flex: none; display: grid; place-items: center; width: var(--tap); height: var(--tap); border: 1px solid var(--red); color: var(--red); }
-.spike .av { background: var(--red); color: var(--on-red); }
-.spike .av .hot { stroke: currentColor; }
-.spike .av .f.hot { fill: currentColor; }
+/* The date and glyph box start on the meta line's cap height, not its line box. The Feed grid centres its box on the meta line instead. */
+.feed:not(.fd-grid) a > :is(.vd, .av) { margin-top: var(--s1); }
+.spike .av { --hot: currentColor; background: var(--red); color: var(--on-red); }
 .pin .av { border-color: var(--ink); color: var(--ink); }
 .steady .av { border-color: var(--muted); color: var(--ink); }
 .fading .av { border-color: var(--rule); color: var(--muted); }
-.feed .b { flex: 1; display: flex; flex-direction: column; gap: var(--s2); min-width: 0; overflow-wrap: break-word; }
+/* The right padding equals the hover slide, so hovered text lands on the column edge instead of past it. */
+.feed .b { flex: 1; display: flex; flex-direction: column; gap: var(--s2); min-width: 0; padding-right: var(--s2); overflow-wrap: break-word; }
 .feed .m { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s1) var(--s4); font: 500 var(--t-ui)/1.5 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; color: var(--muted); }
 .feed .m b { font-weight: 500; color: var(--ink); }
 .feed .m em { font-style: normal; color: var(--red); }
 .feed .m time { font: var(--t-ui)/1.5 var(--mono); letter-spacing: .06em; text-transform: none; }
 .feed .m .status { line-height: inherit; align-self: baseline; }
 .feed strong { font: 600 var(--t-lg)/1.45 var(--mincho); }
-.feed .s { font: 400 var(--t-body)/1.8 var(--mincho); color: var(--muted); }
-.feed .go { display: none; } /* rows carry no action glyphs */
+.feed .s { max-width: 62ch; font: 400 var(--t-body)/1.8 var(--mincho); color: var(--muted); } /* titles take the column, summaries a reading line */
 /* Compact rows: titles and the meta line only. */
 .feed.compact a { padding: var(--s4) 0; }
 .feed.compact strong { font-size: var(--t-read); }
@@ -380,8 +382,8 @@ footer.site .seigaiha { height: var(--s7); }
 
 /* Row hover: a brush rule draws along the row's bottom edge and the contents slide inward. No fill or colour
    inversion, so the row looks the same in the page-transition snapshot taken on click. Hover is mouse-only. */
-:is(.feed, .list) a { position: relative; -webkit-tap-highlight-color: transparent; }
-:is(.feed, .list) a::after {
+.feed a { position: relative; -webkit-tap-highlight-color: transparent; }
+.feed a::after {
   content: "";
   position: absolute;
   left: 0;
@@ -395,16 +397,16 @@ footer.site .seigaiha { height: var(--s7); }
   transition: clip-path .6s var(--ease);
   pointer-events: none;
 }
-:is(.feed, .list) a > * { transition: transform .45s var(--ease), color .3s; }
-:is(.feed, .list) a:focus-visible { outline: none; }
-:is(.feed, .list) a:focus-visible::after { clip-path: inset(0 0 0 0); }
-:is(.feed, .list) a:focus-visible > * { transform: translateX(var(--s2)); }
+.feed a > * { transition: transform .45s var(--ease), color .3s; }
+.feed a:focus-visible { outline: none; }
+.feed a:focus-visible::after { clip-path: inset(0 0 0 0); }
+.feed a:focus-visible > * { transform: translateX(var(--s2)); }
 @media (hover: hover) and (pointer: fine) {
-  :is(.feed, .list) a:hover::after { clip-path: inset(0 0 0 0); }
-  :is(.feed, .list) a:hover > * { transform: translateX(var(--s2)); }
+  .feed a:hover::after { clip-path: inset(0 0 0 0); }
+  .feed a:hover > * { transform: translateX(var(--s2)); }
 }
 @media (hover: none) {
-  :is(.feed, .list) a:active::after { clip-path: inset(0 0 0 0); transition: none; }
+  .feed a:active::after { clip-path: inset(0 0 0 0); transition: none; }
 }
 
 /* Theme status words (labels and meta lines): a small square, red when rising. */
@@ -416,29 +418,34 @@ footer.site .seigaiha { height: var(--s7); }
 .status.steady::before { background: currentColor; }
 .status.fading { color: var(--muted); }
 
-/* Glyphs (icon.html): fine line, square caps; "f" parts fill, "t" is the brush trend, "hot" is red. */
-.ic { display: block; width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: square; stroke-linejoin: miter; }
-.ic .f { fill: currentColor; stroke: none; }
-.ic .t { stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-.ic .hot { stroke: var(--red); }
-.ic .f.hot { fill: var(--red); stroke: none; }
+/* Glyphs (icon.html): fine line, square caps, 24px (the viewBox's own size, so lines land on pixels); "g-f" parts fill,
+   "g-t" is the brush trend, "g-hot" is red. */
+/* The drawings are symbols in the sprite (ornament/defs.html); these rules reach them through <use>, so they match on the
+   glyph's own classes and inherit colour from the svg. */
+.ic { display: block; width: 1.5rem; height: 1.5rem; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: square; stroke-linejoin: miter; }
+.g-f { fill: currentColor; stroke: none; }
+.g-t { stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.g-hot { stroke: var(--hot, var(--red)); }
+.g-f.g-hot { fill: var(--hot, var(--red)); stroke: none; }
 
 /* ---------------------------------------------------------------- Ornaments (layouts/_partials/ornament/). Use sparingly. */
 .defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 .vein { fill: none; stroke: var(--vein); stroke-width: .8; }
 .enso { display: block; overflow: visible; }
 .enso-sun { fill: var(--red); opacity: .9; }
-/* The home ensō draws in once: leaves fade and settle in sequence (well under 1.2s). Size is fixed, so nothing shifts. */
-.enso.draw use { animation: leaf-in .38s var(--ease) both; animation-delay: calc(var(--i) * 16ms); }
+/* The home ensō draws in once, along the stroke: leaves fade and settle in stroke order, each turning a little about its
+   stem (about 1s in all, under 1.2s). Size is fixed, so nothing shifts. */
+.enso.draw use { animation: leaf-in .36s var(--ease) both; animation-delay: calc(var(--i) * 14ms); }
 .enso.draw .enso-sun { animation: sun-in .6s var(--ease) .3s both; }
-@keyframes leaf-in { from { opacity: 0; transform: translate(0, -6px) rotate(-14deg) scale(.8); } }
+@keyframes leaf-in { from { opacity: 0; transform: rotate(-10deg) scale(.85); } }
 @keyframes sun-in { from { opacity: 0; } }
 /* At most a very subtle idle drift on the two loose leaves. */
 .enso use.drift { animation: drift 9s ease-in-out infinite alternate; }
-.enso.draw use.drift { animation: leaf-in .38s var(--ease) both, drift 9s ease-in-out 1.2s infinite alternate; animation-delay: calc(var(--i) * 16ms), 1.2s; }
+.enso.draw use.drift { animation: leaf-in .36s var(--ease) both, drift 9s ease-in-out 1.2s infinite alternate; animation-delay: calc(var(--i) * 14ms), 1.2s; }
 @keyframes drift { to { transform: translate(1.5px, 2px) rotate(6deg); } }
 
-.seal { display: block; flex: none; transform: rotate(-4deg); }
+/* Pressed at -4deg; the .94 scale keeps the rotated corners inside the seal's box, so it never passes a column edge. */
+.seal { display: block; flex: none; transform: rotate(-4deg) scale(.94); }
 .seal-bg { fill: var(--red); }
 .seal-rule { fill: none; stroke: var(--on-red); }
 .seal text { fill: var(--on-red); font-family: var(--mincho); font-weight: 700; letter-spacing: .06em; }
@@ -448,12 +455,12 @@ footer.site .seigaiha { height: var(--s7); }
 .brush-u { max-width: 100%; }
 
 /* Corner quote marks: two red L-shaped corners around a key statement. */
-.corners { position: relative; padding: var(--s2) var(--s4); }
+.corners { position: relative; padding: var(--s2) var(--s4) var(--s3); } /* one inset everywhere; the extra bottom balances the Mincho ink */
 .corners::before, .corners::after { content: ""; position: absolute; width: var(--s3); height: var(--s3); border: 0 solid var(--red); pointer-events: none; }
 .corners::before { left: 0; top: 0; border-left-width: 2px; border-top-width: 2px; }
 .corners::after { right: 0; bottom: 0; border-right-width: 2px; border-bottom-width: 2px; }
 
-/* Seigaiha wave band (slate). Set the height where it is used; 24px under a top band, --s7 in the footer. */
+/* Seigaiha wave band (slate), above the footer only. The tile is anchored on the centre, so the waves are symmetric at any width. */
 .seigaiha {
   display: block;
   height: var(--s5);
@@ -465,6 +472,7 @@ footer.site .seigaiha { height: var(--s7); }
     radial-gradient(circle at 100% 50%, var(--slate-2) 5%, var(--slate) 5%, var(--slate) 15%, var(--slate-2) 15%, var(--slate-2) 20%, var(--slate) 20%, var(--slate) 29%, var(--slate-2) 29%, var(--slate-2) 34%, var(--slate) 34%, var(--slate) 44%, var(--slate-2) 44%, var(--slate-2) 49%, transparent 49%, transparent),
     radial-gradient(circle at 0 50%, var(--slate-2) 5%, var(--slate) 5%, var(--slate) 15%, var(--slate-2) 15%, var(--slate-2) 20%, var(--slate) 20%, var(--slate) 29%, var(--slate-2) 29%, var(--slate-2) 34%, var(--slate) 34%, var(--slate) 44%, var(--slate-2) 44%, var(--slate-2) 49%, transparent 49%, transparent);
   background-size: 64px 32px;
+  background-position: 50% 0;
 }
 /* Vertical text (headings beside a column); English only, set sideways. */
 .tate { writing-mode: vertical-rl; }
@@ -488,9 +496,12 @@ footer.site .seigaiha { height: var(--s7); }
 @media (max-width: 48rem) {
   header.site nav { gap: var(--s5); }
 }
-@media (max-width: 40rem) {
-  :root { --gutter: var(--s4); }
-  main { padding-block-start: var(--s5); }
+/* Short landscape screens (phones turned sideways): the header scrolls away instead of holding 64px of a 390px screen. */
+@media (max-height: 30rem) and (orientation: landscape) {
+  header.site { position: relative; }
+}
+/* The nav folds at 44rem, not 40rem: between them the inline nav does not fit beside the brand and the toggle. */
+@media (max-width: 44rem) {
   header.site .in { gap: 0; }
   /* The nav folds behind a two-rule menu button (CSS only: a checkbox) and opens as a full-width panel of hairline rows. */
   .menu { display: block; position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
@@ -501,21 +512,28 @@ footer.site .seigaiha { height: var(--s7); }
   .menu:checked + .menu-btn .a { transform: translateY(2.5px) rotate(45deg); }
   .menu:checked + .menu-btn .b { transform: translateY(-2.5px) rotate(-45deg); }
   .menu:focus-visible + .menu-btn { outline: 1px solid var(--ink); outline-offset: -4px; }
-  header.site nav { display: none; position: absolute; inset: var(--bar) 0 auto; margin: 0; padding: 0 var(--gutter); flex-direction: column; align-items: stretch; gap: 0; background: var(--ground); border-bottom: 1px solid var(--ink); font-size: var(--t-ui); }
+  header.site nav { display: none; position: absolute; inset: var(--bar) 0 auto; margin: 0; padding: 0 var(--gutter); flex-direction: column; align-items: stretch; gap: 0; background: var(--ground); border-bottom: 1px solid var(--ink); font-size: var(--t-sm); }
   .menu:checked ~ nav { display: flex; animation: rise .3s var(--ease) both; }
   header.site nav a { min-height: 3.25rem; margin-right: 0; border-top: 1px solid var(--rule); }
   header.site nav a:first-child { border-top: 0; }
   header.site nav a::after { left: 0; right: auto; width: 4rem; bottom: .9rem; }
-  .theme { margin-right: calc(-1 * (var(--tap) - 1rem) / 2); }
+}
+@media (max-width: 40rem) {
+  :root { --gutter: var(--s4); }
+  main { padding-block-start: var(--s5); }
   .brand .name { font-size: 1.1rem; }
   .crest { width: 2.5rem; height: 2.5rem; }
-  .foot-bar .in { gap: 0 var(--s5); padding-block-start: var(--s4); }
-  .foot-bar .copy { flex-basis: 100%; padding-block: var(--s3) var(--s1); }
-  .foot-bar nav { display: grid; grid-template-columns: repeat(3, auto); justify-content: space-between; flex-basis: 100%; gap: 0 var(--s4); margin-right: 0; }
+  /* Footer bar: the copyright line over a 3 x 2 grid of links. Top and bottom ink margins match (the tap rows carry their own slack). */
+  footer.site { margin-top: var(--s7); }
+  .foot-bar .in { gap: 0 var(--s5); padding-block: var(--s4) max(var(--s3), env(safe-area-inset-bottom)); }
+  .foot-bar .copy { flex-basis: 100%; padding-block: var(--s3) var(--s2); }
+  .foot-bar nav { display: grid; grid-template-columns: repeat(3, auto); justify-content: space-between; flex-basis: 100%; gap: 0 var(--s4); margin-right: calc(-1 * var(--track-ui)); }
   footer.site .seigaiha { height: var(--s6); }
+  .day { margin-bottom: var(--s6); }
   h1 { font-size: var(--t-xl); }
   .sechead h1 { font-size: var(--t-lg); }
   .feed a { gap: var(--s4); }
+  .feed .m { column-gap: var(--s3); }
   .feed strong { font-size: 1.2rem; }
   .av { width: 2.5rem; height: 2.5rem; }
 }

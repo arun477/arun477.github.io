@@ -10,13 +10,13 @@
 {{ $top := "" }}{{ range first 1 $pager.Pages }}{{ $top = . }}{{ end }}
 <header class="fd-head">
 <div class="fd-title">
-<p class="fd-kick">{{ with $top }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Monday, 2 January 2006" }}</time>{{ end }}</p>
+<p class="fd-kick">{{ with $top }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>{{ end }}</p>
 <h1>The Feed</h1>
 {{ partial "ornament/brush.html" (dict "length" 168 "class" "fd-brush") }}
 </div>
 <div class="fd-sum">
 {{ with $top }}{{ if $first }}<p><a href="{{ .RelPermalink }}">{{ .Title }}</a></p>{{ else }}<p>{{ $.Description }}</p>{{ end }}{{ end }}
-<p class="fd-chips">{{ range first 1 $days }}<time datetime="{{ .Lastmod.Format "2006-01-02T15:04Z07:00" }}">Updated {{ .Lastmod.UTC.Format "2 Jan 15:04" }} UTC</time>{{ end }}<a class="chip" href="{{ .RelPermalink }}index.xml">RSS</a><a class="chip" href="{{ .RelPermalink }}index.json">JSON</a></p>
+<p class="fd-chips">{{ range first 1 $days }}<time datetime="{{ .Lastmod.Format "2006-01-02T15:04Z07:00" }}">Updated {{ .Lastmod.UTC.Format "2 Jan 2006 15:04" }} UTC</time>{{ end }}<a class="chip" href="{{ .RelPermalink }}index.xml">RSS</a><a class="chip" href="{{ .RelPermalink }}index.json">JSON</a></p>
 </div>
 </header>
 {{ partial "news/filter.html" $order }}
@@ -29,9 +29,9 @@
 {{ range $i, $p := $pager.Pages }}{{ partial "news/day.html" (dict "page" $p "skip" $skip "brief" (and $first (eq $i 0))) }}{{ else }}<p class="brief">Nothing yet.</p>{{ end }}
 {{ if gt $pager.TotalPages 1 }}
 {{ $l := dict }}{{ with $pager.Next }}{{ $l = dict "url" .URL "label" "Earlier days" }}{{ end }}
-{{ $r := dict "url" "index.xml" "label" "Feed RSS" }}{{ with $pager.Prev }}{{ $r = dict "url" .URL "label" "Later days" }}{{ end }}
+{{ $r := dict "url" (printf "%sindex.xml" .RelPermalink) "label" "Feed RSS" }}{{ with $pager.Prev }}{{ $r = dict "url" .URL "label" "Later days" }}{{ end }}
 {{ partial "news/nav.html" (dict "label" "Pages" "left" $l "right" $r "mid" (printf "%d / %d" $pager.PageNumber $pager.TotalPages)) }}
 {{ else }}
-{{ partial "news/nav.html" (dict "label" "Feeds" "right" (dict "url" "index.xml" "label" "Feed RSS")) }}
+{{ partial "news/nav.html" (dict "label" "Feeds" "right" (dict "url" (printf "%sindex.xml" .RelPermalink) "label" "Feed RSS")) }}
 {{ end }}
 {{ end }}

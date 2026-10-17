@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{{ if .IsHome }}{{ site.Title }}{{ with .Params.role }} · {{ . }}{{ end }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
 <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify | truncate 160 }}{{ else }}{{ site.Params.description }}{{ end }}{{ end }}">
 <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
@@ -55,6 +55,8 @@ function toggleTheme() {
   document.startViewTransition ? document.startViewTransition(apply) : apply();
   try { localStorage.setItem("theme", dark ? "light" : "dark"); } catch (e) {}
 }
+/* A page restored by back/forward keeps its menu checkbox ticked; close the panel. */
+addEventListener("pageshow", function () { var m = document.getElementById("menu"); if (m) m.checked = false; });
 </script>
 </body>
 </html>

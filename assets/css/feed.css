@@ -5,22 +5,22 @@
 /* ---------------------------------------------------------------- Masthead: date line, title over a brush stroke, one-line summary. */
 .fd-head { display: grid; grid-template-columns: auto minmax(0, 26rem); justify-content: space-between; align-items: end; gap: var(--s4) var(--s7); margin: 0 0 var(--s5); }
 .fd-title { min-width: 0; }
-.fd-kick { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s1) var(--s4); margin: 0 0 var(--s3); font: 500 var(--t-ui)/1.4 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; color: var(--muted); }
-.fd-kick::before { content: ""; flex: none; width: var(--s6); height: 1px; background: var(--red); }
-.fd-kick a { color: var(--ink); text-decoration: none; }
+.fd-kick { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s1) var(--s4); margin: 0 0 var(--s3); font: 500 var(--t-ui)/1.4 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; color: var(--muted); }
+.fd-kick::before { content: ""; flex: none; align-self: center; width: var(--s6); height: 1px; background: var(--red); }
+/* The back-link keeps its line height but gets a full tap target. */
+.fd-kick a { display: inline-flex; align-items: center; min-height: var(--tap); margin-block: calc((1.4em - var(--tap)) / 2); color: var(--ink); text-decoration: none; }
 .fd-kick a:hover { text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: .4em; }
 .fd-kick time { font-family: var(--mono); letter-spacing: .08em; text-transform: none; }
 .fd-head h1 { margin: 0; font-size: var(--t-3xl); line-height: 1.05; letter-spacing: 0; }
-.fd-brush { margin-top: var(--s1); }
-.fd-head.day .fd-brush { margin-top: var(--s2); }
+.fd-brush { margin-top: var(--s2); }
 .fd-sum p { margin: 0; font: 400 var(--t-body)/1.75 var(--mincho); color: var(--muted); }
 .fd-sum a { color: inherit; text-decoration: none; }
 .fd-sum a:hover { color: var(--ink); text-decoration: underline; text-decoration-color: var(--red); }
-.fd-sum .fd-chips { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: var(--s2); margin-top: var(--s3); }
+.fd-sum .fd-chips { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: flex-end; gap: var(--s2); margin-top: var(--s3); }
 .fd-chips time { margin-right: auto; font: var(--t-ui)/1.4 var(--mono); letter-spacing: .06em; color: var(--muted); }
 /* A day page: the headline is the title, so the masthead stacks and the brief sits under it at reading width. */
-.fd-head.day { grid-template-columns: minmax(0, 1fr); }
-.fd-head.day h1 { max-width: var(--measure); font-size: var(--t-2xl); line-height: 1.2; }
+.fd-head.is-day { grid-template-columns: minmax(0, 1fr); }
+.fd-head.is-day h1 { max-width: var(--measure); font-size: var(--t-2xl); line-height: 1.2; }
 .fd-brief { max-width: var(--measure); margin: 0; font: 400 var(--t-read)/1.75 var(--mincho); color: var(--muted); }
 
 /* ---------------------------------------------------------------- Kind filter: radio buttons drawn as one row of sharp chips; no JavaScript.
@@ -30,7 +30,8 @@
 /* Chips share their borders: the group draws the top and left rule, each chip its right and bottom. */
 .kinds-o { display: flex; flex-wrap: wrap; border-top: 1px solid var(--rule); border-left: 1px solid var(--rule); }
 .kinds input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
-.kinds label { display: inline-flex; align-items: center; justify-content: center; min-height: var(--tap); padding: 0 var(--s4); border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); color: var(--ink); cursor: pointer; transition: color .2s, background-color .2s; }
+/* text-indent balances the trailing letter-spacing, so each label sits centred in its chip. */
+.kinds label { display: inline-flex; align-items: center; justify-content: center; min-height: var(--tap); padding: 0 var(--s4); text-indent: var(--track-ui); border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); color: var(--ink); cursor: pointer; transition: color .2s, background-color .2s; }
 .kinds label:hover { background: var(--mist); }
 .kinds input:checked + label { background: var(--ink); color: var(--ground); }
 .kinds input:focus-visible + label { outline: 1px solid var(--ink); outline-offset: 2px; }
@@ -39,37 +40,41 @@ main:has(#k-news:checked) .post:not([data-kind="news"]),
 main:has(#k-blog:checked) .post:not([data-kind="blog"]),
 main:has(#k-paper:checked) .post:not([data-kind="paper"]),
 main:has(#k-release:checked) .post:not([data-kind="release"]),
-main:has(#k-news:checked) :is(.day, .spikes):not(:has([data-kind="news"])),
-main:has(#k-blog:checked) :is(.day, .spikes):not(:has([data-kind="blog"])),
-main:has(#k-paper:checked) :is(.day, .spikes):not(:has([data-kind="paper"])),
-main:has(#k-release:checked) :is(.day, .spikes):not(:has([data-kind="release"])) { display: none; }
+main:has(#k-news:checked) :is(section.day, section.spikes):not(:has([data-kind="news"])),
+main:has(#k-blog:checked) :is(section.day, section.spikes):not(:has([data-kind="blog"])),
+main:has(#k-paper:checked) :is(section.day, section.spikes):not(:has([data-kind="paper"])),
+main:has(#k-release:checked) :is(section.day, section.spikes):not(:has([data-kind="release"])) { display: none; }
 
-/* ---------------------------------------------------------------- Lead story: the spike, beside a small leaf ensō, with a TOP seal. */
+/* ---------------------------------------------------------------- Lead story: the spike set large, the TOP seal at its top right beside the meta line.
+   The body's parts sit straight in the lead's grid, so the title and summary span the column under the seal. */
 .spikes { margin-bottom: var(--s7); }
 .kinds + .spikes .fd-lead { padding-top: 0; } /* the bar's margin already spaces it */
-.fd-lead { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: var(--s6); padding: var(--s6) 0; border-bottom: 1px solid var(--rule); }
-.fd-enso { width: 10rem; height: 10rem; }
-.fd-lead-b { display: flex; flex-direction: column; gap: var(--s3); min-width: 0; overflow-wrap: break-word; }
-.fd-lead .m { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s1) var(--s4); margin: 0; font: 500 var(--t-ui)/1.5 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; color: var(--muted); }
+.fd-lead { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--s3) var(--s5); padding: var(--s6) 0; border-bottom: 1px solid var(--rule); overflow-wrap: break-word; }
+.fd-lead-b { display: contents; }
+.fd-lead :is(h2, .s) { grid-column: 1 / -1; }
+.fd-lead .m { grid-row: 1; grid-column: 1; display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s1) var(--s4); min-width: 0; margin: 0; font: 500 var(--t-ui)/1.5 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; color: var(--muted); }
 .fd-lead .m em { font-style: normal; color: var(--red); }
 .fd-lead .m b { font-weight: 500; color: var(--ink); }
 .fd-lead .m time { font-family: var(--mono); letter-spacing: .06em; text-transform: none; }
-.fd-lead h2 { margin: 0; font-size: var(--t-xl); line-height: 1.3; }
+.fd-lead h2 { max-width: var(--measure); margin: 0; font-size: var(--t-xl); line-height: 1.3; }
 .fd-lead h2 a { text-decoration: none; }
 .fd-lead h2 a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-decoration-color: var(--red); text-underline-offset: .2em; }
-.fd-lead .s { margin: 0; font: 400 var(--t-body)/1.8 var(--mincho); color: var(--muted); }
-.fd-seal { align-self: start; }
+.fd-lead .s { max-width: 62ch; margin: 0; font: 400 var(--t-body)/1.8 var(--mincho); color: var(--muted); }
+/* Rotating about the bottom-right corner keeps every corner of the tilted seal inside the column edge. */
+.fd-seal { grid-row: 1; grid-column: 2; transform-origin: 100% 100%; }
 /* More spikes follow the lead as grid cells; the lead's own rule closes them off from it. */
 .spikes .fd-grid { border-top: 0; }
 /* On a day page the grid follows the lead directly: its ink rule replaces the lead's hairline. */
-.fd-head.day ~ .spikes { margin-bottom: 0; }
-.fd-head.day ~ .spikes .fd-lead { border-bottom: 0; }
+.fd-head.is-day ~ .spikes { margin-bottom: 0; }
+.fd-head.is-day ~ .spikes .fd-lead { border-bottom: 0; }
 
 /* ---------------------------------------------------------------- Days. */
 .fd-day .label { margin-bottom: var(--s4); }
+/* The day link keeps the label's line height but gets a full tap target. */
+.fd-day .label a { display: inline-flex; align-items: center; min-height: var(--tap); margin-block: calc((1.4em - var(--tap)) / 2); }
 .fd-day .brief { max-width: var(--measure); }
 .headline { margin: 0 0 var(--s2); max-width: var(--measure); font-size: var(--t-xl); }
-.headline a { text-decoration: none; }
+.headline a { padding-block: var(--s2); text-decoration: none; } /* inline padding: a taller tap target, no layout change */
 .headline a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-decoration-color: var(--red); text-underline-offset: .2em; }
 
 /* ---------------------------------------------------------------- The grid: two columns split by a hairline, outer edges on the column edges.
@@ -78,20 +83,23 @@ main:has(#k-release:checked) :is(.day, .spikes):not(:has([data-kind="release"]))
    would push right-hand cells past the column edge. */
 .fd-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--s7); background: linear-gradient(var(--rule), var(--rule)) 50% 0 / 1px 100% no-repeat; }
 .fd-grid li { min-width: 0; }
-.fd-grid a { display: grid; grid-template-columns: var(--tap) minmax(0, 1fr); grid-template-rows: auto auto 1fr; align-items: center; gap: var(--s3) var(--s4); height: 100%; padding: var(--s5) 0; }
+.fd-grid a { display: grid; grid-template-columns: var(--tap) minmax(0, 1fr); grid-template-rows: auto auto 1fr; align-items: center; gap: var(--s2) var(--s4); height: 100%; padding: var(--s5) 0; }
 .fd-grid .b { display: contents; }
 .fd-grid .m { grid-column: 2; }
 .fd-grid :is(strong, .s) { grid-column: 1 / -1; align-self: start; }
 .fd-grid strong { margin-top: var(--s1); font-size: var(--t-lg); line-height: 1.45; }
 .fd-grid a > * { transform: none !important; }
 
-/* ---------------------------------------------------------------- Page foot: earlier on the left, later on the right, a maple leaf between. */
+/* ---------------------------------------------------------------- Page foot: earlier on the left, later on the right, a maple leaf between.
+   Both buttons share one width, so the pair balances about the leaf; a page count under the leaf sits on the buttons' baseline. */
 .fd-nav { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: var(--s4); margin-top: var(--s7); padding-top: var(--s5); border-top: 1px solid var(--ink); }
-.fd-nav .l { justify-self: start; }
-.fd-nav .r { justify-self: end; }
+.fd-nav.has-mid { align-items: last baseline; }
+.fd-nav :is(.l, .r) { display: flex; min-width: 0; }
+.fd-nav .r { justify-content: flex-end; }
 .fd-nav .c { display: flex; flex-direction: column; align-items: center; gap: var(--s1); font: var(--t-ui)/1 var(--mono); letter-spacing: .08em; color: var(--muted); }
 .fd-leaf { display: block; transform: rotate(-12deg); }
-.fd-nav .btn { padding-inline: var(--s4); }
+.fd-nav .btn { min-width: min(12rem, 100%); text-indent: .26em; white-space: nowrap; }
+.fd-nav.is-days .btn { min-width: min(15rem, 100%); }
 
 /* ---------------------------------------------------------------- Phones. */
 @media (max-width: 48rem) {
@@ -100,23 +108,34 @@ main:has(#k-release:checked) :is(.day, .spikes):not(:has([data-kind="release"]))
 }
 @media (max-width: 40rem) {
   .fd-head h1 { font-size: var(--t-2xl); }
-  .fd-head.day h1 { font-size: var(--t-xl); }
+  .fd-head.is-day h1 { font-size: var(--t-xl); }
   .fd-brief { font-size: var(--t-body); }
   /* One row of chips across the column: the "Show" word moves off screen, the chips share the width. */
   .kinds-l { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   .kinds-o { flex: 1; }
-  .kinds label { flex: 1 1 auto; padding: 0 var(--s2); letter-spacing: .12em; }
+  .kinds label { flex: 1 1 auto; padding: 0 var(--s2); letter-spacing: .12em; text-indent: .12em; }
   .fd-day .brief { font-size: var(--t-body); }
-  /* Ensō and seal share the top row; the story runs under them across the column. */
-  .fd-lead { grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "e s" "b b"; align-items: start; gap: var(--s4); padding: var(--s5) 0; }
-  .fd-enso { grid-area: e; width: 6rem; height: 6rem; }
-  .fd-seal { grid-area: s; justify-self: end; }
-  .fd-lead-b { grid-area: b; }
+  .fd-lead { gap: var(--s3) var(--s4); padding: var(--s5) 0; }
   .fd-lead h2 { font-size: var(--t-lg); line-height: 1.4; }
   .headline { font-size: var(--t-lg); }
-  .fd-grid a { gap: var(--s3); }
   .fd-grid strong { font-size: 1.2rem; }
   .fd-grid a > .av { width: var(--tap); height: var(--tap); }
-  .fd-nav { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: var(--s2); }
-  .fd-nav .btn { padding-inline: var(--s3); letter-spacing: var(--track-ui); }
+  .fd-nav { gap: var(--s2); }
+  .fd-nav .btn { padding-inline: var(--s3); letter-spacing: var(--track-ui); text-indent: var(--track-ui); }
+  .fd-nav.is-days .btn { min-width: 100%; }
+  /* "Earlier:" / "Later:" stay for screen readers; the date alone fits the button. */
+  .fd-nav-k { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  /* Compact top: the first story starts high on the first screen. */
+  .fd-head { margin-bottom: var(--s4); }
+  .kinds { margin-bottom: var(--s5); }
+  /* Phone rhythm: one 32px gap between sections, as on Posts and About. */
+  .spikes, .fd-day { margin-bottom: var(--s6); }
+  .fd-nav { margin-top: var(--s6); }
+}
+/* The smallest phones (320px): the five kind chips still fit one row. */
+@media (max-width: 23rem) {
+  .fd-chips time { flex-basis: 100%; } /* the update time gets its own line; the chips sit under it on the right */
+}
+@media (max-width: 22rem) {
+  .kinds label { padding: 0 var(--s1); letter-spacing: .06em; text-indent: .06em; }
 }
