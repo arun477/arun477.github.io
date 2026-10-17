@@ -2,9 +2,12 @@
 
 https://arun477.github.io/themes/ synthesizes the running Feed into the few overarching storylines that keep coming back. The Feed answers "what happened"; Themes answers "what is going on, and why it matters". Read docs/feed-agent.md first: every theme is built only from Feed items.
 
+Before each update, read the newest entries of https://arun477.github.io/changelog/index.md: every change to URLs, schema or rules lands there first.
+
 ## Files
 
-- `content/themes/YYYY-MM-DD.md`: one front-matter-only snapshot per update (UTC date). The page and `/themes/index.json` show the **newest** snapshot; older ones stay as history and are never rendered as pages. Snapshots (not a data file) match the Feed's one-file-per-day pattern, keep history in git, and get the same build-time validation.
+- `content/themes/YYYY-MM-DD.md`: one front-matter-only snapshot per update (UTC date). The site shows the **newest** snapshot; older ones stay as history and are never rendered as pages.
+- Each theme in the newest snapshot gets its own page at `/themes/<slug>/` (also `index.md`), with its evidence grouped by Feed day; `/themes/` is a paginated index of them, 10 per page. `content/themes/_content.gotmpl` makes those pages. Snapshots (not a data file) match the Feed's one-file-per-day pattern, keep history in git, and get the same build-time validation.
 - Template: `archetypes/themes.md`. Layouts: `layouts/themes/`, `layouts/_partials/themes/`.
 
 ```yaml
@@ -18,6 +21,7 @@ themes:                                   # ranked: the order here is the order 
     status: "rising"                      # required: rising | steady | fading
     first_seen: 2026-10-06                # required: date of the oldest evidence item
     last_updated: 2026-10-17              # required: date of the newest evidence item
+    slug: "open-weight-models"            # optional: pins /themes/<slug>/; default is the title, urlized. Set it to keep the URL when you retitle a theme.
     items:                                # required: Feed item URLs, exactly as in /feed/index.json
       - "https://x.com/AIatMeta/status/2110779754274292212"
 ---
@@ -25,7 +29,7 @@ themes:                                   # ranked: the order here is the order 
 
 Titles, sources, kinds and dates of evidence are pulled from the Feed at build time, so store only URLs. The kind mix is computed.
 
-The build fails on: no themes, more than 12, a missing field, a title over 70 characters, a duplicate title, a status other than rising/steady/fading, an item URL not in the Feed, or body text.
+The build fails on: no themes, more than 12, a missing field, a title over 70 characters, a duplicate title, a duplicate or malformed slug (lowercase words joined by hyphens), a status other than rising/steady/fading, an item URL not in the Feed, or body text.
 
 ## Quality rules
 
@@ -43,7 +47,7 @@ Use `themes.py` in the agent store (`newsfeed/`), which keeps `themes-ledger.jso
 1. Write proposals, JSON `[{title, summary, keywords, items, theme?}]`, from the Feed items added since the last update.
 2. `python3 themes.py check proposals.json` reports merge or new for each proposal, plus any overlapping themes.
 3. `python3 themes.py update proposals.json` merges evidence, creates only distinct, well-backed themes, ages themes, enforces the limit of 12, and writes `content/themes/DATE.md`.
-4. `python3 themes.py validate`, then run `hugo` locally if layouts changed.
+4. `python3 themes.py validate`, then run `hugo` locally if layouts changed. If you change the snapshot format, add an entry to `content/changelog.md`.
 5. `python3 themes.py publish` commits `Themes: YYYY-MM-DD` and pushes.
 
 Never edit `content/news/`; that belongs to the feed agent.

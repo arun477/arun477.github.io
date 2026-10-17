@@ -9,5 +9,5 @@ cascade:
       kind: page
     build:
       render: never
-      list: always
+      list: local
 ---

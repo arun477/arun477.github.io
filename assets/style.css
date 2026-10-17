@@ -115,7 +115,10 @@ nav a::after, footer a::after {
   transition: transform .35s var(--ease);
 }
 nav a:hover::after, nav a[aria-current]::after, footer a:hover::after { transform: scaleX(1); }
-footer span { margin-right: auto; }
+/* The copyright is the quiet link to /changelog/, for agents: no hover cue, so it reads as plain text. */
+footer .log { margin-right: auto; }
+footer .log:hover { color: inherit; }
+footer .log::after { content: none; }
 
 .theme {
   display: grid;
@@ -451,11 +454,12 @@ mtable mtd:nth-child(even) { text-align: left; padding-left: 0; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 
-/* Themes: each storyline is a section like a Feed day; the label carries its status. */
-.label .status { font-family: var(--sans); letter-spacing: .08em; display: inline-flex; align-items: center; gap: .6rem; }
-.label .status::before { content: ""; width: .45rem; height: .45rem; border: 1px solid currentColor; box-sizing: border-box; }
-.label .status.rising { color: var(--text); }
-.label .status.rising::before { background: var(--accent); border-color: var(--accent); }
-.label .status.steady::before { background: currentColor; }
-.label .status.fading { opacity: .6; }
+/* Themes: the index is Feed-style rows with the rank in the square; each theme page groups its evidence by Feed day. */
+:is(.label, .feed) .status { font-family: var(--sans); letter-spacing: .08em; display: inline-flex; align-items: center; gap: .6rem; }
+.status::before { content: ""; width: .45rem; height: .45rem; border: 1px solid currentColor; box-sizing: border-box; }
+.status.rising { color: var(--text); }
+.status.rising::before { background: var(--accent); border-color: var(--accent); }
+.status.steady::before { background: currentColor; }
+.status.fading { opacity: .6; }
+.themes .av { font: .8rem/1 var(--mono); }
 .tmeta { display: flex; flex-wrap: wrap; gap: .3rem 1rem; margin: -.75rem 0 1.5rem; font: .75rem/1.6 var(--mono); color: var(--muted); }

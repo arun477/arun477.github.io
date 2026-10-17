@@ -1,0 +1,20 @@
+{{- /* One page per theme in the newest snapshot (content/themes/YYYY-MM-DD.md), at /themes/<slug>/.
+       Snapshots stay unrendered history; layouts/_partials/themes/themes.html validates the newest one. */ -}}
+{{- $files := slice }}{{ range os.ReadDir "content/themes" }}{{ if findRE `^\d{4}-\d{2}-\d{2}\.md$` .Name }}{{ $files = $files | append .Name }}{{ end }}{{ end -}}
+{{- with $files -}}
+  {{- $name := index (sort . "value" "desc") 0 -}}
+  {{- $fm := index (split (os.ReadFile (printf "content/themes/%s" $name)) "---") 1 | transform.Unmarshal -}}
+  {{- $updated := $fm.lastmod | default $fm.date -}}
+  {{- range $i, $t := $fm.themes -}}
+    {{- $.AddPage (dict
+      "kind" "page"
+      "path" ($t.slug | default (urlize $t.title))
+      "title" $t.title
+      "weight" (add $i 1)
+      "description" $t.summary
+      "dates" (dict "date" (time $t.last_updated) "lastmod" (time $updated))
+      "params" (dict "theme" $t "rank" (add $i 1))
+      "build" (dict "render" "always" "list" "always")
+    ) -}}
+  {{- end -}}
+{{- end -}}

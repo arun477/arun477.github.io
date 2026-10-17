@@ -1,20 +1,9 @@
 {{ define "main" }}
-{{ $snap := index .Pages.ByDate.Reverse 0 }}
+{{ $themes := partialCached "themes/current.html" . }}
 <h1>{{ .Title }}</h1>
 {{ with .Description }}<p class="brief lead">{{ . }}</p>{{ end }}
-<p class="meta">{{ with $snap }}<time datetime="{{ .Lastmod.Format "2006-01-02T15:04Z07:00" }}">Updated {{ .Lastmod.UTC.Format "2 Jan 2006" }}</time>{{ end }}<a class="chip" href="{{ (site.GetPage "/news").RelPermalink }}">Feed</a><a class="chip" href="index.json">JSON</a></p>
-{{ with $snap }}
-{{ $kinds := partial "news/kinds.html" . }}
-{{ range partial "themes/themes.html" . }}
-<section class="day storyline">
-<h2 class="label"><span class="status {{ .status }}">{{ .status }}</span><span>{{ printf "%02d" .rank }}</span></h2>
-<div class="intro">
-<h3 class="headline">{{ .title }}</h3>
-<p class="brief">{{ .summary }}</p>
-<p class="tmeta"><time>{{ dateFormat "2 Jan" .first_seen }} – {{ dateFormat "2 Jan" .last_updated }}</time>{{ range $k, $v := .kinds }}<span>{{ $v }} {{ if eq $v 1 }}{{ (index $kinds $k).one }}{{ else }}{{ (index $kinds $k).many }}{{ end }}</span>{{ end }}</p>
-</div>
-{{ partial "news/list.html" (dict "items" .evidence) }}
-</section>
-{{ end }}
-{{ else }}<p class="brief">Nothing yet.</p>{{ end }}
+<p class="meta">{{ with $themes }}<time datetime="{{ (index . 0).snapshot.Lastmod.Format "2006-01-02T15:04Z07:00" }}">Updated {{ (index . 0).snapshot.Lastmod.UTC.Format "2 Jan 2006" }}</time><span>{{ len . }} themes</span>{{ end }}<a class="chip" href="{{ (site.GetPage "/news").RelPermalink }}">Feed</a><a class="chip" href="index.json">JSON</a></p>
+{{ $pager := .Paginate (where .Pages "Params.theme" "!=" nil).ByWeight 10 }}
+{{ with $pager.Pages }}{{ $rows := slice }}{{ range . }}{{ $rows = $rows | append (index $themes (sub .Params.rank 1)) }}{{ end }}{{ partial "themes/list.html" $rows }}{{ else }}<p class="brief">Nothing yet.</p>{{ end }}
+{{ if gt $pager.TotalPages 1 }}<nav class="pager" aria-label="Pages">{{ with $pager.Prev }}<a href="{{ .URL }}">← Previous</a>{{ else }}<span></span>{{ end }}<span>{{ $pager.PageNumber }} / {{ $pager.TotalPages }}</span>{{ with $pager.Next }}<a href="{{ .URL }}">Next →</a>{{ else }}<span></span>{{ end }}</nav>{{ end }}
 {{ end }}

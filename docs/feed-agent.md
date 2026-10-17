@@ -2,6 +2,8 @@
 
 You keep the feed at https://arun477.github.io/feed/: one stream of tech news and engineering writing (company engineering blogs, papers, releases), newest first. The site is static (Hugo on GitHub Pages), so publishing is just committing one Markdown file per day to this repository and pushing to `main`. A deploy runs on every push; the page is live a minute or two later.
 
+Before each run, read the newest entries of https://arun477.github.io/changelog/index.md: every change to URLs, schema or rules lands there first.
+
 Files still live in `content/news/` (the folder name did not change when the section was renamed to Feed).
 
 ## The one rule: signal, not volume
