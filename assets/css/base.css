@@ -97,7 +97,7 @@
   --red: #c8664d;
   --on-red: #1c1a17;
   --slate: #12110f;
-  --slate-2: #1d1c19;
+  --slate-2: #2a2c2b;
   --on-slate: #ece3d2;
   --vein: rgba(20, 14, 8, .35);
   color-scheme: dark;
@@ -114,7 +114,7 @@
     --red: #c8664d;
     --on-red: #1c1a17;
     --slate: #12110f;
-    --slate-2: #1d1c19;
+    --slate-2: #2a2c2b;
     --on-slate: #ece3d2;
     --vein: rgba(20, 14, 8, .35);
     color-scheme: dark;
@@ -369,6 +369,7 @@ footer.site .seigaiha { height: var(--s7); }
 .feed .m b { font-weight: 500; color: var(--ink); }
 .feed .m em { font-style: normal; color: var(--red); }
 .feed .m time { font: var(--t-ui)/1.5 var(--mono); letter-spacing: .06em; text-transform: none; }
+.feed .m .status { line-height: inherit; align-self: baseline; }
 .feed strong { font: 600 var(--t-lg)/1.45 var(--mincho); }
 .feed .s { font: 400 var(--t-body)/1.8 var(--mincho); color: var(--muted); }
 .feed .go { display: none; } /* rows carry no action glyphs */

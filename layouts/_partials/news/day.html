@@ -1,12 +1,13 @@
-{{- /* One day in the feed: a date rule, the day's headline and brief, then its posts. Takes dict "page" and "skip" (urls already shown above). */ -}}
+{{- /* One day in the feed: a date rule, the day's headline and brief, then its posts as a two-column grid.
+       Takes dict "page", "skip" (urls already shown above) and "brief" (the masthead already carries this day's headline, so show only its brief). */ -}}
 {{- $items := slice }}{{ range partial "news/items.html" .page }}{{ if not (in $.skip .url) }}{{ $items = $items | append . }}{{ end }}{{ end -}}
 {{- with .page }}
-<section class="day">
+<section class="day fd-day">
 <h2 class="label"><a href="{{ .RelPermalink }}"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Mon 2 January 2006" }}</time></a>{{ if .Params.example }}<span>Example</span>{{ end }}</h2>
 <div class="intro">
-<h3 class="headline"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+{{ if not $.brief }}<h3 class="headline"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>{{ end }}
 {{ with .Description }}<p class="brief">{{ . }}</p>{{ end }}
 </div>
-{{ with $items }}{{ partial "news/list.html" (dict "items" .) }}{{ end }}
+{{ with $items }}{{ partial "news/list.html" (dict "items" . "grid" true) }}{{ end }}
 </section>
 {{- end }}

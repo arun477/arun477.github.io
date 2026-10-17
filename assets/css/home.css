@@ -1,12 +1,72 @@
 /* home.css: the home page (layouts/home.html, _partials/latest.html). Edited by the home agent only. */
-.index { margin-bottom: var(--s7); }
-.note { margin: 0 0 var(--s5); }
 
-/* Latest: the first rows show, the rest open under Show more (a details element). */
-.showmore > summary { display: flex; padding: var(--s4) 0 0; list-style: none; cursor: pointer; font: 500 var(--t-ui)/1 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; color: var(--ink); }
+/* Top band: ensō and seal | label and the agent's note | two ways in. Compact: the ensō sets its height (168px). */
+.top { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: var(--s6); margin: 0 0 var(--s6); }
+.top-art { position: relative; width: 168px; height: 168px; }
+.top-art .enso { width: 100%; height: 100%; }
+.top-seal { position: absolute; right: 0; bottom: var(--s1); }
+.top-t { display: flex; flex-direction: column; gap: var(--s3); min-width: 0; }
+.top-t .label { justify-content: flex-start; gap: var(--s4); margin: 0; }
+.top .note { margin: 0; padding: var(--s3) var(--s5); font: 500 var(--t-lg)/1.5 var(--mincho); color: var(--ink); text-wrap: pretty; width: fit-content; max-width: 100%; }
+.top-go { display: flex; flex-direction: column; gap: var(--s2); }
+.top-go .btn { min-width: 11rem; }
+/* The seigaiha strip runs the full width under the band. */
+.top-wave { height: var(--s5); margin-bottom: var(--s7); }
+
+/* Latest: a vertical heading with a brush rule beside the stream. */
+.index { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--s6); }
+.index-h { display: flex; flex-direction: column; align-items: center; gap: var(--s4); align-self: start; position: sticky; top: calc(var(--bar) + var(--s6)); }
+.latest { margin: 0; writing-mode: vertical-rl; font: 600 var(--t-xl)/1 var(--mincho); letter-spacing: .32em; margin-bottom: -.32em; }
+.latest-u { display: none; }
+.index-b { min-width: 0; }
+
+/* Show more: one ghost button, centred under the stream; each batch holds the next one's button. */
+.showmore > summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: var(--tap);
+  margin: var(--s6) auto 0;
+  padding: 0 var(--s7);
+  border: 1px solid var(--ink);
+  list-style: none;
+  cursor: pointer;
+  font: 500 var(--t-ui)/1 var(--gothic);
+  letter-spacing: var(--track-wide);
+  text-indent: var(--track-wide); /* balances the trailing tracking so the label sits in the true centre */
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: background-color .2s, color .2s;
+}
 .showmore > summary::-webkit-details-marker { display: none; }
-.showmore > summary:hover { text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: .4em; }
-/* Opened, the button gives way to the batch; the next batch's button sits under it. */
+.showmore > summary:hover { background: var(--ink); color: var(--ground); }
 .showmore[open] > summary { display: none; }
-.older { margin: var(--s5) 0 0; }
 .showmore .feed { border-top: 0; }
+.older { align-items: center; margin: var(--s4) 0 0; }
+.older .to { gap: 0 var(--s5); }
+.older a { display: inline-flex; align-items: center; min-height: var(--tap); color: var(--ink); }
+.older a:hover { text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: .4em; }
+
+@media (max-width: 52rem) {
+  /* Narrower: the buttons drop under the note, side by side. */
+  .top { grid-template-columns: auto minmax(0, 1fr); row-gap: var(--s5); }
+  .top-go { grid-column: 1 / -1; flex-direction: row; }
+  .top-go .btn { flex: 1; min-width: 0; }
+}
+@media (max-width: 40rem) {
+  /* Phones: a small ensō beside the label, the note full width, the two buttons sharing a row. */
+  .top { grid-template-columns: 96px minmax(0, 1fr); gap: var(--s4); row-gap: var(--s4); margin-bottom: var(--s5); }
+  .top-art { width: 96px; height: 96px; grid-row: 1; }
+  .top-seal { width: 24px; height: 24px; bottom: 0; }
+  .top-t { display: contents; }
+  .top-t .label { grid-column: 2; grid-row: 1; flex-direction: column; align-self: center; gap: var(--s2); }
+  .top .note { grid-column: 1 / -1; font-size: var(--t-read); padding: var(--s2) var(--s4); }
+  .top-wave { margin-bottom: var(--s6); }
+  /* The heading turns horizontal with a short brush underline. */
+  .index { display: block; }
+  .index-h { position: static; align-items: flex-start; gap: var(--s1); margin: 0 0 var(--s3); }
+  .latest { writing-mode: horizontal-tb; font-size: var(--t-lg); letter-spacing: .2em; margin: 0; }
+  .latest-v { display: none; }
+  .latest-u { display: block; }
+}

@@ -1,8 +1,11 @@
 {{- /* CSS-only kind filter (radio buttons; rules in assets/css/feed.css). Takes the list of kinds present; shown only when there is a choice. */ -}}
 {{- $kinds := partial "news/kinds.html" . -}}
 {{- if gt (len .) 1 }}
-<div class="kinds" role="radiogroup" aria-label="Show">
+<div class="kinds">
+<span class="kinds-l" id="kinds-l">Show</span>
+<div class="kinds-o" role="radiogroup" aria-labelledby="kinds-l">
 <input type="radio" name="kind" id="k-all" checked><label for="k-all">All</label>
 {{ range . }}<input type="radio" name="kind" id="k-{{ . }}"><label for="k-{{ . }}">{{ (index $kinds .).many }}</label>
 {{ end }}</div>
+</div>
 {{- end }}

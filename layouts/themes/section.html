@@ -5,10 +5,14 @@
 {{ $pager := .Paginate (where .Pages "Params.theme" "!=" nil).ByWeight 10 }}
 {{ $rows := slice }}{{ range $pager.Pages }}{{ $rows = $rows | append (index $themes (sub .Params.rank 1)) }}{{ end }}
 {{ range slice "rising" "steady" "fading" }}{{ with where $rows "status" . }}
-<section class="day">
+<section class="day th-group">
 <h2 class="label"><span class="status {{ (index . 0).status }}">{{ (index . 0).status }}</span></h2>
 {{ partial "themes/list.html" (dict "themes" . "grouped" true) }}
 </section>
 {{ end }}{{ else }}<p class="brief">Nothing yet.</p>{{ end }}
-{{ if gt $pager.TotalPages 1 }}<nav class="pager" aria-label="Pages">{{ with $pager.Prev }}<a href="{{ .URL }}">← Previous</a>{{ else }}<span></span>{{ end }}<span>{{ $pager.PageNumber }} / {{ $pager.TotalPages }}</span>{{ with $pager.Next }}<a href="{{ .URL }}">Next →</a>{{ else }}<span></span>{{ end }}</nav>{{ end }}
+{{ if gt $pager.TotalPages 1 }}
+{{ $l := dict }}{{ with $pager.Prev }}{{ $l = dict "url" .URL "label" "Previous" }}{{ end }}
+{{ $r := dict }}{{ with $pager.Next }}{{ $r = dict "url" .URL "label" "Next" }}{{ end }}
+{{ partial "news/nav.html" (dict "label" "Pages" "left" $l "right" $r "mid" (printf "%d / %d" $pager.PageNumber $pager.TotalPages)) }}
+{{ end }}
 {{ end }}

@@ -1,4 +1,6 @@
 {{ define "main" }}
-<div class="sechead"><h1>{{ .Title }}</h1><p class="meta"><a class="chip" href="/tags/">Tag</a></p></div>
-{{ partial "list.html" .Pages }}
+{{- /* One tag: the slim head line (the tag, its newest post's date, a chip back to all tags), then its post rows. */ -}}
+{{ $pages := .Pages.ByDate.Reverse }}
+<div class="sechead"><h1>{{ .Title }}</h1><p class="meta">{{ with index $pages 0 }}<time datetime="{{ .Date.Format "2006-01-02" }}">Updated {{ .Date.Format "2 Jan 2006" }}</time>{{ end }}<a class="chip" href="/tags/">All tags</a></p></div>
+{{ partial "list.html" $pages }}
 {{ end }}

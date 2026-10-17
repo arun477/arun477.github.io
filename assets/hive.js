@@ -1,4 +1,6 @@
-/* The hive: five agent bees take a request, brief, work together, deliver, remember and dream. Home banner only. */
+/* The hive: five agent bees take a request, brief, work together, deliver, remember and dream. About banner only.
+   Palette follows the site: bees in the leaf colours (ochre, slate-teal, indigo, rust, plum), seal red for signals,
+   matcha for done; paper, ink and rules are read from the CSS tokens on each render, so it follows light and dark. */
 (() => {
 
 /* ================= character ================= */
@@ -13,21 +15,21 @@ function roundPoly(pts, r) {
   return d + "Z";
 }
 const hexPath = (cx, cy, R, r) => roundPoly([...Array(6)].map((_, i) => { const a = (-90 + i * 60) * Math.PI / 180; return [+(cx + R * Math.cos(a)).toFixed(2), +(cy + R * 1.03 * Math.sin(a)).toFixed(2)]; }), r);
-const BODY = hexPath(100, 112, 58, 16), GLOW = "#FF5A2A", JADE = "#2FB38E";
+const BODY = hexPath(100, 112, 58, 16), GLOW = "#B94A31", JADE = "#6F8A55";
 const KEYS = ["coord", "scholar", "msg", "build", "keeper"];
 const BEES = {
-  coord:   { body: "#F5A524", ink: "#4A2A05", wing: "#FFF1D6", blush: "#F27A4A", acc: "headset", sc: .5 },
-  scholar: { body: "#2FB38E", ink: "#06392B", wing: "#DDF6EE", blush: "#F08F7A", acc: "glasses", sc: .42 },
-  msg:     { body: "#4C6FFF", ink: "#0E1B5E", wing: "#E3E9FF", blush: "#FF8FA6", acc: "bag", sc: .42 },
-  build:   { body: "#F26B3A", ink: "#4A1606", wing: "#FFE4D8", blush: "#E0412A", acc: "hat", sc: .42 },
-  keeper:  { body: "#B266E8", ink: "#33104F", wing: "#F3E5FF", blush: "#FF8FB8", acc: "sprout", sc: .42 },
+  coord:   { body: "#C49A3E", ink: "#3A2A10", wing: "#F6ECD6", blush: "#C8664D", acc: "headset", sc: .5 },
+  scholar: { body: "#5E7F86", ink: "#17292D", wing: "#E2EBEA", blush: "#C98A78", acc: "glasses", sc: .42 },
+  msg:     { body: "#4A6283", ink: "#131D2E", wing: "#E3E7EE", blush: "#CF8E86", acc: "bag", sc: .42 },
+  build:   { body: "#B85C38", ink: "#3B160A", wing: "#F4E2D6", blush: "#A3412E", acc: "hat", sc: .42 },
+  keeper:  { body: "#86607A", ink: "#2B1626", wing: "#EFE5EA", blush: "#C98A8E", acc: "sprout", sc: .42 },
 };
 const ACC = {
   headset: (P, s) => `<path d="M60,112 C58,70 76,50 100,50 C124,50 142,70 140,112" fill="none" stroke="${P.ink}" stroke-width="4" stroke-linecap="round"/><rect x="53" y="100" width="12" height="22" rx="6" fill="${P.ink}"/><rect x="135" y="100" width="12" height="22" rx="6" fill="${P.ink}"/><path d="M59,120 C62,132 74,134 84,130" fill="none" stroke="${P.ink}" stroke-width="2.6" stroke-linecap="round"/><circle cx="86" cy="129.5" r="${(3.6 + s.talk * 1.8).toFixed(2)}" fill="${GLOW}"/>`,
   hat: P => `<path d="M68,66 C68,44 82,34 100,34 C118,34 132,44 132,66 Z" fill="#F7F1E4"/><path d="M100,34 L100,66" stroke="${P.ink}" stroke-opacity=".16" stroke-width="2"/><rect x="60" y="64" width="80" height="7" rx="3.5" fill="#EDE4D2"/>`,
   glasses: P => `<g fill="#fff" fill-opacity=".2" stroke="${P.ink}" stroke-width="2.4"><circle cx="85" cy="102" r="11.5"/><circle cx="115" cy="102" r="11.5"/></g><path d="M96.5,101 Q100,98 103.5,101 M73.5,100 L64,97 M126.5,100 L136,97" fill="none" stroke="${P.ink}" stroke-width="2.4" stroke-linecap="round"/>`,
   bag: P => `<path d="M58,124 L124,158" stroke="${P.ink}" stroke-opacity=".7" stroke-width="3.2" stroke-linecap="round"/><rect x="118" y="148" width="26" height="20" rx="3" fill="#F7F1E4"/><path d="M118,154 L144,154" stroke="${P.ink}" stroke-opacity=".25" stroke-width="1.6"/><circle cx="131" cy="154" r="2.2" fill="${GLOW}"/>`,
-  sprout: P => `<path d="M100,58 C100,46 100,36 102,24" fill="none" stroke="#5E9358" stroke-width="3.2" stroke-linecap="round"/><path d="M102,32 C112,20 126,21 128,28 C122,38 110,38 102,32 Z" fill="#7FB378"/><path d="M100,42 C90,32 76,33 74,40 C80,49 92,49 100,42 Z" fill="#96C48F"/>`,
+  sprout: P => `<path d="M100,58 C100,46 100,36 102,24" fill="none" stroke="#6B7A45" stroke-width="3.2" stroke-linecap="round"/><path d="M102,32 C112,20 126,21 128,28 C122,38 110,38 102,32 Z" fill="#7D7A4E"/><path d="M100,42 C90,32 76,33 74,40 C80,49 92,49 100,42 Z" fill="#97965F"/>`,
 };
 function drawBee(key, b, t) {
   const P = BEES[key], sc = P.sc, sleep = b.sleep, happy = b.happy, think = b.think, talk = b.talk;
@@ -360,7 +362,7 @@ function render(t) {
 
   svg.innerHTML = `<defs><clipPath id="bc"><path d="${BODY}"/></clipPath>
     <filter id="sh" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#2a1d0a" flood-opacity=".08"/></filter>
-    ${dark() ? `<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2C2766" stop-opacity=".55"/><stop offset=".6" stop-color="#1E1B40" stop-opacity=".25"/><stop offset="1" stop-color="#14122A" stop-opacity="0"/></linearGradient>` : `<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B9AEEA" stop-opacity=".42"/><stop offset=".55" stop-color="#DCD5F5" stop-opacity=".22"/><stop offset="1" stop-color="#F3EFFA" stop-opacity="0"/></linearGradient>`}
+    ${dark() ? `<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#26313A" stop-opacity=".6"/><stop offset=".6" stop-color="#1D2329" stop-opacity=".28"/><stop offset="1" stop-color="#16181B" stop-opacity="0"/></linearGradient>` : `<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9B48C" stop-opacity=".38"/><stop offset=".55" stop-color="#E0D2B6" stop-opacity=".22"/><stop offset="1" stop-color="#F3ECDF" stop-opacity="0"/></linearGradient>`}
     <linearGradient id="scan" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${JADE}" stop-opacity="0"/><stop offset="1" stop-color="${JADE}" stop-opacity=".18"/></linearGradient></defs>` + o.join("");
 }
 

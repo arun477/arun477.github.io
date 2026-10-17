@@ -1,7 +1,42 @@
 {{ define "main" }}
-<article>
-<h1>{{ .Title }}</h1>
-<p class="meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>{{ range .GetTerms "tags" }} <a class="chip" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}</p>
+{{- /* A post: a compact title block (kind, date, read time, title with a brush underline, description) beside a small
+       hanging scroll (leaf ensō and the AA seal); then the body at the reading measure, with the contents beside it on wide
+       screens; then the tags and an end mark. Other single pages (e.g. the changelog) get the same head without the scroll. */ -}}
+{{- $post := eq .Section "posts" -}}
+{{- $parts := split .Title ": " -}}
+{{- $h2 := slice -}}
+{{- range .Fragments.Headings }}{{ if eq .Level 2 }}{{ $h2 = $h2 | append . }}{{ else }}{{ range .Headings }}{{ if eq .Level 2 }}{{ $h2 = $h2 | append . }}{{ end }}{{ end }}{{ end }}{{ end -}}
+{{- $toc := and $post (ge (len $h2) 2) -}}
+<article class="post-page{{ if $post }} is-post{{ end }}{{ if $toc }} has-toc{{ end }}">
+<header class="ph">
+<div class="ph-t">
+<p class="ph-m">{{ if $post }}<span class="kind"><span class="av">{{ partial "icon.html" "post" }}</span><b>Post</b></span>{{ end }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>{{ if $post }}<span>{{ .ReadingTime }} min read</span>{{ partial "ornament/seal.html" (dict "size" 28 "class" "ph-seal") }}{{ end }}</p>
+<h1>{{ index $parts 0 }}{{ with after 1 $parts }}<span class="sr-only">: </span><span class="sub">{{ delimit . ": " }}</span>{{ end }}</h1>
+{{ partial "ornament/brush.html" (dict "length" 160 "class" "ph-brush") }}
+{{ with .Description }}<p class="ph-d">{{ . }}</p>{{ end }}
+</div>
+{{- if $post }}
+<div class="scroll" aria-hidden="true">
+<div class="scroll-p">
+{{ partialCached "ornament/enso.html" (dict "size" 132 "leaves" 20 "seed" 7 "class" "scroll-enso") "post-scroll" }}
+{{ with index (.GetTerms "tags") 0 }}<span class="scroll-t tate">{{ .LinkTitle }}</span>{{ end }}
+{{ partial "ornament/seal.html" (dict "size" 30 "class" "scroll-seal") }}
+</div>
+</div>
+{{- end }}
+</header>
+{{- if $toc }}
+<nav class="toc" aria-label="On this page">
+<p class="toc-l">Contents</p>
+<ol>{{ range $h2 }}<li><a href="#{{ .ID }}">{{ .Title | safeHTML }}</a></li>{{ end }}</ol>
+</nav>
+{{- end }}
+<div class="prose">
 {{ .Content }}
+</div>
+<footer class="pf">
+{{ with .GetTerms "tags" }}<ul class="pf-tags" aria-label="Tags">{{ range . }}<li><a class="chip" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}</ul>{{ end }}
+<div class="end" aria-hidden="true"><svg viewBox="0 0 12 12" width="12" height="12" focusable="false"><circle cx="6" cy="6" r="5"/></svg></div>
+</footer>
 </article>
 {{ end }}

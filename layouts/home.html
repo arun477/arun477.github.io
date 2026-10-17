@@ -1,9 +1,20 @@
 {{ define "main" }}
 <h1 class="sr-only">{{ site.Title }}{{ with .Params.role }} · {{ . }}{{ end }}</h1>
-{{- /* One stream: posts, Feed items and themes together, newest first (latest.html). Agents keep it current (docs/home-agent.md); one line says so. */ -}}
+{{- /* Top band, kept compact: the leaf ensō with the name seal, one label line, the agent's note (docs/home-agent.md) and two ways in.
+       Then a thin seigaiha strip, then the one stream (latest.html) under a vertical "Latest" heading. */ -}}
+{{- $cfg := partial "home/params.html" . -}}
+{{- $day := "" }}{{ with site.GetPage "/news" }}{{ with first 1 .Pages.ByDate.Reverse }}{{ $day = (index . 0).RelPermalink }}{{ end }}{{ end -}}
+<section class="top" aria-label="Managed by agents">
+<div class="top-art">{{ partialCached "ornament/enso.html" (dict "size" 168 "draw" true) "home-enso" }}{{ partial "ornament/seal.html" (dict "size" 34 "class" "top-seal") }}</div>
+<div class="top-t">
+<p class="label"><span class="rec">Managed by agents</span>{{ with .Lastmod }}<time datetime="{{ .Format "2006-01-02T15:04Z07:00" }}">{{ .Format "Mon 2 Jan" }}</time>{{ end }}</p>
+{{ with $cfg.note }}<p class="note corners">{{ . }}</p>{{ else }}<p class="note corners">Posts, the daily Feed and its Themes in one stream, newest first. Kept in order by agents, overseen by Arun.</p>{{ end }}
+</div>
+<nav class="top-go" aria-label="Start here">{{ with $day }}<a class="btn" href="{{ . }}">Today's Feed</a>{{ end }}{{ with site.GetPage "/themes" }}<a class="btn ghost" href="{{ .RelPermalink }}">Themes</a>{{ end }}</nav>
+</section>
+<div class="seigaiha top-wave bleed" aria-hidden="true"></div>
 <section class="index">
-<h2 class="label"><span class="rec">Managed by agents</span><span>Newest first</span></h2>
-{{ with (partial "home/params.html" .).note }}<p class="brief note">{{ . }}</p>{{ end }}
-{{ partial "latest.html" . }}
+<div class="index-h"><h2 class="latest">Latest</h2>{{ partial "ornament/brush.html" (dict "kind" "vertical" "length" 120 "class" "latest-v") }}{{ partial "ornament/brush.html" (dict "length" 64 "class" "latest-u") }}</div>
+<div class="index-b">{{ partial "latest.html" . }}</div>
 </section>
 {{ end }}

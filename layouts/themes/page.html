@@ -1,18 +1,34 @@
 {{ define "main" }}
 {{ $t := index (partialCached "themes/current.html" .CurrentSection) (sub .Params.rank 1) }}
-<p class="label"><a href="{{ .CurrentSection.RelPermalink }}">{{ .CurrentSection.Title }}</a><span class="status {{ $t.status }}">{{ $t.status }}</span></p>
+{{ $kinds := partial "news/kinds.html" . }}
+<header class="th-head">
+<p class="fd-kick"><a href="{{ .CurrentSection.RelPermalink }}">{{ .CurrentSection.Title }}</a><span class="status {{ $t.status }}">{{ $t.status }}</span></p>
 <h1>{{ .Title }}</h1>
-<p class="brief lead">{{ $t.summary }}</p>
-<p class="meta">{{ partial "themes/span.html" $t }}<a class="chip" href="{{ (site.GetPage "/news").RelPermalink }}">Feed</a></p>
+{{ partial "ornament/brush.html" (dict "length" 168 "class" "fd-brush") }}
+<div class="th-body">
+<p class="th-sum corners">{{ $t.summary }}</p>
+<div class="th-meta">
+<dl>
+<div><dt>First seen</dt><dd><time datetime="{{ dateFormat "2006-01-02" $t.first_seen }}">{{ dateFormat "2 Jan 2006" $t.first_seen }}</time></dd></div>
+<div><dt>Latest</dt><dd><time datetime="{{ dateFormat "2006-01-02" $t.last_updated }}">{{ dateFormat "2 Jan 2006" $t.last_updated }}</time></dd></div>
+<div><dt>From</dt><dd>{{ $ks := slice }}{{ range slice "news" "blog" "paper" "release" }}{{ if index $t.kinds . }}{{ $ks = $ks | append (index $kinds .).many }}{{ end }}{{ end }}{{ delimit $ks ", " }}</dd></div>
+</dl>
+<a class="chip" href="{{ (site.GetPage "/news").RelPermalink }}">Feed</a>
+</div>
+</div>
+</header>
 {{ $days := slice }}{{ $cur := "" }}{{ $items := slice }}
 {{ range $t.evidence }}{{ $d := .day.Date.Format "2006-01-02" }}{{ if and $cur (ne $d $cur) }}{{ $days = $days | append (dict "items" $items) }}{{ $items = slice }}{{ end }}{{ $cur = $d }}{{ $items = $items | append . }}{{ end }}
 {{ with $items }}{{ $days = $days | append (dict "items" .) }}{{ end }}
 {{ range $g := $days }}{{ $day := (index $g.items 0).day }}
-<section class="day">
+<section class="day th-day">
 <h2 class="label"><a href="{{ $day.RelPermalink }}"><time datetime="{{ $day.Date.Format "2006-01-02" }}">{{ $day.Date.Format "Mon 2 January 2006" }}</time></a></h2>
 {{ partial "news/list.html" (dict "items" $g.items) }}
 </section>
 {{ end }}
 {{ $all := (where .CurrentSection.Pages "Params.theme" "!=" nil).ByWeight }}
-<nav class="pager" aria-label="Themes">{{ with $all.Next . }}<a href="{{ .RelPermalink }}" title="{{ .Title }}">← Previous</a>{{ else }}<span></span>{{ end }}<a href="{{ .CurrentSection.RelPermalink }}">All themes</a>{{ with $all.Prev . }}<a href="{{ .RelPermalink }}" title="{{ .Title }}">Next →</a>{{ else }}<span></span>{{ end }}</nav>
+{{ $home := dict "url" .CurrentSection.RelPermalink "label" "All themes" }}
+{{ $l := $home }}{{ with $all.Next . }}{{ $l = dict "url" .RelPermalink "label" "Previous theme" }}{{ end }}
+{{ $r := $home }}{{ with $all.Prev . }}{{ $r = dict "url" .RelPermalink "label" "Next theme" }}{{ end }}
+{{ partial "news/nav.html" (dict "label" "Themes" "left" $l "right" $r) }}
 {{ end }}
