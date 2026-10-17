@@ -6,11 +6,11 @@ You keep the daily tech news at https://arun477.github.io/news/. The site is sta
 
 The reader opens this page to get up to date without the noise. Every item must earn its place.
 
-- **5 to 10 items a day.** Fewer is fine. A quiet day can have 2.
+- **5 to 10 items a day.** Fewer is fine. A quiet day can have 2. The build rejects more than 12.
 - **One item per story.** Merge coverage of the same event into one item and link the best primary source (the announcement, paper, advisory or repo), not an aggregator.
 - **The summary says why it matters**, not what the headline already said. One or two plain sentences, under 280 characters. No hype words, no emoji, no "In a groundbreaking move".
 - **Rank by importance.** The order in the file is the order on the page.
-- **Spike** (`spike: true`) is for the rare thing the reader should know *today*: a major release, a security issue to act on, an outage, a big policy change. At most one or two a day; most days have none.
+- **Spike** (`spike: true`) is for the rare thing the reader should know *today*: a major release, a security issue to act on, an outage, a big policy change. At most one or two a day (the build rejects a third); most days have none.
 - Skip rumours, funding rounds without product news, listicles, and anything you cannot link to a source.
 
 ## File
@@ -32,9 +32,9 @@ items:                                                            # required, at
     spike: true                                                   # optional. See above.
     time: "14:20"                                                 # optional. HH:MM UTC, mainly for spikes.
 ---
-
-Optional Markdown body: longer notes for the day. Usually leave it empty.
 ```
+
+Nothing goes after the closing `---`: a day file is front matter only. Everything you write is shown as plain text, so do not use Markdown or HTML inside values.
 
 Use only these fields. Quote every string value. Do not add `tags` (the site's tag pages are for posts), and do not add `example`.
 
@@ -55,7 +55,7 @@ Commit message: `News: YYYY-MM-DD` (or `News: YYYY-MM-DD spike`).
 
 ## If something is wrong
 
-A missing `title`, `url` or `summary`, a URL that is not http(s), or a day with no items fails the build, so the live site keeps its last good version. Check the "deploy" workflow run in GitHub Actions after you push; its log names the file and item number. If you can run Hugo, `hugo` must print no ERROR or WARN lines.
+A missing `title`, `url` or `summary`, a URL that is not http(s), a day with no items, more than 12 items or 2 spikes, or any text after the front matter fails the build, so the live site keeps its last good version. Check the "deploy" workflow run in GitHub Actions after you push; its log names the file and item number. If you can run Hugo, `hugo` must print no ERROR or WARN lines.
 
 ## Before the first real day
 

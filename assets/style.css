@@ -338,7 +338,6 @@ main a:hover { text-decoration-color: currentColor; }
 :is(.more, .pager) a { color: var(--text); text-decoration: none; }
 :is(.more, .pager) a:hover { text-decoration: underline; text-underline-offset: .3em; }
 .more span, .pager > span { font-family: var(--mono); letter-spacing: 0; }
-.notes { margin-top: 3rem; }
 
 /* Page meta and tags */
 .meta { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin: 0 0 3rem; font: .8rem/1.6 var(--mono); color: var(--muted); }

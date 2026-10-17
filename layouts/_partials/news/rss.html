@@ -1,3 +1,2 @@
 {{- with .Description }}<p>{{ . }}</p>{{ end -}}
 <ul>{{ range partial "news/items.html" . }}<li>{{ if .spike }}<strong>Spike.</strong> {{ end }}<a href="{{ .url }}">{{ .title }}</a> ({{ .source }}{{ with .topic }}, {{ . }}{{ end }}): {{ .summary }}</li>{{ end }}</ul>
-{{- .Content -}}
