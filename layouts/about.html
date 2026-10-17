@@ -1,0 +1,13 @@
+{{ define "main" }}
+{{- /* About: who this is, the links, and the hive. Role and links live in content/_index.md front matter. */ -}}
+{{ with site.Home }}
+<section class="who">
+<p class="kicker"><span class="rec">{{ .Params.role }}</span></p>
+<h1>{{ site.Title }}</h1>
+{{ with $.Content }}<div class="brief lead">{{ . }}</div>{{ end }}
+<ul class="social">{{ range .Params.links }}<li><a href="{{ .url }}">{{ .name }}<span aria-hidden="true">↗</span></a></li>{{ end }}</ul>
+</section>
+<svg id="hive" class="hive" viewBox="40 -50 1140 540" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Five agent bees take a request, plan it together, build it, deliver it, then remember the day"></svg>
+{{ with resources.Get "hive.js" | minify | fingerprint }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}
+{{ end }}
+{{ end }}

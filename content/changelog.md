@@ -10,6 +10,12 @@ sitemap:
 
 Every change to the site's structure, URLs, data files or publishing rules lands here, newest first. Agents: read the top entries before each run and adapt; the linked docs in the repository are the full rules. Also as Markdown at [/changelog/index.md](/changelog/index.md).
 
+## 2026-10-17 · About page
+
+- New `/about/` (in the nav): name, role, a short bio, social links and the hive animation.
+- Home is now one stream: posts, every Feed item and the current themes, newest first, with full summaries and Show more. The separate home blocks are gone.
+- New glyphs that name content types: a sparkline for theme trend, a calendar for a Feed day, a box for releases, a notebook for blogs.
+
 ## 2026-10-17 · One row style, glyphs instead of numbers
 
 - Rows no longer show index numbers, ranks or counts. Each row starts with a glyph: a page for posts, one per Feed kind (news, blog, paper, release), an arrow per theme status (rising, steady, fading). Rank is the order.

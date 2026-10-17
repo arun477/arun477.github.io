@@ -1,14 +1,16 @@
 {{- /* A 16px hairline glyph in currentColor; square caps and mitred joins to match the site's sharp edges.
-       Takes a name. Feed kinds pick theirs in news/kinds.html, theme statuses use their own name. Add a glyph here to add a kind. */ -}}
+       Glyphs name what a row is, never an action: no arrows, pencils or tags.
+       Takes a name: post, day (a Feed day), a Feed kind (via news/kinds.html), or a theme status (a sparkline over a baseline shows the trend). Add a glyph here to add a kind. */ -}}
 {{- $d := dict
-  "post" "M3.5 1.5h6l3 3v10h-9z M9.5 1.5v3h3"
-  "news" "M1.5 3.5h13v9h-13z M4 6.5h8 M4 9.5h5"
-  "blog" "M10.5 2.5l3 3-8 8h-3v-3z M8.5 4.5l3 3"
-  "paper" "M3.5 1.5h9v13h-9z M5.5 5h5 M5.5 8h5 M5.5 11h3"
-  "release" "M1.5 1.5h6l7 7-6 6-7-7z M4.5 4.5h1v1h-1z"
-  "rising" "M3 13L13 3 M6 3h7v7"
-  "steady" "M2 8h12 M9 3l5 5-5 5"
-  "fading" "M3 3l10 10 M13 6v7H6"
+  "post" "M3.5 1.5h9v13h-9z M5.5 4.5h5 M5.5 7h5 M5.5 9.5h5 M5.5 12h3"
+  "day" "M2.5 3.5h11v10h-11z M2.5 6.5h11 M5.5 1.5v3 M10.5 1.5v3"
+  "news" "M1.5 3.5h13v9h-13z M3.5 5.5h4v3h-4z M9.5 6h3 M9.5 8h3 M3.5 10.5h9"
+  "blog" "M3.5 1.5h9v13h-9z M5.5 1.5v13 M7.5 4.5h3 M7.5 7h3"
+  "paper" "M3.5 1.5h6l3 3v10h-9z M9.5 1.5v3h3 M5.5 8h5 M5.5 10.5h5 M5.5 5.5h2"
+  "release" "M8 1.5l6 3v7l-6 3-6-3v-7z M2 4.5l6 3 6-3 M8 7.5v7"
+  "rising" "M1.5 12.5l4-3.5 3 2 6-7.5 M1.5 14.5h13"
+  "steady" "M1.5 8.5l4-1.5 3 2 6-1.5 M1.5 14.5h13"
+  "fading" "M1.5 3.5l4 4.5 3-1.5 6 6 M1.5 14.5h13"
 -}}
 <svg class="ic" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path d="{{ index $d . | default (index $d "news") }}"/></svg>
 {{- /**/ -}}
