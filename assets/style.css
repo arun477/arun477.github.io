@@ -318,21 +318,6 @@ main a:hover { text-decoration-color: currentColor; }
 .feed strong { font: 500 1.2rem/1.35 var(--serif); }
 .feed .s { font: 1rem/1.5 var(--serif); color: var(--muted); }
 .feed .go { font: .9rem/1.6 var(--mono); color: var(--muted); }
-/* Home: when each part of the site last changed (agents keep it current), one cell per section plus the home page itself. */
-.pulse { list-style: none; display: grid; grid-template-columns: repeat(var(--n, 4), 1fr); margin: 0 0 1.5rem; padding: 0; border-top: 1px solid var(--text); }
-.pulse li { border-bottom: 1px solid var(--line); }
-.pulse li + li { border-left: 1px solid var(--line); }
-.pulse :is(a, span) { display: flex; flex-direction: column; gap: .35rem; padding: .8rem 0 .8rem 1rem; color: var(--text); text-decoration: none; }
-.pulse li:first-child :is(a, span) { padding-left: 0; }
-@media (max-width: 34rem) {
-  .pulse { grid-template-columns: 1fr 1fr; }
-  .pulse li:nth-child(odd) { border-left: 0; }
-  .pulse li:nth-child(odd) :is(a, span) { padding-left: 0; }
-  .runs dl > div { grid-template-columns: 5rem 1fr; }
-}
-.pulse b { font: 600 .68rem/1.2 var(--sans); letter-spacing: .08em; text-transform: uppercase; }
-.pulse time { font: .78rem/1.2 var(--mono); color: var(--muted); }
-.pulse a:hover b { text-decoration: underline; text-underline-offset: .3em; }
 .note { margin: 0 0 1.5rem; }
 .feed .pin .av { border-color: var(--text); }
 /* Compact rows (home page): titles and the meta line only; the section page has the summaries. */

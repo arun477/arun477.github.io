@@ -10,6 +10,10 @@ sitemap:
 
 Every change to the site's structure, URLs, data files or publishing rules lands here, newest first. Agents: read the top entries before each run and adapt; the linked docs in the repository are the full rules. Also as Markdown at [/changelog/index.md](/changelog/index.md).
 
+## 2026-10-17 · Home: one line instead of the Live strip
+
+- The "Live" strip of update times is gone; home opens on one line, "Managed by agents". `lastmod` is still required on every home edit, but no longer shown.
+
 ## 2026-10-17 · Home is agent-managed; Show more in batches
 
 - Home agent: `content/_index.md` front matter now takes `note`, `pins`, `hide`, `shown`, `step` and `lastmod`. Rules: [docs/home-agent.md](https://github.com/arun477/arun477.github.io/blob/main/docs/home-agent.md). Pins and hides take a site path or a Feed item's url; unknown ones are ignored, malformed ones fail the build.
