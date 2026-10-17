@@ -1,6 +1,5 @@
-{{- /* Themes as rows, one per storyline: rank, status, span, evidence mix, title, summary. Each opens its theme page.
-       Takes a slice of resolved themes (themes/current.html). Reuses the Feed's row styles. */ -}}
-{{- $kinds := partial "news/kinds.html" . }}
-<ol class="feed themes">
-{{ range $i, $t := . }}<li class="post" style="--i:{{ $i }}"><a href="{{ .page.RelPermalink }}"><span class="av" aria-hidden="true">{{ printf "%02d" .rank }}</span><span class="b"><span class="m"><span class="status {{ .status }}">{{ .status }}</span>{{ partial "themes/span.html" . }}<span>{{ len .evidence }} posts</span></span><strong>{{ .title }}</strong><span class="s">{{ .summary }}</span></span><span class="go" aria-hidden="true">→</span></a></li>
+{{- /* Themes as rows: status glyph, date span, title, summary (clamped). Each opens its theme page.
+       Takes dict "themes" (resolved, from themes/current.html) optional "compact" (titles only, for the home page) and "grouped" (under a status heading, so the row drops the status word). Reuses the Feed's row styles. */ -}}
+<ol class="feed themes{{ if .compact }} compact{{ end }}">
+{{ range $i, $t := .themes }}<li class="post {{ .status }}" style="--i:{{ $i }}"><a href="{{ .page.RelPermalink }}"><span class="av" title="{{ .status }}">{{ partial "icon.html" .status }}</span><span class="b"><span class="m">{{ if not $.grouped }}<span>{{ .status }}</span>{{ end }}{{ partial "themes/span.html" . }}</span><strong>{{ .title }}</strong><span class="s">{{ .summary }}</span></span><span class="go" aria-hidden="true">→</span></a></li>
 {{ end }}</ol>

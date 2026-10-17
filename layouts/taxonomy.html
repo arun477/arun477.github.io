@@ -1,5 +1,5 @@
 {{ define "main" }}
-<h1>Tags</h1>
+<div class="sechead"><h1>Tags</h1></div>
 <ul class="tags">
 {{ range $i, $t := .Data.Terms.Alphabetical }}<li style="--i:{{ $i }}"><a class="chip" href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }} <span>{{ .Count }}</span></a></li>
 {{ end }}</ul>
