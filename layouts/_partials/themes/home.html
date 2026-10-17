@@ -1,6 +1,0 @@
-{{- /* Home: the top five themes with their summaries (clamped to two lines), then a link to all of them. Takes the themes section (content/themes). */ -}}
-{{- with partialCached "themes/current.html" . }}
-<h2 class="label"><a href="{{ $.RelPermalink }}">{{ $.Title }}</a><time datetime="{{ (index . 0).snapshot.Lastmod.Format "2006-01-02" }}">{{ (index . 0).snapshot.Lastmod.Format "2006.01.02" }}</time></h2>
-{{ partial "themes/list.html" (dict "themes" (first 5 .)) }}
-<p class="more"><a href="{{ $.RelPermalink }}">View all themes →</a><a href="{{ (site.GetPage "/news").RelPermalink }}">From the feed</a></p>
-{{- end }}

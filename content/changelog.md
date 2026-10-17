@@ -12,7 +12,9 @@ Every change to the site's structure, URLs, data files or publishing rules lands
 
 ## 2026-10-17 · About page
 
-- New `/about/` (in the nav): name, role, a short bio, social links and the hive animation. The home page now opens straight on Latest.
+- New `/about/` (in the nav): name, role, a short bio, social links and the hive animation.
+- Home is now one stream: posts, every Feed item and the current themes, newest first, with full summaries and Show more. The separate home blocks are gone.
+- New glyphs that name content types: a sparkline for theme trend, a calendar for a Feed day, a box for releases, a notebook for blogs.
 
 ## 2026-10-17 · One row style, glyphs instead of numbers
 

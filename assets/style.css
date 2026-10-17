@@ -184,6 +184,7 @@ main a:hover { text-decoration-color: currentColor; }
 .label a { color: inherit; text-decoration: none; }
 .label a:hover { color: var(--text); }
 .label span { font-family: var(--mono); letter-spacing: 0; }
+.label .to { display: flex; gap: 1.25rem; font-family: var(--sans); letter-spacing: .08em; }
 
 /* About: role kicker, name, links, then the hive (assets/hive.js) as a full-width banner. */
 .kicker {
@@ -451,6 +452,14 @@ mtable mtd:nth-child(even) { text-align: left; padding-left: 0; }
 .status.steady::before { background: currentColor; }
 .status.fading { opacity: .6; }
 .themes .s { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
-.themes .rising .av { color: var(--accent); }
-.themes .fading .av { color: var(--muted); }
+.feed .rising .av { color: var(--accent); }
+.feed .fading .av { color: var(--muted); }
+/* Latest: the first rows show, the rest open under Show more (a details element). */
+.showmore > summary { display: flex; padding: 1rem 0 0; list-style: none; cursor: pointer; font: 500 .75rem/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--text); }
+.showmore > summary::-webkit-details-marker { display: none; }
+.showmore > summary:hover { text-decoration: underline; text-underline-offset: .3em; }
+.showmore .c, .showmore[open] .o { display: none; }
+.showmore[open] .c { display: inline; }
+.showmore[open] > summary { padding-bottom: 1rem; }
+.showmore .feed { border-top: 0; }
 .tmeta { display: flex; flex-wrap: wrap; gap: .3rem 1rem; margin: -.75rem 0 1.5rem; font: .75rem/1.6 var(--mono); color: var(--muted); }

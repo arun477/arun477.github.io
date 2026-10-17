@@ -1,10 +1,25 @@
-{{- /* Home: what changed most recently, across every section, newest first, as glyph rows. Takes the number of rows.
-       A post or a Feed day counts at its date; Themes count once, as the top theme, at the snapshot's time. */ -}}
+{{- /* Home: one stream, newest first, of everything the site publishes: posts, every Feed item, and the current themes.
+       Each row uses the Feed's row style and the same glyph its section uses (icon.html). Takes the number of rows shown before "Show more".
+       Dates: a post at its date, a Feed item at its day (and time if given), a theme at its newest evidence. */ -}}
+{{- $kinds := partial "news/kinds.html" . -}}
 {{- $rows := slice -}}
-{{- range site.RegularPages -}}
-  {{- if ne .Section "themes" }}{{ $rows = $rows | append (dict "p" . "d" .Date "g" (cond (eq .Section "news") "news" "post")) }}
-  {{- else if eq .Params.rank 1 }}{{ $rows = $rows | append (dict "p" . "d" .Lastmod "g" .Params.theme.status) }}{{ end -}}
+{{- with site.GetPage "/posts" }}{{ range .Pages }}
+  {{- $rows = $rows | append (dict "url" .RelPermalink "title" .Title "summary" .Description "glyph" "post" "label" "Post" "d" .Date "dfmt" "Jan 2006") -}}
+{{- end }}{{ end -}}
+{{- with site.GetPage "/news" }}{{ range .Pages }}{{ range partial "news/items.html" . }}
+  {{- $d := .day.Date }}{{ with .time }}{{ $d = time (printf "%sT%s:00Z" ($d.Format "2006-01-02") .) }}{{ end -}}
+  {{- $rows = $rows | append (dict "url" .url "ext" true "title" .title "summary" .summary "glyph" (index $kinds .kind).icon "label" (index $kinds .kind).one "source" .source "spike" .spike "d" $d "dfmt" "Mon 2 Jan") -}}
+{{- end }}{{ end }}{{ end -}}
+{{- with site.GetPage "/themes" }}{{ range partialCached "themes/current.html" . }}
+  {{- $rows = $rows | append (dict "url" .page.RelPermalink "title" .title "summary" .summary "glyph" .status "label" "Theme" "source" .status "cls" .status "d" (time .last_updated) "dfmt" "Mon 2 Jan") -}}
+{{- end }}{{ end -}}
+{{- $rows = sort $rows "d" "desc" -}}
+{{- define "_partials/stream-rows.html" -}}
+<ol class="feed stream">
+{{ range $i, $r := . }}<li class="post{{ if .spike }} spike{{ end }}{{ with .cls }} {{ . }}{{ end }}" style="--i:{{ $i }}"><a href="{{ .url }}"{{ if .ext }} rel="noopener"{{ end }}><span class="av">{{ partial "icon.html" .glyph }}</span><span class="b"><span class="m">{{ if .spike }}<em>Spike</em>{{ end }}<b>{{ .label }}</b>{{ with .source }}<span>{{ . }}</span>{{ end }}<time datetime="{{ .d.Format "2006-01-02" }}">{{ .d.Format .dfmt }}</time></span><strong>{{ .title }}</strong>{{ with .summary }}<span class="s">{{ . }}</span>{{ end }}</span><span class="go" aria-hidden="true">{{ if .ext }}↗{{ else }}→{{ end }}</span></a></li>
+{{ end }}</ol>
 {{- end -}}
-<ol class="list">
-{{ range $i, $r := first . (sort $rows "d" "desc") }}{{ with $r.p }}<li style="--i:{{ $i }}"><a href="{{ .RelPermalink }}" title="{{ .Title }}"><span class="n">{{ partial "icon.html" $r.g }}</span><span class="t">{{ .Title }}</span><time datetime="{{ $r.d.Format "2006-01-02" }}">{{ .CurrentSection.Title }} · {{ $r.d.Format (cond (eq .Section "posts") "2006.01" "01.02") }}</time></a></li>
-{{ end }}{{ end }}</ol>
+{{ partial "stream-rows.html" (first . $rows) }}
+{{ with after . $rows }}<details class="showmore"><summary><span class="o">Show more</span><span class="c">Show less</span></summary>
+{{ partial "stream-rows.html" . }}
+</details>{{ end }}

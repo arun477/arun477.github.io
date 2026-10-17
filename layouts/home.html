@@ -1,14 +1,8 @@
 {{ define "main" }}
 <h1 class="sr-only">{{ site.Title }}{{ with .Params.role }} · {{ . }}{{ end }}</h1>
+{{- /* One stream: posts, Feed items and themes together, newest first (latest.html). Each section keeps its own page for the full view. */ -}}
 <section class="index">
-<h2 class="label"><span>Latest</span></h2>
-{{ partial "latest.html" 8 }}
+<h2 class="label"><span>Latest</span><span class="to">{{ range site.Sections }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}</span></h2>
+{{ partial "latest.html" 15 }}
 </section>
-{{ range site.Sections }}
-<section class="index">
-{{ if eq .Section "news" }}{{ partial "news/home.html" . }}{{ else if eq .Section "themes" }}{{ partial "themes/home.html" . }}{{ else }}
-<h2 class="label"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-{{ partial "list.html" .Pages }}{{ end }}
-</section>
-{{ end }}
 {{ end }}
