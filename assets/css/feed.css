@@ -9,6 +9,7 @@
 .fd-kick::before { content: ""; flex: none; align-self: center; width: var(--s6); height: 1px; background: var(--red); }
 /* The back-link keeps its line height but gets a full tap target. */
 .fd-kick a { position: relative; z-index: 1; display: inline-flex; align-items: center; min-height: var(--tap); margin-block: calc((1.4em - var(--tap)) / 2); color: var(--ink); text-decoration: none; }
+.fd-kick a::before { content: ""; position: absolute; inset: 0 auto 0 50%; width: max(100%, var(--tap)); transform: translateX(-50%); } /* 44px-wide hit area for the short back-link */
 .fd-kick a:hover { text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: .4em; }
 .fd-kick time { font-family: var(--mono); letter-spacing: .08em; text-transform: none; }
 .fd-head h1 { margin: 0; font-size: var(--t-3xl); line-height: 1.05; letter-spacing: 0; }
