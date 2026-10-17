@@ -521,7 +521,8 @@ footer.site .seigaiha { height: var(--s7); }
 }
 /* Footer links wrap under the copyright: spread them edge to edge (the basis gives back the last link's trailing tracking). */
 @media (max-width: 48rem) {
-  .foot-bar .copy { flex-basis: 100%; }
+  .foot-bar .in { padding-block: var(--s4) max(var(--s3), env(safe-area-inset-bottom)); }
+  .foot-bar .copy { flex-basis: 100%; padding-block: var(--s3) var(--s2); }
   .foot-bar nav { flex-basis: calc(100% + var(--track-ui)); justify-content: space-between; }
 }
 @media (max-width: 40rem) {
