@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Posts · Arun Arumugam</title><link>https://arun477.github.io/posts/</link><description>Arun Arumugam. Agent engineering: projects and notes.</description><language>en</language><lastBuildDate>Mon, 23 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://arun477.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>FireScroll: Short Videos That Teach</title><link>https://arun477.github.io/posts/firescroll/</link><pubDate>Mon, 23 Mar 2026 00:00:00 +0000</pubDate><guid>https://arun477.github.io/posts/firescroll/</guid><description>Say a topic. An agent researches the web, writes a cited script, narrates it and renders a scrollable feed of short vertical videos.</description><category>ai</category><category>agents</category><category>voice</category><category>video</category><content:encoded><![CDATA[<p>Brain rot, but educational. Say a topic. FireScroll researches it, writes a script with citations, narrates it and renders short vertical videos into a feed you can scroll.</p>
+<figure class="img"><img src="https://arun477.github.io/images/firescroll.jpg" width="1170" height="1035" alt="FireScroll" loading="lazy" decoding="async" style="background-color:#0b0809"></figure><p><strong>Demos:</strong> <a href="https://www.youtube.com/watch?v=485MsI5a450">Overview</a> · <a href="https://youtu.be/c6eidnyc-Uo">Voice agent</a> · <a href="https://www.youtube.com/watch?v=vs4SbNTQTww">Live</a></p>
+<h2 id="how-it-works">How it works</h2>
+<ol>
+<li><strong>Voice in.</strong> An ElevenLabs voice agent takes the topic and calls Firecrawl as a tool.</li>
+<li><strong>Research.</strong> Firecrawl searches and scrapes the web. GPT-4o ranks the sources and writes a segmented script with citations.</li>
+<li><strong>Narrate.</strong> ElevenLabs voices it in any of 31 languages, over AI-generated music.</li>
+<li><strong>Render.</strong> Remotion composes AI backgrounds, slow zooms and word-synced captions (Whisper timestamps) into vertical video.</li>
+<li><strong>Scroll.</strong> Videos land in an auto-playing feed.</li>
+</ol>
+<h2 id="stack">Stack</h2>
+<p>Firecrawl, ElevenLabs, OpenAI (GPT-4o, DALL·E 3, Whisper), Remotion, Celery, SQLite, Docker.</p>
+<p>Built for the Firecrawl × ElevenLabs hackathon. Code: <a href="https://github.com/arun477/firescroll">arun477/firescroll</a> (MIT).</p>
+]]></content:encoded></item><item><title>Beifong: AI-Powered Content Curation and Podcast Generation</title><link>https://arun477.github.io/posts/beifong_podcast_generator/</link><pubDate>Sat, 07 Jun 2025 00:00:00 +0000</pubDate><guid>https://arun477.github.io/posts/beifong_podcast_generator/</guid><description>Point it at your feeds. It collects RSS and social posts, curates what matters to you and turns it into podcasts you can listen to.</description><category>ai</category><category>automation</category><category>podcast</category><category>content-curation</category><category>python</category><category>social-media</category><content:encoded><![CDATA[<h2 id="what-it-does">What It Does</h2>
+<p><strong>Beifong</strong> is an AI content curation platform that monitors your feeds, analyzes content, and generates podcasts from the stuff you actually care about. Named after Toph Beifong.</p>
+<p>It handles RSS feeds, social media scraping, content analysis, and converts everything into audio content. Built for the Global Agent Hackathon (May 2025), where it placed 3rd overall and 1st in browser use agent category.</p>
+<figure class="img"><img src="https://arun477.github.io/images/beifong.jpg" width="1136" height="1218" alt="Beifong podcast player" loading="lazy" decoding="async" style="background-color:#282f3b"></figure><p><strong>Demo:</strong> <a href="https://www.youtube.com/watch?v=dB8FZY3x9EY">Watch on YouTube</a> · <a href="https://www.canva.com/design/DAGoUfv8ICM/L34r-foQtTps02XXeUOUYA/watch">Slides</a></p>
+<h2 id="core-features">Core Features</h2>
+<h3 id="ai-content-processing">AI Content Processing</h3>
+<ul>
+<li>Semantic search using FAISS</li>
+<li>Content analysis and categorization</li>
+<li>Social media monitoring (X.com, Facebook)</li>
+<li>Sentiment analysis</li>
+</ul>
+<figure class="img"><img src="https://arun477.github.io/images/beifong-library_hu_6e8a5a16137a8b7.jpg" width="1600" height="1320" alt="Podcasts library" loading="lazy" decoding="async" style="background-color:#04060d"><figcaption>Podcasts library</figcaption></figure><h3 id="content-collection">Content Collection</h3>
+<ul>
+<li>RSS feed monitoring</li>
+<li>Social media scraping</li>
+<li>Web page processing</li>
+<li>Browser automation with Playwright</li>
+</ul>
+<h3 id="podcast-generation">Podcast Generation</h3>
+<ul>
+<li>AI script generation from curated content</li>
+<li>Multiple TTS engines (OpenAI, ElevenLabs, Kokoro)</li>
+<li>Automatic cover generation</li>
+<li>Audio processing</li>
+<li>Chat assistant for interactive podcast creation</li>
+</ul>
+<h3 id="social-media-analysis">Social Media Analysis</h3>
+<ul>
+<li>Sentiment tracking</li>
+<li>Topic categorization</li>
+<li>Engagement insights</li>
+<li>Trend detection</li>
+</ul>
+<h3 id="voice-options">Voice Options</h3>
+<ul>
+<li><strong>Commercial</strong>: OpenAI TTS, ElevenLabs</li>
+<li><strong>Open Source</strong>: Kokoro, with more engines planned</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<p>Three interaction methods:</p>
+<ol>
+<li>Web UI for content management</li>
+<li>API for custom integrations</li>
+<li>Automated scheduling for hands-off processing</li>
+</ol>
+<h2 id="key-components">Key Components</h2>
+<h3 id="content-workflow">Content Workflow</h3>
+<ol>
+<li>Content discovery from RSS/social feeds</li>
+<li>AI analysis for quality and relevance</li>
+<li>Automatic curation and organization</li>
+<li>Podcast script generation and audio production</li>
+</ol>
+<h3 id="social-media-monitoring">Social Media Monitoring</h3>
+<ul>
+<li>Authenticated browser sessions for platform access</li>
+<li>Real-time feed analysis</li>
+<li>Content categorization and sentiment tracking</li>
+<li>Scheduled collection and insights generation</li>
+</ul>
+<h2 id="get-started">Get Started</h2>
+<p>For installation, setup, and technical details, check the repository:</p>
+<p><strong>Repository</strong>: <a href="https://github.com/arun477/beifong">https://github.com/arun477/beifong</a></p>
+<p>Cloud version with additional features coming soon.</p>
+]]></content:encoded></item><item><title>Jupyter to LLM Extractor</title><link>https://arun477.github.io/posts/jupyter_extractor/</link><pubDate>Thu, 27 Mar 2025 00:00:00 +0000</pubDate><guid>https://arun477.github.io/posts/jupyter_extractor/</guid><description>A Chrome extension that extracts content from Jupyter notebooks for more effective interactions with large language models</description><category>jupyter</category><category>chrome-extension</category><category>llm</category><category>data-science</category><category>productivity</category><category>developer-tools</category><content:encoded><![CDATA[<p>A Chrome extension that extracts content from Jupyter notebooks for use with large language models.
+<figure class="img"><img src="https://arun477.github.io/images/notebook_extractor.png" width="510" height="776" alt="Jupyter to LLM Extractor" loading="lazy" decoding="async" style="background-color:#ffffff"><figcaption>Jupyter to LLM Extractor</figcaption></figure></p>
+<h2 id="features">Features</h2>
+<ul>
+<li>Extract both code and markdown cells</li>
+<li>Filter out empty cells</li>
+<li>Apply prompt templates</li>
+<li>Select specific cells for extraction</li>
+<li>Copy to clipboard or download as text file</li>
+<li>Dark mode support</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<blockquote>
+<p><strong>Note:</strong> This extension is not yet available on the Chrome Web Store.</p>
+</blockquote>
+<h3 id="manual-installation-currently-the-only-option">Manual Installation (Currently the only option)</h3>
+<ol>
+<li>Download the repository as a ZIP file and extract it</li>
+<li>Open Chrome and navigate to <code>chrome://extensions/</code></li>
+<li>Enable &ldquo;Developer mode&rdquo; (toggle in the top-right corner)</li>
+<li>Click &ldquo;Load unpacked&rdquo; and select the extracted folder</li>
+</ol>
+<h2 id="usage">Usage</h2>
+<ol>
+<li>Navigate to any Jupyter notebook</li>
+<li>Click the extension icon in your toolbar</li>
+<li>Choose your extraction options:
+<ul>
+<li>Select which cell types to include</li>
+<li>Choose a prompt template (optional)</li>
+<li>Select specific cells (optional)</li>
+</ul>
+</li>
+<li>Click &ldquo;Copy to Clipboard&rdquo; or &ldquo;Download as File&rdquo;</li>
+</ol>
+<h2 id="development">Development</h2>
+<p>The extension consists of four main components:</p>
+<ul>
+<li><code>popup.html/js</code>: User interface</li>
+<li><code>content.js</code>: Extracts notebook content from the page</li>
+<li><code>background.js</code>: Handles file downloads</li>
+<li><code>manifest.json</code>: Extension configuration</li>
+</ul>
+<h2 id="privacy-note">Privacy Note</h2>
+<p>All content extraction happens locally in your browser. No notebook content is ever sent to any server. The extension only requires permissions to access the current tab and handle downloads.</p>
+<h2 id="source-code">Source Code</h2>
+<p>The complete source code is available on <a href="https://github.com/arun477/notebook_extractor">GitHub</a>. Contributions, issues, and feature requests are welcome.</p>
+]]></content:encoded></item><item><title>Mel Spectrogram</title><link>https://arun477.github.io/posts/mel_spectrogram/</link><pubDate>Sun, 23 Mar 2025 00:00:00 +0000</pubDate><guid>https://arun477.github.io/posts/mel_spectrogram/</guid><description>How raw audio becomes a mel spectrogram: sampling, the Fourier transform, spectrograms and mel filterbanks, with code to build one and turn it back into sound.</description><category>audio</category><category>signal-processing</category><content:encoded><![CDATA[<h2 id="introduction">Introduction</h2>
+<p>Mel spectrogram is an audio analyzing technique which is predominantly applied to raw audio form as a preprocessing step before passing to any model for predictions. For example, speech-to-text models&rsquo; input raw audio is converted into mel spectrogram before passing to the model.</p>
+<p>In general, mel spectrogram is a kind of visualization technique which takes into account how the human ear perceives audio frequencies during this low dimensional conversion process. Compared to the raw audio waveform and the more natural way humans perceive audio, these are all the predominant reasons we prefer audio in mel spectrogram form.</p>
+<p>To fully understand how this conversion process occurs, what exactly is going on under the hood, and why we need this conversion, we need to understand a few other related concepts and techniques surrounding audio in general.</p>
+<h2 id="how-audio-is-represented-digitally">How Audio is Represented Digitally</h2>
+<p>In a physical sense, audio signals are continuous signals, but we usually represent this audio in discrete form when we represent it digitally. It is basically a list of numbers, usually 16-bit integers (if it&rsquo;s a .wav file).</p>
+<p>Each number in this list basically records the amplitude (strength of the physical sound waves) value captured by the microphone at various time points.</p>
+<h2 id="sampling-rate">Sampling Rate</h2>
+<p>Now here, one parameter comes into the picture, which is how many samples the microphone should record in a given time period. For example, if our microphone records a lot of samples per second, then our audio quality would be much better, but there is a limit. This is usually 22k samples per second or 44k samples per second. These rates are enough to capture most of the audio frequency and quality. This rate is called the <strong>sampling rate</strong>.</p>
+<h2 id="nyquist-theorem-mathematical-guarantee">Nyquist Theorem (Mathematical Guarantee)</h2>
+<p>Now another question comes up: why do these choices usually work, like 22k samples per second or 44k samples per second? There is one famous mathematical theorem called the <strong>Nyquist theorem</strong>, which provides strong theoretical guarantees. It says that if you want to capture higher frequencies, then your sampling rate should be 2 times the highest frequency you are trying to capture.</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>f</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub><mo>=</mo><mfrac><msub><mi>f</mi><mi>s</mi></msub><mn>2</mn></mfrac></mrow><annotation encoding="application/x-tex">f_{max} = \frac{f_s}{2}</annotation></semantics></math></span><p>Where:
+</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msub><mi>f</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mtext>highest frequency (Nyquist frequency)</mtext></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msub><mi>f</mi><mi>s</mi></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mtext>sampling rate (Hz)</mtext></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
+f_{max} &amp;= \text{highest frequency (Nyquist frequency)} \\
+f_s &amp;= \text{sampling rate (Hz)}
+\end{aligned}</annotation></semantics></math></span><p>Usually, the human hearing range is 20 Hz to 20 kHz, so a sampling rate of 40 kHz will capture up to 20 kHz. This is enough for most cases. Sometimes music requires a slightly higher frequency range, so accordingly, a higher sampling rate is required.</p>
+<h2 id="notational-meaning-difference">Notational Meaning Difference</h2>
+<p>There is a slight notational difference here. Hz means different things when we talk about frequency and sampling rate. When we say 40 kHz, we are talking about 40k samples per second, and when we say 40 kHz in frequency, we are talking about cycles per second.</p>
+<h2 id="time-domain-signal">Time Domain Signal</h2>
+<p>Now this array of signal captures all required information of the audio signal. We can transmit it and play it using a speaker. This is called <strong>time domain signal</strong> because it is basically a signal across the time.</p>
+<h2 id="frequency-domain-signal">Frequency Domain Signal</h2>
+<p>One of the interesting and key ideas is that we can pick a particular instant in time and take the samples from that instant to check what are all the frequencies available.</p>
+<p>This is done through another cool mathematical technique called <strong>Fourier transform</strong> which takes the samples of the audio at a particular instant in time and gives all the available frequency information at that instant. To be exact, it will give all the frequencies with their magnitude and phase information (usually complex numbers).</p>
+<p>Of course, the maximum frequency it can extract is bound by Nyquist theorem, basically sampling rate / 2 is the maximum frequency we can extract.</p>
+<h2 id="spectrogram">Spectrogram</h2>
+<p>Now if we take this frequency information across different time instants, we will get frequency information at each instant of time across the time axis. This is called <strong>spectrogram</strong>.</p>
+<p>We usually do two additional transformations on this spectrogram.</p>
+<p>Taking only amplitude value. Fourier transform returns frequency value as a complex number which contains both amplitude and phase information of each frequency. Usually, we discard phase information and only keep amplitude information. This is done by taking the Euclidean norm of the real and imaginary parts.</p>
+<p>Final transform is converting this amplitude value to decibel value, basically taking each amplitude value and taking the log of it. The reason seems to be that this closely matches how humans perceive the audio amplitude. To be exact, the following is the transformation formula.</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>dB</mtext><mo>=</mo><mn>20</mn><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mn>10</mn></msub><mrow><mo fence="true">(</mo><mfrac><mrow><mi mathvariant="normal">∣</mi><mi>A</mi><mi mathvariant="normal">∣</mi></mrow><msub><mi>A</mi><mtext>ref</mtext></msub></mfrac><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\text{dB} = 20 \log_{10}\left(\frac{|A|}{A_{\text{ref}}}\right)</annotation></semantics></math></span><p>Where:
+</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mtext>dB</mtext></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mtext>amplitude in decibels</mtext></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi mathvariant="normal">∣</mi><mi>A</mi><mi mathvariant="normal">∣</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mtext>absolute value of amplitude</mtext></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msub><mi>A</mi><mtext>ref</mtext></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mtext>reference amplitude value</mtext></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
+\text{dB} &amp;= \text{amplitude in decibels} \\
+|A| &amp;= \text{absolute value of amplitude} \\
+A_{\text{ref}} &amp;= \text{reference amplitude value}
+\end{aligned}</annotation></semantics></math></span><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>dB</mtext><mo>=</mo><mn>10</mn><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mn>10</mn></msub><mrow><mo fence="true">(</mo><mfrac><mrow><mi mathvariant="normal">∣</mi><mi>X</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><msup><mi mathvariant="normal">∣</mi><mn>2</mn></msup></mrow><msubsup><mi>X</mi><mtext>ref</mtext><mn>2</mn></msubsup></mfrac><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\text{dB} = 10 \log_{10}\left(\frac{|X(f)|^2}{X_{\text{ref}}^2}\right)</annotation></semantics></math></span><p>Or equivalently:
+</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>dB</mtext><mo>=</mo><mn>20</mn><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mn>10</mn></msub><mrow><mo fence="true">(</mo><mfrac><mrow><mi mathvariant="normal">∣</mi><mi>X</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mi mathvariant="normal">∣</mi></mrow><msub><mi>X</mi><mtext>ref</mtext></msub></mfrac><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\text{dB} = 20 \log_{10}\left(\frac{|X(f)|}{X_{\text{ref}}}\right)</annotation></semantics></math></span><p>Where:
+</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>X</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mtext>Fourier transform at frequency </mtext><mi>f</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi mathvariant="normal">∣</mi><mi>X</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mi mathvariant="normal">∣</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mtext>magnitude of the transform</mtext></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msub><mi>X</mi><mtext>ref</mtext></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mtext>reference value</mtext></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
+X(f) &amp;= \text{Fourier transform at frequency } f \\
+|X(f)| &amp;= \text{magnitude of the transform} \\
+X_{\text{ref}} &amp;= \text{reference value}
+\end{aligned}</annotation></semantics></math></span><h2 id="mel-spectrogram">Mel Spectrogram</h2>
+<p>The spectrogram we have seen so far gives information about each instant, what are all the frequencies, and how it changes across the time.</p>
+<p>There is another interesting fact: humans can&rsquo;t very well differentiate between higher frequencies the way they do in lower frequency ranges. Basically, human frequency perception kind of follows a logarithmic function which implies if we take one instant of spectrogram frequency information, they usually have linear spacing, meaning 20 Hz, 40 Hz, 60 Hz, etc. (in this example 20 Hz apart). But as we move to higher frequency ranges, the human ear can&rsquo;t distinguish this. Meaning the human ear can distinguish the difference between 20 Hz and 40 Hz but it can&rsquo;t between 12 kHz and 12.20 kHz, even though the same space between both frequencies. So there is a lot of unnecessary frequency information (in terms of human perception point of view).</p>
+<p>Which implies we can group a lot of the frequency based on this idea. This is done by first picking a set of frequency bands, usually 80 bands, which basically focus on different frequency ranges from 0 to max frequency. Each frequency band will have a set of weights which tries to capture human perception. Lower frequency weights will be mostly zero weights for far away frequencies and less weights for nearby frequencies. In higher frequency bands, weights will be dispersed because there we can combine a lot of frequencies.</p>
+<p>This mel spectrogram process might not be obvious but when we go through the full code it will get clarified. But for now, it&rsquo;s kind of a dimensionality reduction technique on spectrogram which takes into account how humans perceive sounds.</p>
+<h2 id="code">Code</h2>
+<p>Let&rsquo;s do the full conversion process in code to see what exactly is going on. For most of the audio processing, let&rsquo;s use a library called <strong>librosa</strong> which contains a lot of useful utility functions to work with the audio data and along with some sample audio data to work with.</p>
+<p>First, let&rsquo;s import required libraries and let&rsquo;s use <strong>libri1</strong> sample audio from librosa library which is basically human voice.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">librosa</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">numpy</span> <span style="color:#ff7b72">as</span> <span style="color:#ff7b72">np</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">matplotlib.pyplot</span> <span style="color:#ff7b72">as</span> <span style="color:#ff7b72">plt</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">IPython</span> <span style="color:#ff7b72">as</span> <span style="color:#ff7b72">ipy</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>audio, sr <span style="color:#ff7b72;font-weight:bold">=</span> librosa<span style="color:#ff7b72;font-weight:bold">.</span>load(librosa<span style="color:#ff7b72;font-weight:bold">.</span>ex(<span style="color:#a5d6ff">&#39;libri1&#39;</span>))
+</span></span></code></pre></div><p>In the above code, <strong>sr</strong> is a sampling rate and <strong>audio</strong> is our actual audio data which is a 1-dimensional array of numbers.</p>
+<p>Following is the original audio.</p>
+<p><audio controls src="https://arun477.github.io/audio/libri1_voice.wav"></audio></p>
+<h3 id="setup-fft-parameters">Setup FFT Parameters</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>n_fft <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">1024</span>
+</span></span><span style="display:flex;"><span>hop_length <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">512</span>
+</span></span></code></pre></div><h3 id="frequency-resolution">Frequency Resolution</h3>
+<p>We know maximum frequency possible by Nyquist theorem is sampling_rate/2, so FFT can produce up to sampling_rate/2 frequency. Another fact is FFT algorithm produces symmetric values so only n_fft/2 bins are unique frequency bins. FFT algorithm works by evenly spaced frequency bins, so the spacing becomes (sampling_rate/2) / (n_fft/2) = sampling_rate/n_fft.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>frq_resolution <span style="color:#ff7b72;font-weight:bold">=</span> sr<span style="color:#ff7b72;font-weight:bold">/</span>n_fft
+</span></span><span style="display:flex;"><span>print(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#39;frq resolution: </span><span style="color:#a5d6ff">{</span>frq_resolution<span style="color:#a5d6ff">:</span><span style="color:#a5d6ff">.0f</span><span style="color:#a5d6ff">}</span><span style="color:#a5d6ff"> Hz&#39;</span>)
+</span></span></code></pre></div><h3 id="time-resolution">Time Resolution</h3>
+<p>1/sampling_rate will tell us spacing between individual sample points. n_fft * (1/sampling_rate) will tell us the time bracket the FFT instance occupies.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>time_resolution <span style="color:#ff7b72;font-weight:bold">=</span> n_fft<span style="color:#ff7b72;font-weight:bold">/</span>sr
+</span></span><span style="display:flex;"><span>print(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#39;time resolution: </span><span style="color:#a5d6ff">{</span>time_resolution<span style="color:#ff7b72;font-weight:bold">*</span><span style="color:#a5d6ff">1000</span><span style="color:#a5d6ff">:</span><span style="color:#a5d6ff">.0f</span><span style="color:#a5d6ff">}</span><span style="color:#a5d6ff"> ms&#39;</span>)
+</span></span></code></pre></div><p>There is a trade-off here. If we increase the time resolution, then we have to sacrifice the frequency resolution. So balance is required.</p>
+<h3 id="frequency-bins-calculation">Frequency Bins Calculation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>freq_bins <span style="color:#ff7b72;font-weight:bold">=</span> (n_fft<span style="color:#ff7b72;font-weight:bold">//</span><span style="color:#a5d6ff">2</span>) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#a5d6ff">1</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#34;frequency bins: </span><span style="color:#a5d6ff">{</span>freq_bins<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">&#34;</span>)
+</span></span></code></pre></div><h3 id="time-frame-calculation">Time Frame Calculation</h3>
+<p>How many time frames for the given audio signals after STFT. This is like convolution kernel operation.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>total_time_frame_points <span style="color:#ff7b72;font-weight:bold">=</span> int((<span style="color:#a5d6ff">1</span><span style="color:#ff7b72;font-weight:bold">+</span>(len(audio)<span style="color:#ff7b72;font-weight:bold">-</span>n_fft)<span style="color:#ff7b72;font-weight:bold">/</span>hop_length))
+</span></span><span style="display:flex;"><span>print(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#39;estimated total time frame points: </span><span style="color:#a5d6ff">{</span>total_time_frame_points<span style="color:#a5d6ff">:</span><span style="color:#a5d6ff">.0f</span><span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">&#39;</span>)
+</span></span></code></pre></div><h3 id="short-time-fourier-transform-stft">Short-Time Fourier Transform (STFT)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>D <span style="color:#ff7b72;font-weight:bold">=</span> librosa<span style="color:#ff7b72;font-weight:bold">.</span>stft(audio, n_fft<span style="color:#ff7b72;font-weight:bold">=</span>n_fft, hop_length<span style="color:#ff7b72;font-weight:bold">=</span>hop_length)
+</span></span><span style="display:flex;"><span>print(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#34;stft output: </span><span style="color:#a5d6ff">{</span>D<span style="color:#ff7b72;font-weight:bold">.</span>shape<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff"> = (frq_bins, time_frame_points)&#34;</span>)
+</span></span></code></pre></div><h3 id="amplitude-extraction">Amplitude Extraction</h3>
+<p>STFT contains both amplitude and phase information. Usually we take only amplitude information and discard the phase information. There is some subtlety here - np.abs for real part works just by taking normal abs, but if it&rsquo;s a complex number, in this case it will calculate abs by taking Euclidean norm of the real and complex parts. Equivalent in PyTorch would be the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>tensor([D[<span style="color:#a5d6ff">1</span>][<span style="color:#a5d6ff">0</span>]<span style="color:#ff7b72;font-weight:bold">.</span>real, D[<span style="color:#a5d6ff">1</span>][<span style="color:#a5d6ff">0</span>]<span style="color:#ff7b72;font-weight:bold">.</span>imag])
+</span></span><span style="display:flex;"><span>torch<span style="color:#ff7b72;font-weight:bold">.</span>sqrt(x<span style="color:#ff7b72;font-weight:bold">.</span>pow(<span style="color:#a5d6ff">2</span>)<span style="color:#ff7b72;font-weight:bold">.</span>sum(<span style="color:#ff7b72;font-weight:bold">-</span><span style="color:#a5d6ff">1</span>))
+</span></span></code></pre></div><p>Amplitude is the strength of each frequency bin which is the one visualized in spectrograms.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>D_amp <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>abs(D)
+</span></span></code></pre></div><h3 id="logarithmic-transformation">Logarithmic Transformation</h3>
+<p>Taking log of these amplitude values gives values that are more suitable to how humans perceive audio and relative difference between different frequency strengths. It won&rsquo;t be exact log but close enough (actual formula will look like: 20 * log10(amplitude / reference)). The ref=np.max is basically used to normalize the audio to 1 range and take the log which shifts the values to negative side and max value will be 0, and this is done for conventional reasons.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>S_db <span style="color:#ff7b72;font-weight:bold">=</span> librosa<span style="color:#ff7b72;font-weight:bold">.</span>amplitude_to_db(D_amp, ref<span style="color:#ff7b72;font-weight:bold">=</span>np<span style="color:#ff7b72;font-weight:bold">.</span>max)
+</span></span></code></pre></div><h3 id="display-spectrogram">Display Spectrogram</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>librosa<span style="color:#ff7b72;font-weight:bold">.</span>display<span style="color:#ff7b72;font-weight:bold">.</span>specshow(S_db, x_axis<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;time&#39;</span>, y_axis<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;hz&#39;</span>, hop_length<span style="color:#ff7b72;font-weight:bold">=</span>hop_length)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff7b72;font-weight:bold">.</span>colorbar(format<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;</span><span style="color:#a5d6ff">%+2.0f</span><span style="color:#a5d6ff"> dB&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff7b72;font-weight:bold">.</span>show()
+</span></span></code></pre></div><figure class="img"><img src="https://arun477.github.io/images/spectrogram.png" width="588" height="438" alt="Spectrogram" loading="lazy" decoding="async" style="background-color:#ffffff"></figure><h3 id="audio-reconstruction-with-griffin-lim-algorithm">Audio Reconstruction with Griffin-Lim Algorithm</h3>
+<p>If we want to convert this spectrogram back to the original audio signal, we face one caveat: during amplitude calculation we discarded the phase information. Phase information is crucial for the reconstruction.</p>
+<p>One classical way to estimate that missing phase information is using an iterative algorithm which works like this:</p>
+<ol>
+<li>Assign random phase for the magnitude</li>
+<li>Calculate inverse short time Fourier transform (ISTFT) which will give audio signal</li>
+<li>Now calculate spectrogram from this new audio signal</li>
+<li>Compare the magnitude with original magnitude (kind of loss)</li>
+<li>Now estimate the new phase which reduces this loss</li>
+<li>Repeat this until loss is low</li>
+</ol>
+<p>This algorithm is called the Griffin-Lim algorithm.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>D_amp_reconstructed <span style="color:#ff7b72;font-weight:bold">=</span> librosa<span style="color:#ff7b72;font-weight:bold">.</span>db_to_amplitude(S_db)
+</span></span><span style="display:flex;"><span>reconstructed_audio <span style="color:#ff7b72;font-weight:bold">=</span> librosa<span style="color:#ff7b72;font-weight:bold">.</span>griffinlim(D_amp_reconstructed, n_iter<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">32</span>,
+</span></span><span style="display:flex;"><span>                                         hop_length<span style="color:#ff7b72;font-weight:bold">=</span>hop_length,
+</span></span><span style="display:flex;"><span>                                         win_length<span style="color:#ff7b72;font-weight:bold">=</span>n_fft)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#34;reconstructed audio shape: </span><span style="color:#a5d6ff">{</span>reconstructed_audio<span style="color:#ff7b72;font-weight:bold">.</span>shape<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">&#34;</span>)
+</span></span><span style="display:flex;"><span>ipy<span style="color:#ff7b72;font-weight:bold">.</span>display<span style="color:#ff7b72;font-weight:bold">.</span>Audio(reconstructed_audio, rate<span style="color:#ff7b72;font-weight:bold">=</span>sr)
+</span></span></code></pre></div><figure>
+<audio controls src="https://arun477.github.io/audio/reconstructed_libri1_voice.wav"></audio>
+<figcaption>Reconstructed audio from spectrogram</figcaption>
+</figure>
+<p>You can hear that the reconstructed audio is not exactly the same as the original. This is because the phase information was estimated rather than preserved from the original signal. The Griffin-Lim algorithm provides a reasonable approximation, but there will always be some differences compared to the original audio.</p>
+<h3 id="mel-spectrogram-generation">Mel Spectrogram Generation</h3>
+<p>For mel spectrogram we have to take STFT output and convert to amplitude and take the power (which basically squares all the values). The reason why we take square is we want energy which is square of the amplitude. The reason why we need energy instead of amplitude is because human perception is better with power than amplitude.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">librosa.filters</span> <span style="color:#ff7b72">import</span> mel
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>power_sepc <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>abs(D)<span style="color:#ff7b72;font-weight:bold">**</span><span style="color:#a5d6ff">2</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#34;power spec shape: </span><span style="color:#a5d6ff">{</span>power_sepc<span style="color:#ff7b72;font-weight:bold">.</span>shape<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">&#34;</span>)
+</span></span></code></pre></div><p>Mel filter bank is basically dimensionality reduction of the power spectrogram. These filters are created as follows:</p>
+<ol>
+<li>We take 80 evenly spaced points from fmin=(0) to fmax= sr/2</li>
+<li>Note these evenly spaced points are in log scale (exact formula: 2595 * log10(1 + hz/700))</li>
+<li>Now take these log scale 80 points to linear scale (exact conversion formula: 700 * (10^(mel/2595) - 1))</li>
+<li>This will be the center points for the filters in our frequency bins</li>
+<li>These filter values are peak at the center point and low at the edges like triangle</li>
+<li>Then we apply this filter across frequency bins dimension to get the final bin value</li>
+</ol>
+<p>Basically lower frequency weight reduction will be steep because human perception in lower frequency range is good but higher frequency weight reduction will decrease slowly because in higher frequency range human perception of distinction becomes hard.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>n_mels <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">80</span>
+</span></span><span style="display:flex;"><span>mel_filterbank <span style="color:#ff7b72;font-weight:bold">=</span> mel(sr<span style="color:#ff7b72;font-weight:bold">=</span>sr, n_fft<span style="color:#ff7b72;font-weight:bold">=</span>n_fft, n_mels<span style="color:#ff7b72;font-weight:bold">=</span>n_mels, fmin<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">0</span>, fmax<span style="color:#ff7b72;font-weight:bold">=</span>sr<span style="color:#ff7b72;font-weight:bold">/</span><span style="color:#a5d6ff">2</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#34;mel filter bank shape: </span><span style="color:#a5d6ff">{</span>mel_filterbank<span style="color:#ff7b72;font-weight:bold">.</span>shape<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mel_spectogram <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>dot(mel_filterbank, power_sepc)
+</span></span><span style="display:flex;"><span>print(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#34;mel spec shape: </span><span style="color:#a5d6ff">{</span>mel_spectogram<span style="color:#ff7b72;font-weight:bold">.</span>shape<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">&#34;</span>)
+</span></span></code></pre></div><p>Let&rsquo;s convert back to dB scale. This is to match human loudness perception.</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># this to match human loudness perception matching</span>
+</span></span><span style="display:flex;"><span>mel_S_db <span style="color:#ff7b72;font-weight:bold">=</span> librosa<span style="color:#ff7b72;font-weight:bold">.</span>power_to_db(mel_spectogram, ref<span style="color:#ff7b72;font-weight:bold">=</span>np<span style="color:#ff7b72;font-weight:bold">.</span>max)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>librosa<span style="color:#ff7b72;font-weight:bold">.</span>display<span style="color:#ff7b72;font-weight:bold">.</span>specshow(mel_S_db, x_axis<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;time&#39;</span>, y_axis<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;mel&#39;</span>, sr<span style="color:#ff7b72;font-weight:bold">=</span>sr, hop_length<span style="color:#ff7b72;font-weight:bold">=</span>hop_length)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff7b72;font-weight:bold">.</span>colorbar(format<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;</span><span style="color:#a5d6ff">%+2.0f</span><span style="color:#a5d6ff"> dB&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff7b72;font-weight:bold">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>plt<span style="color:#ff7b72;font-weight:bold">.</span>show()
+</span></span></code></pre></div><figure class="img"><img src="https://arun477.github.io/images/melspectrogram.png" width="623" height="470" alt="Mel Spectrogram" loading="lazy" decoding="async" style="background-color:#ffffff"><figcaption>Mel spectrogram with 80 mel bands. Notice how the frequency axis is now non-linear with more resolution in lower frequencies.</figcaption></figure><p>You can see how the Mel spectrogram differs from the regular STFT spectrogram we generated earlier. The Mel spectrogram has more resolution in the lower frequency ranges, which better matches human perception of sound. This is why Mel spectrograms are commonly used in speech recognition and music analysis applications.</p>
+<h3 id="mel-spectrogram-inversion">Mel Spectrogram Inversion</h3>
+<p>Now let&rsquo;s try to convert our mel spectrogram back to audio:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># power to db</span>
+</span></span><span style="display:flex;"><span>mel_power <span style="color:#ff7b72;font-weight:bold">=</span> librosa<span style="color:#ff7b72;font-weight:bold">.</span>db_to_power(mel_S_db)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># mel filterbank which is used for the conversion.</span>
+</span></span><span style="display:flex;"><span>mel_fb <span style="color:#ff7b72;font-weight:bold">=</span> librosa<span style="color:#ff7b72;font-weight:bold">.</span>filters<span style="color:#ff7b72;font-weight:bold">.</span>mel(sr<span style="color:#ff7b72;font-weight:bold">=</span>sr, n_fft<span style="color:#ff7b72;font-weight:bold">=</span>n_fft, n_mels<span style="color:#ff7b72;font-weight:bold">=</span>n_mels)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># take inverse of the mel. </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># this will be less accurate as after mel conversion we lost some of the original information.</span>
+</span></span><span style="display:flex;"><span>mel_inverse <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>linalg<span style="color:#ff7b72;font-weight:bold">.</span>pinv(mel_fb)
+</span></span><span style="display:flex;"><span>linear_spec_approx <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>dot(mel_inverse, mel_power)
+</span></span><span style="display:flex;"><span>print(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#39;linear spec approximate shape: </span><span style="color:#a5d6ff">{</span>linear_spec_approx<span style="color:#ff7b72;font-weight:bold">.</span>shape<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># power can&#39;t have negative values. so clip it.</span>
+</span></span><span style="display:flex;"><span>linear_spec_approx <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>maximum(<span style="color:#a5d6ff">0</span>, linear_spec_approx)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># this reconstruction may not be as accurate like the original direct spec to audio</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># conversion because we lose information when we do this mel conversion.</span>
+</span></span><span style="display:flex;"><span>mel_reconstructed_audio <span style="color:#ff7b72;font-weight:bold">=</span> librosa<span style="color:#ff7b72;font-weight:bold">.</span>griffinlim(linear_spec_approx, n_iter<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">32</span>, hop_length<span style="color:#ff7b72;font-weight:bold">=</span>hop_length,
+</span></span><span style="display:flex;"><span>                                             win_length<span style="color:#ff7b72;font-weight:bold">=</span>n_fft)
+</span></span><span style="display:flex;"><span>ipy<span style="color:#ff7b72;font-weight:bold">.</span>display<span style="color:#ff7b72;font-weight:bold">.</span>Audio(mel_reconstructed_audio, rate<span style="color:#ff7b72;font-weight:bold">=</span>sr)
+</span></span></code></pre></div><figure>
+<audio controls src="https://arun477.github.io/audio/mel_reconstructed_libri1_voice.wav"></audio>
+<figcaption>Audio reconstructed from mel spectrogram</figcaption>
+</figure>
+<p>Notice how the audio quality from the Mel spectrogram reconstruction is generally lower than the reconstruction from the original STFT. This is because the Mel transformation is a dimensionality reduction process - we compress the frequency information from the full STFT bins (which was 513 frequency bins) down to just 80 Mel bands.</p>
+<p>The process involves:</p>
+<ol>
+<li>Converting our dB scale Mel spectrogram back to power</li>
+<li>Getting the original Mel filterbank matrix</li>
+<li>Computing the pseudo-inverse of the Mel filterbank</li>
+<li>Using the pseudo-inverse to estimate the original linear spectrogram</li>
+<li>Ensuring all values are non-negative (power can&rsquo;t be negative)</li>
+<li>Using Griffin-Lim algorithm to estimate the phase and reconstruct the audio</li>
+</ol>
+<p>The Mel transformation deliberately discards information that isn&rsquo;t perceptually significant to humans, making it excellent for tasks like speech recognition but less suitable for high-fidelity audio reproduction.</p>
+<h2 id="references">References</h2>
+<ol>
+<li>
+<p>Wikipedia. &ldquo;Nyquist–Shannon sampling theorem.&rdquo; [Online]. Available: <a href="https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem">https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem</a></p>
+</li>
+<li>
+<p>Hugging Face. &ldquo;Audio Course - Introduction.&rdquo; [Online]. Available: <a href="https://huggingface.co/learn/audio-course/chapter0/introduction">https://huggingface.co/learn/audio-course/chapter0/introduction</a></p>
+</li>
+<li>
+<p>3Blue1Brown. &ldquo;But what is the Fourier Transform? A visual introduction.&rdquo; YouTube. [Online]. Available: <a href="https://youtu.be/spUNpyF58BY">https://youtu.be/spUNpyF58BY</a></p>
+</li>
+<li>
+<p>Librosa Documentation. [Online]. Available: <a href="https://librosa.org/doc/latest/index.html">https://librosa.org/doc/latest/index.html</a></p>
+</li>
+</ol>
+]]></content:encoded></item><item><title>llmdirtree: Directory Visualization and Context Generator for LLM Workflows</title><link>https://arun477.github.io/posts/directory-tree-generator/</link><pubDate>Sat, 15 Mar 2025 00:00:00 +0000</pubDate><guid>https://arun477.github.io/posts/directory-tree-generator/</guid><description>A Python CLI tool that generates both directory trees and code context summaries optimized for LLM interactions</description><category>python</category><category>cli</category><category>filesystem</category><category>llm</category><category>developer-tools</category><category>security</category><content:encoded><![CDATA[<p><code>llmdirtree</code> is a specialized developer tool with two powerful capabilities:</p>
+<ol>
+<li><strong>Directory Tree Visualization</strong> - Creates clean, structured representations of your codebase</li>
+<li><strong>LLM Context Generation</strong> - Produces AI-powered summaries of your code while respecting security boundaries</li>
+</ol>
+<p>Both features are designed to enhance interactions with Large Language Models when discussing or getting help with your code.</p>
+<h2 id="installation">Installation</h2>
+<p>Install directly from PyPI:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install llmdirtree
+</span></span></code></pre></div><h2 id="key-features">Key Features</h2>
+<h3 id="directory-tree-visualization">Directory Tree Visualization</h3>
+<ul>
+<li><strong>Clean, standardized output</strong> with Unicode box-drawing characters</li>
+<li><strong>Intelligent filtering</strong> to exclude irrelevant directories (<code>node_modules</code>, <code>.git</code>, etc.)</li>
+<li><strong>Efficient memory usage</strong> by providing structural context without full codebase uploads</li>
+<li><strong>Full .gitignore integration</strong> ensuring sensitive files are excluded from visualization</li>
+</ul>
+<h3 id="llm-context-generation">LLM Context Generation</h3>
+<ul>
+<li><strong>AI-powered code analysis</strong> via OpenAI&rsquo;s API</li>
+<li><strong>Security-focused</strong> with automatic <code>.gitignore</code> pattern recognition</li>
+<li><strong>Rich contextual summaries</strong> of your codebase organized by directory</li>
+<li><strong>Intelligent large file handling</strong> with automatic chunking and summarization</li>
+<li><strong>Customizable model selection</strong> to choose your preferred OpenAI model</li>
+<li><strong>Dependency-free</strong> implementation using system curl instead of heavy libraries</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<h3 id="basic-directory-tree">Basic Directory Tree</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Generate a simple directory tree</span>
+</span></span><span style="display:flex;"><span>llmdirtree --root /path/to/project --output project_structure.txt
+</span></span></code></pre></div><h3 id="with-llm-context-generation">With LLM Context Generation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Generate both directory tree AND code context</span>
+</span></span><span style="display:flex;"><span>llmdirtree --root /path/to/project --llm-context --openai-key YOUR_API_KEY
+</span></span></code></pre></div><p>This creates two files:</p>
+<ul>
+<li><code>directory_tree.txt</code> - Visual structure</li>
+<li><code>llmcontext.txt</code> - AI-generated project overview and file summaries</li>
+</ul>
+<h3 id="advanced-options">Advanced Options</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Exclude specific directories</span>
+</span></span><span style="display:flex;"><span>llmdirtree --exclude node_modules .git venv dist
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Customize output locations</span>
+</span></span><span style="display:flex;"><span>llmdirtree --output custom_tree.txt --context-output custom_context.txt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Control file selection for context generation</span>
+</span></span><span style="display:flex;"><span>llmdirtree --max-files <span style="color:#a5d6ff">150</span> --llm-context
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Override gitignore protection (not recommended)</span>
+</span></span><span style="display:flex;"><span>llmdirtree --ignore-gitignore --llm-context
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Specify OpenAI model (skips prompting)</span>
+</span></span><span style="display:flex;"><span>llmdirtree --llm-context --model gpt-4
+</span></span></code></pre></div><h2 id="example-outputs">Example Outputs</h2>
+<h3 id="directory-tree">Directory Tree</h3>
+<pre tabindex="0"><code>Directory Tree for: /project
+Excluding: .git, node_modules, __pycache__, venv
+--------------------------------------------------
+project/
+├── src/
+│   ├── main.py
+│   └── utils/
+│       └── helpers.py
+├── tests/
+│   └── test_main.py
+└── README.md
+</code></pre><h3 id="llm-context-file">LLM Context File</h3>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span><span style="color:#79c0ff;font-weight:bold"># project-name
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff7b72">&gt; </span><span style="font-style:italic">A React web application for tracking personal fitness goals with a Node.js backend and MongoDB database.
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#79c0ff">## src/components/
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">-</span> **Dashboard.jsx**: Main dashboard component that displays user fitness stats, recent activities, and goal progress.
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">-</span> **WorkoutForm.jsx**: Form for creating and editing workout entries with validation and submission handling.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#79c0ff">## src/utils/
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">-</span> **api.js**: Contains functions for making API calls to the backend, handling authentication and data fetching.
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">-</span> **formatters.js**: Utility functions for formatting dates, weights, and other fitness metrics consistently.
+</span></span></code></pre></div><h2 id="example-workflow">Example Workflow</h2>
+<h3 id="directory-tree-only">Directory Tree Only</h3>
+<ol>
+<li>
+<p>Generate your project structure:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>llmdirtree --root /path/to/project --output structure.txt
+</span></span></code></pre></div></li>
+<li>
+<p>Include it in your LLM prompt:</p>
+<pre tabindex="0"><code>Here&#39;s my project structure:
+
+[paste content from structure.txt]
+
+I need help understanding how the components interact...
+</code></pre></li>
+</ol>
+<h3 id="with-full-context">With Full Context</h3>
+<ol>
+<li>
+<p>Generate both structure and context:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>llmdirtree --root /path/to/project --llm-context
+</span></span></code></pre></div></li>
+<li>
+<p>Include in your LLM prompt:</p>
+<pre tabindex="0"><code>Here&#39;s information about my project:
+
+[paste content from llmcontext.txt]
+
+Now I need help with implementing a new feature...
+</code></pre></li>
+<li>
+<p>The LLM now has both structural and semantic understanding of your code.</p>
+</li>
+</ol>
+<h3 id="large-file-handling">Large File Handling</h3>
+<p>One of the challenges when analyzing code for LLM context is dealing with large files that exceed token limits. llmdirtree now intelligently processes large files by:</p>
+<ol>
+<li><strong>Automatic file chunking</strong> - Breaking large files into semantically meaningful chunks</li>
+<li><strong>Per-chunk summarization</strong> - Analyzing each chunk independently</li>
+<li><strong>Cohesive synthesis</strong> - Creating a unified summary that captures the essence of the entire file</li>
+</ol>
+<p>This approach ensures even large files like complex modules or extensive configuration are appropriately represented in your context.</p>
+<h3 id="openai-model-selection">OpenAI Model Selection</h3>
+<p>llmdirtree offers flexible model selection to balance performance and cost:</p>
+<ul>
+<li><strong>Interactive selection</strong> - By default, you&rsquo;ll be prompted once per run to select a model</li>
+<li><strong>Command-line specification</strong> - Skip the prompt with <code>--model MODEL_NAME</code></li>
+<li><strong>Sensible defaults</strong> - Uses <code>gpt-3.5-turbo-16k</code> for batch processing and <code>gpt-3.5-turbo</code> for project overview</li>
+</ul>
+<p>This flexibility allows you to choose the right model for your specific needs, whether optimizing for speed, token capacity, or analysis quality.</p>
+<h3 id="gitignore-support">.gitignore Support</h3>
+<p>The tool now fully respects .gitignore patterns for both the directory tree visualization and context generation:</p>
+<ul>
+<li><strong>Complete pattern recognition</strong> - Supports all standard .gitignore syntax including wildcards</li>
+<li><strong>Directory-level protection</strong> - Skips entire directories that match ignore patterns</li>
+<li><strong>Consistent application</strong> - Same ignore logic applied to both tree visualization and context generation</li>
+</ul>
+<p>This ensures sensitive files or directories are completely excluded from any visualization or analysis.</p>
+<h2 id="security-features">Security Features</h2>
+<p>The tool takes security seriously:</p>
+<ul>
+<li><strong>Respects .gitignore patterns</strong> to avoid exposing sensitive information</li>
+<li><strong>Excludes credentials and API keys</strong> automatically</li>
+<li><strong>Zero dependencies</strong> approach for core functionality</li>
+<li><strong>Configurable privacy</strong> with options to control what&rsquo;s analyzed</li>
+</ul>
+<p>For more implementation details or to contribute, check the <a href="https://github.com/arun477/llmdirtree">GitHub repository</a>.</p>
+]]></content:encoded></item><item><title>Bharat-NanoBEIR: Indian Language Information Retrieval Dataset</title><link>https://arun477.github.io/posts/embedding_eval_for_indic/</link><pubDate>Thu, 13 Mar 2025 00:00:00 +0000</pubDate><guid>https://arun477.github.io/posts/embedding_eval_for_indic/</guid><description>NanoBEIR in 22 Indian languages: 286 small retrieval benchmarks for checking how well an embedding model searches in Hindi, Tamil, Maithili and the rest.</description><category>dataset</category><category>information retrieval</category><category>indian languages</category><category>nlp</category><content:encoded><![CDATA[<p>Most retrieval benchmarks are English. If you want to know whether an embedding model can actually search in Tamil or Bhojpuri, there is very little to test it on. Bharat-NanoBEIR is a small attempt at fixing that: the NanoBEIR benchmarks, in 22 Indian languages.</p>
+<p><strong>Collection:</strong> <a href="https://huggingface.co/collections/carlfeynman/bharat-nanobeir-679054f72565fc5140ceb12f">Bharat-NanoBEIR on Hugging Face</a></p>
+<h2 id="why-nano">Why Nano</h2>
+<p><a href="https://github.com/beir-cellar/beir">BEIR</a> is the standard zero-shot retrieval benchmark, but its full corpora run to millions of documents. Embedding all of them for every model and every language is slow and expensive. NanoBEIR keeps the same 13 tasks and shrinks each one to 50 queries and at most 10K documents. The scores track the full benchmark closely enough to compare models, and a full run takes minutes instead of hours.</p>
+<p>Small is what makes 22 languages practical. 13 tasks × 22 languages is 286 datasets; at full BEIR size that would never get run.</p>
+<h2 id="whats-in-it">What&rsquo;s in it</h2>
+<p><strong>Tasks (13):</strong> ArguAna, ClimateFEVER, DBPedia, FEVER, FiQA2018, HotpotQA, MSMARCO, NFCorpus, NQ, QuoraRetrieval, SCIDOCS, SciFact, Touche2020.</p>
+<p><strong>Languages (22):</strong> Assamese, Awadhi, Bengali, Bhojpuri, Chhattisgarhi, Gujarati, Hindi, Kannada, Kashmiri (Arabic and Devanagari scripts), Magahi, Maithili, Malayalam, Manipuri, Marathi, Nepali, Odia, Punjabi, Sanskrit, Tamil, Telugu, Urdu.</p>
+<p>The list goes past the usual big Indic languages on purpose. Awadhi, Magahi, Chhattisgarhi and Bhojpuri have tens of millions of speakers and almost no evaluation data.</p>
+<p>Each dataset is named <code>carlfeynman/Bharat_Nano{Task}_{lang}</code>, for example <code>Bharat_NanoSciFact_ta</code>, and has three subsets in BEIR format:</p>
+<ul>
+<li><code>corpus</code>: documents (<code>_id</code>, <code>text</code>)</li>
+<li><code>queries</code>: 50 queries (<code>_id</code>, <code>text</code>)</li>
+<li><code>qrels</code>: relevance judgments (<code>query-id</code>, <code>corpus-id</code>)</li>
+</ul>
+<p>Queries and documents are both translated, so it measures monolingual retrieval within each language. The original NanoBEIR relevance judgments carry over unchanged. Licence is CC-BY-4.0.</p>
+<h2 id="using-it">Using it</h2>
+<p>The format plugs straight into the Sentence Transformers retrieval evaluator:</p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">datasets</span> <span style="color:#ff7b72">import</span> load_dataset
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">sentence_transformers</span> <span style="color:#ff7b72">import</span> SentenceTransformer
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">sentence_transformers.evaluation</span> <span style="color:#ff7b72">import</span> InformationRetrievalEvaluator
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>name <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;carlfeynman/Bharat_NanoSciFact_ta&#34;</span>
+</span></span><span style="display:flex;"><span>corpus <span style="color:#ff7b72;font-weight:bold">=</span> load_dataset(name, <span style="color:#a5d6ff">&#34;corpus&#34;</span>, split<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;train&#34;</span>)
+</span></span><span style="display:flex;"><span>queries <span style="color:#ff7b72;font-weight:bold">=</span> load_dataset(name, <span style="color:#a5d6ff">&#34;queries&#34;</span>, split<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;train&#34;</span>)
+</span></span><span style="display:flex;"><span>qrels <span style="color:#ff7b72;font-weight:bold">=</span> load_dataset(name, <span style="color:#a5d6ff">&#34;qrels&#34;</span>, split<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;train&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>relevant <span style="color:#ff7b72;font-weight:bold">=</span> {}
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">for</span> row <span style="color:#ff7b72;font-weight:bold">in</span> qrels:
+</span></span><span style="display:flex;"><span>    relevant<span style="color:#ff7b72;font-weight:bold">.</span>setdefault(row[<span style="color:#a5d6ff">&#34;query-id&#34;</span>], set())<span style="color:#ff7b72;font-weight:bold">.</span>add(row[<span style="color:#a5d6ff">&#34;corpus-id&#34;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>evaluator <span style="color:#ff7b72;font-weight:bold">=</span> InformationRetrievalEvaluator(
+</span></span><span style="display:flex;"><span>    queries<span style="color:#ff7b72;font-weight:bold">=</span>dict(zip(queries[<span style="color:#a5d6ff">&#34;_id&#34;</span>], queries[<span style="color:#a5d6ff">&#34;text&#34;</span>])),
+</span></span><span style="display:flex;"><span>    corpus<span style="color:#ff7b72;font-weight:bold">=</span>dict(zip(corpus[<span style="color:#a5d6ff">&#34;_id&#34;</span>], corpus[<span style="color:#a5d6ff">&#34;text&#34;</span>])),
+</span></span><span style="display:flex;"><span>    relevant_docs<span style="color:#ff7b72;font-weight:bold">=</span>relevant,
+</span></span><span style="display:flex;"><span>    name<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;NanoSciFact_ta&#34;</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#ff7b72;font-weight:bold">=</span> SentenceTransformer(<span style="color:#a5d6ff">&#34;BAAI/bge-m3&#34;</span>)
+</span></span><span style="display:flex;"><span>print(evaluator(model))  <span style="color:#8b949e;font-style:italic"># nDCG@10, MRR@10, recall@k, ...</span>
+</span></span></code></pre></div><p>Loop over tasks and languages and you get a per-language table, which is the interesting part: it shows where a model that looks fine in Hindi stops working.</p>
+]]></content:encoded></item></channel></rss>
