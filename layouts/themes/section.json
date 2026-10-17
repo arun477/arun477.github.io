@@ -1,0 +1,10 @@
+{{- /* The current themes as data, for readers and for the themes agent to merge into. */ -}}
+{{- $themes := slice }}{{ $date := "" -}}
+{{- with index .Pages.ByDate.Reverse 0 -}}
+  {{- $date = .Date.Format "2006-01-02" -}}
+  {{- range partial "themes/themes.html" . -}}
+    {{- $items := slice }}{{ range .evidence }}{{ $items = $items | append (dict "title" .title "url" .url "source" .source "kind" .kind "date" (.day.Date.Format "2006-01-02")) }}{{ end -}}
+    {{- $themes = $themes | append (dict "rank" .rank "title" .title "summary" .summary "status" .status "first_seen" (dateFormat "2006-01-02" .first_seen) "last_updated" (dateFormat "2006-01-02" .last_updated) "kinds" .kinds "items" $items) -}}
+  {{- end -}}
+{{- end -}}
+{{- jsonify (dict "title" (printf "%s · %s" .Title site.Title) "description" .Description "url" .Permalink "feed" (site.GetPage "/news").Permalink "date" $date "themes" $themes) -}}

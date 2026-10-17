@@ -1,0 +1,25 @@
+{{- /* One snapshot's themes, checked and resolved, in ranked order. Takes a page in content/themes.
+       Each theme gains "evidence": its Feed items, newest first, and "kinds": a count per kind.
+       A malformed snapshot fails the build, so a bad push never reaches the live site. */ -}}
+{{- $feed := partial "themes/feed-index.html" . -}}
+{{- $out := slice }}{{ $seen := slice -}}
+{{- if not .Params.themes }}{{ errorf "themes: %s has no themes" .File.Path }}{{ end -}}
+{{- if gt (len .Params.themes) 12 }}{{ errorf "themes: %s has %d themes; the limit is 12" .File.Path (len .Params.themes) }}{{ end -}}
+{{- if trim .RawContent " \n\r\t" }}{{ errorf "themes: %s has body text; put everything in front matter fields" .File.Path }}{{ end -}}
+{{- range $i, $t := .Params.themes -}}
+  {{- $n := add $i 1 -}}
+  {{- range slice "title" "summary" "status" "first_seen" "last_updated" "items" }}{{ if not (index $t .) }}{{ errorf "themes: %s, theme %d has no %q" $.File.Path $n . }}{{ end }}{{ end -}}
+  {{- if gt (len $t.title) 70 }}{{ errorf "themes: %s, theme %d: title is over 70 characters" $.File.Path $n }}{{ end -}}
+  {{- if in $seen (lower $t.title) }}{{ errorf "themes: %s, theme %d: duplicate title %q" $.File.Path $n $t.title }}{{ end }}{{ $seen = $seen | append (lower $t.title) -}}
+  {{- if not (in (slice "rising" "steady" "fading") $t.status) }}{{ errorf "themes: %s, theme %d: status %q is not one of rising, steady, fading" $.File.Path $n $t.status }}{{ end -}}
+  {{- $ev := slice }}{{ $kinds := dict -}}
+  {{- range $t.items -}}
+    {{- $it := index $feed . -}}
+    {{- if not $it }}{{ errorf "themes: %s, theme %d cites %q, which is not in the Feed" $.File.Path $n . }}{{ end -}}
+    {{- $ev = $ev | append $it -}}
+    {{- $kinds = merge $kinds (dict $it.kind (add (index $kinds $it.kind | default 0) 1)) -}}
+  {{- end -}}
+  {{- $ev = sort $ev "day.Date" "desc" -}}
+  {{- $out = $out | append (merge $t (dict "rank" $n "evidence" $ev "kinds" $kinds)) -}}
+{{- end -}}
+{{- return $out -}}
