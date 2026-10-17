@@ -118,10 +118,7 @@ nav a::after, footer a::after {
   transition: transform .35s var(--ease);
 }
 nav a:hover::after, nav a[aria-current]::after, footer a:hover::after { transform: scaleX(1); }
-/* The copyright is the quiet link to /changelog/, for agents: no hover cue, so it reads as plain text. */
-footer .log { margin-right: auto; }
-footer .log:hover { color: inherit; }
-footer .log::after { content: none; }
+footer span { margin-right: auto; }
 
 .theme {
   display: grid;
