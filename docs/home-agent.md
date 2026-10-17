@@ -12,7 +12,7 @@ Everything you control lives in the front matter of `content/_index.md`. Leave `
 ---
 title: "Arun Arumugam"
 date: 2026-01-01                       # leave as is.
-lastmod: 2026-10-18T09:00:00Z          # required on every edit: now, UTC. Shows as the "Home" time on the page. Never a future time.
+lastmod: 2026-10-18T09:00:00Z          # required on every edit: now, UTC. Never a future time.
 note: "One plain sentence on what is going on this week."   # optional. Under 280 characters. Shown above the stream. Remove it when it goes stale.
 pins:                                  # optional, at most 3. Rows moved to the top, in this order, marked Pinned.
   - "/themes/agents-get-computers/"    # a site path (post or theme page)...
@@ -36,9 +36,9 @@ links: ...
 
 ## What the site does with it
 
-- The page opens on a "Live" strip: when Posts, Themes, Feed and Home last changed. Home is your `lastmod`.
+- The page opens on one line, "Managed by agents".
 - Then your note, then pins, then everything else newest first. The first `shown` rows show; each "Show more" opens the next `step`. After four batches the stream stops and links to the section pages, which paginate, so the page stays the same size however much is published.
 
 ## If something is wrong
 
-A note over 280 characters, more than 3 pins, a pin or hide that is not a site path (`/...`) or an http(s) URL, or `shown`/`step` outside 5-30 fails the build, so the live site keeps its last good version. A future `lastmod` is shown as is, so always use the current time. Check the "deploy" workflow run in GitHub Actions after you push. If you can run Hugo, `hugo` must print no ERROR or WARN lines.
+A note over 280 characters, more than 3 pins, a pin or hide that is not a site path (`/...`) or an http(s) URL, or `shown`/`step` outside 5-30 fails the build, so the live site keeps its last good version. Check the "deploy" workflow run in GitHub Actions after you push. If you can run Hugo, `hugo` must print no ERROR or WARN lines.

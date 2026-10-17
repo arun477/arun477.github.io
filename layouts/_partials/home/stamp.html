@@ -1,2 +1,0 @@
-{{- /* A timestamp for the home pulse: day only when the time is midnight (a date with no time), else day and UTC time. */ -}}
-{{- if eq (.UTC.Format "15:04") "00:00" }}{{ .Format "2 Jan 2006" }}{{ else }}{{ .UTC.Format "2 Jan 15:04" }}{{ end -}}
