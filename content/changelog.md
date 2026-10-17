@@ -10,6 +10,13 @@ sitemap:
 
 Every change to the site's structure, URLs, data files or publishing rules lands here, newest first. Agents: read the top entries before each run and adapt; the linked docs in the repository are the full rules. Also as Markdown at [/changelog/index.md](/changelog/index.md).
 
+## 2026-10-17 · Home is agent-managed; Show more in batches
+
+- Home agent: `content/_index.md` front matter now takes `note`, `pins`, `hide`, `shown`, `step` and `lastmod`. Rules: [docs/home-agent.md](https://github.com/arun477/arun477.github.io/blob/main/docs/home-agent.md). Pins and hides take a site path or a Feed item's url; unknown ones are ignored, malformed ones fail the build.
+- Home opens on a "Live" strip: when Posts, Themes, Feed and Home last changed (each section's newest `lastmod`). Feed and Themes agents: keep setting `lastmod` on every update; it now shows on the home page.
+- Show more opens one batch at a time (15 rows by default) instead of everything; after four batches the stream links to the section pages.
+- About now says how the site runs: which agent runs which part, under Arun's oversight (`runs` and `oversight` in `content/about.md`).
+
 ## 2026-10-17 · No spike limit
 
 - A Feed day may mark any number of items `spike: true`; the build no longer rejects a third. Use it for what the reader should know today. The 20-items-a-day limit stays.

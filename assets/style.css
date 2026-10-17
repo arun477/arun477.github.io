@@ -216,6 +216,15 @@ main a:hover { text-decoration-color: currentColor; }
 /* Home has no hero: the page title is for screen readers and crawlers only. */
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 /* Social links: one compact row of UI labels under the name. */
+/* About: how the site runs, one hairline row per part: name, then who runs it and what it does. */
+.runs { margin: 3rem 0 0; }
+.runs dl { margin: 0; border-top: 1px solid var(--text); }
+.runs dl > div { display: grid; grid-template-columns: 7rem 1fr; column-gap: 1.25rem; padding: .9rem 0; border-bottom: 1px solid var(--line); }
+.runs dt { font: 600 .72rem/1.6 var(--sans); letter-spacing: .08em; text-transform: uppercase; }
+.runs dt a { color: var(--text); }
+.runs dd { margin: 0; font: 1.05rem/1.5 var(--serif); color: var(--muted); }
+.runs dd b { display: block; font: 500 .68rem/1.6 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--text); }
+.runs .brief { margin: 1.25rem 0 0; font-size: 1.05rem; }
 .social { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; list-style: none; margin: 1rem 0 0; padding: 0; font: 500 .72rem/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; }
 .social a { display: inline-flex; gap: .3rem; padding: .3rem 0; color: var(--muted); text-decoration: none; transition: color .2s; }
 .social a:hover { color: var(--text); text-decoration: underline; text-underline-offset: .35em; }
@@ -309,6 +318,23 @@ main a:hover { text-decoration-color: currentColor; }
 .feed strong { font: 500 1.2rem/1.35 var(--serif); }
 .feed .s { font: 1rem/1.5 var(--serif); color: var(--muted); }
 .feed .go { font: .9rem/1.6 var(--mono); color: var(--muted); }
+/* Home: when each part of the site last changed (agents keep it current), one cell per section plus the home page itself. */
+.pulse { list-style: none; display: grid; grid-template-columns: repeat(var(--n, 4), 1fr); margin: 0 0 1.5rem; padding: 0; border-top: 1px solid var(--text); }
+.pulse li { border-bottom: 1px solid var(--line); }
+.pulse li + li { border-left: 1px solid var(--line); }
+.pulse :is(a, span) { display: flex; flex-direction: column; gap: .35rem; padding: .8rem 0 .8rem 1rem; color: var(--text); text-decoration: none; }
+.pulse li:first-child :is(a, span) { padding-left: 0; }
+@media (max-width: 34rem) {
+  .pulse { grid-template-columns: 1fr 1fr; }
+  .pulse li:nth-child(odd) { border-left: 0; }
+  .pulse li:nth-child(odd) :is(a, span) { padding-left: 0; }
+  .runs dl > div { grid-template-columns: 5rem 1fr; }
+}
+.pulse b { font: 600 .68rem/1.2 var(--sans); letter-spacing: .08em; text-transform: uppercase; }
+.pulse time { font: .78rem/1.2 var(--mono); color: var(--muted); }
+.pulse a:hover b { text-decoration: underline; text-underline-offset: .3em; }
+.note { margin: 0 0 1.5rem; }
+.feed .pin .av { border-color: var(--text); }
 /* Compact rows (home page): titles and the meta line only; the section page has the summaries. */
 .feed.compact a { padding: .85rem 0; }
 .feed.compact strong { font-size: 1.1rem; }
@@ -458,8 +484,9 @@ mtable mtd:nth-child(even) { text-align: left; padding-left: 0; }
 .showmore > summary { display: flex; padding: 1rem 0 0; list-style: none; cursor: pointer; font: 500 .75rem/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--text); }
 .showmore > summary::-webkit-details-marker { display: none; }
 .showmore > summary:hover { text-decoration: underline; text-underline-offset: .3em; }
-.showmore .c, .showmore[open] .o { display: none; }
-.showmore[open] .c { display: inline; }
-.showmore[open] > summary { padding-bottom: 1rem; }
+/* Opened, the button gives way to the batch; the next batch's button sits under it. */
+.showmore[open] > summary { display: none; }
+.older { margin: 1.25rem 0 0; }
+.older span { font-family: var(--sans); letter-spacing: .08em; }
 .showmore .feed { border-top: 0; }
 .tmeta { display: flex; flex-wrap: wrap; gap: .3rem 1rem; margin: -.75rem 0 1.5rem; font: .75rem/1.6 var(--mono); color: var(--muted); }

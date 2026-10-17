@@ -2,7 +2,7 @@
 
 > {{ site.Params.description }}{{ with .Params.role }} Role: {{ . }}.{{ end }}
 
-Every post below is also available as clean Markdown: append `index.md` to its URL. Full sitemap: {{ "sitemap.xml" | absURL }}. Feed: {{ "index.xml" | absURL }}. What changed (agents: read before publishing): {{ "changelog/index.md" | absURL }}.
+Every post below is also available as clean Markdown: append `index.md` to its URL. Full sitemap: {{ "sitemap.xml" | absURL }}. Feed: {{ "index.xml" | absURL }}. What changed (agents: read before publishing): {{ "changelog/index.md" | absURL }}. The home page is managed by an agent; rules: https://github.com/arun477/arun477.github.io/blob/main/docs/home-agent.md.
 {{ range site.Sections }}
 ## {{ .Title }}
 {{ if eq .Section "news" }}

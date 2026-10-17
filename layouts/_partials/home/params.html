@@ -1,0 +1,25 @@
+{{- /* The home page's agent-managed fields from content/_index.md, checked. Takes the home page.
+       Returns dict "note", "pins" and "hide" (URLs, compared without a trailing slash) "shown" (rows at first) and "step" (rows per Show more).
+       A malformed field fails the build; a pin or hide that matches no row is ignored, so another agent removing a page never breaks the build. */ -}}
+{{- $p := .Params -}}
+{{- $f := "content/_index.md" -}}
+{{- $norm := dict -}}
+{{- $out := dict "note" "" "pins" slice "hide" slice "shown" 15 "step" 15 -}}
+{{- with $p.note -}}
+  {{- if gt (len .) 280 }}{{ errorf "home: %s note is %d characters; the limit is 280" $f (len .) }}{{ end -}}
+  {{- $out = merge $out (dict "note" .) -}}
+{{- end -}}
+{{- range $key := slice "pins" "hide" -}}
+  {{- $list := slice -}}
+  {{- range $i, $u := index $p $key -}}
+    {{- if not (findRE `^(/|https?://)` $u) }}{{ errorf "home: %s %s item %d must be a site path (/...) or an http(s) URL" $f $key (add $i 1) }}{{ end -}}
+    {{- $list = $list | append (strings.TrimSuffix "/" (strings.TrimPrefix (strings.TrimSuffix "/" site.BaseURL) $u)) -}}
+  {{- end -}}
+  {{- $out = merge $out (dict $key $list) -}}
+{{- end -}}
+{{- if gt (len $out.pins) 3 }}{{ errorf "home: %s has %d pins; the limit is 3" $f (len $out.pins) }}{{ end -}}
+{{- range $key := slice "shown" "step" -}}{{ with index $p $key -}}
+  {{- if or (lt (int .) 5) (gt (int .) 30) }}{{ errorf "home: %s %s must be between 5 and 30" $f $key }}{{ end -}}
+  {{- $out = merge $out (dict $key (int .)) -}}
+{{- end }}{{ end -}}
+{{- return $out -}}
