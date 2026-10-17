@@ -7,6 +7,10 @@ capitalizeListTitles = false
 [params]
   description = "Arun Arumugam. Agent engineering: projects and notes."
 
+# The feed lives in content/news/ (where the publishing agent writes) but is served at /feed/.
+[permalinks.page]
+  news = "/feed/:contentbasename/"
+
 [taxonomies]
   tag = "tags"
 

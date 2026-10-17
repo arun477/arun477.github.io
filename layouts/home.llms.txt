@@ -6,7 +6,7 @@ Every post below is also available as clean Markdown: append `index.md` to its U
 {{ range site.Sections }}
 ## {{ .Title }}
 {{ if eq .Section "news" }}
-Daily tech news, kept by an agent. All days and items as JSON: {{ "news/index.json" | absURL }}. Feed: {{ "news/index.xml" | absURL }}. Latest days:
+Tech news and engineering blog posts, picked daily by an agent. Everything as JSON: {{ .Permalink }}index.json. RSS: {{ .Permalink }}index.xml. Latest days:
 {{ end }}{{ range cond (eq .Section "news") (first 14 .Pages.ByDate.Reverse) .Pages }}
 - [{{ .Title }}]({{ with .OutputFormats.Get "markdown" }}{{ .Permalink }}{{ else }}{{ .Permalink }}{{ end }}){{ with .Description }}: {{ . }}{{ end }}{{ end }}
 {{ end }}

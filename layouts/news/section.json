@@ -1,9 +1,9 @@
-{{- /* Every day and item, newest first: for readers, and for the publishing agent to check what it already posted. */ -}}
+{{- /* The feed as data: every day and item, newest first: for readers, and for the publishing agent to check what it already posted. */ -}}
 {{- $days := slice -}}
 {{- range .Pages.ByDate.Reverse -}}
   {{- $items := slice -}}
   {{- range partial "news/items.html" . -}}
-    {{- $it := dict "title" .title "url" .url "source" .source "summary" .summary "spike" (.spike | default false) -}}
+    {{- $it := dict "title" .title "url" .url "source" .source "summary" .summary "kind" .kind "spike" (.spike | default false) -}}
     {{- with .topic }}{{ $it = merge $it (dict "topic" .) }}{{ end -}}
     {{- with .time }}{{ $it = merge $it (dict "time" .) }}{{ end -}}
     {{- $items = $items | append $it -}}

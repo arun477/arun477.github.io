@@ -1,4 +1,4 @@
-{{- /* Home: the newest day's headline, any recent spikes, then its top three other items. Takes the news section. */ -}}
+{{- /* Home: the newest day's headline, any recent spikes, then its top three other posts. Takes the feed section (content/news). */ -}}
 {{- with index .Pages.ByDate.Reverse 0 }}
 {{- $spikes := partial "news/recent-spikes.html" $.Pages -}}
 {{- $urls := slice }}{{ range $spikes }}{{ $urls = $urls | append .url }}{{ end -}}
@@ -7,6 +7,6 @@
 <div class="day">
 <h3 class="headline"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
 {{ partial "news/list.html" (dict "items" ($spikes | append (first 3 $top)) "dated" true) }}
-<p class="more"><a href="{{ $.RelPermalink }}">All news</a><span>{{ printf "%02d" (len $.Pages) }} days</span></p>
+<p class="more"><a href="{{ $.RelPermalink }}">Open the feed</a><span>{{ printf "%02d" (len $.Pages) }} days</span></p>
 </div>
 {{- end }}
