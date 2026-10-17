@@ -1,0 +1,14 @@
+{{- /* Every day and item, newest first: for readers, and for the publishing agent to check what it already posted. */ -}}
+{{- $days := slice -}}
+{{- range .Pages.ByDate.Reverse -}}
+  {{- $items := slice -}}
+  {{- range partial "news/items.html" . -}}
+    {{- $it := dict "title" .title "url" .url "source" .source "summary" .summary "spike" (.spike | default false) -}}
+    {{- with .topic }}{{ $it = merge $it (dict "topic" .) }}{{ end -}}
+    {{- with .time }}{{ $it = merge $it (dict "time" .) }}{{ end -}}
+    {{- $items = $items | append $it -}}
+  {{- end -}}
+  {{- $d := dict "date" (.Date.Format "2006-01-02") "updated" (.Lastmod.UTC.Format "2006-01-02T15:04:05Z") "title" .Title "url" .Permalink "brief" .Description "example" (.Params.example | default false) "items" $items -}}
+  {{- $days = $days | append $d -}}
+{{- end -}}
+{{- jsonify (dict "title" (printf "%s · %s" .Title site.Title) "description" .Description "url" .Permalink "feed" (printf "%sindex.xml" .Permalink) "days" $days) -}}

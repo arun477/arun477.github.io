@@ -13,8 +13,9 @@
 </section>
 {{ range site.Sections }}
 <section class="index">
+{{ if eq .Section "news" }}{{ partial "news/home.html" . }}{{ else }}
 <h2 class="label"><a href="{{ .RelPermalink }}">{{ .Title }}</a><span>{{ printf "%02d" (len .Pages) }}</span></h2>
-{{ partial "list.html" .Pages }}
+{{ partial "list.html" .Pages }}{{ end }}
 </section>
 {{ end }}
 {{ end }}

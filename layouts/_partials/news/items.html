@@ -1,0 +1,13 @@
+{{- /* A day's items, checked and in reading order: spikes first, then the agent's own order.
+       Each item gains "day" (its page) and "source" (falls back to the link's host).
+       A malformed item fails the build, so a bad push never reaches the live site. */ -}}
+{{- $spikes := slice }}{{ $rest := slice -}}
+{{- range $i, $it := .Params.items -}}
+  {{- range slice "title" "url" "summary" }}{{ if not (index $it .) }}{{ errorf "news: %s, item %d has no %q" $.File.Path (add $i 1) . }}{{ end }}{{ end -}}
+  {{- if not (findRE `^https?://` $it.url) }}{{ errorf "news: %s, item %d: url must start with http(s)://" $.File.Path (add $i 1) }}{{ end -}}
+  {{- $src := $it.source | default (replaceRE `^www\.` "" (urls.Parse $it.url).Host) -}}
+  {{- $it = merge $it (dict "day" $ "source" $src) -}}
+  {{- if $it.spike }}{{ $spikes = $spikes | append $it }}{{ else }}{{ $rest = $rest | append $it }}{{ end -}}
+{{- end -}}
+{{- if not .Params.items }}{{ errorf "news: %s has no items" .File.Path }}{{ end -}}
+{{- $all := $spikes | append $rest }}{{ return $all -}}

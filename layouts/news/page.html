@@ -1,0 +1,10 @@
+{{ define "main" }}
+<p class="label"><a href="{{ .CurrentSection.RelPermalink }}">{{ .CurrentSection.Title }}</a>{{ if .Params.example }}<span>Example</span>{{ end }}</p>
+<h1>{{ .Title }}</h1>
+{{ with .Description }}<p class="brief lead">{{ . }}</p>{{ end }}
+<p class="meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Monday 2 January 2006" }}</time>{{ if ne .Lastmod .Date }}<span>Updated {{ .Lastmod.UTC.Format "15:04" }} UTC</span>{{ end }}<span>{{ len .Params.items }} items</span></p>
+{{ partial "news/list.html" (dict "items" (partial "news/items.html" .)) }}
+{{ with .Content }}<article class="notes">{{ . }}</article>{{ end }}
+{{ $days := .CurrentSection.Pages.ByDate }}
+<nav class="pager" aria-label="Days">{{ with $days.Prev . }}<a href="{{ .RelPermalink }}">← {{ .Date.Format "Mon 2 Jan" }}</a>{{ else }}<span></span>{{ end }}<a href="{{ .CurrentSection.RelPermalink }}">All days</a>{{ with $days.Next . }}<a href="{{ .RelPermalink }}">{{ .Date.Format "Mon 2 Jan" }} →</a>{{ else }}<span></span>{{ end }}</nav>
+{{ end }}

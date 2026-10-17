@@ -5,7 +5,9 @@
 Every post below is also available as clean Markdown: append `index.md` to its URL. Full sitemap: {{ "sitemap.xml" | absURL }}. Feed: {{ "index.xml" | absURL }}.
 {{ range site.Sections }}
 ## {{ .Title }}
-{{ range .Pages }}
+{{ if eq .Section "news" }}
+Daily tech news, kept by an agent. All days and items as JSON: {{ "news/index.json" | absURL }}. Feed: {{ "news/index.xml" | absURL }}. Latest days:
+{{ end }}{{ range cond (eq .Section "news") (first 14 .Pages.ByDate.Reverse) .Pages }}
 - [{{ .Title }}]({{ with .OutputFormats.Get "markdown" }}{{ .Permalink }}{{ else }}{{ .Permalink }}{{ end }}){{ with .Description }}: {{ . }}{{ end }}{{ end }}
 {{ end }}
 ## Elsewhere

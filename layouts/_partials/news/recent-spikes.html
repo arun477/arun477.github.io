@@ -1,0 +1,4 @@
+{{- /* Spikes from the newest day and the day before it, newest first. Takes the section's days. */ -}}
+{{- $out := slice -}}
+{{- range first 2 .ByDate.Reverse }}{{ range partial "news/items.html" . }}{{ if .spike }}{{ $out = $out | append . }}{{ end }}{{ end }}{{ end -}}
+{{- return $out -}}
