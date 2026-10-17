@@ -1,7 +1,9 @@
 {{- /* Home: one stream, newest first, of everything the site publishes: posts, every Feed item, and the current themes.
-       Each row uses the Feed's row style and the same glyph its section uses (icon.html). Takes the number of rows shown before "Show more".
+       Each row uses the Feed's row style and the same glyph its section uses (icon.html). Takes the home page; its agent-managed
+       fields (home/params.html) pin rows to the top, hide rows and set how many show at first and per "Show more".
        Dates: a post at its date, a Feed item at its day (and time if given), a theme at its newest evidence. */ -}}
 {{- $kinds := partial "news/kinds.html" . -}}
+{{- $cfg := partial "home/params.html" . -}}
 {{- $rows := slice -}}
 {{- with site.GetPage "/posts" }}{{ range .Pages }}
   {{- $rows = $rows | append (dict "url" .RelPermalink "title" .Title "summary" .Description "glyph" "post" "label" "Post" "d" .Date "dfmt" "Jan 2006") -}}
@@ -13,13 +15,28 @@
 {{- with site.GetPage "/themes" }}{{ range partialCached "themes/current.html" . }}
   {{- $rows = $rows | append (dict "url" .page.RelPermalink "title" .title "summary" .summary "glyph" .status "label" "Theme" "source" .status "cls" .status "d" (time .last_updated) "dfmt" "Mon 2 Jan") -}}
 {{- end }}{{ end -}}
-{{- $rows = sort $rows "d" "desc" -}}
+{{- $pinned := slice }}{{ $rest := slice -}}
+{{- range sort $rows "d" "desc" -}}
+  {{- $u := strings.TrimSuffix "/" .url -}}
+  {{- if in $cfg.hide $u }}{{ continue }}{{ end -}}
+  {{- if in $cfg.pins $u }}{{ $pinned = $pinned | append (merge . (dict "pin" true "key" $u)) }}{{ else }}{{ $rest = $rest | append . }}{{ end -}}
+{{- end -}}
+{{- /* Pins keep the order the agent listed them in. */ -}}
+{{- $top := slice }}{{ range $cfg.pins }}{{ range where $pinned "key" . }}{{ $top = $top | append . }}{{ end }}{{ end -}}
+{{- $rows = $top | append $rest -}}
 {{- define "_partials/stream-rows.html" -}}
 <ol class="feed stream">
-{{ range $i, $r := . }}<li class="post{{ if .spike }} spike{{ end }}{{ with .cls }} {{ . }}{{ end }}" style="--i:{{ $i }}"><a href="{{ .url }}"{{ if .ext }} rel="noopener"{{ end }}><span class="av">{{ partial "icon.html" .glyph }}</span><span class="b"><span class="m">{{ if .spike }}<em>Spike</em>{{ end }}<b>{{ .label }}</b>{{ with .source }}<span>{{ . }}</span>{{ end }}<time datetime="{{ .d.Format "2006-01-02" }}">{{ .d.Format .dfmt }}</time></span><strong>{{ .title }}</strong>{{ with .summary }}<span class="s">{{ . }}</span>{{ end }}</span><span class="go" aria-hidden="true">{{ if .ext }}↗{{ else }}→{{ end }}</span></a></li>
+{{ range $i, $r := . }}<li class="post{{ if .spike }} spike{{ end }}{{ if .pin }} pin{{ end }}{{ with .cls }} {{ . }}{{ end }}"><a href="{{ .url }}"{{ if .ext }} rel="noopener"{{ end }}><span class="av">{{ partial "icon.html" .glyph }}</span><span class="b"><span class="m">{{ if .pin }}<em>Pinned</em>{{ end }}{{ if .spike }}<em>Spike</em>{{ end }}<b>{{ .label }}</b>{{ with .source }}<span>{{ . }}</span>{{ end }}<time datetime="{{ .d.Format "2006-01-02" }}">{{ .d.Format .dfmt }}</time></span><strong>{{ .title }}</strong>{{ with .summary }}<span class="s">{{ . }}</span>{{ end }}</span><span class="go" aria-hidden="true">{{ if .ext }}↗{{ else }}→{{ end }}</span></a></li>
 {{ end }}</ol>
 {{- end -}}
-{{ partial "stream-rows.html" (first . $rows) }}
-{{ with after . $rows }}<details class="showmore"><summary><span class="o">Show more</span><span class="c">Show less</span></summary>
-{{ partial "stream-rows.html" . }}
+{{- /* Show more opens one batch at a time (each batch holds the next one), and the stream stops after a few batches:
+       older rows live on the section pages, which paginate. So the page stays the same size however much is published. */ -}}
+{{- define "_partials/stream-more.html" -}}
+{{ with .rows }}<details class="showmore"><summary>Show more</summary>
+{{ partial "stream-rows.html" (first $.step .) }}
+{{ with after $.step . }}{{ partial "stream-more.html" (dict "rows" . "step" $.step "older" $.older) }}{{ else }}{{ if $.older }}<p class="label older"><span>Older</span><span class="to">{{ range site.Sections }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}</span></p>{{ end }}{{ end }}
 </details>{{ end }}
+{{- end -}}
+{{- $max := add $cfg.shown (mul $cfg.step 4) -}}
+{{ partial "stream-rows.html" (first $cfg.shown $rows) }}
+{{ partial "stream-more.html" (dict "rows" (first (sub $max $cfg.shown) (after $cfg.shown $rows)) "step" $cfg.step "older" (gt (len $rows) $max)) }}

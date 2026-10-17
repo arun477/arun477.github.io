@@ -1,8 +1,18 @@
 {{ define "main" }}
 <h1 class="sr-only">{{ site.Title }}{{ with .Params.role }} · {{ . }}{{ end }}</h1>
-{{- /* One stream: posts, Feed items and themes together, newest first (latest.html). Each section keeps its own page for the full view. */ -}}
+{{- /* One stream: posts, Feed items and themes together, newest first (latest.html). Agents keep most of it current, so the page
+       opens on when each part last changed: one cell per section, plus the home page itself (tidied by its agent, docs/home-agent.md). */ -}}
 <section class="index">
-<h2 class="label"><span>Latest</span><span class="to">{{ range site.Sections }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}</span></h2>
-{{ partial "latest.html" 15 }}
+<h2 class="label"><span class="rec">Live</span><span>Newest first</span></h2>
+<ul class="pulse" style="--n:{{ add (len site.Sections) (cond .Lastmod.IsZero 0 1) }}">
+{{- range site.Sections }}
+<li><a href="{{ .RelPermalink }}"><b>{{ .Title }}</b><time datetime="{{ .Lastmod.UTC.Format "2006-01-02T15:04Z" }}">{{ partial "home/stamp.html" .Lastmod }}</time></a></li>
+{{- end }}
+{{- if not .Lastmod.IsZero }}
+<li><span><b>Home</b><time datetime="{{ .Lastmod.UTC.Format "2006-01-02T15:04Z" }}">{{ partial "home/stamp.html" .Lastmod }}</time></span></li>
+{{- end }}
+</ul>
+{{ with (partial "home/params.html" .).note }}<p class="brief note">{{ . }}</p>{{ end }}
+{{ partial "latest.html" . }}
 </section>
 {{ end }}
