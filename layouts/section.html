@@ -1,4 +1,5 @@
 {{ define "main" }}
 <div class="sechead"><h1>{{ .Title }}</h1></div>
+{{ with .Description }}<p class="brief">{{ . }}</p>{{ end }}
 {{ partial "list.html" .Pages }}
 {{ end }}
