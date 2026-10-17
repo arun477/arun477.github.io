@@ -11,4 +11,4 @@ author: {{ site.Title }}
 {{ . }}
 {{ end }}
 {{ range partial "news/items.html" . }}
-- {{ if .spike }}**Spike.** {{ end }}[{{ .title }}]({{ .url }}) ({{ .source }}{{ with .topic }}, {{ . }}{{ end }}{{ with .time }}, {{ . }} UTC{{ end }}): {{ .summary }}{{ end }}
+- {{ if .spike }}**Spike.** {{ end }}[{{ .title }}]({{ .url }}) ({{ .source }}, {{ .kind }}{{ with .topic }}, {{ . }}{{ end }}{{ with .time }}, {{ . }} UTC{{ end }}): {{ .summary }}{{ end }}

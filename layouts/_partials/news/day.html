@@ -1,10 +1,12 @@
-{{- /* One day as a block in a list of days. Takes dict "page" and "skip" (urls already shown above). */ -}}
+{{- /* One day in the feed: a date rule, the day's headline and brief, then its posts. Takes dict "page" and "skip" (urls already shown above). */ -}}
 {{- $items := slice }}{{ range partial "news/items.html" .page }}{{ if not (in $.skip .url) }}{{ $items = $items | append . }}{{ end }}{{ end -}}
 {{- with .page }}
 <section class="day">
 <h2 class="label"><a href="{{ .RelPermalink }}"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Mon 2 January 2006" }}</time></a><span>{{ if .Params.example }}Example · {{ end }}{{ printf "%02d" (len .Params.items) }}</span></h2>
+<div class="intro">
 <h3 class="headline"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
 {{ with .Description }}<p class="brief">{{ . }}</p>{{ end }}
+</div>
 {{ with $items }}{{ partial "news/list.html" (dict "items" .) }}{{ end }}
 </section>
 {{- end }}

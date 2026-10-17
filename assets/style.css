@@ -282,8 +282,8 @@ main a:hover { text-decoration-color: currentColor; }
 
 /* One hover for every row-like link: an ink rule draws along the row's bottom edge, contents slide inward.
    No fill or colour inversion, so the row looks the same in the page-transition snapshot taken on click. */
-:is(.list a, .news a, .links a, .latest) { position: relative; -webkit-tap-highlight-color: transparent; }
-:is(.list a, .news a, .links a, .latest)::after {
+:is(.list a, .feed a, .links a, .latest) { position: relative; -webkit-tap-highlight-color: transparent; }
+:is(.list a, .feed a, .links a, .latest)::after {
   content: "";
   position: absolute;
   inset: auto 0 -1px;
@@ -293,45 +293,66 @@ main a:hover { text-decoration-color: currentColor; }
   transform-origin: left;
   transition: transform .45s var(--ease);
 }
-:is(.list a, .news a, .links a, .latest) > * { transition: transform .45s var(--ease), color .3s; }
-:is(.list a, .news a, .links a, .latest):focus-visible { outline: none; }
-:is(.list a, .news a, .links a, .latest):focus-visible::after { transform: scaleX(1); }
-:is(.list a, .news a, .links a, .latest):focus-visible > * { color: var(--text); transform: translateX(.5rem); }
-.list a:focus-visible > time, .news a:focus-visible > .go, .links a:focus-visible > span { transform: translateX(-.5rem); }
+:is(.list a, .feed a, .links a, .latest) > * { transition: transform .45s var(--ease), color .3s; }
+:is(.list a, .feed a, .links a, .latest):focus-visible { outline: none; }
+:is(.list a, .feed a, .links a, .latest):focus-visible::after { transform: scaleX(1); }
+:is(.list a, .feed a, .links a, .latest):focus-visible > * { color: var(--text); transform: translateX(.5rem); }
+.list a:focus-visible > time, .feed a:focus-visible > .go, .links a:focus-visible > span { transform: translateX(-.5rem); }
 @media (hover: hover) and (pointer: fine) {
-  :is(.list a, .news a, .links a, .latest):hover::after { transform: scaleX(1); }
-  :is(.list a, .news a, .links a, .latest):hover > * { color: var(--text); transform: translateX(.5rem); }
-  .list a:hover > time, .news a:hover > .go, .links a:hover > span { transform: translateX(-.5rem); }
+  :is(.list a, .feed a, .links a, .latest):hover::after { transform: scaleX(1); }
+  :is(.list a, .feed a, .links a, .latest):hover > * { color: var(--text); transform: translateX(.5rem); }
+  .list a:hover > time, .feed a:hover > .go, .links a:hover > span { transform: translateX(-.5rem); }
 }
 /* Touch: no sticky hover; a tap just shows the rule. */
 @media (hover: none) {
-  :is(.list a, .news a, .links a, .latest):active::after { transform: scaleX(1); transition: none; }
+  :is(.list a, .feed a, .links a, .latest):active::after { transform: scaleX(1); transition: none; }
 }
 .list .n, .list time { font: .75rem/1 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
 .list .t { min-width: 0; font: 1.2rem/1.35 var(--serif); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-/* News: days of agent-published items. Each row links out to its source; spikes lead, marked by the accent square. */
+/* Feed: one stream of agent-picked posts (news, blogs, papers, releases), grouped by day under a hairline date rule.
+   Each post links out; spikes lead, marked by the accent square. */
 .label .rec { display: inline-flex; align-items: center; gap: .6rem; color: var(--text); }
 .label .rec::before { content: ""; width: .45rem; height: .45rem; background: var(--accent); animation: blink 2s steps(1) infinite; }
 .brief { margin: 0 0 1.25rem; font: 1.1rem/1.55 var(--serif); color: var(--muted); }
 .brief.lead { margin-bottom: 1rem; font-size: 1.25rem; }
-.spikes, .day { margin-bottom: 4rem; }
+.spikes, .day { margin-bottom: 3.5rem; }
 .day .label { margin-bottom: 1rem; }
+.intro .brief { margin-bottom: 1.5rem; }
 .headline { margin: 0 0 .6rem; font-size: 1.6rem; }
 .headline a { text-decoration: none; }
 .headline a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .18em; }
-.news { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--text); }
-.news li { border-bottom: 1px solid var(--line); animation: rise .5s var(--ease) both; animation-delay: calc(var(--i, 0) * 45ms + 100ms); }
-.news a { display: grid; grid-template-columns: 2rem 1fr auto; align-items: baseline; column-gap: 2.5rem; padding: 1rem 0; color: var(--text); text-decoration: none; }
-.news .n { font: .75rem/1 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
-.news .n i { display: inline-block; width: .45rem; height: .45rem; background: var(--accent); }
-.news .b { display: flex; flex-direction: column; gap: .3rem; min-width: 0; overflow-wrap: break-word; }
-.news strong { font: 500 1.2rem/1.35 var(--serif); }
-.news .s { font: 1rem/1.5 var(--serif); color: var(--muted); }
-.news .m { display: flex; flex-wrap: wrap; gap: .25rem 1rem; margin-top: .3rem; font: 500 .68rem/1.4 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-.news .m em { font-style: normal; color: var(--text); }
-.news .m time { font: .72rem/1.4 var(--mono); letter-spacing: 0; text-transform: none; }
-.news .go { font: .9rem/1 var(--mono); color: var(--muted); }
+.feed { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--text); }
+.feed li { border-bottom: 1px solid var(--line); animation: rise .5s var(--ease) both; animation-delay: calc(var(--i, 0) * 45ms + 100ms); }
+.feed a { display: grid; grid-template-columns: 2.25rem 1fr auto; align-items: start; column-gap: 1.25rem; padding: 1.15rem 0; color: var(--text); text-decoration: none; }
+/* The avatar: the source's initial in a hairline square; a spike fills it with the accent. */
+.feed .av { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; box-sizing: border-box; border: 1px solid var(--line); font: 500 1.05rem/1 var(--serif); color: var(--text); }
+.feed .spike .av { border-color: var(--accent); background: var(--accent); color: var(--bg); }
+.feed .b { display: flex; flex-direction: column; gap: .35rem; min-width: 0; overflow-wrap: break-word; }
+.feed .m { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .9rem; font: 500 .68rem/1.5 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.feed .m b { font-weight: 600; color: var(--text); }
+.feed .m em { font-style: normal; color: var(--text); }
+.feed .m time { font: .72rem/1.5 var(--mono); letter-spacing: 0; text-transform: none; }
+.feed strong { font: 500 1.2rem/1.35 var(--serif); }
+.feed .s { font: 1rem/1.5 var(--serif); color: var(--muted); }
+.feed .go { font: .9rem/1.6 var(--mono); color: var(--muted); }
+
+/* Kind filter: radio buttons styled as header-like labels; no JavaScript. */
+.kinds { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin: 0 0 2.5rem; font: 500 .75rem/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; }
+.kinds input { position: absolute; opacity: 0; pointer-events: none; }
+.kinds label { position: relative; padding-bottom: .45rem; color: var(--muted); cursor: pointer; transition: color .2s; }
+.kinds label::after { content: ""; position: absolute; inset: auto 0 0; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease); }
+.kinds label:hover, .kinds input:checked + label { color: var(--text); }
+.kinds input:checked + label::after, .kinds input:focus-visible + label::after { transform: scaleX(1); }
+main:has(.kinds input:not(#k-all):checked) .intro { display: none; }
+main:has(#k-news:checked) .post:not([data-kind="news"]),
+main:has(#k-blog:checked) .post:not([data-kind="blog"]),
+main:has(#k-paper:checked) .post:not([data-kind="paper"]),
+main:has(#k-release:checked) .post:not([data-kind="release"]),
+main:has(#k-news:checked) :is(.day, .spikes):not(:has([data-kind="news"])),
+main:has(#k-blog:checked) :is(.day, .spikes):not(:has([data-kind="blog"])),
+main:has(#k-paper:checked) :is(.day, .spikes):not(:has([data-kind="paper"])),
+main:has(#k-release:checked) :is(.day, .spikes):not(:has([data-kind="release"])) { display: none; }
 .more, .pager { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font: 500 .75rem/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .more { margin: 1rem 0 0; }
 .pager { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--text); }
@@ -409,8 +430,10 @@ mtable mtd:nth-child(even) { text-align: left; padding-left: 0; }
   .list a:focus-visible > time { transform: translateX(.5rem); }
   @media (hover: hover) and (pointer: fine) { .list a:hover > time { transform: translateX(.5rem); } }
   .list time { grid-column: 2; }
-  .news a { grid-template-columns: 1.5rem 1fr; column-gap: .75rem; }
-  .news .go { display: none; }
+  .feed a { grid-template-columns: 2rem 1fr; column-gap: .9rem; }
+  .feed .av { width: 2rem; height: 2rem; font-size: .95rem; }
+  .feed .go { display: none; }
+  .kinds { gap: .5rem 1.1rem; }
   .headline { font-size: 1.35rem; }
   .brief.lead { font-size: 1.125rem; }
 }

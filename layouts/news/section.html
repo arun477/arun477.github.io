@@ -4,13 +4,17 @@
 {{ with .Description }}<p class="brief lead">{{ . }}</p>{{ end }}
 <p class="meta">{{ with index $days 0 }}<time datetime="{{ .Lastmod.Format "2006-01-02T15:04Z07:00" }}">Updated {{ .Lastmod.UTC.Format "2 Jan 15:04" }} UTC</time>{{ end }}<a class="chip" href="index.xml">RSS</a><a class="chip" href="index.json">JSON</a></p>
 {{ $pager := .Paginate $days 7 }}
-{{ $skip := slice }}
-{{ if eq $pager.PageNumber 1 }}{{ with partial "news/recent-spikes.html" .Pages }}
+{{ $spikes := cond (eq $pager.PageNumber 1) (partial "news/recent-spikes.html" .Pages) slice }}
+{{ $skip := slice }}{{ range $spikes }}{{ $skip = $skip | append .url }}{{ end }}
+{{ $present := slice }}{{ range $pager.Pages }}{{ range partial "news/items.html" . }}{{ $present = $present | append .kind }}{{ end }}{{ end }}
+{{ $order := slice }}{{ range slice "news" "blog" "paper" "release" }}{{ if in $present . }}{{ $order = $order | append . }}{{ end }}{{ end }}
+{{ partial "news/filter.html" $order }}
+{{ with $spikes }}
 <section class="spikes">
 <h2 class="label"><span class="rec">Spikes</span><span>{{ printf "%02d" (len .) }}</span></h2>
 {{ partial "news/list.html" (dict "items" . "dated" true) }}
 </section>
-{{ range . }}{{ $skip = $skip | append .url }}{{ end }}{{ end }}{{ end }}
+{{ end }}
 {{ range $pager.Pages }}{{ partial "news/day.html" (dict "page" . "skip" $skip) }}{{ else }}<p class="brief">Nothing yet.</p>{{ end }}
 {{ if gt $pager.TotalPages 1 }}<nav class="pager" aria-label="Pages">{{ with $pager.Prev }}<a href="{{ .URL }}">← Newer</a>{{ else }}<span></span>{{ end }}<span>{{ $pager.PageNumber }} / {{ $pager.TotalPages }}</span>{{ with $pager.Next }}<a href="{{ .URL }}">Older →</a>{{ else }}<span></span>{{ end }}</nav>{{ end }}
 {{ end }}

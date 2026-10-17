@@ -6,4 +6,5 @@ items:
   - title: ""
     url: ""
     summary: ""
+    kind: "news"
 ---

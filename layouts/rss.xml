@@ -1,5 +1,5 @@
 {{- $pages := .RegularPagesRecursive.ByDate.Reverse -}}
-{{- /* Daily news has its own feed at /news/index.xml; the main feed stays posts. */ -}}
+{{- /* The feed (content/news) has its own RSS at /feed/index.xml; the main feed stays posts. */ -}}
 {{- if .IsHome }}{{ $pages = where $pages "Section" "ne" "news" }}{{ end -}}
 {{- with site.Config.Services.RSS.Limit }}{{ if ge . 1 }}{{ $pages = first . $pages }}{{ end }}{{ end -}}
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}

@@ -1,5 +1,6 @@
-{{- /* Rows of news items. Takes dict "items" and optional "dated" (spikes show their day, for lists that mix days). */ -}}
-{{- $n := 0 }}
-<ol class="news">
-{{ range $i, $it := .items }}{{ if not .spike }}{{ $n = add $n 1 }}{{ end }}<li{{ if .spike }} class="spike"{{ end }} style="--i:{{ $i }}"><a href="{{ .url }}" rel="noopener"><span class="n">{{ if .spike }}<i aria-label="Spike"></i>{{ else }}{{ printf "%02d" $n }}{{ end }}</span><span class="b"><strong>{{ .title }}</strong><span class="s">{{ .summary }}</span><span class="m">{{ if .spike }}<em>Spike</em>{{ end }}<span>{{ .source }}</span>{{ with .topic }}<span>{{ . }}</span>{{ end }}{{ if and $.dated .spike }}<time datetime="{{ .day.Date.Format "2006-01-02" }}">{{ .day.Date.Format "Mon 2 Jan" }}{{ with .time }} {{ . }} UTC{{ end }}</time>{{ else }}{{ with .time }}<time>{{ . }} UTC</time>{{ end }}{{ end }}</span></span><span class="go" aria-hidden="true">↗</span></a></li>
+{{- /* Feed posts. Takes dict "items" and optional "dated" (spikes show their day, for lists that mix days).
+       data-kind drives the CSS-only kind filter on the feed page. */ -}}
+{{- $kinds := partial "news/kinds.html" . }}
+<ol class="feed">
+{{ range $i, $it := .items }}<li class="post{{ if .spike }} spike{{ end }}" data-kind="{{ .kind }}" style="--i:{{ $i }}"><a href="{{ .url }}" rel="noopener"><span class="av" aria-hidden="true">{{ substr .source 0 1 | upper }}</span><span class="b"><span class="m">{{ if .spike }}<em>Spike</em>{{ end }}<b>{{ .source }}</b><span>{{ (index $kinds .kind).one }}</span>{{ with .topic }}<span>{{ . }}</span>{{ end }}{{ if and $.dated .spike }}<time datetime="{{ .day.Date.Format "2006-01-02" }}">{{ .day.Date.Format "Mon 2 Jan" }}{{ with .time }} {{ . }} UTC{{ end }}</time>{{ else }}{{ with .time }}<time>{{ . }} UTC</time>{{ end }}{{ end }}</span><strong>{{ .title }}</strong><span class="s">{{ .summary }}</span></span><span class="go" aria-hidden="true">↗</span></a></li>
 {{ end }}</ol>
