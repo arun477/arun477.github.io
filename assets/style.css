@@ -200,7 +200,7 @@ main a:hover { text-decoration-color: currentColor; }
 @keyframes blink { 50% { opacity: .15; } }
 .hero h1 { font-size: clamp(3rem, 11vw, 5.25rem); line-height: .95; letter-spacing: -.035em; margin: 0; }
 
-/* Hero banner: the hive is the background; the name floats over it on frosted glass. */
+/* Hero banner: the hive is the background of the name, links and Latest; no panel or blur, the scene is faded instead. */
 .banner { position: relative; margin: -1rem 0 2.75rem; }
 .hive {
   display: block;
@@ -212,24 +212,11 @@ main a:hover { text-decoration-color: currentColor; }
   mask-image: linear-gradient(to bottom, transparent 0, #000 7%, #000 88%, transparent 100%), linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
   mask-composite: intersect;
 }
-/* The scene is the hero's background, anchored right (see preserveAspectRatio in home.html); the name and links hold the left. */
-.banner { height: 15rem; }
-.banner .hive { position: absolute; inset: auto 0 0; width: 100%; height: 86%; aspect-ratio: auto; }
-.glass {
-  z-index: 1;
-  position: absolute;
-  top: 2%;
-  left: 0;
-  padding: 1.3rem 2rem 1rem 0;
-  margin-top: -.4rem;
-  background: color-mix(in srgb, var(--bg) 30%, transparent);
-  -webkit-backdrop-filter: blur(9px) saturate(150%);
-  backdrop-filter: blur(9px) saturate(150%);
-  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 3.5rem), transparent), linear-gradient(to bottom, transparent 0, #000 1.4rem, #000 calc(100% - 2rem), transparent);
-  -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(to right, #000 calc(100% - 3.5rem), transparent), linear-gradient(to bottom, transparent 0, #000 1.4rem, #000 calc(100% - 2rem), transparent);
-  mask-composite: intersect;
-}
+/* The hero is one layer: the scene starts under the links and runs behind the Latest list, faded so rows stay readable. */
+.banner .hive { position: absolute; z-index: 0; inset: var(--hive-top, 9rem) 0 auto; width: 100%; height: auto; aspect-ratio: 1140 / 540; opacity: .4; pointer-events: none; }
+.banner > :not(.hive) { position: relative; z-index: 1; }
+.latest-block { margin: 2.5rem 0 0; }
+.glass { padding-top: .9rem; }
 .glass .kicker { margin-bottom: .55rem; }
 /* Social links: one compact row of UI labels under the name. */
 .social { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; list-style: none; margin: 1rem 0 0; padding: 0; font: 500 .72rem/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; }
@@ -239,9 +226,8 @@ main a:hover { text-decoration-color: currentColor; }
 .glass h1 { font-size: clamp(2.4rem, 5.6vw, 3.5rem); }
 @media (max-width: 34rem) {
   .banner { margin-top: 0; }
-  .glass { top: 0; padding: 0 1rem 1rem 0; background: none; -webkit-backdrop-filter: none; backdrop-filter: none; -webkit-mask-image: none; mask-image: none; }
-  .banner { height: 14rem; }
-  .banner .hive { inset: auto 0 0 auto; width: 72%; height: auto; aspect-ratio: 1140 / 540; opacity: .6; }
+  .latest-block { margin-top: 1.75rem; }
+  .banner { --hive-top: 8.5rem; }
   .glass h1 { font-size: 2.3rem; }
 }
 
