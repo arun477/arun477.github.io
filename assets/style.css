@@ -291,6 +291,7 @@ main a:hover { text-decoration-color: currentColor; }
 .list .n { align-self: center; color: var(--muted); }
 .list .n, .list time { font: .75rem/1 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
 .list .t { min-width: 0; font: 1.2rem/1.35 var(--serif); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.list .s { grid-column: 2 / -1; font: 1rem/1.5 var(--serif); color: var(--muted); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
 
 /* Feed: one stream of agent-picked posts (news, blogs, papers, releases), grouped by day under a hairline date rule.
    Each post links out; spikes lead, marked by the accent square. */
