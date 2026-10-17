@@ -1,4 +1,6 @@
 {{ define "main" }}
-<div class="sechead"><h1>{{ .Title }}</h1></div>
-{{ partial "list.html" .Pages }}
+{{- /* A plain section (Posts; the Feed and Themes have their own under layouts/news and layouts/themes): one slim head line, then the rows. */ -}}
+{{ $pages := .Pages.ByDate.Reverse }}
+<div class="sechead"><h1>{{ .Title }}</h1><p class="meta">{{ with index $pages 0 }}<time datetime="{{ .Date.Format "2006-01-02" }}">Updated {{ .Date.Format "2 Jan 2006" }}</time>{{ end }}{{ with .OutputFormats.Get "rss" }}<a class="chip" href="{{ .RelPermalink }}">RSS</a>{{ end }}<a class="chip" href="/tags/">Tags</a></p></div>
+{{ partial "list.html" $pages }}
 {{ end }}

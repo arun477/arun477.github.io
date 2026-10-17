@@ -1,0 +1,205 @@
+/* posts.css: post lists (Posts, tag pages), the post page (layouts/page.html), the tags index, 404. Edited by the posts agent only.
+   Everything is scoped to its page so nothing leaks into the Feed, Themes, home or About. Spacing uses only --s1..--s9. */
+
+img { max-width: 100%; height: auto; }
+
+/* ---------------------------------------------------------------- Lists: Posts and tag pages (rows from base.css). */
+.posts .s { max-width: 62ch; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }
+
+/* Tags index: every tag as a chip. */
+.tag-cloud { display: flex; flex-wrap: wrap; gap: var(--s2); margin: 0; padding: var(--s5) 0 0; list-style: none; border-top: 1px solid var(--ink); }
+/* The trailing .18em of tracking is taken off the right padding so the label sits centred; tag-cloud chips end on the
+   untracked count, so they keep even padding. */
+:is(.tag-cloud, .pf-tags) .chip { min-height: var(--tap); padding: 0 calc(var(--s4) - .18em) 0 var(--s4); }
+.tag-cloud .chip { padding-right: var(--s4); }
+
+/* ---------------------------------------------------------------- Post page.
+   Wide screens: two columns on the column edges, the reading measure on the left and a narrow side column on the right
+   (the hanging scroll beside the title block, then the contents beside the body). Narrower: one column. */
+.post-page { --side: 11rem; }
+.ph { display: grid; grid-template-columns: minmax(0, 1fr) var(--side); align-items: center; gap: var(--s6); margin: 0 0 var(--s6); padding: 0 0 var(--s6); border-bottom: 1px solid var(--ink); }
+.post-page:not(.is-post) .ph { grid-template-columns: minmax(0, var(--measure)); }
+.ph-t { display: flex; flex-direction: column; align-items: flex-start; gap: var(--s4); min-width: 0; }
+.ph-m { align-self: stretch; display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s4); margin: 0; font: 500 var(--t-ui)/1.4 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; color: var(--muted); }
+.ph-m time { font-family: var(--mono); letter-spacing: .06em; }
+.kind { display: inline-flex; align-items: center; gap: var(--s3); color: var(--red); }
+.kind b { font-weight: 500; }
+.ph .av { width: var(--s6); height: var(--s6); }
+.ph .av .ic { width: var(--s4); height: var(--s4); }
+.ph-seal { display: none; }
+.ph h1 { margin: 0; font: 700 var(--t-2xl)/1.15 var(--mincho); letter-spacing: 0; overflow-wrap: break-word; }
+.ph h1 .sub { display: block; margin-top: var(--s3); font: 500 var(--t-lg)/1.45 var(--mincho); letter-spacing: .01em; }
+.ph-brush { margin-top: calc(-1 * var(--s2)); } /* 8px under the title, as on every head */
+.ph-d { max-width: 36rem; margin: 0; font: 400 var(--t-body)/1.8 var(--mincho); color: var(--muted); }
+
+/* The hanging scroll: dark rods top and bottom on the column edge, a paper panel between them with the post's own leaf
+   sprig (page.html), its first tag set upright in the top-left corner and the seal in the bottom-right one. */
+.scroll { display: flex; flex-direction: column; }
+.scroll::before, .scroll::after { content: ""; height: var(--s2); background: var(--ink); }
+.scroll-p { position: relative; display: grid; place-items: center; height: 11rem; margin: 0 var(--s2); background: var(--paper); border-inline: 1px solid var(--rule); overflow: hidden; }
+.sprig { width: 6.5rem; height: auto; overflow: visible; }
+.sprig-stem { fill: none; stroke: var(--muted); stroke-width: 1.1; stroke-linecap: round; }
+.scroll-t { position: absolute; left: var(--s3); top: var(--s3); max-width: calc(100% - 2 * var(--s3)); overflow: hidden; text-overflow: ellipsis; font: 500 var(--t-ui-sm)/1 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+/* Short tags stack letter by letter, upright, like a title slip on a scroll; long ones stay on one line across the top. */
+.scroll-t.tate { max-width: none; max-height: calc(100% - 2 * var(--s3)); text-orientation: upright; letter-spacing: .1em; line-height: 1.2; }
+.scroll-seal { position: absolute; right: var(--s3); bottom: var(--s3); }
+
+/* Contents (wide screens only): a quiet list beside the body that stays in view. */
+.toc { display: none; }
+.toc-l { margin: 0 0 var(--s3); font: 500 var(--t-ui-sm)/1.4 var(--gothic); letter-spacing: var(--track-wide); text-transform: uppercase; color: var(--muted); }
+.toc ol { margin: 0; padding: 0; list-style: none; }
+.toc a { display: block; padding: var(--s1) 0 var(--s1) var(--s3); border-left: 1px solid var(--rule); font: 500 var(--t-sm)/1.5 var(--mincho); color: var(--muted); text-decoration: none; transition: color .2s, border-color .2s; }
+.toc a:hover { color: var(--ink); border-color: var(--red); }
+
+/* Narrower screens: the same contents folded into one ruled row above the body. */
+.toc-m { margin: 0 0 var(--s6); border-bottom: 1px solid var(--rule); }
+.toc-m summary { display: flex; align-items: center; justify-content: space-between; min-height: var(--tap); font: 500 var(--t-ui)/1 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; color: var(--muted); cursor: pointer; list-style: none; }
+.toc-m summary::-webkit-details-marker { display: none; }
+.toc-m summary::after { content: "Show"; margin-right: calc(-1 * var(--track-ui)); color: var(--ink); } /* a word, not a +/- mark: glyphs never name actions */
+.toc-m[open] summary::after { content: "Hide"; }
+.toc-m ol { margin: 0 0 var(--s3); padding: 0; list-style: none; }
+.toc-m a { display: flex; align-items: center; min-height: var(--tap); padding-left: var(--s3); border-left: 1px solid var(--rule); font: 500 var(--t-body)/1.4 var(--mincho); color: var(--ink); text-decoration: none; }
+
+@media (min-width: 60rem) {
+  .post-page.is-post { display: grid; grid-template-columns: minmax(0, var(--measure)) var(--side); justify-content: space-between; align-items: start; }
+  .post-page.is-post > .ph { grid-column: 1 / -1; grid-template-columns: minmax(0, var(--measure)) var(--side); justify-content: space-between; }
+  .post-page.is-post > :is(.prose, .pf) { grid-column: 1; }
+  .toc-m { display: none; }
+  .toc { display: block; grid-column: 2; grid-row: 2 / span 2; position: sticky; top: calc(var(--bar) + var(--s6)); max-height: calc(100vh - var(--bar) - var(--s8)); overflow-y: auto; }
+}
+
+/* Between the phone and the two-column layout the head and its rule span the column, so the body does too: text keeps its
+   measure, while figures, code, tables, list and quote rules, the tags and the end mark run to the column edge. */
+@media (min-width: 40.01rem) and (max-width: 59.99rem) {
+  .is-post :is(.prose, .pf) { max-width: none; }
+  .is-post .prose > :is(p, h2, h3, h4) { max-width: var(--measure); }
+}
+
+/* Short landscape screens (phones turned sideways): the scroll folds away so the body starts on the first screen. */
+@media (max-height: 30rem) and (min-width: 40.01rem) {
+  .post-page.is-post > .ph { grid-template-columns: minmax(0, var(--measure)); }
+  .ph .scroll { display: none; }
+}
+
+/* ---------------------------------------------------------------- The body at the reading measure. */
+.prose { max-width: var(--measure); font: 400 var(--t-read)/1.9 var(--mincho); overflow-wrap: break-word; }
+.prose > :first-child { margin-top: 0; }
+.prose > :last-child { margin-bottom: 0; }
+.prose p { margin: 0 0 var(--s5); }
+.prose strong { font-weight: 700; }
+.prose em { font-style: normal; font-weight: 600; } /* Mincho has no italic: emphasis by weight, never a fake slant */
+.prose :is(h2, h3) { scroll-margin-top: calc(var(--bar) + var(--s5)); }
+
+/* h2: a plain Mincho heading under a short ink hairline; h3 and h4 plain. */
+.prose h2 { margin: var(--s7) 0 var(--s4); padding-top: var(--s4); font: 600 var(--t-xl)/1.3 var(--mincho); background: linear-gradient(var(--ink), var(--ink)) 0 0 / var(--s6) 1px no-repeat; }
+.prose h3 { margin: var(--s6) 0 var(--s3); font: 600 var(--t-lg)/1.4 var(--mincho); }
+.prose h4 { margin: var(--s5) 0 var(--s2); font: 600 var(--t-read)/1.5 var(--mincho); }
+.prose h2 + h3 { margin-top: var(--s4); }
+.post-page {
+  --enso-brush: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cpath d='M262 64C338 96 372 190 336 266C300 342 196 368 124 330C52 292 34 196 76 128C104 82 150 58 196 56' fill='none' stroke='%23000' stroke-width='24' stroke-linecap='round'/%3E%3Cpath d='M282 84C340 120 356 196 322 254' fill='none' stroke='%23000' stroke-width='6' stroke-linecap='round' opacity='.5'/%3E%3C/svg%3E"); }
+
+/* Lists: hairline rows with a red diamond; numbered lists count in mono. Nested lists lose the rules. */
+.prose :is(ul, ol) { margin: 0 0 var(--s5); padding: 0; list-style: none; }
+.prose > :is(ul, ol) { border-top: 1px solid var(--rule); }
+.prose li { position: relative; padding: var(--s2) 0 var(--s2) var(--s5); }
+.prose > :is(ul, ol) > li { border-bottom: 1px solid var(--rule); }
+.prose ul > li::before { content: ""; position: absolute; left: var(--s1); top: calc(var(--s2) + .95em - .2rem); width: .4rem; height: .4rem; background: var(--red); transform: rotate(45deg); }
+.prose li li { padding-block: var(--s1); }
+.prose ul ul > li::before { top: calc(var(--s1) + .95em - .2rem); background: none; border: 1px solid var(--red); }
+.prose ol { counter-reset: n; }
+.prose ol > li { counter-increment: n; padding-left: var(--s6); }
+.prose ol > li::before { content: counter(n, decimal-leading-zero); position: absolute; left: 0; top: var(--s2); font: var(--t-sm)/calc(var(--t-read) * 1.9) var(--mono); color: var(--muted); }
+.prose li li::before { top: var(--s1); }
+.prose li > :is(ul, ol) { margin: var(--s1) 0 0; }
+.prose li > p { margin: 0; }
+.prose li > p + p { margin-top: var(--s2); }
+.prose li > pre { margin: var(--s3) 0; }
+
+/* Quotes: a small brush ensō beside the words, between an ink rule and a hairline. */
+.prose blockquote { position: relative; margin: var(--s6) 0; padding: var(--s5) 0 var(--s5) calc(var(--s7) + var(--s5)); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule); font: 500 var(--t-lg)/1.65 var(--mincho); }
+.prose blockquote::before { content: ""; position: absolute; left: 0; top: var(--s5); width: var(--s7); height: var(--s7); background: var(--ink); -webkit-mask: var(--enso-brush) center / contain no-repeat; mask: var(--enso-brush) center / contain no-repeat; }
+.prose blockquote > :last-child { margin-bottom: 0; }
+
+/* Code: inline on mist, blocks on slate (Hugo's inline highlight colours stay; its own background gives way). */
+.prose code { padding: .1em .35em; background: var(--mist); font: .84em var(--mono); }
+.prose pre { margin: var(--s6) 0; padding: var(--s5) 0 var(--s5) var(--s5); overflow-x: auto; background: var(--slate) !important; color: var(--on-slate); font: var(--t-sm)/1.8 var(--mono); tab-size: 4; -webkit-overflow-scrolling: touch; }
+/* The code fills the block and carries the right padding itself, so a scrolled block still ends --s5 short of its edge. */
+.prose pre code { display: inline-block; min-width: 100%; padding: 0 var(--s5) 0 0; vertical-align: top; background: none; font: inherit; }
+.prose .highlight { margin: var(--s6) 0; }
+.prose .highlight pre { margin: 0; }
+.prose li .highlight { margin: var(--s3) 0; }
+/* Comments in github-dark are too faint on slate: lift them. */
+.prose .highlight span[style*="#8b949e"] { color: #b4c0bf !important; }
+
+/* Tables: rules, not boxes; a header line in UI type over an ink rule. Wide tables scroll inside the measure. */
+.prose table { display: block; max-width: 100%; margin: var(--s6) 0; overflow-x: auto; border-collapse: collapse; font: 400 var(--t-body)/1.6 var(--mincho); }
+.prose th { padding: var(--s3) var(--s5) var(--s3) 0; border-bottom: 1px solid var(--ink); font: 500 var(--t-ui)/1.4 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; color: var(--muted); text-align: left; white-space: nowrap; }
+.prose td { padding: var(--s3) var(--s5) var(--s3) 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.prose :is(th, td):last-child { padding-right: 0; }
+
+/* Images span the measure exactly, set like plates in a print: a paper mat inside a hairline (render-image.html sets the
+   size and the matte behind tall images); captions in UI type below the plate. */
+.prose figure { margin: var(--s6) 0; }
+.prose figure img { display: block; box-sizing: border-box; width: 100%; height: auto; max-height: 40rem; padding: var(--s2); object-fit: contain; background-color: var(--mist); background-clip: content-box; border: 1px solid var(--rule); box-shadow: inset 0 0 0 var(--s2) var(--paper); }
+.prose figcaption { margin-top: var(--s3); font: 500 var(--t-ui)/1.5 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; color: var(--muted); }
+
+/* Audio, maths, rules, footnotes. */
+.prose audio { display: block; width: 100%; height: var(--s8); margin: var(--s5) 0; border: 1px solid var(--rule); background: var(--paper); }
+.prose audio::-webkit-media-controls-enclosure { border-radius: 0; background: var(--paper); }
+.prose audio::-webkit-media-controls-panel { background: var(--paper); }
+.prose p:has(> audio:only-child) { margin: 0; }
+.prose math { font-family: "STIX Two Math", "Cambria Math", "Latin Modern Math", "Noto Serif", serif; font-size: 1.15em; }
+.prose math[display="block"] { margin: var(--s5) 0; padding: var(--s2) 0; overflow-x: auto; overflow-y: hidden; }
+.prose mtable mtd:nth-child(odd) { text-align: right; padding-right: 0; }
+.prose mtable mtd:nth-child(even) { text-align: left; padding-left: 0; }
+.prose hr { margin: var(--s7) 0; border: 0; border-top: 1px solid var(--rule); }
+.prose sup a, .prose .footnote-ref { padding: 0 var(--s1); font: var(--t-ui)/1 var(--mono); text-decoration: none; color: var(--red); }
+.prose .footnotes { margin-top: var(--s7); padding-top: var(--s4); border-top: 1px solid var(--ink); font: 400 var(--t-sm)/1.7 var(--mincho); color: var(--muted); }
+.prose .footnotes hr { display: none; }
+.prose .footnotes li { padding-block: var(--s2); }
+.prose .footnotes ol > li::before { font-size: var(--t-ui); line-height: calc(var(--t-sm) * 1.7); }
+.prose .footnote-backref { text-decoration: none; }
+
+/* After the body: tags as chips, then the end mark (a red sun between two hairlines). */
+.pf { max-width: var(--measure); margin-top: var(--s7); }
+.pf-tags { display: flex; flex-wrap: wrap; gap: var(--s2); margin: 0 0 var(--s7); padding: 0; list-style: none; }
+.end { display: flex; align-items: center; gap: var(--s4); }
+.end::before, .end::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+.end svg { display: block; flex: none; fill: var(--red); }
+
+/* ---------------------------------------------------------------- 404: a small ensō beside a short note and the way back. */
+.nf { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: var(--s7); padding: 0 0 var(--s7); border-bottom: 1px solid var(--ink); }
+.nf-enso { width: 10rem; height: auto; }
+.nf-t { display: flex; flex-direction: column; align-items: flex-start; gap: var(--s4); }
+.nf-t > * { margin: 0; }
+.nf-t > .nf-k { margin-bottom: calc(-1 * var(--s1)); } /* kicker to title 12px, as on every head */
+.nf-t > .ph-brush { margin-top: calc(-1 * var(--s2)); } /* brush 8px under the title */
+.nf-k { color: var(--red); }
+.nf h1 { font-size: var(--t-2xl); }
+.nf-d { max-width: 30rem; font: 400 var(--t-read)/1.75 var(--mincho); color: var(--muted); }
+.nf-go { display: flex; flex-wrap: wrap; gap: var(--s3); }
+
+/* ---------------------------------------------------------------- Phones: the scroll folds away (the seal moves to the meta line). */
+@media (max-width: 40rem) {
+  .ph { display: block; margin-bottom: var(--s5); padding-bottom: var(--s5); }
+  .toc-m { margin-bottom: var(--s5); }
+  .scroll { display: none; }
+  .ph-m { flex-wrap: nowrap; gap: var(--s3); white-space: nowrap; }
+  .ph-seal { display: block; margin-left: auto; }
+  .ph h1 { font-size: var(--t-xl); }
+  .ph h1 .sub { margin-top: var(--s2); font-size: var(--t-read); }
+  .prose { font-size: 1.0625rem; }
+  .prose h2 { margin-top: var(--s6); font-size: var(--t-lg); }
+  .prose h3 { font-size: var(--t-read); }
+  .prose blockquote { padding-left: calc(var(--s6) + var(--s4)); font-size: var(--t-read); }
+  .prose blockquote::before { width: var(--s6); height: var(--s6); }
+  .prose pre { padding: var(--s4) 0 var(--s4) var(--s4); font-size: .8125rem; }
+  .prose pre code { padding-right: var(--s4); }
+  .prose ol > li::before { line-height: calc(1.0625rem * 1.9); }
+  .nf { grid-template-columns: 1fr; gap: var(--s5); }
+  .nf-enso { width: 7.5rem; }
+  .nf h1 { font-size: var(--t-xl); }
+}
+@media (max-width: 23rem) {
+  .ph-seal { display: none; }
+}

@@ -1,3 +1,6 @@
-<ol class="list">
-{{ range $i, $p := . }}<li style="--i:{{ $i }}"><a href="{{ .RelPermalink }}" title="{{ .Title }}"><span class="n">{{ partial "icon.html" "post" }}</span><span class="t">{{ .Title }}</span><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01" }}</time>{{ with or .Description (.Summary | plainify) }}<span class="s">{{ . }}</span>{{ end }}</a></li>
+{{- /* Post rows (Posts and tag pages), in the shared row grammar (base.css): vertical date ("17 Oct" this year,
+       "Mar 2025" before), glyph box, meta line, title,
+       then the description clamped to two lines. Takes a list of pages. */ -}}
+<ol class="feed posts">
+{{ range . }}<li class="post"><a href="{{ .RelPermalink }}"><time class="vd" datetime="{{ .Date.Format "2006-01-02" }}">{{ if eq (.Date.Format "2006") (now.Format "2006") }}{{ .Date.Format "2 Jan" }}{{ else }}{{ .Date.Format "Jan 2006" }}{{ end }}</time><span class="av">{{ partial "icon.html" "post" }}</span><span class="b"><span class="m"><b>Post</b><span>{{ .ReadingTime }} min read</span>{{ with first 2 (.GetTerms "tags") }}{{ range . }}<span>{{ .LinkTitle }}</span>{{ end }}{{ end }}</span><strong>{{ .Title }}</strong>{{ with or .Description (.Summary | plainify) }}<span class="s">{{ . }}</span>{{ end }}</span></a></li>
 {{ end }}</ol>

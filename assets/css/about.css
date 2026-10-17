@@ -1,0 +1,51 @@
+/* about.css: the About page (layouts/about.html, assets/hive.js). Edited by the about agent only. */
+
+/* Who: kicker, name with a brush underline, bio, links | the name seal, top right on the name's line. */
+.who { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: var(--s6); }
+.who-t { min-width: 0; }
+.who .kicker { justify-content: flex-start; margin: 0 0 var(--s3); }
+.who h1 { margin: 0; font-size: var(--t-3xl); line-height: 1.1; letter-spacing: .02em; }
+.who-brush { width: 190px; height: 14px; margin: var(--s2) 0 0; }
+.who .lead { max-width: var(--measure); margin: var(--s4) 0 0; }
+.who .lead p { margin: 0; }
+.who-seal { margin-top: var(--s6); }
+
+/* Social links: one row of UI labels, each a full tap target. */
+.social { display: flex; flex-wrap: wrap; gap: 0 var(--s5); list-style: none; margin: var(--s3) 0 0; padding: 0; font: 500 var(--t-ui)/1 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; }
+.social a { position: relative; display: inline-flex; align-items: center; min-height: var(--tap); color: var(--ink); text-decoration: none; }
+/* A short link ("X") still gets a 44px-wide hit area, centred on it, without changing the row's spacing. */
+.social a::after { content: ""; position: absolute; inset-block: 0; inset-inline: min(0px, calc(50% - var(--tap) / 2)); }
+.social a:hover { text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: .4em; }
+
+/* How the site runs: one hairline row per part. Mincho name | who runs it (UI label) and what it does. */
+.runs { margin: var(--s7) 0 0; }
+.runs dl { margin: 0; border-top: 1px solid var(--ink); }
+.runs dl > div { display: grid; grid-template-columns: 10rem minmax(0, 1fr); column-gap: var(--s5); align-items: baseline; padding: var(--s3) 0 var(--s4); border-bottom: 1px solid var(--rule); }
+.runs dt { font: 600 var(--t-lg)/1.4 var(--mincho); }
+.runs dt a { display: inline-flex; align-items: center; min-height: var(--tap); text-decoration-thickness: 1px; }
+.runs dd { display: flex; flex-direction: column; gap: var(--s1); margin: 0; }
+.runs dd b { font: 500 var(--t-ui)/1.5 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; color: var(--ink); }
+.runs dd span { font: 400 var(--t-body)/1.7 var(--mincho); color: var(--muted); }
+.oversight { width: fit-content; max-width: var(--measure); margin: var(--s5) 0 0; font: 400 var(--t-read)/1.7 var(--mincho); color: var(--ink); }
+
+/* The hive: a full-column banner between two hairlines, its stage running edge to edge of the column. */
+.hive {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1140 / 490;
+  margin: var(--s7) 0 0;
+  border-block: 1px solid var(--rule);
+}
+
+@media (max-width: 40rem) {
+  .who { gap: var(--s4); }
+  .who-seal { width: 34px; height: 34px; margin-top: var(--s5); }
+  .who h1 { font-size: var(--t-2xl); }
+  .who-brush { width: 150px; }
+  .who .lead { font-size: var(--t-read); }
+  .runs { margin-top: var(--s6); }
+  .runs dl > div { grid-template-columns: minmax(0, 1fr); row-gap: 0; padding-block: var(--s1) var(--s4); }
+  .oversight { font-size: var(--t-body); }
+  .hive { margin-top: var(--s6); }
+}

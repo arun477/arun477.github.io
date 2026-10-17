@@ -1,0 +1,4 @@
+{{- /* The site's leaf crest: an ochre ginkgo fan inside a fine ink circle (header logo). Takes an optional size in px (default 44). */ -}}
+{{- $sz := . | default 44 -}}
+<svg class="crest" viewBox="0 0 44 44" width="{{ $sz }}" height="{{ $sz }}" aria-hidden="true" focusable="false"><circle class="crest-ring" cx="22" cy="22" r="21.25"/><use href="#lf-ginkgo" fill="#b0842f" transform="translate(22 32.5) scale(.7)"/></svg>
+{{- /**/ -}}

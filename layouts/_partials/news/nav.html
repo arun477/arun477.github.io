@@ -1,0 +1,8 @@
+{{- /* The foot of a Feed or Themes page: an earlier link on the left, a later one on the right, a maple leaf (and the page count, if given) between.
+       Takes dict "label" (aria-label), optional "left" and "right" (each dict url, label, optional "pre": a prefix that phones hide visually),
+       "mid" (the page count under the leaf) and "class". */ -}}
+<nav class="fd-nav{{ with .class }} {{ . }}{{ end }}{{ if .mid }} has-mid{{ end }}" aria-label="{{ .label }}">
+<span class="l">{{ with .left }}<a class="btn ghost" href="{{ .url }}"><span>{{ with .pre }}<span class="fd-nav-k">{{ . }}</span>{{ end }}{{ .label }}</span></a>{{ end }}</span>
+<span class="c"><svg class="fd-leaf" viewBox="-20 -34 40 46" width="24" height="28" aria-hidden="true"><use href="#lf-momiji" fill="var(--leaf-rust)"/></svg>{{ with .mid }}<span>{{ . }}</span>{{ end }}</span>
+<span class="r">{{ with .right }}<a class="btn ghost" href="{{ .url }}"><span>{{ with .pre }}<span class="fd-nav-k">{{ . }}</span>{{ end }}{{ .label }}</span></a>{{ end }}</span>
+</nav>

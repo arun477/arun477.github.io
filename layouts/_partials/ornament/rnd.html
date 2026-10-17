@@ -1,0 +1,3 @@
+{{- /* Deterministic pseudo-random number in [0,1) for ornament layout (the mockup's rnd(i, k)). Takes slice i k. */ -}}
+{{- $v := mul (math.Sin (add (mul (index . 0) 12.9898) (mul (index . 1) 78.233))) 43758.5453 -}}
+{{- return sub $v (math.Floor $v) -}}

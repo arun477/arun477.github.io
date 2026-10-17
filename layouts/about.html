@@ -2,19 +2,23 @@
 {{- /* About: who this is, the links, how the site runs (front matter runs and oversight in content/about.md), and the hive. Role and links live in content/_index.md front matter. */ -}}
 {{ with site.Home }}
 <section class="who">
-<p class="kicker"><span class="rec">{{ .Params.role }}</span></p>
+<div class="who-t">
+<p class="label kicker"><span class="rec">{{ .Params.role }}</span></p>
 <h1>{{ site.Title }}</h1>
+{{ partial "ornament/brush.html" (dict "length" 190 "class" "who-brush") }}
 {{ with $.Content }}<div class="brief lead">{{ . }}</div>{{ end }}
-<ul class="social">{{ range .Params.links }}<li><a href="{{ .url }}">{{ .name }}<span aria-hidden="true">↗</span></a></li>{{ end }}</ul>
+<ul class="social">{{ range .Params.links }}<li><a href="{{ .url }}" rel="me noopener">{{ .name }}</a></li>{{ end }}</ul>
+</div>
+{{ partial "ornament/seal.html" (dict "size" 48 "class" "who-seal") }}
 </section>
 {{ with $.Params.runs }}
 <section class="runs">
 <h2 class="label"><span class="rec">Run by agents</span><span>With Arun's oversight</span></h2>
-<dl>{{ range . }}<div><dt>{{ with .url }}<a href="{{ . }}">{{ end }}{{ .part }}{{ if .url }}</a>{{ end }}</dt><dd><b>{{ .by }}</b>{{ .text }}</dd></div>{{ end }}</dl>
-{{ with $.Params.oversight }}<p class="brief">{{ replace . "Changelog" (printf "<a href=\"%s\">Changelog</a>" ("changelog/" | relURL)) | safeHTML }}</p>{{ end }}
+<dl>{{ range . }}<div><dt>{{ with .url }}<a href="{{ . }}">{{ end }}{{ .part }}{{ if .url }}</a>{{ end }}</dt><dd><b>{{ .by }}</b><span>{{ .text }}</span></dd></div>{{ end }}</dl>
+{{ with $.Params.oversight }}<p class="oversight corners">{{ replace . "Changelog" (printf "<a href=\"%s\">Changelog</a>" ("changelog/" | relURL)) | safeHTML }}</p>{{ end }}
 </section>
 {{ end }}
-<svg id="hive" class="hive" viewBox="40 -50 1140 540" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Five agent bees take a request, plan it together, build it, deliver it, then remember the day"></svg>
+<svg id="hive" class="hive" viewBox="40 0 1140 490" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Five agent bees take a request, plan it together, build it, deliver it, then remember the day"></svg>
 {{ with resources.Get "hive.js" | minify | fingerprint }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}
 {{ end }}
 {{ end }}

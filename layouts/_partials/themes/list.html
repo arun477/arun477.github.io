@@ -1,5 +1,6 @@
-{{- /* Themes as rows: status glyph, date span, title, summary (clamped). Each opens its theme page.
-       Takes dict "themes" (resolved, from themes/current.html) optional "compact" (titles only, for the home page) and "grouped" (under a status heading, so the row drops the status word). Reuses the Feed's row styles. */ -}}
+{{- /* Themes as rows: status glyph (brush sparkline; red when rising), date span and the kinds of evidence (desktop only), title, summary (clamped). Each opens its theme page.
+       Takes dict "themes" (resolved, from themes/current.html) optional "compact" (titles only, for the home page) and "grouped" (under a status heading, so the row drops the status word). Reuses the shared row grammar. */ -}}
+{{- $kinds := partial "news/kinds.html" . }}
 <ol class="feed themes{{ if .compact }} compact{{ end }}">
-{{ range $i, $t := .themes }}<li class="post {{ .status }}" style="--i:{{ $i }}"><a href="{{ .page.RelPermalink }}"><span class="av" title="{{ .status }}">{{ partial "icon.html" .status }}</span><span class="b"><span class="m">{{ if not $.grouped }}<span>{{ .status }}</span>{{ end }}{{ partial "themes/span.html" . }}</span><strong>{{ .title }}</strong><span class="s">{{ .summary }}</span></span><span class="go" aria-hidden="true">→</span></a></li>
+{{ range $t := .themes }}<li class="post {{ .status }}"><a href="{{ .page.RelPermalink }}"><span class="av" title="{{ .status }}">{{ partial "icon.html" .status }}</span><span class="b"><span class="m">{{ if not $.grouped }}<span class="status {{ .status }}">{{ .status }}</span>{{ end }}{{ partial "themes/span.html" . }}{{ $ks := slice }}{{ range slice "news" "blog" "paper" "release" }}{{ if index $t.kinds . }}{{ $ks = $ks | append (index $kinds .).many }}{{ end }}{{ end }}{{ with $ks }}<span class="th-k">{{ delimit . " · " }}</span>{{ end }}</span><strong>{{ .title }}</strong><span class="s">{{ .summary }}</span></span></a></li>
 {{ end }}</ol>

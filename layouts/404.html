@@ -1,4 +1,13 @@
 {{ define "main" }}
+{{- /* Not found: a small ensō with its loose leaves, beside a short note and the way back. */ -}}
+<section class="nf">
+{{ partialCached "ornament/enso.html" (dict "size" 160 "leaves" 22 "seed" 11 "class" "nf-enso") "nf-enso" }}
+<div class="nf-t">
+<p class="label nf-k"><span>Error 404</span></p>
 <h1>Not found</h1>
-<p>Nothing here. Try the <a href="/">home page</a>.</p>
+{{ partial "ornament/brush.html" (dict "length" 120 "class" "ph-brush") }}
+<p class="nf-d">Nothing lives at this address. The page may have moved, or the link drifted off like a loose leaf.</p>
+<p class="nf-go"><a class="btn" href="/">Home</a><a class="btn ghost" href="/posts/">Posts</a></p>
+</div>
+</section>
 {{ end }}

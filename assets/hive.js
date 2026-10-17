@@ -1,4 +1,7 @@
-/* The hive: five agent bees take a request, brief, work together, deliver, remember and dream. Home banner only. */
+/* The hive: five agent bees take a request, brief, work together, deliver, remember and dream. About banner only.
+   Drawn like the rest of the site: bees in the leaf palette (ochre, slate-teal, slate, rust, olive), seal red for signals,
+   olive for done; sheets are sharp paper rectangles with hairline rules, no shadows or rounded bars. Paper, mist, ink and
+   rules are read from the CSS tokens on each render, so it follows light and dark. */
 (() => {
 
 /* ================= character ================= */
@@ -13,21 +16,21 @@ function roundPoly(pts, r) {
   return d + "Z";
 }
 const hexPath = (cx, cy, R, r) => roundPoly([...Array(6)].map((_, i) => { const a = (-90 + i * 60) * Math.PI / 180; return [+(cx + R * Math.cos(a)).toFixed(2), +(cy + R * 1.03 * Math.sin(a)).toFixed(2)]; }), r);
-const BODY = hexPath(100, 112, 58, 16), GLOW = "#FF5A2A", JADE = "#2FB38E";
+const BODY = hexPath(100, 112, 58, 16), GLOW = "#A3412E", JADE = "#7D7A4E";
 const KEYS = ["coord", "scholar", "msg", "build", "keeper"];
 const BEES = {
-  coord:   { body: "#F5A524", ink: "#4A2A05", wing: "#FFF1D6", blush: "#F27A4A", acc: "headset", sc: .5 },
-  scholar: { body: "#2FB38E", ink: "#06392B", wing: "#DDF6EE", blush: "#F08F7A", acc: "glasses", sc: .42 },
-  msg:     { body: "#4C6FFF", ink: "#0E1B5E", wing: "#E3E9FF", blush: "#FF8FA6", acc: "bag", sc: .42 },
-  build:   { body: "#F26B3A", ink: "#4A1606", wing: "#FFE4D8", blush: "#E0412A", acc: "hat", sc: .42 },
-  keeper:  { body: "#B266E8", ink: "#33104F", wing: "#F3E5FF", blush: "#FF8FB8", acc: "sprout", sc: .42 },
+  coord:   { body: "#C49A3E", ink: "#3A2A10", wing: "#F5EFE3", blush: "#B85C38", acc: "headset", sc: .5 },
+  scholar: { body: "#5E7F86", ink: "#17292D", wing: "#F5EFE3", blush: "#B85C38", acc: "glasses", sc: .42 },
+  msg:     { body: "#4B6467", ink: "#141D1E", wing: "#F5EFE3", blush: "#B85C38", acc: "bag", sc: .42 },
+  build:   { body: "#B85C38", ink: "#3B160A", wing: "#F5EFE3", blush: "#8C3B2A", acc: "hat", sc: .42 },
+  keeper:  { body: "#7D7A4E", ink: "#25241A", wing: "#F5EFE3", blush: "#B85C38", acc: "sprout", sc: .42 },
 };
 const ACC = {
   headset: (P, s) => `<path d="M60,112 C58,70 76,50 100,50 C124,50 142,70 140,112" fill="none" stroke="${P.ink}" stroke-width="4" stroke-linecap="round"/><rect x="53" y="100" width="12" height="22" rx="6" fill="${P.ink}"/><rect x="135" y="100" width="12" height="22" rx="6" fill="${P.ink}"/><path d="M59,120 C62,132 74,134 84,130" fill="none" stroke="${P.ink}" stroke-width="2.6" stroke-linecap="round"/><circle cx="86" cy="129.5" r="${(3.6 + s.talk * 1.8).toFixed(2)}" fill="${GLOW}"/>`,
   hat: P => `<path d="M68,66 C68,44 82,34 100,34 C118,34 132,44 132,66 Z" fill="#F7F1E4"/><path d="M100,34 L100,66" stroke="${P.ink}" stroke-opacity=".16" stroke-width="2"/><rect x="60" y="64" width="80" height="7" rx="3.5" fill="#EDE4D2"/>`,
   glasses: P => `<g fill="#fff" fill-opacity=".2" stroke="${P.ink}" stroke-width="2.4"><circle cx="85" cy="102" r="11.5"/><circle cx="115" cy="102" r="11.5"/></g><path d="M96.5,101 Q100,98 103.5,101 M73.5,100 L64,97 M126.5,100 L136,97" fill="none" stroke="${P.ink}" stroke-width="2.4" stroke-linecap="round"/>`,
   bag: P => `<path d="M58,124 L124,158" stroke="${P.ink}" stroke-opacity=".7" stroke-width="3.2" stroke-linecap="round"/><rect x="118" y="148" width="26" height="20" rx="3" fill="#F7F1E4"/><path d="M118,154 L144,154" stroke="${P.ink}" stroke-opacity=".25" stroke-width="1.6"/><circle cx="131" cy="154" r="2.2" fill="${GLOW}"/>`,
-  sprout: P => `<path d="M100,58 C100,46 100,36 102,24" fill="none" stroke="#5E9358" stroke-width="3.2" stroke-linecap="round"/><path d="M102,32 C112,20 126,21 128,28 C122,38 110,38 102,32 Z" fill="#7FB378"/><path d="M100,42 C90,32 76,33 74,40 C80,49 92,49 100,42 Z" fill="#96C48F"/>`,
+  sprout: P => `<path d="M100,58 C100,46 100,36 102,24" fill="none" stroke="#25241A" stroke-width="3.2" stroke-linecap="round"/><path d="M102,32 C112,20 126,21 128,28 C122,38 110,38 102,32 Z" fill="#C49A3E"/><path d="M100,42 C90,32 76,33 74,40 C80,49 92,49 100,42 Z" fill="#B0842F"/>`,
 };
 function drawBee(key, b, t) {
   const P = BEES[key], sc = P.sc, sleep = b.sleep, happy = b.happy, think = b.think, talk = b.talk;
@@ -44,7 +47,7 @@ function drawBee(key, b, t) {
   const mouth = open > .15
     ? `<ellipse cx="100" cy="121" rx="${(5 + open * 1.5).toFixed(2)}" ry="${(2 + open * 4.5).toFixed(2)}" fill="${P.ink}"/>`
     : `<path d="M${100 - 7 - happy * 2.5},118 Q100,${118 + 7 + happy * 5 - sleep * 4} ${100 + 7 + happy * 2.5},118" fill="none" stroke="${P.ink}" stroke-width="3.6" stroke-linecap="round"/>`;
-  const wing = (cx, f, op) => `<g transform="translate(${cx},60) scale(1,${f.toFixed(3)}) translate(${-cx},-60)"><ellipse cx="${cx}" cy="58" rx="25" ry="22" fill="${P.wing}" opacity="${op}"/></g>`;
+  const wing = (cx, f, op) => `<g transform="translate(${cx},60) scale(1,${f.toFixed(3)}) translate(${-cx},-60)"><ellipse cx="${cx}" cy="58" rx="25" ry="22" fill="${K.dark ? "#BDB3A2" : P.wing}" opacity="${op}"/></g>`;
   return `<g transform="translate(${b.x.toFixed(1)},${b.y.toFixed(1)}) rotate(${b.tilt.toFixed(2)}) scale(${(sc * b.sx).toFixed(4)},${(sc * b.sy).toFixed(4)}) translate(-100,-118)">
     ${wing(64, f2, .4)}${wing(136, f2, .4)}${wing(64, f1, .95)}${wing(136, f1, .95)}
     <g fill="none" stroke="${P.ink}" stroke-width="4" stroke-linecap="round"><path d="M90,58 Q${((tx + 90) / 2 - 2).toFixed(1)},${((58 + ty) / 2).toFixed(1)} ${tx.toFixed(1)},${ty.toFixed(1)}"/><path d="M110,58 Q${((310 - tx) / 2 + 2).toFixed(1)},${((58 + ty) / 2).toFixed(1)} ${(200 - tx).toFixed(1)},${ty.toFixed(1)}"/></g>
@@ -188,33 +191,33 @@ const daySlot = n => [130 + (n % 9) * 118, 62 + [0, 38, 14, 52, 22, 46, 8, 34, 1
 const nightAt = t => t < 1.8 ? 1 - ease(seg(t, 0, 1.8)) : t > 32 ? ease(seg(t, 32, 33.4)) : 0;
 
 /* ================= drawing ================= */
+let K = { card: "#F5EFE3", line: "#D5C8B0", text: "#2C2620" }; /* the tokens of the current render */
 const STARS = [...Array(44)].map((_, i) => [(i * 263.7) % 1200, ((i * 97.3) % 220) + 10, (i * .71) % 6.28, i % 6 === 0 ? 1.6 : 1]);
 function card(T, k, name) {
   const P = BEES[T.o];
-  return `<rect x="${T.x}" y="${T.y}" width="${T.w}" height="${T.h}" rx="6" fill="${k.card}" stroke="${k.line}" filter="url(#sh)"/>
-    <path d="M${T.x},${T.y + 6} a6,6 0 0 1 6,-6 h${T.w - 12} a6,6 0 0 1 6,6 v14 h${-T.w} Z" fill="${P.wing}"/>
-    <circle cx="${T.x + 12}" cy="${T.y + 10}" r="4" fill="${P.body}"/><rect x="${T.x + 22}" y="${T.y + 8}" width="${{ scholar: 44, build: 58, keeper: 40 }[T.o]}" height="4" rx="2" fill="${P.ink}" opacity=".35"/>
-    ${[0, 1, 2].map(i => `<circle cx="${T.x + T.w - 26 + i * 8}" cy="${T.y + 10}" r="2" fill="${P.ink}" opacity=".18"/>`).join("")}`;
+  return `<rect x="${T.x + .5}" y="${T.y + .5}" width="${T.w - 1}" height="${T.h - 1}" fill="${k.card}" stroke="${k.line}"/>
+    <path d="M${T.x},${T.y + 20.5} h${T.w}" stroke="${k.line}"/>
+    <rect x="${T.x + 8}" y="${T.y + 6}" width="8" height="8" fill="${P.body}"/><rect x="${T.x + 22}" y="${T.y + 9}" width="${{ scholar: 44, build: 58, keeper: 40 }[T.o]}" height="2" fill="${k.text}" opacity=".35"/>`;
 }
-const miniCard = (owner, s = 1) => `<g transform="scale(${s})"><rect x="-17" y="-12" width="34" height="24" rx="4" fill="#fff" filter="url(#sh)"/><rect x="-17" y="-12" width="34" height="8" rx="3" fill="${BEES[owner].body}"/><rect x="-11" y="0" width="22" height="3" rx="1.5" fill="#000" opacity=".2"/><rect x="-11" y="5" width="14" height="3" rx="1.5" fill="#000" opacity=".12"/></g>`;
-const quotes = n => [...Array(n)].map((_, i) => `<rect x="-14" y="${-6 - i * 8}" width="28" height="10" rx="5" fill="${JADE}" filter="url(#sh)"/><rect x="-8" y="${-2.5 - i * 8}" width="16" height="3" rx="1.5" fill="#fff" opacity=".85"/>`).join("");
+const miniCard = (owner, s = 1) => `<g transform="scale(${s})"><rect x="-16.5" y="-11.5" width="33" height="23" fill="${K.card}" stroke="${K.line}"/><rect x="-17" y="-12" width="34" height="3" fill="${BEES[owner].body}"/><rect x="-11" y="-1" width="22" height="2" fill="${K.text}" opacity=".3"/><rect x="-11" y="4" width="14" height="2" fill="${K.text}" opacity=".18"/></g>`;
+const quotes = n => [...Array(n)].map((_, i) => `<rect x="-14" y="${-6 - i * 8}" width="28" height="7" fill="${JADE}"/><rect x="-8" y="${-3.5 - i * 8}" width="16" height="2" fill="${K.card}"/>`).join("");
 function bubble(a, b, kind, v, t, k) {
   if (v <= 0 || v >= 1) return "";
   const P = BEES[a], [ax, ay] = pos(a, t), [bx] = pos(b, t), side = Math.sign(bx - ax) || 1;
   const s = pop(seg(v, 0, .22)) * (1 - ease(seg(v, .85, 1))), comp = seg(v, .28, .4), w = kind === "task" ? 60 : 52, h = 30;
   const x = ax + side * 16, y = ay - 72 * P.sc / .42;
-  const dots = [0, 1, 2].map(i => `<circle cx="${-11 + i * 11}" cy="${(Math.sin(t * 9 - i * .9) * 2).toFixed(1)}" r="3.2" fill="${P.ink}" opacity=".7"/>`).join("");
+  const dots = [0, 1, 2].map(i => `<rect x="${-13.5 + i * 11}" y="${(Math.sin(t * 9 - i * .9) * 2 - 2.5).toFixed(1)}" width="5" height="5" fill="${k.text}" opacity=".6"/>`).join("");
   const O = BEES[b];
   const content = {
-    task: `<rect x="-17" y="-10" width="34" height="20" rx="3" fill="#fff" stroke="${O.body}" stroke-opacity=".6"/><rect x="-17" y="-10" width="34" height="6" rx="2" fill="${O.body}"/><rect x="-11" y="0" width="22" height="2.6" rx="1.3" fill="${P.ink}" opacity=".4"/>`,
-    ok: `<path d="M-8,0 L-2,6 L9,-6" fill="none" stroke="${P.ink}" stroke-width="3.4" stroke-linecap="round" stroke-dasharray="30" stroke-dashoffset="${(30 * (1 - seg(v, .4, .58))).toFixed(1)}"/>`,
-    lines: `<rect x="-17" y="-6" width="${(34 * seg(v, .4, .58)).toFixed(1)}" height="4" rx="2" fill="${JADE}"/><rect x="-17" y="2" width="${(22 * seg(v, .48, .64)).toFixed(1)}" height="4" rx="2" fill="${JADE}" opacity=".6"/>`,
-    relay: `<rect x="-13" y="-9" width="26" height="18" rx="2.5" fill="#fff" stroke="${O.body}"/><path d="M-13,-8 L0,2 L13,-8" fill="none" stroke="${O.body}" stroke-width="1.8"/>`,
+    task: `<rect x="-16.5" y="-9.5" width="33" height="19" fill="${k.card}" stroke="${k.line}"/><rect x="-17" y="-10" width="34" height="3" fill="${O.body}"/><rect x="-11" y="0" width="22" height="2" fill="${k.text}" opacity=".4"/>`,
+    ok: `<path d="M-8,0 L-2,6 L9,-6" fill="none" stroke="${JADE}" stroke-width="2.6" stroke-linecap="square" stroke-dasharray="30" stroke-dashoffset="${(30 * (1 - seg(v, .4, .58))).toFixed(1)}"/>`,
+    lines: `<rect x="-17" y="-5" width="${(34 * seg(v, .4, .58)).toFixed(1)}" height="3" fill="${JADE}"/><rect x="-17" y="2" width="${(22 * seg(v, .48, .64)).toFixed(1)}" height="3" fill="${JADE}" opacity=".6"/>`,
+    relay: `<rect x="-12.5" y="-8.5" width="25" height="17" fill="${k.card}" stroke="${O.body}"/><path d="M-12.5,-8 L0,2 L12.5,-8" fill="none" stroke="${O.body}" stroke-width="1.3"/>`,
     happy: `<path d="M-9,-3 q4,-6 8,0 M1,-3 q4,-6 8,0 M-7,4 q7,7 14,0" fill="none" stroke="${P.ink}" stroke-width="2.6" stroke-linecap="round"/>`,
   }[kind];
   return `<g transform="translate(${x.toFixed(1)},${y.toFixed(1)}) scale(${s.toFixed(3)})">
-    <rect x="${-w / 2}" y="${-h / 2}" width="${w}" height="${h}" rx="15" fill="${P.wing}" stroke="${P.body}" stroke-opacity=".3"/>
-    <path d="M${-side * 8 - 5},${h / 2 - 1} L${-side * 12},${h / 2 + 7} L${-side * 8 + 5},${h / 2 - 1} Z" fill="${P.wing}"/>
+    <path d="M${-w / 2 + .5},${-h / 2 + .5} H${w / 2 - .5} V${h / 2 - .5} H${-side * 8 + 5} L${-side * 12},${h / 2 + 7} L${-side * 8 - 5},${h / 2 - .5} H${-w / 2 + .5} Z" fill="${k.card}" stroke="${k.line}" stroke-linejoin="miter"/>
+    <rect x="${-w / 2}" y="${-h / 2}" width="2" height="${h}" fill="${P.body}"/>
     <g opacity="${(1 - comp).toFixed(2)}">${dots}</g><g opacity="${comp.toFixed(2)}">${content}</g>
   </g>`;
 }
@@ -222,7 +225,8 @@ function attach(key, t, inner) { const [x, y] = pos(key, t), sc = BEES[key].sc; 
 function between(from, to, v, t, inner) { const [x1, y1] = pos(from, t), [x2, y2] = pos(to, t), e = ease(v); return `<g transform="translate(${lerp(x1, x2, e).toFixed(1)},${(lerp(y1, y2, e) + 22 - Math.sin(Math.PI * v) * 26).toFixed(1)})">${inner}</g>`; }
 
 function render(t) {
-  const k = { text: css("--text"), line: css("--line"), card: css("--card"), bg: css("--bg") }, o = [], night = nightAt(t);
+  const k = { text: css("--text"), line: css("--line"), card: css("--card"), bg: css("--bg"), mist: css("--mist") }, o = [], night = nightAt(t);
+  k.dark = dark(); K = k;
   // sky, stars, the chain of days
   if (night > 0) { STARS.forEach(([x, y, ph, r]) => o.push(`<circle cx="${x}" cy="${y}" r="${r}" fill="${k.text}" opacity="${(night * (.2 + .35 * (Math.sin(t * 1.3 + ph) + 1) / 2)).toFixed(2)}"/>`)); }
   days.forEach((d, i) => {
@@ -231,7 +235,7 @@ function render(t) {
     const cx = lerp(RESULT_AT[0], x, rise), cy = lerp(RESULT_AT[1] + 20, y, rise) - Math.sin(Math.PI * rise) * 40;
     if (i > 0) { const [px, py] = daySlot(days[i - 1].n), g = today ? ease(seg(t, 33.6, 34.8)) : 1; if (g > 0 && !(days[i - 1].n % 9 === 8)) o.push(`<line x1="${px}" y1="${py}" x2="${lerp(px, cx, g).toFixed(1)}" y2="${lerp(py, cy, g).toFixed(1)}" stroke="${today ? GLOW : k.text}" stroke-opacity="${((today ? .55 : .14) * (.25 + night * .75)).toFixed(2)}" stroke-width="${today ? 1.6 : 1.1}"/>`); }
     const a = today ? 1 : .12 + night * .78, r = 5 + (today ? 1 : 0);
-    o.push(`<g opacity="${a.toFixed(2)}"><circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r * 3.2}" fill="${BEES.coord.body}" opacity=".12"/><circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r}" fill="${BEES.coord.body}"/>
+    o.push(`<g opacity="${a.toFixed(2)}"><circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r}" fill="${BEES.coord.body}"/>
       ${KEYS.slice(1).map((kk, j) => { const an = t * .8 + j * Math.PI / 2 + d.n; return `<circle cx="${(cx + Math.cos(an) * (r + 6)).toFixed(1)}" cy="${(cy + Math.sin(an) * (r + 6) * .6).toFixed(1)}" r="1.8" fill="${BEES[kk].body}"/>`; }).join("")}</g>`);
   });
 
@@ -239,26 +243,26 @@ function render(t) {
   o.push(`<g opacity="${fadeWork.toFixed(3)}">`);
   // the meeting place
   const pad = out(seg(t, 1.8, 2.8));
-  o.push(`<ellipse cx="380" cy="392" rx="${(150 * pad).toFixed(1)}" ry="12" fill="none" stroke="${k.text}" stroke-opacity=".08" stroke-width="1.5"/><ellipse cx="380" cy="392" rx="${(150 * pad).toFixed(1)}" ry="12" fill="${k.text}" opacity=".02"/>`);
+  if (pad > 0) o.push(`<path d="M${(380 - 150 * pad).toFixed(1)},392.5 H${(380 + 150 * pad).toFixed(1)}" stroke="${k.line}"/>`);
   // the prompt
   const pIn = out(seg(t, 3.6, 4.1));
   if (pIn > 0) {
     const P = PROMPT, words = [40, 22, 56, 30, 46, 26, 38], wt = [4.1, 4.35, 4.6, 4.9, 5.15, 5.4, 5.6];
     let x = P.x + 22, typed = "";
     const clear = seg(t, 6.15, 6.5);
-    words.forEach((w, i) => { const v = seg(t, wt[i], wt[i] + .2); if (v > 0) typed += `<rect x="${x}" y="${P.y + 19}" width="${(w * out(v)).toFixed(1)}" height="6" rx="3" fill="${k.text}" opacity="${(.6 * (1 - clear)).toFixed(2)}"/>`; x += w + 7; });
+    words.forEach((w, i) => { const v = seg(t, wt[i], wt[i] + .2); if (v > 0) typed += `<rect x="${x}" y="${P.y + 20}" width="${(w * out(v)).toFixed(1)}" height="4" fill="${k.text}" opacity="${(.6 * (1 - clear)).toFixed(2)}"/>`; x += w + 7; });
     const caretX = P.x + 22 + words.reduce((a, w, i) => a + (t > wt[i] ? w + 7 : 0), 0);
     const press = t > 5.9 && t < 6.12 ? .86 : 1, ready = t > 5.7 && t < 6.15, done = seg(t, 28.6, 28.9), bx = P.x + P.w - 22, by = P.y + 22;
     o.push(`<g transform="translate(0,${((1 - pIn) * 16).toFixed(1)})" opacity="${pIn.toFixed(2)}">
-      <rect x="${P.x}" y="${P.y}" width="${P.w}" height="${P.h}" rx="22" fill="${k.card}" stroke="${done ? JADE : k.line}" stroke-width="1.5" filter="url(#sh)"/>
+      <rect x="${P.x + .5}" y="${P.y + .5}" width="${P.w - 1}" height="${P.h - 1}" fill="${k.card}" stroke="${done ? JADE : k.line}"/>
       ${typed}
-      ${t > 4 && t < 6.15 ? `<rect x="${caretX}" y="${P.y + 13}" width="2" height="18" rx="1" fill="${GLOW}" opacity="${Math.floor(t * 2.2) % 2 ? .95 : .15}"/>` : ""}
-      ${t > 6.5 && !done ? `<rect x="${P.x + 22}" y="${P.y + 19}" width="90" height="6" rx="3" fill="${k.text}" opacity=".07"/>` : ""}
-      <g transform="translate(${bx},${by}) scale(${press})"><circle r="13" fill="${done ? JADE : ready ? k.text : k.line}"/>
-      ${done ? `<path d="M-6,0 L-2,4 L6,-5" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="20" stroke-dashoffset="${(20 * (1 - done)).toFixed(1)}"/>` : `<path d="M0,6 L0,-6 M-5,-1 L0,-6 L5,-1" fill="none" stroke="${ready ? k.bg : k.card}" stroke-width="2.4" stroke-linecap="round"/>`}</g>
+      ${t > 4 && t < 6.15 ? `<rect x="${caretX}" y="${P.y + 13}" width="1.5" height="18" fill="${GLOW}" opacity="${Math.floor(t * 2.2) % 2 ? .95 : .15}"/>` : ""}
+      ${t > 6.5 && !done ? `<rect x="${P.x + 22}" y="${P.y + 20}" width="90" height="4" fill="${k.text}" opacity=".07"/>` : ""}
+      <g transform="translate(${bx},${by}) scale(${press})"><rect x="-12" y="-12" width="24" height="24" fill="${done ? JADE : ready ? k.text : k.line}"/>
+      ${done ? `<path d="M-6,0 L-2,4 L6,-5" fill="none" stroke="${k.card}" stroke-width="2" stroke-linecap="square" stroke-dasharray="20" stroke-dashoffset="${(20 * (1 - done)).toFixed(1)}"/>` : `<path d="M0,6 L0,-6 M-5,-1 L0,-6 L5,-1" fill="none" stroke="${ready ? k.bg : k.card}" stroke-width="2" stroke-linecap="square"/>`}</g>
     </g>`);
     if (t > 5.95 && t < 6.75) { const v = ease(seg(t, 5.95, 6.6)), [cx, cy] = pos("coord", t), xm = lerp(P.x + 200, cx, v), ym = lerp(P.y + 22, cy - 30, v) - Math.sin(v * Math.PI) * 50, s = 1 - seg(t, 6.45, 6.75);
-      o.push(`<g transform="translate(${xm.toFixed(1)},${ym.toFixed(1)}) scale(${s.toFixed(3)})"><rect x="-30" y="-11" width="60" height="22" rx="11" fill="${k.card}" stroke="${k.line}" filter="url(#sh)"/><rect x="-20" y="-2" width="40" height="4" rx="2" fill="${k.text}" opacity=".5"/></g>`); }
+      o.push(`<g transform="translate(${xm.toFixed(1)},${ym.toFixed(1)}) scale(${s.toFixed(3)})"><rect x="-29.5" y="-10.5" width="59" height="21" fill="${k.card}" stroke="${k.line}"/><rect x="-20" y="-1" width="40" height="2" fill="${k.text}" opacity=".5"/></g>`); }
   }
   // the brief: task cards held above the coordinator, then handed over
   const owners = ["scholar", "build", "keeper"];
@@ -282,31 +286,31 @@ function render(t) {
       const scan = seg(t, 12.8, 17.2);
       for (let l = 0; l < 10; l++) {
         const ly = T.y + 32 + l * 14, w = T.w - 28 - ((l * 37) % 4) * 14, h = HL.find(q => q.line === l), hv = h ? out(seg(t, h.t, h.t + .4)) : 0;
-        o.push(`<rect x="${T.x + 14}" y="${ly}" width="${w}" height="5" rx="2.5" fill="${k.text}" opacity=".15"/>`);
-        if (hv) o.push(`<rect x="${T.x + 12}" y="${ly - 2}" width="${((w + 4) * hv).toFixed(1)}" height="9" rx="3" fill="${JADE}" opacity=".2"/><rect x="${T.x + 14}" y="${ly}" width="${(w * hv).toFixed(1)}" height="5" rx="2.5" fill="${JADE}"/>`);
+        o.push(`<rect x="${T.x + 14}" y="${ly + 1}" width="${w}" height="3" fill="${k.text}" opacity=".15"/>`);
+        if (hv) o.push(`<rect x="${T.x + 12}" y="${ly - 2}" width="${((w + 4) * hv).toFixed(1)}" height="9" fill="${JADE}" opacity=".16"/><rect x="${T.x + 14}" y="${ly + 1}" width="${(w * hv).toFixed(1)}" height="3" fill="${JADE}"/>`);
       }
       if (scan > 0 && scan < 1) { const sy = T.y + 26 + scan * 140; o.push(`<rect x="${T.x + 6}" y="${sy}" width="${T.w - 12}" height="16" fill="url(#scan)"/><rect x="${T.x + 6}" y="${sy + 15}" width="${T.w - 12}" height="1.5" fill="${JADE}"/>`); }
       progress += HL.filter(h => t > h.t).length;
     }
     if (ow === "build") {
       BLOCKS.forEach(([bx2, by2, bw, bh], j) => {
-        o.push(`<rect x="${T.x + bx2}" y="${T.y + by2}" width="${bw}" height="${bh}" rx="3" fill="none" stroke="${k.text}" stroke-opacity=".12" stroke-dasharray="3 3"/>`);
+        o.push(`<rect x="${T.x + bx2 + .5}" y="${T.y + by2 + .5}" width="${bw - 1}" height="${bh - 1}" fill="none" stroke="${k.text}" stroke-opacity=".14" stroke-dasharray="3 3"/>`);
         const p = pop(seg(t, BLOCK_T[j], BLOCK_T[j] + .45)); if (!p) return;
         const cx2 = T.x + bx2 + bw / 2, cy2 = T.y + by2 + bh / 2, drop = (1 - out(seg(t, BLOCK_T[j], BLOCK_T[j] + .3))) * 14;
-        const fill = [BEES.build.wing, BEES.scholar.wing, k.text, BEES.build.body, BEES.msg.wing, BEES.keeper.wing, BEES.coord.wing][j];
-        o.push(`<g transform="translate(${cx2},${cy2 - drop}) scale(${p.toFixed(3)}) translate(${-cx2},${-cy2})"><rect x="${T.x + bx2}" y="${T.y + by2}" width="${bw}" height="${bh}" rx="3" fill="${fill}" opacity="${j === 2 ? .7 : 1}"/>
+        const fill = [k.mist, k.mist, k.text, BEES.build.body, k.mist, k.mist, k.mist][j];
+        o.push(`<g transform="translate(${cx2},${cy2 - drop}) scale(${p.toFixed(3)}) translate(${-cx2},${-cy2})"><rect x="${T.x + bx2}" y="${T.y + by2}" width="${bw}" height="${bh}" fill="${fill}" opacity="${j === 2 ? .7 : 1}"/>
           ${j === 1 ? `<path d="M${T.x + bx2 + 14},${T.y + by2 + bh - 12} l18,-22 l12,14 l8,-8 l18,16 Z" fill="${JADE}" opacity=".45"/><circle cx="${T.x + bx2 + bw - 20}" cy="${T.y + by2 + 16}" r="6" fill="${BEES.coord.body}" opacity=".8"/>` : ""}
-          ${j >= 4 ? `<rect x="${T.x + bx2 + 8}" y="${T.y + by2 + 11}" width="${bw * .5}" height="4" rx="2" fill="#000" opacity=".15"/><rect x="${T.x + bx2 + 8}" y="${T.y + by2 + 21}" width="${bw * .7}" height="3" rx="1.5" fill="#000" opacity=".1"/>` : ""}</g>`);
+          ${j >= 4 ? `<rect x="${T.x + bx2 + 8}" y="${T.y + by2 + 8}" width="${bw * .14}" height="${bw * .14}" fill="${[BEES.scholar.body, BEES.coord.body, BEES.keeper.body][j - 4]}"/><rect x="${T.x + bx2 + 8}" y="${T.y + by2 + 26}" width="${bw * .6}" height="2" fill="${k.text}" opacity=".3"/>` : ""}</g>`);
       });
       if (t > BLOCK_T[2]) [0, 1, 2].forEach(i => { const w = [T.w - 136, T.w - 150, T.w - 140][i], y = T.y + 66 + i * 10, land = out(seg(t, 21.0 + i * .15, 21.35 + i * .15));
-        o.push(`<rect x="${T.x + 112}" y="${y}" width="${w}" height="5" rx="2.5" fill="${k.text}" opacity=".15"/>`); if (land) o.push(`<rect x="${T.x + 112}" y="${y}" width="${(w * land).toFixed(1)}" height="5" rx="2.5" fill="${JADE}"/>`); });
+        o.push(`<rect x="${T.x + 112}" y="${y + 1}" width="${w}" height="3" fill="${k.text}" opacity=".15"/>`); if (land) o.push(`<rect x="${T.x + 112}" y="${y + 1}" width="${(w * land).toFixed(1)}" height="3" fill="${JADE}"/>`); });
       progress += BLOCK_T.filter(bt => t > bt).length + (t > 21.3 ? 1 : 0);
     }
     if (ow === "keeper") {
       for (let r = 0; r < 4; r++) {
         const ry = rowY(r) - 8, tick = seg(t, TICKS[r], TICKS[r] + .3), s2 = tick ? pop(tick) : 1, cx3 = T.x + 23, cy3 = ry + 8;
-        o.push(`<g transform="translate(${cx3},${cy3}) scale(${s2.toFixed(3)}) translate(${-cx3},${-cy3})"><rect x="${T.x + 15}" y="${ry}" width="16" height="16" rx="4" fill="${tick ? BEES.keeper.body : "none"}" stroke="${tick ? BEES.keeper.body : k.text}" stroke-opacity="${tick ? 1 : .25}" stroke-width="1.6"/>${tick ? `<path d="M${T.x + 19},${ry + 8} L${T.x + 22},${ry + 11} L${T.x + 28},${ry + 4.5}" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="16" stroke-dashoffset="${(16 * (1 - tick)).toFixed(1)}"/>` : ""}</g>
-          <rect x="${T.x + 40}" y="${ry + 6}" width="${T.w - 58 - r * 10}" height="5" rx="2.5" fill="${k.text}" opacity="${tick ? .1 : .2}"/>${tick ? `<rect x="${T.x + 38}" y="${ry + 8}" width="${((T.w - 54 - r * 10) * out(seg(t, TICKS[r] + .15, TICKS[r] + .5))).toFixed(1)}" height="1.6" fill="${BEES.keeper.body}"/>` : ""}`);
+        o.push(`<g transform="translate(${cx3},${cy3}) scale(${s2.toFixed(3)}) translate(${-cx3},${-cy3})"><rect x="${T.x + 15.5}" y="${ry + .5}" width="15" height="15" fill="${tick ? BEES.keeper.body : "none"}" stroke="${tick ? BEES.keeper.body : k.text}" stroke-opacity="${tick ? 1 : .3}"/>${tick ? `<path d="M${T.x + 19},${ry + 8} L${T.x + 22},${ry + 11} L${T.x + 28},${ry + 4.5}" fill="none" stroke="${k.card}" stroke-width="1.8" stroke-linecap="square" stroke-dasharray="16" stroke-dashoffset="${(16 * (1 - tick)).toFixed(1)}"/>` : ""}</g>
+          <rect x="${T.x + 40}" y="${ry + 7}" width="${T.w - 58 - r * 10}" height="3" fill="${k.text}" opacity="${tick ? .1 : .2}"/>${tick ? `<rect x="${T.x + 38}" y="${ry + 8}" width="${((T.w - 54 - r * 10) * out(seg(t, TICKS[r] + .15, TICKS[r] + .5))).toFixed(1)}" height="1" fill="${BEES.keeper.body}"/>` : ""}`);
       }
       progress += TICKS.filter(tt => t > tt).length;
     }
@@ -325,7 +329,7 @@ function render(t) {
   });
   // coordinator's progress ring
   if (t > 12.6 && t < 24.6) { const R = 34, a = Math.min(.999, progress / 15) * Math.PI * 2, [cx, cy] = pos("coord", t), f = seg(t, 12.6, 13.1) * (1 - seg(t, 24.1, 24.6));
-    o.push(`<g opacity="${f.toFixed(2)}"><circle cx="${cx}" cy="${cy + 2}" r="${R}" fill="none" stroke="${k.text}" stroke-opacity=".08" stroke-width="3"/>${a > .01 ? `<path d="M${cx},${cy + 2 - R} A${R},${R} 0 ${a > Math.PI ? 1 : 0} 1 ${(cx + Math.sin(a) * R).toFixed(2)},${(cy + 2 - Math.cos(a) * R).toFixed(2)}" fill="none" stroke="${BEES.coord.body}" stroke-width="3" stroke-linecap="round"/>` : ""}</g>`); }
+    o.push(`<g opacity="${f.toFixed(2)}"><circle cx="${cx}" cy="${cy + 2}" r="${R}" fill="none" stroke="${k.line}" stroke-width="1"/>${a > .01 ? `<path d="M${cx},${cy + 2 - R} A${R},${R} 0 ${a > Math.PI ? 1 : 0} 1 ${(cx + Math.sin(a) * R).toFixed(2)},${(cy + 2 - Math.cos(a) * R).toFixed(2)}" fill="none" stroke="${BEES.coord.body}" stroke-width="2"/>` : ""}</g>`); }
   // the result: born above the meeting place, carried by the coordinator, docked above your prompt
   if (t > 26.15 && t < 33) {
     const sIn = pop(seg(t, 26.15, 26.6)), badge = pop(seg(t, 26.6, 26.95));
@@ -333,14 +337,13 @@ function render(t) {
     if (t > 27.6) { const [cx, cy] = pos("coord", t); const g = ease(seg(t, 27.6, 27.75)); x = lerp(RESULT_AT[0], cx, g); y = lerp(RESULT_AT[1], cy + 62, g); s = lerp(1, .5, g); }
     if (t > 28.6) { x = DOCK[0]; y = DOCK[1]; s = .5; }
     o.push(`<g transform="translate(${x.toFixed(1)},${y.toFixed(1)}) scale(${s.toFixed(3)})">
-      <rect x="-150" y="-92" width="300" height="184" rx="8" fill="${k.card}" stroke="${k.line}" filter="url(#sh)"/>
-      <path d="M-150,-84 a8,8 0 0 1 8,-8 h284 a8,8 0 0 1 8,8 v14 h-300 Z" fill="${BEES.coord.wing}"/>
-      ${KEYS.map((kk, i) => `<circle cx="${-136 + i * 12}" cy="-80" r="4.2" fill="${BEES[kk].body}"/>`).join("")}
-      <rect x="-134" y="-58" width="268" height="14" rx="3" fill="${BEES.build.wing}"/>
-      <rect x="-134" y="-36" width="104" height="72" rx="3" fill="${BEES.scholar.wing}"/><path d="M-120,26 l20,-26 l14,16 l9,-9 l22,19 Z" fill="${JADE}" opacity=".45"/>
-      <rect x="-20" y="-34" width="130" height="9" rx="2" fill="${k.text}" opacity=".7"/>${[0, 1, 2].map(i => `<rect x="-20" y="${-16 + i * 11}" width="${[136, 118, 128][i]}" height="5" rx="2.5" fill="${JADE}"/>`).join("")}
-      <rect x="-20" y="20" width="62" height="16" rx="3" fill="${BEES.build.body}"/>${[0, 1, 2].map(i => `<rect x="${-134 + i * 92}" y="46" width="84" height="34" rx="3" fill="${[BEES.msg.wing, BEES.keeper.wing, BEES.coord.wing][i]}"/>`).join("")}
-      <g transform="translate(140,82) scale(${badge.toFixed(3)})"><circle r="18" fill="${JADE}"/><path d="M-8,0 L-2,6 L9,-6" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/></g>
+      <rect x="-149.5" y="-91.5" width="299" height="183" fill="${k.card}" stroke="${k.line}"/><path d="M-150,-69.5 H150" stroke="${k.line}"/>
+      ${KEYS.map((kk, i) => `<rect x="${-140 + i * 12}" y="-84" width="8" height="8" fill="${BEES[kk].body}"/>`).join("")}
+      <rect x="-134" y="-58" width="268" height="14" fill="${k.mist}"/>
+      <rect x="-134" y="-36" width="104" height="72" fill="${k.mist}"/><path d="M-120,26 l20,-26 l14,16 l9,-9 l22,19 Z" fill="${JADE}" opacity=".5"/><circle cx="-50" cy="-18" r="6" fill="${GLOW}"/>
+      <rect x="-20" y="-34" width="130" height="7" fill="${k.text}" opacity=".7"/>${[0, 1, 2].map(i => `<rect x="-20" y="${-16 + i * 11}" width="${[136, 118, 128][i]}" height="3" fill="${JADE}"/>`).join("")}
+      <rect x="-20" y="20" width="62" height="16" fill="${BEES.build.body}"/>${[0, 1, 2].map(i => `<rect x="${-134 + i * 92}" y="46" width="84" height="34" fill="${k.mist}"/><rect x="${-126 + i * 92}" y="54" width="8" height="8" fill="${[BEES.scholar.body, BEES.keeper.body, BEES.coord.body][i]}"/>`).join("")}
+      <g transform="translate(140,82) scale(${badge.toFixed(3)})"><rect x="-17" y="-17" width="34" height="34" fill="${JADE}"/><path d="M-8,0 L-2,6 L9,-6" fill="none" stroke="${k.card}" stroke-width="2.6" stroke-linecap="square"/></g>
     </g>`);
   }
   o.push(`</g>`);
@@ -349,18 +352,16 @@ function render(t) {
   if (t > 29.9 && t < 31.3) KEYS.forEach((key, i) => {
     const v = seg(t, 30 + i * .08, 30.8 + i * .08), [x, y] = pos(key, t), form = out(seg(t, 29.9 + i * .08, 30.2 + i * .08));
     const px = lerp(x, RESULT_AT[0], ease(v)), py = lerp(y - 40, RESULT_AT[1] + 20, ease(v)) - Math.sin(Math.PI * v) * 30;
-    if (v < 1) o.push(`<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="${(4 * form * 3).toFixed(1)}" fill="${BEES[key].body}" opacity=".14"/><circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="${(4 * form).toFixed(1)}" fill="${BEES[key].body}"/>`);
+    if (v < 1) o.push(`<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="${(4 * form).toFixed(1)}" fill="${BEES[key].body}"/>`);
   });
 
-  // bees, back to front, with soft floor shadows
+  // bees, back to front
   const order = [...KEYS].sort((a, b) => pos(a, t)[1] - pos(b, t)[1]);
   order.forEach(key => { const [x, y] = pos(key, t), s = sim[key]; const bob = Math.sin(t * 2 + KEYS.indexOf(key) * 1.1) * lerp(2, .8, s.sleep); o.push(drawBee(key, { ...s, x, y: y + bob }, t)); });
-  KEYS.forEach((key, i) => { const s = sim[key]; if (s.sleep > .6) { const [x, y] = pos(key, t), z = (t * .45 + i * .21) % 1; o.push(`<text x="${(x + 14 + z * 12).toFixed(1)}" y="${(y - 30 - z * 26).toFixed(1)}" font-family="Georgia,serif" font-style="italic" font-size="${(12 + z * 4).toFixed(1)}" fill="${k.text}" opacity="${((1 - z) * .55 * (s.sleep - .6) / .4).toFixed(2)}">z</text>`); } });
+  KEYS.forEach((key, i) => { const s = sim[key]; if (s.sleep > .6) { const [x, y] = pos(key, t), z = (t * .45 + i * .21) % 1; o.push(`<text x="${(x + 14 + z * 12).toFixed(1)}" y="${(y - 30 - z * 26).toFixed(1)}" font-family="'Shippori Mincho B1',serif" font-size="${(12 + z * 4).toFixed(1)}" fill="${k.text}" opacity="${((1 - z) * .55 * (s.sleep - .6) / .4).toFixed(2)}">z</text>`); } });
   TALK.forEach(([a, b, s0, d, kind]) => o.push(bubble(a, b, kind, seg(t, s0, s0 + d), t, k)));
 
   svg.innerHTML = `<defs><clipPath id="bc"><path d="${BODY}"/></clipPath>
-    <filter id="sh" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#2a1d0a" flood-opacity=".08"/></filter>
-    ${dark() ? `<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2C2766" stop-opacity=".55"/><stop offset=".6" stop-color="#1E1B40" stop-opacity=".25"/><stop offset="1" stop-color="#14122A" stop-opacity="0"/></linearGradient>` : `<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B9AEEA" stop-opacity=".42"/><stop offset=".55" stop-color="#DCD5F5" stop-opacity=".22"/><stop offset="1" stop-color="#F3EFFA" stop-opacity="0"/></linearGradient>`}
     <linearGradient id="scan" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${JADE}" stop-opacity="0"/><stop offset="1" stop-color="${JADE}" stop-opacity=".18"/></linearGradient></defs>` + o.join("");
 }
 

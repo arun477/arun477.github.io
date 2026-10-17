@@ -1,18 +1,37 @@
 {{ define "main" }}
 {{ $days := .Pages.ByDate.Reverse }}
-<div class="sechead"><h1>{{ .Title }}</h1><p class="meta">{{ with index $days 0 }}<time datetime="{{ .Lastmod.Format "2006-01-02T15:04Z07:00" }}">Updated {{ .Lastmod.UTC.Format "2 Jan 15:04" }} UTC</time>{{ end }}<a class="chip" href="index.xml">RSS</a><a class="chip" href="index.json">JSON</a></p></div>
 {{ $pager := .Paginate $days 7 }}
-{{ $spikes := cond (eq $pager.PageNumber 1) (partial "news/recent-spikes.html" .Pages) slice }}
+{{ $first := eq $pager.PageNumber 1 }}
+{{ $spikes := cond $first (partial "news/recent-spikes.html" .Pages) slice }}
 {{ $skip := slice }}{{ range $spikes }}{{ $skip = $skip | append .url }}{{ end }}
 {{ $present := slice }}{{ range $pager.Pages }}{{ range partial "news/items.html" . }}{{ $present = $present | append .kind }}{{ end }}{{ end }}
 {{ $order := slice }}{{ range slice "news" "blog" "paper" "release" }}{{ if in $present . }}{{ $order = $order | append . }}{{ end }}{{ end }}
+{{- /* Masthead: the newest day's date, the title with a brush stroke, and that day's headline as the one-line summary. */ -}}
+{{ $top := "" }}{{ range first 1 $pager.Pages }}{{ $top = . }}{{ end }}
+<header class="fd-head">
+<div class="fd-title">
+<p class="fd-kick">{{ with $top }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>{{ end }}</p>
+<h1>The Feed</h1>
+{{ partial "ornament/brush.html" (dict "length" 168 "class" "fd-brush") }}
+</div>
+<div class="fd-sum">
+{{ with $top }}{{ if $first }}<p><a href="{{ .RelPermalink }}">{{ .Title }}</a></p>{{ else }}<p>{{ $.Description }}</p>{{ end }}{{ end }}
+<p class="fd-chips">{{ range first 1 $days }}<time datetime="{{ .Lastmod.Format "2006-01-02T15:04Z07:00" }}">Updated {{ .Lastmod.UTC.Format "2 Jan 2006 15:04" }} UTC</time>{{ end }}<a class="chip" href="{{ .RelPermalink }}index.xml">RSS</a><a class="chip" href="{{ .RelPermalink }}index.json">JSON</a></p>
+</div>
+</header>
 {{ partial "news/filter.html" $order }}
 {{ with $spikes }}
-<section class="spikes">
-<h2 class="label"><span class="rec">Spikes</span></h2>
-{{ partial "news/list.html" (dict "items" . "dated" true) }}
+<section class="spikes" aria-label="Spikes">
+{{ partial "news/lead.html" (dict "item" (index . 0) "dated" true) }}
+{{ with after 1 . }}{{ partial "news/list.html" (dict "items" . "dated" true "grid" true) }}{{ end }}
 </section>
 {{ end }}
-{{ range $pager.Pages }}{{ partial "news/day.html" (dict "page" . "skip" $skip) }}{{ else }}<p class="brief">Nothing yet.</p>{{ end }}
-{{ if gt $pager.TotalPages 1 }}<nav class="pager" aria-label="Pages">{{ with $pager.Prev }}<a href="{{ .URL }}">← Newer</a>{{ else }}<span></span>{{ end }}<span>{{ $pager.PageNumber }} / {{ $pager.TotalPages }}</span>{{ with $pager.Next }}<a href="{{ .URL }}">Older →</a>{{ else }}<span></span>{{ end }}</nav>{{ end }}
+{{ range $i, $p := $pager.Pages }}{{ partial "news/day.html" (dict "page" $p "skip" $skip "brief" (and $first (eq $i 0))) }}{{ else }}<p class="brief">Nothing yet.</p>{{ end }}
+{{ if gt $pager.TotalPages 1 }}
+{{ $l := dict }}{{ with $pager.Next }}{{ $l = dict "url" .URL "label" "Earlier days" }}{{ end }}
+{{ $r := dict "url" (printf "%sindex.xml" .RelPermalink) "label" "Feed RSS" }}{{ with $pager.Prev }}{{ $r = dict "url" .URL "label" "Later days" }}{{ end }}
+{{ partial "news/nav.html" (dict "label" "Pages" "left" $l "right" $r "mid" (printf "%d / %d" $pager.PageNumber $pager.TotalPages)) }}
+{{ else }}
+{{ partial "news/nav.html" (dict "label" "Feeds" "right" (dict "url" (printf "%sindex.xml" .RelPermalink) "label" "Feed RSS")) }}
+{{ end }}
 {{ end }}

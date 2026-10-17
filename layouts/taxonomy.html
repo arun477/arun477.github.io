@@ -1,6 +1,7 @@
 {{ define "main" }}
-<div class="sechead"><h1>Tags</h1></div>
-<ul class="tags">
-{{ range $i, $t := .Data.Terms.Alphabetical }}<li style="--i:{{ $i }}"><a class="chip" href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }} <span>{{ .Count }}</span></a></li>
+{{- /* Tags index: the slim head line, then every tag as a chip, alphabetical, with how many posts carry it. */ -}}
+<div class="sechead"><h1>Tags</h1><p class="meta"><a class="chip" href="/posts/">Posts</a></p></div>
+<ul class="tag-cloud">
+{{ range .Data.Terms.Alphabetical }}<li><a class="chip" href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}<span>{{ .Count }}</span></a></li>
 {{ end }}</ul>
 {{ end }}

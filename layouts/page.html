@@ -1,7 +1,73 @@
 {{ define "main" }}
-<article>
-<h1>{{ .Title }}</h1>
-<p class="meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>{{ range .GetTerms "tags" }} <a class="chip" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}</p>
+{{- /* A post: a compact title block (kind, date, read time, title with a brush underline, description) beside a small
+       hanging scroll (a leaf sprig, the first tag and the AA seal); then the body at the reading measure, with the contents
+       beside it on wide screens (folded into a "Contents" row above the body on narrower ones); then the tags and an end
+       mark. Other single pages (e.g. the changelog) get the same head without the scroll. */ -}}
+{{- $post := eq .Section "posts" -}}
+{{- $parts := split .Title ": " -}}
+{{- $h2 := slice -}}
+{{- range .Fragments.Headings }}{{ if eq .Level 2 }}{{ $h2 = $h2 | append . }}{{ else }}{{ range .Headings }}{{ if eq .Level 2 }}{{ $h2 = $h2 | append . }}{{ end }}{{ end }}{{ end }}{{ end -}}
+{{- $toc := and $post (ge (len $h2) 2) -}}
+<article class="post-page{{ if $post }} is-post{{ end }}{{ if $toc }} has-toc{{ end }}">
+<header class="ph">
+<div class="ph-t">
+<p class="ph-m">{{ if $post }}<span class="kind"><span class="av">{{ partial "icon.html" "post" }}</span><b>Post</b></span>{{ end }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>{{ if $post }}<span>{{ .ReadingTime }} min read</span>{{ partial "ornament/seal.html" (dict "size" 28 "class" "ph-seal") }}{{ end }}</p>
+<h1>{{ index $parts 0 }}{{ with after 1 $parts }}<span class="sr-only">: </span><span class="sub">{{ delimit . ": " }}</span>{{ end }}</h1>
+{{ partial "ornament/brush.html" (dict "length" 160 "class" "ph-brush") }}
+{{ with .Description }}<p class="ph-d">{{ . }}</p>{{ end }}
+</div>
+{{- if $post }}
+{{- /* The sprig: a thin stem with 2 to 4 leaves of one kind (ginkgo, maple or willow), chosen from the post's file name,
+       so every post gets its own small specimen plate and a post's plate never changes. Laid out at build time along a
+       quadratic stem; each leaf follows the stem's direction, alternating sides, the last one at the tip. */ -}}
+{{- $h := hash.FNV32a .File.ContentBaseName -}}
+{{- $kinds := slice (dict "id" "ginkgo" "fill" (slice "ochre" "ochre-2" "ochre-3")) (dict "id" "momiji" "fill" (slice "rust" "rust-2" "rust-3")) (dict "id" "yanagi" "fill" (slice "teal" "olive" "teal")) -}}
+{{- $kind := index $kinds (mod $h 3) -}}
+{{- $n := add 2 (mod (div $h 3) 3) -}}
+{{- $mir := cond (eq (mod (div $h 9) 2) 0) 1.0 -1.0 -}}
+{{- $x0 := add 60.0 (mul $mir 6) }}{{ $y0 := 128.0 -}}
+{{- $x1 := sub 60.0 (mul $mir 20) }}{{ $y1 := 74.0 -}}
+{{- $x2 := add 60.0 (mul $mir 4) }}{{ $y2 := 26.0 -}}
+<div class="scroll" aria-hidden="true">
+<div class="scroll-p">
+<svg class="sprig" viewBox="0 0 120 132" width="120" height="132" focusable="false"><path class="sprig-stem" d="M{{ $x0 }} {{ $y0 }}Q{{ $x1 }} {{ $y1 }} {{ $x2 }} {{ $y2 }}"/>
+{{- range $k := seq 0 (sub $n 1) -}}
+{{- $t := sub 1.0 (div (mul (float $k) 0.62) (float (sub $n 1))) -}}
+{{- $u := sub 1.0 $t -}}
+{{- $x := add (mul $u $u $x0) (mul 2 $u $t $x1) (mul $t $t $x2) -}}
+{{- $y := add (mul $u $u $y0) (mul 2 $u $t $y1) (mul $t $t $y2) -}}
+{{- $dx := add (mul 2 $u (sub $x1 $x0)) (mul 2 $t (sub $x2 $x1)) -}}
+{{- $dy := add (mul 2 $u (sub $y1 $y0)) (mul 2 $t (sub $y2 $y1)) -}}
+{{- $side := cond (eq (mod $k 2) 0) $mir (mul -1 $mir) -}}
+{{- $splay := cond (eq $k 0) (mul $side 8.0) (mul $side (add 44 (mul 14 (partial "ornament/rnd.html" (slice (add $h $k) 1))))) -}}
+{{- $rot := add (math.ToDegrees (math.Atan2 $dy $dx)) 90 $splay -}}
+{{- $s := mul (cond (eq $k 0) 1.25 (sub 1.15 (mul 0.08 $k))) (add 0.92 (mul 0.16 (partial "ornament/rnd.html" (slice (add $h $k) 2)))) -}}
+{{- $fill := index $kind.fill (mod (add $k $h) 3) -}}
+<g transform="translate({{ printf "%.1f %.1f" $x $y }}) rotate({{ printf "%.0f" $rot }}) scale({{ printf "%.2f" $s }})"><use href="#lf-{{ $kind.id }}" style="fill:var(--leaf-{{ $fill }})"/></g>
+{{- end -}}
+</svg>
+{{ with index (.GetTerms "tags") 0 }}<span class="scroll-t{{ if le (len .LinkTitle) 9 }} tate{{ end }}">{{ .LinkTitle }}</span>{{ end }}
+{{ partial "ornament/seal.html" (dict "size" 30 "class" "scroll-seal") }}
+</div>
+</div>
+{{- end }}
+</header>
+{{- if $toc }}
+<nav class="toc" aria-label="On this page">
+<p class="toc-l">Contents</p>
+<ol>{{ range $h2 }}<li><a href="#{{ .ID }}">{{ .Title | safeHTML }}</a></li>{{ end }}</ol>
+</nav>
+<details class="toc-m">
+<summary>Contents</summary>
+<ol>{{ range $h2 }}<li><a href="#{{ .ID }}">{{ .Title | safeHTML }}</a></li>{{ end }}</ol>
+</details>
+{{- end }}
+<div class="prose">
 {{ .Content }}
+</div>
+<footer class="pf">
+{{ with .GetTerms "tags" }}<ul class="pf-tags" aria-label="Tags">{{ range . }}<li><a class="chip" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}</ul>{{ end }}
+<div class="end" aria-hidden="true"><svg viewBox="0 0 12 12" width="12" height="12" focusable="false"><circle cx="6" cy="6" r="5"/></svg></div>
+</footer>
 </article>
 {{ end }}
