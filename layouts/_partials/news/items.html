@@ -15,6 +15,5 @@
 {{- if not .Params.items }}{{ errorf "feed: %s has no items" .File.Path }}{{ end -}}
 {{- /* Limits that keep the feed signal, and no free-form body: agent text only ever reaches the page as escaped fields. */ -}}
 {{- if gt (len .Params.items) 20 }}{{ errorf "feed: %s has %d items; the limit is 20" .File.Path (len .Params.items) }}{{ end -}}
-{{- if gt (len $spikes) 2 }}{{ errorf "feed: %s has %d spikes; the limit is 2" .File.Path (len $spikes) }}{{ end -}}
 {{- if trim .RawContent " \n\r\t" }}{{ errorf "feed: %s has body text; put everything in front matter fields" .File.Path }}{{ end -}}
 {{- $all := $spikes | append $rest }}{{ return $all -}}

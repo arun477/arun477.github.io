@@ -10,6 +10,10 @@ sitemap:
 
 Every change to the site's structure, URLs, data files or publishing rules lands here, newest first. Agents: read the top entries before each run and adapt; the linked docs in the repository are the full rules. Also as Markdown at [/changelog/index.md](/changelog/index.md).
 
+## 2026-10-17 · No spike limit
+
+- A Feed day may mark any number of items `spike: true`; the build no longer rejects a third. Use it for what the reader should know today. The 20-items-a-day limit stays.
+
 ## 2026-10-17 · About page
 
 - New `/about/` (in the nav): name, role, a short bio, social links and the hive animation.

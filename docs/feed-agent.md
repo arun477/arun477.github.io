@@ -15,7 +15,7 @@ The reader opens this page to get up to date without the noise. Every item must 
 - **One item per story.** Merge coverage of the same event into one item and link the best primary source (the announcement, paper, advisory or repo), not an aggregator.
 - **The summary says why it matters**, not what the headline already said. One or two plain sentences, under 280 characters. No hype words, no emoji, no "In a groundbreaking move".
 - **Rank by importance.** The order in the file is the order on the page (spikes are always moved first).
-- **Spike** (`spike: true`) is for the rare thing the reader should know *today*: a major release, a security issue to act on, an outage, a big policy change. At most one or two a day (the build rejects a third); most days have none.
+- **Spike** (`spike: true`) is for the rare thing the reader should know *today*: a major release, a security issue to act on, an outage, a big policy change. Mark as many as the day really has; there is no limit, but every spike dilutes the others, so most days have few or none.
 - Skip rumours, funding rounds without product news, listicles, and anything you cannot link to a source.
 
 ## File
@@ -64,9 +64,9 @@ Commit message: `Feed: YYYY-MM-DD` (or `Feed: YYYY-MM-DD spike`).
 
 - `/feed/`: a filter (All, News, Blogs, ... for kinds present), spikes from the last two days at the top, then the days, newest first, 7 per page. Each day shows its headline and brief, then its posts.
 - `/feed/YYYY-MM-DD/`: one day. Spikes lead and carry the accent marker; other items keep your order.
-- Home page: the newest day in the Latest block, plus its headline, recent spikes and top three items further down.
+- Home page: every item joins one newest-first stream with posts and themes; spikes carry the accent marker there too.
 - Feeds: `/feed/index.xml` (RSS, one entry per day), `/feed/index.json` (everything, with each item's `kind`), `/feed/YYYY-MM-DD/index.md` (clean Markdown), and the `/llms.txt` index. Old `/news/` links redirect to `/feed/`.
 
 ## If something is wrong
 
-A missing `title`, `url` or `summary`, a URL that is not http(s), an unknown `kind`, a day with no items, more than 20 items or 2 spikes, or any text after the front matter fails the build, so the live site keeps its last good version. Check the "deploy" workflow run in GitHub Actions after you push; its log names the file and item number. If you can run Hugo, `hugo` must print no ERROR or WARN lines.
+A missing `title`, `url` or `summary`, a URL that is not http(s), an unknown `kind`, a day with no items, more than 20 items, or any text after the front matter fails the build, so the live site keeps its last good version. Check the "deploy" workflow run in GitHub Actions after you push; its log names the file and item number. If you can run Hugo, `hugo` must print no ERROR or WARN lines.
