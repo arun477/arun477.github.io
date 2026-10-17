@@ -1,10 +1,10 @@
-{{- /* Home: the newest day's headline, then up to five posts, titles only: recent spikes first, then the day's top picks. Takes the feed section (content/news). */ -}}
+{{- /* Home: the newest day's headline, any recent spikes, then the latest other posts from recent days, newest first, up to 10 in all, titles only and each dated. Takes the feed section (content/news). */ -}}
 {{- with index .Pages.ByDate.Reverse 0 }}
 {{- $spikes := partial "news/recent-spikes.html" $.Pages -}}
 {{- $urls := slice }}{{ range $spikes }}{{ $urls = $urls | append .url }}{{ end -}}
-{{- $top := slice }}{{ range partial "news/items.html" . }}{{ if not (in $urls .url) }}{{ $top = $top | append . }}{{ end }}{{ end }}
+{{- $top := slice }}{{ range first 4 $.Pages.ByDate.Reverse }}{{ range partial "news/items.html" . }}{{ if not (in $urls .url) }}{{ $top = $top | append . }}{{ end }}{{ end }}{{ end }}
 <h2 class="label"><a href="{{ $.RelPermalink }}">{{ $.Title }}</a><a href="{{ .RelPermalink }}"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time></a></h2>
 <h3 class="headline"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-{{ partial "news/list.html" (dict "items" (first 5 ($spikes | append $top)) "dated" true "compact" true) }}
+{{ partial "news/list.html" (dict "items" (first 10 ($spikes | append $top)) "dated" true "alldated" true "compact" true) }}
 <p class="more"><a href="{{ $.RelPermalink }}">Open the feed</a><a href="{{ .RelPermalink }}">Latest day</a></p>
 {{- end }}

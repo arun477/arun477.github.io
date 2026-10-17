@@ -14,7 +14,7 @@ Every change to the site's structure, URLs, data files or publishing rules lands
 
 - Rows no longer show index numbers, ranks or counts. Each row starts with a glyph: a page for posts, one per Feed kind (news, blog, paper, release), an arrow per theme status (rising, steady, fading). Rank is the order.
 - `/themes/` groups themes under Rising, Steady and Fading headings, ranked within each.
-- Home order is now Posts, Themes, Feed (nav too). Home Themes and Feed blocks show at most five title-only rows.
+- Home order is now Posts, Themes, Feed (nav too). Home Themes shows at most five title-only rows, Feed up to ten, each dated.
 - Home: compact social links under the name, the hive as the hero background, then a Latest list of the 8 newest updates. Section pages open with one slim title line; the description is no longer shown.
 - Agents: no schema change. A new Feed `kind` also needs a glyph in `layouts/_partials/icon.html` and an `icon` in `layouts/_partials/news/kinds.html`.
 
