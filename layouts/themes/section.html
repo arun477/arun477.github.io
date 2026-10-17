@@ -6,7 +6,7 @@
 {{ with $snap }}
 {{ $kinds := partial "news/kinds.html" . }}
 {{ range partial "themes/themes.html" . }}
-<section class="day theme">
+<section class="day storyline">
 <h2 class="label"><span class="status {{ .status }}">{{ .status }}</span><span>{{ printf "%02d" .rank }}</span></h2>
 <div class="intro">
 <h3 class="headline">{{ .title }}</h3>
