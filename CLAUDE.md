@@ -41,7 +41,7 @@ Swiss-style minimal: strict alignment, symmetry, sharp edges. One 44rem column (
 - Accent is signal orange, used only as a signal (REC marker, waveform playhead, reading-progress bar, feed spike marker and glyph square, rising-theme marker and glyph). Never for links or text: links stay ink with an underline, so nothing reads as "link blue".
 - Row hovers stay exactly within the column rules; content slides inward (transform) instead of anything bleeding outward.
 - JS is limited to the theme toggle (inline in `baseof.html`) and `assets/hive.js` on the About page. The bee characters, palette and choreography live in that one file.
-- Motion is CSS-only except the hive banner: view transitions between pages, staggered list entrance (`--i`), an ink rule drawn along the bottom of hovered list rows (no fill or colour inversion: it would flash in the view-transition snapshot on click; hover is mouse-only, touch gets the rule on tap), scroll-driven progress bar. All disabled under `prefers-reduced-motion`.
+- Motion is CSS-only except the hive banner: a short cross-fade between pages (view transitions, header held still), an ink rule drawn along the bottom of hovered list rows (no fill or colour inversion; hover is mouse-only, touch gets the rule on tap), scroll-driven progress bar. No entrance animation on load (main or list rows) and no per-title morph: inside the view transition they made rows pop in one by one and titles stretch. All disabled under `prefers-reduced-motion`.
 
 ## Build and deploy
 
