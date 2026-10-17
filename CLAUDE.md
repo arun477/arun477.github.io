@@ -1,6 +1,6 @@
 # arun477.github.io
 
-Personal site, live at https://arun477.github.io/. Hugo, no theme, minimal JavaScript (theme toggle, plus the home-page hive banner).
+Personal site, live at https://arun477.github.io/. Hugo, no theme, minimal JavaScript (theme toggle, plus the hive banner on About).
 
 ## Layout
 
@@ -31,14 +31,15 @@ Swiss-style minimal: strict alignment, symmetry, sharp edges. One 44rem column (
 - Edges: zero border-radius everywhere (enforced globally in `style.css`). Hairline rules, not boxes.
 - Alignment: every element, rule and fill starts and ends on the column edges.
 - Type: Newsreader (self-hosted in `static/fonts/`) for headings, reading text and list titles; system sans in uppercase tracking for UI (header, footer, labels, chips); system mono for data (dates) and code.
-- Home: the role kicker, name and a compact row of social links (`content/_index.md` `role`, `links`), then Latest, all one layer over the hive (`assets/hive.js`, home page only): the scene starts under the links and runs faded behind the Latest rows, so nothing sits between the name and the content. The hive: five agent bees take a request, brief, work together face to face, deliver, remember and dream in a 36s loop; pauses off-screen, shows a still frame under reduced motion, `?hive=<seconds>` freezes a moment for checking. Latest (`_partials/latest.html`: the 8 newest updates across sections, a post or feed day at its date, Themes once as the top theme), then one block per section: a label with its date, at most five title-only rows (Feed: up to ten, each dated), and a "more" row (Feed rows use the `compact` list option; Themes rows keep their two-line summary).
+- Home: no hero (the site title is a screen-reader-only h1); it opens straight on Latest. About (`content/about.md`, layout `layouts/about.html`, in the nav): role kicker, name, the bio from the page body, a compact row of social links (role and links from `content/_index.md` front matter), then the hive (`assets/hive.js`, loaded on About only) as a full-width banner. The hive: five agent bees take a request, brief, work together face to face, deliver, remember and dream in a 36s loop; pauses off-screen, shows a still frame under reduced motion, `?hive=<seconds>` freezes a moment for checking.
+- Latest (`_partials/latest.html`: the 8 newest updates across sections, a post or feed day at its date, Themes once as the top theme), then one block per section: a label with its date, at most five title-only rows (Feed: up to ten, each dated), and a "more" row (Feed rows use the `compact` list option; Themes rows keep their two-line summary).
 - Section pages (Posts, Themes, Feed, Tags) open with one slim `.sechead` line: title, date, chips. No intro paragraph: the description lives in the meta tags only.
 - Header: on phones the nav folds behind a two-rule menu button (CSS-only checkbox) and opens as a full-width panel; the theme toggle stays visible.
 - Colour: tokens at the top of `style.css`; dark tokens appear twice (system preference and `[data-theme="dark"]`); change both.
 - Rows: one grammar everywhere: glyph, meta line, title, then (on section and detail pages only) the summary. The glyph comes from `layouts/_partials/icon.html` (post, feed kind via `news/kinds.html`, theme status). No index numbers, ranks or counts on rows or labels: the lists change daily, so a number means nothing; order carries rank. Themes index groups rows under Rising / Steady / Fading.
 - Accent is signal orange, used only as a signal (REC marker, waveform playhead, reading-progress bar, feed spike marker and glyph square, rising-theme marker and glyph). Never for links or text: links stay ink with an underline, so nothing reads as "link blue".
 - Row hovers stay exactly within the column rules; content slides inward (transform) instead of anything bleeding outward.
-- JS is limited to the theme toggle (inline in `baseof.html`) and `assets/hive.js` on the home page. The bee characters, palette and choreography live in that one file.
+- JS is limited to the theme toggle (inline in `baseof.html`) and `assets/hive.js` on the About page. The bee characters, palette and choreography live in that one file.
 - Motion is CSS-only except the hive banner: view transitions between pages, staggered list entrance (`--i`), an ink rule drawn along the bottom of hovered list rows (no fill or colour inversion: it would flash in the view-transition snapshot on click; hover is mouse-only, touch gets the rule on tap), scroll-driven progress bar. All disabled under `prefers-reduced-motion`.
 
 ## Build and deploy

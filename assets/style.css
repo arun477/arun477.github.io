@@ -185,11 +185,10 @@ main a:hover { text-decoration-color: currentColor; }
 .label a:hover { color: var(--text); }
 .label span { font-family: var(--mono); letter-spacing: 0; }
 
-/* Home: hero */
-.hero { margin-bottom: 2.5rem; }
+/* About: role kicker, name, links, then the hive (assets/hive.js) as a full-width banner. */
 .kicker {
   display: flex;
-  margin: 0 0 1.25rem;
+  margin: 0 0 .55rem;
   font: 500 .75rem/1 var(--sans);
   letter-spacing: .08em;
   text-transform: uppercase;
@@ -198,58 +197,28 @@ main a:hover { text-decoration-color: currentColor; }
 .kicker .rec { display: inline-flex; align-items: center; gap: .6rem; color: var(--text); }
 .kicker .rec::before { content: ""; width: .45rem; height: .45rem; background: var(--accent); animation: blink 2s steps(1) infinite; }
 @keyframes blink { 50% { opacity: .15; } }
-.hero h1 { font-size: clamp(3rem, 11vw, 5.25rem); line-height: .95; letter-spacing: -.035em; margin: 0; }
-
-/* Hero banner: the hive is the background of the name, links and Latest; no panel or blur, the scene is faded instead. */
-.banner { position: relative; margin: -1rem 0 2.75rem; }
+.who h1 { font-size: clamp(2.3rem, 5.6vw, 3.5rem); line-height: .95; letter-spacing: -.035em; margin: 0; }
+.who .lead { margin: 1rem 0 0; max-width: 36rem; }
+.who .lead p { margin: 0; }
 .hive {
   display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 1140 / 540;
+  margin: 1.5rem 0 0;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 7%, #000 88%, transparent 100%), linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
   -webkit-mask-composite: source-in;
   mask-image: linear-gradient(to bottom, transparent 0, #000 7%, #000 88%, transparent 100%), linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
   mask-composite: intersect;
 }
-/* The hero is one layer: the scene starts under the links and runs behind the Latest list, faded so rows stay readable. */
-.banner .hive { position: absolute; z-index: 0; inset: var(--hive-top, 9rem) 0 auto; width: 100%; height: auto; aspect-ratio: 1140 / 540; opacity: .4; pointer-events: none; }
-.banner > :not(.hive) { position: relative; z-index: 1; }
-.latest-block { margin: 2.5rem 0 0; }
-.glass { padding-top: .9rem; }
-.glass .kicker { margin-bottom: .55rem; }
+/* Home has no hero: the page title is for screen readers and crawlers only. */
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 /* Social links: one compact row of UI labels under the name. */
 .social { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; list-style: none; margin: 1rem 0 0; padding: 0; font: 500 .72rem/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; }
 .social a { display: inline-flex; gap: .3rem; padding: .3rem 0; color: var(--muted); text-decoration: none; transition: color .2s; }
 .social a:hover { color: var(--text); text-decoration: underline; text-underline-offset: .35em; }
 .social span { font-family: var(--mono); letter-spacing: 0; }
-.glass h1 { font-size: clamp(2.4rem, 5.6vw, 3.5rem); }
-@media (max-width: 34rem) {
-  .banner { margin-top: 0; }
-  .latest-block { margin-top: 1.75rem; }
-  .banner { --hive-top: 8.5rem; }
-  .glass h1 { font-size: 2.3rem; }
-}
 
-.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2.5rem; }
-.facts .label { padding-bottom: .75rem; border-bottom: 1px solid var(--text); }
-.about { display: flex; flex-direction: column; }
-.latest {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: .4rem;
-  padding: .6rem 0;
-  border-bottom: 1px solid var(--line);
-  color: var(--text);
-  text-decoration: none;
-}
-.latest > * { max-width: calc(100% - 1.5rem); }
-/* Latest is clamped (2 + 2 lines) so it never outgrows the Elsewhere column beside it. */
-.latest :is(strong, span) { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
-.latest strong { font: 500 1.15rem/1.3 var(--serif); }
-.latest span { font: 1rem/1.45 var(--serif); color: var(--muted); }
-.latest time { margin-top: auto; padding-top: .75rem; font: .75rem/1 var(--mono); color: var(--muted); }
 .links { list-style: none; margin: 0; padding: 0; }
 .links li { border-bottom: 1px solid var(--line); }
 .links a {
@@ -281,8 +250,8 @@ main a:hover { text-decoration-color: currentColor; }
 
 /* One hover for every row-like link: an ink rule draws along the row's bottom edge, contents slide inward.
    No fill or colour inversion, so the row looks the same in the page-transition snapshot taken on click. */
-:is(.list a, .feed a, .links a, .latest) { position: relative; -webkit-tap-highlight-color: transparent; }
-:is(.list a, .feed a, .links a, .latest)::after {
+:is(.list a, .feed a, .links a) { position: relative; -webkit-tap-highlight-color: transparent; }
+:is(.list a, .feed a, .links a)::after {
   content: "";
   position: absolute;
   inset: auto 0 -1px;
@@ -292,19 +261,19 @@ main a:hover { text-decoration-color: currentColor; }
   transform-origin: left;
   transition: transform .45s var(--ease);
 }
-:is(.list a, .feed a, .links a, .latest) > * { transition: transform .45s var(--ease), color .3s; }
-:is(.list a, .feed a, .links a, .latest):focus-visible { outline: none; }
-:is(.list a, .feed a, .links a, .latest):focus-visible::after { transform: scaleX(1); }
-:is(.list a, .feed a, .links a, .latest):focus-visible > * { color: var(--text); transform: translateX(.5rem); }
+:is(.list a, .feed a, .links a) > * { transition: transform .45s var(--ease), color .3s; }
+:is(.list a, .feed a, .links a):focus-visible { outline: none; }
+:is(.list a, .feed a, .links a):focus-visible::after { transform: scaleX(1); }
+:is(.list a, .feed a, .links a):focus-visible > * { color: var(--text); transform: translateX(.5rem); }
 .list a:focus-visible > time, .feed a:focus-visible > .go, .links a:focus-visible > span { transform: translateX(-.5rem); }
 @media (hover: hover) and (pointer: fine) {
-  :is(.list a, .feed a, .links a, .latest):hover::after { transform: scaleX(1); }
-  :is(.list a, .feed a, .links a, .latest):hover > * { color: var(--text); transform: translateX(.5rem); }
+  :is(.list a, .feed a, .links a):hover::after { transform: scaleX(1); }
+  :is(.list a, .feed a, .links a):hover > * { color: var(--text); transform: translateX(.5rem); }
   .list a:hover > time, .feed a:hover > .go, .links a:hover > span { transform: translateX(-.5rem); }
 }
 /* Touch: no sticky hover; a tap just shows the rule. */
 @media (hover: none) {
-  :is(.list a, .feed a, .links a, .latest):active::after { transform: scaleX(1); transition: none; }
+  :is(.list a, .feed a, .links a):active::after { transform: scaleX(1); transition: none; }
 }
 /* Glyphs: the one marker on every row (post, feed kind, theme status). Rows carry no index numbers: lists change daily, so a number would mean nothing. */
 .ic { display: block; width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 1.25; stroke-linecap: square; stroke-linejoin: miter; }
@@ -450,7 +419,6 @@ mtable mtd:nth-child(even) { text-align: left; padding-left: 0; }
   }
   h1 { font-size: 2rem; }
   article { font-size: 1.125rem; }
-  .facts { grid-template-columns: 1fr; gap: 2.5rem; }
   .list a { grid-template-columns: 2rem 1fr; column-gap: 1rem; }
   .list a:focus-visible > time { transform: translateX(.5rem); }
   @media (hover: hover) and (pointer: fine) { .list a:hover > time { transform: translateX(.5rem); } }
