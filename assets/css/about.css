@@ -22,7 +22,7 @@
 .runs dl { margin: 0; border-top: 1px solid var(--ink); }
 .runs dl > div { display: grid; grid-template-columns: 10rem minmax(0, 1fr); column-gap: var(--s5); align-items: baseline; padding: var(--s3) 0 var(--s4); border-bottom: 1px solid var(--rule); }
 .runs dt { font: 600 var(--t-lg)/1.4 var(--mincho); }
-.runs dt a { text-decoration-thickness: 1px; }
+.runs dt a { display: inline-flex; align-items: center; min-height: var(--tap); text-decoration-thickness: 1px; }
 .runs dd { display: flex; flex-direction: column; gap: var(--s1); margin: 0; }
 .runs dd b { font: 500 var(--t-ui)/1.5 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; color: var(--ink); }
 .runs dd span { font: 400 var(--t-body)/1.7 var(--mincho); color: var(--muted); }
@@ -46,7 +46,6 @@
   .who .lead { font-size: var(--t-read); }
   .runs { margin-top: var(--s6); }
   .runs dl > div { grid-template-columns: minmax(0, 1fr); row-gap: 0; padding-block: var(--s1) var(--s4); }
-  .runs dt a { display: inline-flex; align-items: center; min-height: var(--tap); }
   .oversight { font-size: var(--t-body); }
   .hive { margin-top: var(--s6); }
 }

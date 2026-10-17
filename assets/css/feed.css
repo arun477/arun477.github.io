@@ -8,7 +8,7 @@
 .fd-kick { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s1) var(--s4); margin: 0 0 var(--s3); font: 500 var(--t-ui)/1.4 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; color: var(--muted); }
 .fd-kick::before { content: ""; flex: none; align-self: center; width: var(--s6); height: 1px; background: var(--red); }
 /* The back-link keeps its line height but gets a full tap target. */
-.fd-kick a { display: inline-flex; align-items: center; min-height: var(--tap); margin-block: calc((1.4em - var(--tap)) / 2); color: var(--ink); text-decoration: none; }
+.fd-kick a { position: relative; z-index: 1; display: inline-flex; align-items: center; min-height: var(--tap); margin-block: calc((1.4em - var(--tap)) / 2); color: var(--ink); text-decoration: none; }
 .fd-kick a:hover { text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: .4em; }
 .fd-kick time { font-family: var(--mono); letter-spacing: .08em; text-transform: none; }
 .fd-head h1 { margin: 0; font-size: var(--t-3xl); line-height: 1.05; letter-spacing: 0; }
