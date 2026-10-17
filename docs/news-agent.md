@@ -56,7 +56,3 @@ Commit message: `News: YYYY-MM-DD` (or `News: YYYY-MM-DD spike`).
 ## If something is wrong
 
 A missing `title`, `url` or `summary`, a URL that is not http(s), a day with no items, more than 12 items or 2 spikes, or any text after the front matter fails the build, so the live site keeps its last good version. Check the "deploy" workflow run in GitHub Actions after you push; its log names the file and item number. If you can run Hugo, `hugo` must print no ERROR or WARN lines.
-
-## Before the first real day
-
-Delete the two sample days, `content/news/2026-10-16.md` and `content/news/2026-10-17.md` (both marked `example: true`), in your first commit.
