@@ -11,8 +11,8 @@
 </section>
 {{ end }}{{ else }}<p class="brief">Nothing yet.</p>{{ end }}
 {{ if gt $pager.TotalPages 1 }}
-{{ $l := dict }}{{ with $pager.Prev }}{{ $l = dict "url" .URL "label" "Previous" }}{{ end }}
-{{ $r := dict }}{{ with $pager.Next }}{{ $r = dict "url" .URL "label" "Next" }}{{ end }}
-{{ partial "news/nav.html" (dict "label" "Pages" "left" $l "right" $r "mid" (printf "%d / %d" $pager.PageNumber $pager.TotalPages)) }}
+{{ $l := dict }}{{ with $pager.Prev }}{{ $l = dict "url" .URL "label" "Previous page" }}{{ end }}
+{{ $r := dict }}{{ with $pager.Next }}{{ $r = dict "url" .URL "label" "Next page" }}{{ end }}
+{{ partial "news/nav.html" (dict "label" "Pages" "left" $l "right" $r "mid" (printf "Page %d of %d" $pager.PageNumber $pager.TotalPages)) }}
 {{ end }}
 {{ end }}

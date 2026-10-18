@@ -1,6 +1,6 @@
 {{- /* The feed as data: every day and item, newest first: for readers, and for the publishing agent to check what it already posted. */ -}}
 {{- $days := slice -}}
-{{- range .Pages.ByDate.Reverse -}}
+{{- range .RegularPages.ByDate.Reverse -}}
   {{- $items := slice -}}
   {{- range partial "news/items.html" . -}}
     {{- $it := dict "title" .title "url" .url "source" .source "summary" .summary "kind" .kind "spike" (.spike | default false) -}}

@@ -8,7 +8,7 @@
 {{- with site.GetPage "/posts" }}{{ range .Pages }}
   {{- $rows = $rows | append (dict "url" .RelPermalink "title" .Title "summary" .Description "glyph" "post" "label" "Post" "source" "Arun" "d" .Date) -}}
 {{- end }}{{ end -}}
-{{- with site.GetPage "/news" }}{{ range .Pages }}{{ range partial "news/items.html" . }}
+{{- with site.GetPage "/news" }}{{ range .RegularPages }}{{ range partial "news/items.html" . }}
   {{- $d := .day.Date }}{{ with .time }}{{ $d = time (printf "%sT%s:00Z" ($d.Format "2006-01-02") .) }}{{ end -}}
   {{- $rows = $rows | append (dict "url" .url "ext" true "title" .title "summary" .summary "glyph" (index $kinds .kind).icon "label" (index $kinds .kind).one "source" .source "spike" .spike "d" $d) -}}
 {{- end }}{{ end }}{{ end -}}

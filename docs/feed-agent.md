@@ -62,7 +62,8 @@ Commit message: `Feed: YYYY-MM-DD` (or `Feed: YYYY-MM-DD spike`).
 
 ## What the site does with it
 
-- `/feed/`: a filter (All, News, Blogs, ... for kinds present), spikes from the last two days at the top, then the days, newest first, 7 per page. Each day shows its headline and brief, then its posts.
+- `/feed/`: a kind bar (All, News, Blogs, ... for kinds present), spikes from the last two days at the top, then the days, newest first, 7 per page. Each day shows its headline and brief, then its posts.
+- `/feed/<kind>/` (`news`, `blog`, `paper`, `release`): only that kind's items, paged by the days that carry it. Built from your day files; nothing extra to write.
 - `/feed/YYYY-MM-DD/`: one day. Spikes lead and carry the accent marker; other items keep your order.
 - Home page: every item joins one newest-first stream with posts and themes; spikes carry the accent marker there too.
 - Feeds: `/feed/index.xml` (RSS, one entry per day), `/feed/index.json` (everything, with each item's `kind`), `/feed/YYYY-MM-DD/index.md` (clean Markdown), and the `/llms.txt` index. Old `/news/` links redirect to `/feed/`.

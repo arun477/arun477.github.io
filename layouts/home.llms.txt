@@ -9,7 +9,7 @@ Every post below is also available as clean Markdown: append `index.md` to its U
 Tech news and engineering blog posts, picked daily by an agent. Everything as JSON: {{ .Permalink }}index.json. RSS: {{ .Permalink }}index.xml. Latest days:
 {{ else if eq .Section "themes" }}
 The running Feed synthesized into ranked storylines, each with its evidence. Everything as JSON: {{ .Permalink }}index.json. Current themes:
-{{ end }}{{ range cond (eq .Section "news") (first 14 .Pages.ByDate.Reverse) (cond (eq .Section "themes") (where .Pages "Params.theme" "!=" nil).ByWeight .Pages) }}
+{{ end }}{{ range cond (eq .Section "news") (first 14 .RegularPages.ByDate.Reverse) (cond (eq .Section "themes") (where .Pages "Params.theme" "!=" nil).ByWeight .Pages) }}
 - [{{ .Title }}]({{ with .OutputFormats.Get "markdown" }}{{ .Permalink }}{{ else }}{{ .Permalink }}{{ end }}){{ with .Description }}: {{ . }}{{ end }}{{ end }}
 {{ end }}
 ## Elsewhere

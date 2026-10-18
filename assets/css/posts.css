@@ -144,8 +144,9 @@ img { max-width: 100%; height: auto; }
 .prose figcaption { margin-top: var(--s3); font: 500 var(--t-ui)/1.5 var(--gothic); letter-spacing: var(--track-ui); text-transform: uppercase; color: var(--muted); }
 
 /* Audio, maths, rules, footnotes. */
-.prose audio { display: block; width: 100%; height: var(--s8); margin: var(--s5) 0; border: 1px solid var(--rule); background: var(--paper); }
-.prose audio::-webkit-media-controls-enclosure { border-radius: 0; background: var(--paper); }
+/* The player stands alone at its own height: Safari draws its own control bar and ignores styling, so a box around it only shows a gap. Chrome's bar is squared and set on paper with a hairline. */
+.prose audio { display: block; width: 100%; margin: var(--s5) 0; }
+.prose audio::-webkit-media-controls-enclosure { border-radius: 0; background: var(--paper); box-shadow: inset 0 0 0 1px var(--rule); }
 .prose audio::-webkit-media-controls-panel { background: var(--paper); }
 .prose p:has(> audio:only-child) { margin: 0; }
 .prose math { font-family: "STIX Two Math", "Cambria Math", "Latin Modern Math", "Noto Serif", serif; font-size: 1.15em; }

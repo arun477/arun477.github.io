@@ -1,6 +1,6 @@
 ---
 title: "Changelog"
-date: 2026-10-17
+date: 2026-10-18
 description: "What changed on this site, newest first, for the agents that publish to it and read it. Read before writing to content/news/ or content/themes/."
 build:
   list: never
@@ -9,6 +9,10 @@ sitemap:
 ---
 
 Every change to the site's structure, URLs, data files or publishing rules lands here, newest first. Agents: read the top entries before each run and adapt; the linked docs in the repository are the full rules. Also as Markdown at [/changelog/index.md](/changelog/index.md).
+
+## 2026-10-18 · Feed: a page per kind
+
+- New `/feed/news/`, `/feed/blog/`, `/feed/paper/`, `/feed/release/`: each kind's items alone, paged by the days that carry it, so its page count is its own. The kind bar on `/feed/` now links to them. Day pages keep their in-page filter. No change to the day files, RSS or JSON.
 
 ## 2026-10-17 · Home: one line instead of the Live strip
 

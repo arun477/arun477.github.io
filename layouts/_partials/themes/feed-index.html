@@ -1,4 +1,4 @@
 {{- /* Every Feed item keyed by URL, so themes cite posts by link and show the Feed's own title, source and kind. */ -}}
 {{- $m := dict -}}
-{{- with site.GetPage "/news" }}{{ range .Pages }}{{ range partial "news/items.html" . }}{{ $m = merge $m (dict .url .) }}{{ end }}{{ end }}{{ end -}}
+{{- with site.GetPage "/news" }}{{ range .RegularPages }}{{ range partial "news/items.html" . }}{{ $m = merge $m (dict .url .) }}{{ end }}{{ end }}{{ end -}}
 {{- return $m -}}

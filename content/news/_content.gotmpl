@@ -1,0 +1,15 @@
+{{- /* One list page per item kind, at /feed/<kind>/: the Feed's days that carry that kind, paged like /feed/, with only those items.
+       Built by layouts/news/section.html (it sees .Params.kind). They stay out of the sitemap; RSS and llms.txt list days only;
+       Feed templates read days from .RegularPages, so these never count as days. */ -}}
+{{- range $k, $v := partial "news/kinds.html" . }}
+{{- $.AddPage (dict
+  "path" $k
+  "kind" "section"
+  "title" $v.many
+  "url" (printf "/feed/%s/" $k)
+  "outputs" (slice "html")
+  "sitemap" (dict "disable" true)
+  "params" (dict "kind" $k)
+  "description" (printf "%s from the Feed, newest first." $v.many)
+) }}
+{{- end }}
