@@ -1,0 +1,12 @@
+{{- /* The kind bar on /feed/ and /feed/<kind>/: links, so a choice holds across pages and its page count is its own. Day pages keep the CSS-only filter (filter.html).
+       Takes dict "kinds" (the kinds present in the Feed, in order), "feed" (the Feed section) and "current" (this list's kind, or nil on /feed/). Shown only when there is a choice. */ -}}
+{{- $kinds := partial "news/kinds.html" . -}}
+{{- if gt (len .kinds) 1 }}
+<nav class="kinds" aria-labelledby="kinds-l">
+<span class="kinds-l" id="kinds-l">Show</span>
+<div class="kinds-o">
+<a href="{{ .feed.RelPermalink }}"{{ if not .current }} aria-current="page"{{ end }}>All</a>
+{{ range .kinds }}<a href="{{ $.feed.RelPermalink }}{{ . }}/"{{ if eq . $.current }} aria-current="page"{{ end }}>{{ (index $kinds .).many }}</a>
+{{ end }}</div>
+</nav>
+{{- end }}
