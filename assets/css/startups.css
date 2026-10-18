@@ -1,0 +1,14 @@
+/* startups.css: Startups index (layouts/startups/, _partials/startups/). Rows reuse the shared row grammar (.feed in base.css);
+   a row is not one link (name and round link out separately), so .su-r copies the row layout of .feed a. */
+.su-theme { margin-bottom: var(--s6); }
+.startups .b a { display: inline; padding: 0; gap: 0; } /* .feed a is the whole-row link elsewhere; here links are inline */
+.su-t { margin: 0 0 var(--s2); font: 600 var(--t-lg)/1.4 var(--mincho); }
+.su-sum { max-width: 62ch; margin: 0 0 var(--s4); font: 400 var(--t-body)/1.8 var(--mincho); color: var(--muted); }
+.startups .su-r { display: flex; align-items: flex-start; gap: var(--s5); padding: var(--s5) 0; color: var(--ink); }
+.startups .su-r > .av { margin-top: var(--s1); }
+.startups .su-name { color: inherit; text-decoration: none; }
+.startups .su-name:hover { text-decoration: underline; text-underline-offset: .2em; }
+.startups .m a { color: inherit; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: .2em; }
+.startups .m a:hover { color: var(--ink); }
+.su-rep { font-style: italic; text-transform: lowercase; opacity: .8; }
+@media (max-width: 40rem) { .startups .su-r { gap: var(--s4); padding: var(--s4) 0; } }

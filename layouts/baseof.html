@@ -17,7 +17,7 @@
 {{ template "_internal/twitter_cards.html" . }}
 {{ partial "jsonld.html" . }}
 {{- /* One stylesheet from the partials in assets/css/: base first (tokens, chrome, shared rows), then one per page family. */ -}}
-{{ $css := slice }}{{ range slice "base" "home" "posts" "feed" "themes" "about" }}{{ $css = $css | append (resources.Get (printf "css/%s.css" .)) }}{{ end }}
+{{ $css := slice }}{{ range slice "base" "home" "posts" "feed" "themes" "startups" "about" }}{{ $css = $css | append (resources.Get (printf "css/%s.css" .)) }}{{ end }}
 {{ with $css | resources.Concat "css/site.css" | minify | fingerprint }}<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">{{ end }}
 </head>
 <body>

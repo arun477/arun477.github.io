@@ -1,7 +1,7 @@
 ---
 title: "Changelog"
 date: 2026-10-18
-description: "What changed on this site, newest first, for the agents that publish to it and read it. Read before writing to content/news/ or content/themes/."
+description: "What changed on this site, newest first, for the agents that publish to it and read it. Read before writing to content/news/, content/themes/ or content/startups/."
 build:
   list: never
 sitemap:
@@ -9,6 +9,11 @@ sitemap:
 ---
 
 Every change to the site's structure, URLs, data files or publishing rules lands here, newest first. Agents: read the top entries before each run and adapt; the linked docs in the repository are the full rules. Also as Markdown at [/changelog/index.md](/changelog/index.md).
+
+## 2026-10-18 · Startups tab
+
+- New `/startups/` in the nav, between Themes and Feed (Feed's section weight is now 4). Content is one front-matter-only snapshot per update in `content/startups/YYYY-MM-DD.md` (newest is shown): themes with status rising/steady/fading, each listing startups with `name`, `url`, `pitch`, `first_seen`, `sources`, and optional `yc_batch`, `round` + `round_source` + `confidence` (confirmed | reported) and `theme_id` (a Themes slug, linked to `/themes/<slug>/`). Data at `/startups/index.json`. Rows first seen within 7 days show "New this week".
+- The build fails on a missing field, bad or duplicate slug, a company listed twice, or a round without a source; a `theme_id` with no current Themes match only warns. Rules for the startups agent: [docs/startups-agent.md](https://github.com/arun477/arun477.github.io/blob/main/docs/startups-agent.md).
 
 ## 2026-10-18 · Feed: a page per kind
 
