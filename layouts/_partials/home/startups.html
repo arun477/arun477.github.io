@@ -1,0 +1,20 @@
+{{- /* Home: a compact Startups block from the newest content/startups snapshot. Shows rows the startups agent flagged `home: true`
+       (at most 3; startups/current.html fails the build on more), newest first_seen first. Respects home `hide` (startup url).
+       A home `pin` that is a startup url shows it as pinned at the top of this block. Nothing flagged: no block. */ -}}
+{{- $cfg := partial "home/params.html" . -}}
+{{- $rows := slice -}}
+{{- with site.GetPage "/startups" }}{{ with partial "startups/current.html" . }}{{ range .themes }}{{ range .startups }}
+  {{- if .home }}{{ $u := strings.TrimSuffix "/" .url }}{{ if not (in $cfg.hide $u) }}{{ $rows = $rows | append (merge . (dict "pin" (in $cfg.pins $u))) }}{{ end }}{{ end -}}
+{{- end }}{{ end }}{{ end }}{{ end -}}
+{{- $rows = sort $rows "first_seen" "desc" -}}
+{{- $rows = (where $rows "pin" true) | append (where $rows "pin" false) -}}
+{{ with $rows }}
+<section class="index home-startups">
+<div class="index-h"><h2 class="latest">Startups</h2>{{ partial "ornament/brush.html" (dict "kind" "vertical" "length" 120 "class" "latest-v") }}</div>
+<div class="index-b">
+<ol class="feed startups compact">
+{{ range . }}<li class="post rising{{ if .pin }} pin{{ end }}"><div class="su-r"><span class="av">{{ partial "icon.html" "rising" }}</span><span class="b"><span class="m">{{ if .pin }}<em>Pinned</em>{{ end }}<b>Startup</b><a href="/startups/#{{ urlize .name }}">All startups</a></span><strong><a class="su-name" href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .name }}</a></strong><span class="s">{{ .pitch }}</span></span></div></li>
+{{ end }}</ol>
+</div>
+</section>
+{{ end }}

@@ -8,7 +8,7 @@
   {{- $tslugs := slice -}}
   {{- with site.GetPage "/themes" }}{{ with first 1 (where .Pages "Params.themes" "!=" nil).ByDate.Reverse }}{{ range (index . 0).Params.themes }}{{ $tslugs = $tslugs | append (.slug | default (urlize .title)) }}{{ end }}{{ end }}{{ end -}}
   {{- $slugs := slice }}{{ $names := slice }}{{ $urls := slice }}{{ $themes := slice -}}
-  {{- $week := now.AddDate 0 0 -7 -}}
+  {{- $week := now.AddDate 0 0 -7 }}{{ $homes := 0 -}}
   {{- range $i, $t := $snap.Params.themes -}}
     {{- $n := add $i 1 -}}
     {{- range slice "title" "slug" "status" "summary" }}{{ if not (index $t .) }}{{ errorf "startups: %s, theme %d has no %q" $p $n . }}{{ end }}{{ end -}}
@@ -30,11 +30,13 @@
         {{- if not (in (slice "confirmed" "reported") ($s.confidence | default "")) }}{{ errorf "startups: %s: a round needs confidence: confirmed or reported" $w }}{{ end -}}
       {{- end -}}
       {{- with $s.theme_id }}{{ if not (in $tslugs .) }}{{ warnf "startups: %s: theme_id %q matches no current Themes slug; not linked" $w . }}{{ end }}{{ end -}}
+      {{- if $s.home }}{{ $homes = add $homes 1 }}{{ end -}}
       {{- $fs := time (dateFormat "2006-01-02" $s.first_seen) -}}
       {{- $rows = $rows | append (merge $s (dict "first_seen" ($fs.Format "2006-01-02") "fs" $fs "new" ($fs.After $week) "theme_link" (and $s.theme_id (in $tslugs $s.theme_id)))) -}}
     {{- end -}}
     {{- $themes = $themes | append (merge $t (dict "startups" $rows)) -}}
   {{- end -}}
+  {{- if gt $homes 3 }}{{ errorf "startups: %s flags %d startups home: true; the limit is 3" $p $homes }}{{ end -}}
   {{- $out = dict "snapshot" $snap "themes" $themes -}}
 {{- end -}}
 {{- return $out -}}

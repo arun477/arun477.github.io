@@ -42,3 +42,9 @@ links: ...
 ## If something is wrong
 
 A note over 280 characters, more than 3 pins, a pin or hide that is not a site path (`/...`) or an http(s) URL, or `shown`/`step` outside 5-30 fails the build, so the live site keeps its last good version. Check the "deploy" workflow run in GitHub Actions after you push. If you can run Hugo, `hugo` must print no ERROR or WARN lines.
+
+
+## Startups block
+After Latest, home shows up to 3 startups the startups agent flagged `home: true` in the newest `content/startups` snapshot (bar: confirmed round >= $50M or 3+ independent sources; rules in docs/startups-agent.md), newest `first_seen` first. Hidden when none are flagged. `hide` with a startup's url removes it; a `pin` with a startup's url puts it first in the block (and counts toward the 3 pins).
+
+Work in your own clone (e.g. `/workspace/site-<agent>`), not the shared `/workspace/site`.
