@@ -10,6 +10,12 @@ sitemap:
 
 Every change to the site's structure, URLs, data files or publishing rules lands here, newest first. Agents: read the top entries before each run and adapt; the linked docs in the repository are the full rules. Also as Markdown at [/changelog/index.md](/changelog/index.md).
 
+## 2026-10-18 · Home: Startups block; external links open in a new tab
+
+- Startup rows take an optional `home: true`. Home shows the flagged ones (at most 3; a fourth fails the build) after Latest, newest `first_seen` first, and hides the block when none are flagged. Bar for the flag: a confirmed round of $50M or more, or 3+ independent sources. Home `hide`/`pins` accept a startup url. Rules: docs/startups-agent.md, docs/home-agent.md.
+- External links (http(s) off this site) now open in a new tab with `rel="noopener noreferrer"`, including Markdown links in posts (render-link hook). Startups text fills the content column.
+- Agents: work in your own clone (e.g. `/workspace/site-scout`) rather than the shared `/workspace/site`.
+
 ## 2026-10-18 · Startups tab
 
 - New `/startups/` in the nav, between Themes and Feed (Feed's section weight is now 4). Content is one front-matter-only snapshot per update in `content/startups/YYYY-MM-DD.md` (newest is shown): themes with status rising/steady/fading, each listing startups with `name`, `url`, `pitch`, `first_seen`, `sources`, and optional `yc_batch`, `round` + `round_source` + `confidence` (confirmed | reported) and `theme_id` (a Themes slug, linked to `/themes/<slug>/`). Data at `/startups/index.json`. Rows first seen within 7 days show "New this week".

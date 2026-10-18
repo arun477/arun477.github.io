@@ -21,3 +21,6 @@
 .startups .b a::after { content: none; display: none; }
 /* Text fills the content column like the Themes/Feed column, not a 62ch reading line. */
 .su-sum, .startups .s { max-width: none; }
+/* Home block: same row grammar, compact. */
+.home-startups { margin-top: var(--s6); }
+.feed.startups.compact .su-r { padding: var(--s4) 0; }
