@@ -3,7 +3,7 @@
 .su-theme { margin-bottom: var(--s6); }
 .startups .b a { display: inline; padding: 0; gap: 0; } /* .feed a is the whole-row link elsewhere; here links are inline */
 .su-t { margin: 0 0 var(--s2); font: 600 var(--t-lg)/1.4 var(--mincho); }
-.su-sum { max-width: 62ch; margin: 0 0 var(--s4); font: 400 var(--t-body)/1.8 var(--mincho); color: var(--muted); }
+.su-sum { margin: 0 0 var(--s4); font: 400 var(--t-body)/1.8 var(--mincho); color: var(--muted); }
 .startups .su-r { display: flex; align-items: flex-start; gap: var(--s5); padding: var(--s5) 0; color: var(--ink); }
 .startups .su-r > .av { margin-top: var(--s1); }
 .startups .su-name { color: inherit; text-decoration: none; }
@@ -12,3 +12,12 @@
 .startups .m a:hover { color: var(--ink); }
 .su-rep { font-style: italic; text-transform: lowercase; opacity: .8; }
 @media (max-width: 40rem) { .startups .su-r { gap: var(--s4); padding: var(--s4) 0; } }
+
+/* Rows are siblings; reset everything the whole-row .feed a grammar adds (relative position, brush ::after, hover slide)
+   so inline links inside a row can never offset or nest the row box, and each row spans the column. */
+.startups > li { margin: 0; padding: 0; width: 100%; }
+.startups .su-r { width: 100%; box-sizing: border-box; }
+.startups .b a { position: static; transform: none; }
+.startups .b a::after { content: none; display: none; }
+/* Text fills the content column like the Themes/Feed column, not a 62ch reading line. */
+.su-sum, .startups .s { max-width: none; }
