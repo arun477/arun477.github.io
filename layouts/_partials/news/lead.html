@@ -5,7 +5,7 @@
 <div class="fd-lead post spike" data-kind="{{ .kind }}">
 <div class="fd-lead-b">
 <p class="m"><em>Spike</em><span>{{ (index $kinds .kind).one }}</span><b>{{ .source }}</b>{{ with .topic }}<span>{{ . }}</span>{{ end }}{{ if $.dated }}<time datetime="{{ .day.Date.Format "2006-01-02" }}">{{ .day.Date.Format "2 Jan 2006" }}{{ with .time }} {{ . }} UTC{{ end }}</time>{{ else }}{{ with .time }}<time>{{ . }} UTC</time>{{ end }}{{ end }}</p>
-<h2><a href="{{ .url }}" rel="noopener">{{ .title }}</a></h2>
+<h2><a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .title }}</a></h2>
 <p class="s">{{ .summary }}</p>
 </div>
 {{ partial "ornament/seal.html" (dict "text" "TOP" "size" 38 "class" "fd-seal") }}

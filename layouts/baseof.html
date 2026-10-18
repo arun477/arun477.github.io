@@ -45,7 +45,7 @@
 <footer class="site">
 {{ partial "ornament/fuji.html" . }}
 <div class="seigaiha" aria-hidden="true"></div>
-<div class="foot-bar"><div class="in"><span class="copy">© {{ now.Year }} {{ site.Title }}</span><nav aria-label="Elsewhere">{{ range site.Home.Params.links }}<a href="{{ .url }}" rel="me noopener">{{ .name }}</a>{{ end }}<a href="/index.xml">RSS</a><a href="/changelog/">Changelog</a></nav></div></div>
+<div class="foot-bar"><div class="in"><span class="copy">© {{ now.Year }} {{ site.Title }}</span><nav aria-label="Elsewhere">{{ range site.Home.Params.links }}<a href="{{ .url }}" target="_blank" rel="me noopener noreferrer">{{ .name }}</a>{{ end }}<a href="/index.xml">RSS</a><a href="/changelog/">Changelog</a></nav></div></div>
 </footer>
 <script>
 function toggleTheme() {
