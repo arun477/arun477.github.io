@@ -1,0 +1,21 @@
+{{ define "main" }}
+{{ $cur := partial "startups/current.html" . }}
+<div class="sechead"><h1>{{ .Title }}</h1><p class="meta">{{ with $cur.snapshot }}<time datetime="{{ .Lastmod.Format "2006-01-02T15:04Z07:00" }}">Updated {{ .Lastmod.UTC.Format "2 Jan 2006" }}</time>{{ end }}<a class="chip" href="{{ (site.GetPage "/themes").RelPermalink }}">Themes</a><a class="chip" href="{{ .RelPermalink }}index.json">JSON</a></p></div>
+{{- /* Grouped by status, rising first, then by startup theme in snapshot order. No ranks or counts. */ -}}
+{{ with $cur.themes }}
+{{ range $st := slice "rising" "steady" "fading" }}{{ with where $cur.themes "status" $st }}
+<section class="day th-group su-group">
+<h2 class="label"><span class="status {{ $st }}">{{ $st }}</span></h2>
+{{ range . }}
+<div class="su-theme" id="{{ .slug }}">
+<h3 class="su-t">{{ .title }}</h3>
+<p class="su-sum">{{ .summary }}</p>
+<ol class="feed startups">
+{{ range $s := .startups }}<li class="post {{ $st }}{{ if .new }} su-new{{ end }}" id="{{ urlize .name }}"><div class="su-r"><span class="av" title="{{ $st }}">{{ partial "icon.html" $st }}</span><span class="b"><span class="m">{{ if .new }}<em>New this week</em>{{ end }}{{ with .yc_batch }}<b>YC {{ strings.TrimPrefix "YC " . }}</b>{{ end }}{{ with .round }}<a href="{{ $s.round_source }}" rel="noopener">{{ . }}</a>{{ end }}{{ if eq .confidence "reported" }}<span class="su-rep" title="Reported, not confirmed by the company">reported</span>{{ end }}<span>Spotted <time datetime="{{ .first_seen }}">{{ .fs.Format "2 Jan 2006" }}</time></span>{{ if .theme_link }}<a href="/themes/{{ .theme_id }}/">Theme</a>{{ end }}</span><strong><a class="su-name" href="{{ .url }}" rel="noopener">{{ .name }}</a></strong><span class="s">{{ .pitch }}</span></span></div></li>
+{{ end }}</ol>
+</div>
+{{ end }}
+</section>
+{{ end }}{{ end }}
+{{ else }}<p class="brief">Nothing yet.</p>{{ end }}
+{{ end }}

@@ -1,0 +1,9 @@
+{{- $cur := partial "startups/current.html" . -}}
+{{- $themes := slice }}{{ $date := "" -}}
+{{- with $cur.snapshot }}{{ $date = .Date.Format "2006-01-02" }}{{ end -}}
+{{- range $cur.themes -}}
+  {{- $rows := slice -}}
+  {{- range .startups }}{{ $r := dict "name" .name "url" .url "pitch" .pitch "first_seen" .first_seen "new_this_week" .new "sources" .sources }}{{ with .yc_batch }}{{ $r = merge $r (dict "yc_batch" .) }}{{ end }}{{ with .round }}{{ $r = merge $r (dict "round" .) }}{{ end }}{{ with .round_source }}{{ $r = merge $r (dict "round_source" .) }}{{ end }}{{ with .confidence }}{{ $r = merge $r (dict "confidence" .) }}{{ end }}{{ with .theme_id }}{{ $r = merge $r (dict "theme_id" .) }}{{ end }}{{ $rows = $rows | append $r }}{{ end -}}
+  {{- $themes = $themes | append (dict "title" .title "slug" .slug "status" .status "summary" .summary "startups" $rows) -}}
+{{- end -}}
+{{- jsonify (dict "title" (printf "%s · %s" .Title site.Title) "description" .Description "url" .Permalink "date" $date "themes" $themes) -}}
