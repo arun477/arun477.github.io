@@ -1,10 +1,8 @@
 ---
 title: "Arun Arumugam"
 date: 2026-01-01
-lastmod: 2026-10-18T23:38:22Z
-note: "A quiet weekend for launches: OpenCode disclosed a breach of linked provider keys, and Anthropic's own data shows agent hours now outnumber staff hours six to one."
-pins:
-  - "https://x.com/opencode/status/2111519637049319818"
+lastmod: 2026-10-19T23:38:03Z
+note: "Meta published how it keeps production agents and gigawatt-scale training reliable, and MiniMax named the open-weight model that quietly topped OpenCode for 12 days."
 role: "Agent Engineering"
 links:
   - { name: "GitHub", url: "https://github.com/arun477" }
