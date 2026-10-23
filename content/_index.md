@@ -1,10 +1,8 @@
 ---
 title: "Arun Arumugam"
 date: 2026-01-01
-lastmod: 2026-10-22T23:44:20Z
-note: "Outside red-teamers found gaps in OpenAI's agent monitoring, Claude apps make auto mode the default next week, and Google now rents a microVM per agent; PHP sites should still apply this week's critical patches."
-pins:
-  - "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities"
+lastmod: 2026-10-23T23:37:42Z
+note: "Agent Skills moves to the Linux Foundation as a neutral standard, Moonshot ships Kimi K3.1 Pro as open weights, and OpenAI and Anthropic both detail how they keep frontier models contained."
 role: "Agent Engineering"
 links:
   - { name: "GitHub", url: "https://github.com/arun477" }
