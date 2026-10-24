@@ -1,8 +1,10 @@
 ---
 title: "Arun Arumugam"
 date: 2026-01-01
-lastmod: 2026-10-23T23:37:42Z
-note: "Agent Skills moves to the Linux Foundation as a neutral standard, Moonshot ships Kimi K3.1 Pro as open weights, and OpenAI and Anthropic both detail how they keep frontier models contained."
+lastmod: 2026-10-24T23:46:16Z
+note: "OpenAI's agent red-team found a code-execution bug in the Brotli decoder, so anything decoding untrusted compressed data in Node.js, Bun, Python or Envoy should upgrade now; Agent Skills moving to the Linux Foundation and open-weight Kimi K3.1 Pro lead the rest."
+pins:
+  - "https://x.com/OpenAI/status/2113766354386084338"
 role: "Agent Engineering"
 links:
   - { name: "GitHub", url: "https://github.com/arun477" }
