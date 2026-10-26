@@ -1,10 +1,8 @@
 ---
 title: "Arun Arumugam"
 date: 2026-01-01
-lastmod: 2026-10-25T23:39:15Z
-note: "A quiet weekend: anything decoding untrusted compressed data in Node.js, Bun, Python or Envoy should still upgrade Brotli now, and the one new release is Block's Dessa, a speech model trained only on conversation audio that runs on a laptop."
-pins:
-  - "https://x.com/OpenAI/status/2113766354386084338"
+lastmod: 2026-10-26T23:42:52Z
+note: "OpenAI's GPT-6.1 Terra brings near-Astra computer use at a tenth the price, Anthropic has filed to go public, Cursor's Agent SDK is out, and anyone running disaggregated SGLang should upgrade to v0.5.22 after a cross-tenant cache leak."
 role: "Agent Engineering"
 links:
   - { name: "GitHub", url: "https://github.com/arun477" }
