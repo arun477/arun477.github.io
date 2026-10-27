@@ -1,8 +1,8 @@
 ---
 title: "Arun Arumugam"
 date: 2026-01-01
-lastmod: 2026-10-26T23:42:52Z
-note: "OpenAI's GPT-6.1 Terra brings near-Astra computer use at a tenth the price, Anthropic has filed to go public, Cursor's Agent SDK is out, and anyone running disaggregated SGLang should upgrade to v0.5.22 after a cross-tenant cache leak."
+lastmod: 2026-10-27T23:40:01Z
+note: "DeepMind's Genie 4 makes interactive world models real-time, Google Research shows LLMs that keep learning after deployment, and GPT-6.1 Terra, Anthropic's IPO filing and the SGLang v0.5.22 cache-leak fix are still this week's main stories."
 role: "Agent Engineering"
 links:
   - { name: "GitHub", url: "https://github.com/arun477" }
