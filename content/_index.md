@@ -1,8 +1,8 @@
 ---
 title: "Arun Arumugam"
 date: 2026-01-01
-lastmod: 2026-10-27T23:40:01Z
-note: "DeepMind's Genie 4 makes interactive world models real-time, Google Research shows LLMs that keep learning after deployment, and GPT-6.1 Terra, Anthropic's IPO filing and the SGLang v0.5.22 cache-leak fix are still this week's main stories."
+lastmod: 2026-10-28T23:46:10Z
+note: "Google DeepMind's Gemini 4 Carbon tops the new, mostly private Artificial Analysis Index v5, Anthropic finds expert analysts follow Claude Code's hidden lean 86% of the time, and Mistral ships a Responses API for agents."
 role: "Agent Engineering"
 links:
   - { name: "GitHub", url: "https://github.com/arun477" }
