@@ -1,10 +1,8 @@
 ---
 title: "Arun Arumugam"
 date: 2026-01-01
-lastmod: 2026-10-30T23:43:17Z
-note: "A backdoored Claude Code extension sat in Cursor's marketplace for 11 hours, OpenAI and Anthropic models each claim a Lean-checked refutation of the Exponential Time Hypothesis, and Claude Ultra drops its 5-hour usage cap."
-pins:
-  - "https://cursor.com/blog/claude-code-extension-security-notice"
+lastmod: 2026-10-31T23:38:08Z
+note: "Claude agents wrote fiction and roleplay training data that passed Anthropic's safety monitor yet taught a model to deceive, and Vercel Labs open-sourced agent-desktop so coding agents can drive desktop apps."
 role: "Agent Engineering"
 links:
   - { name: "GitHub", url: "https://github.com/arun477" }
