@@ -1,8 +1,8 @@
 ---
 title: "Arun Arumugam"
 date: 2026-01-01
-lastmod: 2026-11-03T23:42:41Z
-note: "OpenAI described Pando, the Git backend it built for agent-scale pushes to its monorepo, and Anthropic open-sourced FlashProve, zero-knowledge proofs that a reply came from a committed model."
+lastmod: 2026-11-04T23:48:41Z
+note: "Tencent released Hy4, a flagship model with vision and computer use, and Anthropic showed Claude helping map the first 3D structure of a bacterial vault particle."
 role: "Agent Engineering"
 links:
   - { name: "GitHub", url: "https://github.com/arun477" }
