@@ -1,0 +1,35 @@
+---
+title: "Personal agents get their own computers, accounts and money"
+rank: 2
+status: rising
+first_seen: 2026-09-18
+last_updated: 2026-11-05
+url: https://arun477.github.io/themes/personal-agents-get-their-own-computers-accounts-and-money/
+author: Arun Arumugam
+---
+
+# Personal agents get their own computers, accounts and money
+
+Always-on personal agents keep picking up real-world reach: Claude can now read bank and card data through Plaid, Grok Bot places phone calls on the user's behalf, and Perplexity Teammates run persistent jobs inside Computer with memory, skills and Slack. OpenAI's LifeVal scores everyday assistant tasks done via browser and connectors, while Cloudflare treats verified personal agents as a first-class traffic class with analytics and allow/block policies. The agent is becoming a standing intermediary with identity and access, so permissions and site-side controls matter as much as the model.
+
+## Evidence
+
+- [Claude adds Personal Finance: read-only bank and card connections via Plaid](https://claude.com/resources/articles/introducing-personal-finance-in-claude) (claude.com, news, 2026-11-05): US Pro/Max/Ultra beta lets Claude answer money questions from balances and up to two years of transactions you connect; access is read-only and hub chats are not used for training.
+- [Perplexity launches Teammates, persistent agents that own ongoing work inside Computer](https://www.perplexity.ai/hub/blog/teammates-are-agents-for-complex-ongoing-work) (perplexity.ai, news, 2026-11-05): Max-tier teammates plan and follow through on long-running jobs using Computer tasks, skills, memory and tools, can collaborate with other teammates and message coworkers in Slack.
+- [Cloudflare adds personal-agent analytics and granular access policies for sites](https://blog.cloudflare.com/personal-agents-visibility-control/) (blog.cloudflare.com, news, 2026-11-05): Site owners can see which verified personal agents hit which paths on their behalf and set finer allow/block rules as agents become a first-class traffic class.
+- [Cloudflare on why sites must treat personal agents as a new intermediary class](https://blog.cloudflare.com/trusted-agent-delegation/) (Cloudflare, blog, 2026-11-05): A clear framing of how personal agents strip user identity from requests and a collaborative approach for sites to identify, allow and manage that traffic safely.
+- [Grok Bot can now make phone calls](https://x.com/bot/status/2118043939592942052) (Grok Bot, news, 2026-11-04): Personal agents are moving beyond chat and apps into voice calls placed on the user's behalf.
+- [OpenAI introduces LifeVal, a benchmark for everyday personal-assistant tasks](https://openai.com/index/lifeval/) (OpenAI, news, 2026-11-02): New eval of real-life tasks (childcare, groceries, government paperwork) done via browser, computer use and connectors. GPT-6 Astra scores 80.6% vs 49.3% for GPT-5.2. Self-reported; no task count, grader details or other labs.
+- [Vercel Labs releases agent-desktop, computer use for any coding agent](https://github.com/vercel-labs/agent-desktop) (Vercel Labs, release, 2026-10-31): An open-source Rust tool that lets coding agents drive desktop apps on macOS, Windows and Linux through accessibility trees instead of screenshots, running in the background with parallel agents. A practical building block for agents beyond the browser.
+- [Cursor agents can now control your computer](https://x.com/cursor_ai/status/2113661506634305834) (Cursor, release, 2026-10-23): Cursor's agents can drive desktop apps such as the iOS Simulator to test what they build. That closes the loop for app work where the browser and terminal were the agent's only eyes.
+- [Grok Bot can sign in for you through 1Password](https://x.com/bot/status/2113332983226831339) (Grok Bot, news, 2026-10-22): You approve which logins to share and the agent signs in to sites itself, a key step for personal agents doing real errands. It also now works with Calendar, Reminders and Contacts on iOS and Android.
+- [Anthropic opens a research preview of Claude Duet, a proactive personal agent](https://claude.com/resources/articles/claude-duet) (Anthropic, release, 2026-10-21): Anthropic's entry into always-on personal agents: Duet surfaces what needs attention, keeps working when you step away and asks before acting. Waitlist for US Pro and Max users, on iOS, Android and claude.ai.
+- [Personal Grok Bots come to Tesla Robotaxi and Cybercab](https://x.com/robotaxi/status/2109742678435119540) (Tesla Robotaxi, news, 2026-10-12): Riders can sign in and talk to their own personal agent during rides. The same agent is following users across phone, desktop and car.
+- [Grok Bot gets its own email address](https://x.com/bot/status/2108609764766908772) (Grok Bot, release, 2026-10-09): Each bot can now sign up for services, contact businesses and schedule meetings from its own inbox. Personal agents are getting their own identities instead of borrowing yours.
+- [Grok Bot can now help run a Shopify store](https://x.com/bot/status/2108228871938359347) (Grok Bot, release, 2026-10-08): Connected to Shopify, the personal agent checks orders, tracks inventory and updates listings. Personal agents are taking on small-business operations.
+- [Grok Bot can search, read and monitor X](https://x.com/bot/status/2107949161878606089) (Grok Bot, release, 2026-10-07): Bots can now watch X for topics and accounts and act on what they find, which makes ongoing monitoring a built-in personal-agent task.
+- [Grok Bot now suggests ways to help before you ask](https://x.com/bot/status/2105713240701538538) (Grok Bot, release, 2026-10-01): The personal agent now proactively offers tasks it can take on. Proactivity, not just answering, is becoming the defining feature of personal agents.
+- [Grok Bot hands coding tasks to Cursor and manages GitHub PRs](https://x.com/bot/status/2105373767568621895) (Grok Bot, release, 2026-09-30): Bots can now delegate coding to Cursor, manage pull requests through GitHub and Origin plugins, and share video demos of what they built. The personal agent is becoming a coordinator of other agents.
+- [OpenAI launches dots, always-on agents powered by GPT-6 Astra](https://x.com/OpenAI/status/2104984504133918973) (OpenAI, release, 2026-09-29): Each dot is a persistent agent with its own cloud computer, your plugins and your context, working in the background. It's OpenAI's entry into always-on personal and work agents.
+- [Grok Bot connects to bank, card and investment accounts](https://x.com/bot/status/2103936247995752705) (Grok Bot, release, 2026-09-26): A Finance integration lets the personal agent see linked accounts and help manage spending and investments. Giving agents access to money raises the bar for approvals and safety.
+- [Grok Bot can now talk and send voice notes](https://x.com/bot/status/2101014478255247544) (Grok Bot, release, 2026-09-18): xAI's personal agent now speaks and sends voice notes, moving it from a chat window toward an assistant you can just talk to.
