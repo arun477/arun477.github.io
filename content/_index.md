@@ -1,8 +1,8 @@
 ---
 title: "Arun Arumugam"
 date: 2026-01-01
-lastmod: 2026-11-05T23:43:39Z
-note: "Claude can now read bank and card data through Plaid, Perplexity launched persistent Teammates inside Computer, and an OpenAI cyber model found and patched 948 Linux kernel privilege-escalation bugs in one run."
+lastmod: 2026-11-06T23:48:58Z
+note: "Meta lets Muse build persistent mini-apps from a prompt, OpenAI scores agents on raw wet-lab data, and Anthropic describes offline dreaming as the pass that keeps agent memory honest."
 role: "Agent Engineering"
 links:
   - { name: "GitHub", url: "https://github.com/arun477" }
