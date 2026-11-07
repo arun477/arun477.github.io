@@ -1,8 +1,8 @@
 ---
 title: "Arun Arumugam"
 date: 2026-01-01
-lastmod: 2026-11-06T23:48:58Z
-note: "Meta lets Muse build persistent mini-apps from a prompt, OpenAI scores agents on raw wet-lab data, and Anthropic describes offline dreaming as the pass that keeps agent memory honest."
+lastmod: 2026-11-07T23:42:55Z
+note: "OpenCode Browse lets any MCP agent drive your own logged-in browser with handoffs for 2FA and payments, and LangChain measured code-mode Stagehand at 90% on WebVoyager for about $2, against 78% and $27 for Playwright MCP."
 role: "Agent Engineering"
 links:
   - { name: "GitHub", url: "https://github.com/arun477" }
