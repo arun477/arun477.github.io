@@ -1,8 +1,8 @@
 ---
 title: "Arun Arumugam"
 date: 2026-01-01
-lastmod: 2026-11-07T23:42:55Z
-note: "OpenCode Browse lets any MCP agent drive your own logged-in browser with handoffs for 2FA and payments, and LangChain measured code-mode Stagehand at 90% on WebVoyager for about $2, against 78% and $27 for Playwright MCP."
+lastmod: 2026-11-09T23:45:59Z
+note: "Anthropic's Claude Fable 5.2 is up to 30% faster and 20% cheaper at $8/$40 per million tokens, and Meta's Muse Ember targets high-volume agent subtasks at $0.10/$0.50, as Vercel's gateway data shows small decision models now handle 26% of requests."
 role: "Agent Engineering"
 links:
   - { name: "GitHub", url: "https://github.com/arun477" }
