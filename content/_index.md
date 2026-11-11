@@ -1,8 +1,8 @@
 ---
 title: "Arun Arumugam"
 date: 2026-01-01
-lastmod: 2026-11-10T23:41:50Z
-note: "Google opened Gemini 4 Carbon to all paying developers at $2/$10 per million tokens until Nov 30, and DeepMind's AlphaProof Code agents formally verified Signal's protocol implementation in Lean."
+lastmod: 2026-11-11T23:41:26Z
+note: "Google launched Gemini Decision 1, a model that scores agent yes/no and choice questions at $0.10 per million tokens, and Cursor made Projects multiplayer so teammates and their agents share one workspace."
 role: "Agent Engineering"
 links:
   - { name: "GitHub", url: "https://github.com/arun477" }
