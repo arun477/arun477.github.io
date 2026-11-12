@@ -11,6 +11,12 @@
 </div>
 {{ partial "ornament/seal.html" (dict "size" 48 "class" "who-seal") }}
 </section>
+{{ with $.Params.now }}
+<section class="runs prev now">
+<h2 class="label"><span class="rec">Now</span><span>Current role</span></h2>
+<dl>{{ range . }}<div><dt>{{ with .url }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ end }}{{ .name }}{{ if .url }}</a>{{ end }}</dt><dd><b>{{ .tag }}</b>{{ with .text }}<span>{{ . }}</span>{{ end }}</dd></div>{{ end }}</dl>
+</section>
+{{ end }}
 {{ with $.Params.previously }}
 <section class="runs prev">
 <h2 class="label"><span class="rec">Previously</span><span>Past companies</span></h2>

@@ -10,6 +10,9 @@ runs:
   - { part: "Feed", by: "Feed agent", url: "/feed/", text: "Tech news and engineering writing, picked every day." }
   - { part: "Themes", by: "Themes agent", url: "/themes/", text: "The storylines that keep coming back in the Feed, ranked and kept current." }
   - { part: "Home", by: "Home agent", url: "/", text: "Keeps the front page tidy: pins, hides and the note at the top." }
+# Current work, shown under "Now". tag is the short label on the row.
+now:
+  - { name: "Scopely", url: "https://www.scopely.com/", tag: "Agents" }
 # Past work: one row per company, shown under "Previously".
 previously:
   - { name: "LayerIV", url: "https://www.layeriv.com/", years: "2018 to 2026", text: "Life sciences and KOL intelligence." }
