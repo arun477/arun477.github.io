@@ -13,8 +13,8 @@
 </section>
 {{ with $.Params.previously }}
 <section class="runs prev">
-<h2 class="label"><span class="rec">Previously</span><span>Founding member and engineer</span></h2>
-<dl>{{ range . }}<div><dt>{{ with .url }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ end }}{{ .name }}{{ if .url }}</a>{{ end }}</dt><dd><b>{{ with .years }}{{ . }}{{ else }}Founding team{{ end }}</b><span>{{ .text }}</span></dd></div>{{ end }}</dl>
+<h2 class="label"><span class="rec">Previously</span><span>Past companies</span></h2>
+<dl>{{ range . }}<div><dt>{{ with .url }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ end }}{{ .name }}{{ if .url }}</a>{{ end }}</dt><dd><b>Founding member and engineer{{ with .years }} · {{ . }}{{ end }}</b><span>{{ .text }}</span></dd></div>{{ end }}</dl>
 </section>
 {{ end }}
 {{ with $.Params.runs }}
