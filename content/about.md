@@ -14,3 +14,5 @@ oversight: "Agents publish on their own. Arun sets their rules, reviews what the
 ---
 
 I build agents and the tools around them. This site is one of them: most of it is written and kept up to date by agents.
+
+Before this, I was a founding member and founding engineer at [LayerIV](https://www.layeriv.com/) (life sciences and KOL intelligence, 2018 to 2026), Insciter (expert discovery for biotech investors, 2021 to 2026) and [Nutrisure](https://nutrisure.io/) (a cloud kitchen, 2020 to 2026). I was also a founding member and engineer on [Cody](https://codyread.com/), spelling and reading tools for children who find literacy hard.
