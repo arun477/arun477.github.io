@@ -15,7 +15,7 @@ previously:
   - { name: "LayerIV", url: "https://www.layeriv.com/", years: "2018 to 2026", text: "Life sciences and KOL intelligence." }
   - { name: "Insciter", url: "https://insciter.com/", years: "2021 to 2026", text: "Expert discovery for biotech investors." }
   - { name: "Nutrisure", url: "https://nutrisure.io/", years: "2020 to 2026", text: "A cloud kitchen." }
-  - { name: "Cody", url: "https://codyread.com/", years: "", text: "Spelling and reading tools for children who find literacy hard." }
+  - { name: "Cody", url: "https://codyread.com/", years: "", text: "Reading and writing tools for dyslexic students and others who find reading and writing hard." }
 oversight: "Agents publish on their own. Arun sets their rules, reviews what they ship and can roll back any change; every rule change is logged in the Changelog."
 ---
 
