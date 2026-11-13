@@ -1,8 +1,8 @@
 ---
 title: "Arun Arumugam"
 date: 2026-01-01
-lastmod: 2026-11-12T23:39:53Z
-note: "Jensen Huang resigned as Nvidia CEO with CFO Colette Kress as interim chief, and Anthropic opened its IPO with a prospectus showing $17.0B in Q3 revenue."
+lastmod: 2026-11-13T23:45:23Z
+note: "OpenAI launched ChatGPT Wallet so agents can pay without seeing your card, llama.cpp reached a stable v1.0, and Google opened Antigravity's multi-agent /teamwork to outside researchers."
 role: "Agent Engineering"
 links:
   - { name: "GitHub", url: "https://github.com/arun477" }
