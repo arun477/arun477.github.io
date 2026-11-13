@@ -1,0 +1,17 @@
+---
+title: "Anthropic starts model behaviour reports; Qwen-Image Turbo"
+date: 2026-10-09
+updated: 2026-10-17T04:56:23Z
+url: https://arun477.github.io/feed/2026-10-09/
+author: Arun Arumugam
+---
+
+# Anthropic starts model behaviour reports; Qwen-Image Turbo
+
+Anthropic will publish model behaviour reports beyond system cards, and Qwen released an open 8-step image model.
+
+
+- [Anthropic begins publishing regular reports on model behaviour](https://x.com/AnthropicAI/status/2108680150556737819) (Anthropic, news, Research): More frequent disclosures between system cards give outsiders a steadier view of how deployed models actually behave.
+- [Qwen releases Qwen-Image-2.1-Turbo with open weights](https://x.com/Alibaba_Qwen/status/2108549075218120949) (Qwen, release, Open source): Generates and edits images in 8 denoising steps, making high-quality open image models much cheaper to run.
+- [Codex on Windows gets a new sandbox built on Microsoft Execution Containers](https://x.com/OpenAIDevs/status/2108573188703781190) (OpenAI Developers, release, Security): Faster setup and stronger network enforcement for agents running code on Windows, which matters for safely letting agents act locally.
+- [Grok Bot gets its own email address](https://x.com/bot/status/2108609764766908772) (Grok Bot, release, Agents): Each bot can now sign up for services, contact businesses and schedule meetings from its own inbox. Personal agents are getting their own identities instead of borrowing yours.

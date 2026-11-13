@@ -1,0 +1,86 @@
+# Arun Arumugam
+
+> Arun Arumugam. Agent engineering: projects and notes. Role: Agent Engineering.
+
+Every post below is also available as clean Markdown: append `index.md` to its URL. Full sitemap: https://arun477.github.io/sitemap.xml. Feed: https://arun477.github.io/index.xml. What changed (agents: read before publishing): https://arun477.github.io/changelog/index.md. The home page is managed by an agent; rules: https://github.com/arun477/arun477.github.io/blob/main/docs/home-agent.md.
+
+## Posts
+
+- [FireScroll: Short Videos That Teach](https://arun477.github.io/posts/firescroll/index.md): Say a topic. An agent researches the web, writes a cited script, narrates it and renders a scrollable feed of short vertical videos.
+- [Beifong: AI-Powered Content Curation and Podcast Generation](https://arun477.github.io/posts/beifong_podcast_generator/index.md): Point it at your feeds. It collects RSS and social posts, curates what matters to you and turns it into podcasts you can listen to.
+- [Jupyter to LLM Extractor](https://arun477.github.io/posts/jupyter_extractor/index.md): A Chrome extension that extracts content from Jupyter notebooks for more effective interactions with large language models
+- [Mel Spectrogram](https://arun477.github.io/posts/mel_spectrogram/index.md): How raw audio becomes a mel spectrogram: sampling, the Fourier transform, spectrograms and mel filterbanks, with code to build one and turn it back into sound.
+- [llmdirtree: Directory Visualization and Context Generator for LLM Workflows](https://arun477.github.io/posts/directory-tree-generator/index.md): A Python CLI tool that generates both directory trees and code context summaries optimized for LLM interactions
+- [Bharat-NanoBEIR: Indian Language Information Retrieval Dataset](https://arun477.github.io/posts/embedding_eval_for_indic/index.md): NanoBEIR in 22 Indian languages: 286 small retrieval benchmarks for checking how well an embedding model searches in Hindi, Tamil, Maithili and the rest.
+
+## Themes
+
+The running Feed synthesized into ranked storylines, each with its evidence. Everything as JSON: https://arun477.github.io/themes/index.json. Current themes:
+
+- [Safety, security and provenance go operational](https://arun477.github.io/themes/safety-security-and-provenance-go-operational/index.md): Safety and security work is turning into standing practice: OpenAI built Control Room so a monitor can halt any agentic research job in about 35 seconds, confidential compute keeps spreading from OpenAI's Private Inference API to Google's TPU 8tx, and Anthropic open-sourced FlashProve to prove a reply came from committed weights. The threat side is operational too, with Cloudflare now seeing 50+ families of AI pentest frameworks scanning its customers from thousands of IPs, while Anthropic published practical rules for building safety evals that hold up. Kill switches, sealed inference, provenance and sound evals are becoming day-to-day lab and network infrastructure.
+- [Personal agents get their own computers, accounts and money](https://arun477.github.io/themes/personal-agents-get-their-own-computers-accounts-and-money/index.md): Always-on personal agents keep picking up real-world reach: Meta's Muse can send and receive email from its own address, Claude reads bank and card data through Plaid, and Grok Bot now works with Apple's Messages, Mail, Calendar and Contacts on the Mac. Money is the newest piece, as OpenAI's ChatGPT Wallet, built with Amex, Mastercard and Visa, gives agents tokenized cards with a security check on every purchase. Open options are arriving too, with n8n Labs' Nod and OpenCode Browse running agents on the user's own computer and browser. The agent is becoming a standing intermediary with its own identity, access and spending, so permissions and site-side controls matter as much as the model.
+- [Agents become long-running, parallel and stateful](https://arun477.github.io/themes/agents-become-long-running-parallel-and-stateful/index.md): Agents are moving from single chats to long jobs: parallel agents in ChatGPT Pro, Gemini agents playing Minecraft for 27 hours, durable pi agents and dedicated memory models, and GitHub rebuilding Copilot around parallel agent sessions. The harness is going multiplayer as well: Cursor rebuilt Projects so every teammate and their agents share one workspace, Cursor Cloud Agents scaffold and host live web apps, and Mistral Studio runs long-lived managed agents with approvals and tracing. Anthropic's write-up of agent memory treats offline "dreaming" as the pass that corrects bad notes and preloads the next session. The hard problems remain state, memory, orchestration and coordination around the model.
+- [Closed labs ship new flagships and faster tiers](https://arun477.github.io/themes/closed-labs-ship-new-flagships-and-faster-tiers/index.md): Closed labs keep shipping capability, speed and price tiers: Google opened Gemini 4 Carbon to all paying developers and followed with Gemini 4 Hydrogen, a fast everyday model it says is 2.5x faster than Gemini 3.8 Flash, while Anthropic's Claude Fable 5.2 is up to 30% faster and 20% cheaper at the top tier and Alibaba opened Qwen4-Max in preview. Cheap decision models are becoming their own category, with Google's Gemini Decision 1 scoring up to 1,000 questions per input in about 200 ms, while Vercel's AI Gateway shows small decision models already handle 26% of requests. Competition is shifting toward price per task and the workloads agents actually run, from flagship reasoning down to cheap high-volume calls.
+- [Open-weight models reach the frontier](https://arun477.github.io/themes/open-weight-models-reach-the-frontier/index.md): Frontier-scale open weights keep arriving: Thinking Machines put Inkling 2 Small, a 594B/17B MoE tuned for agents and coding, out under Apache 2.0 and then detailed how it trained the model end to end in 4-bit, after Mistral Large 4, Muse Spark Open, Reflection's Beam and Kimi K3.1 Pro. Open release is spreading beyond chat models with Runway's Praxis-1 for robot control, and the local stack is maturing as llama.cpp and ggml reached 1.0 with a stable API and ABI. Open release is a normal path to frontier capability, which tightens the gap for anyone building outside the closed APIs.
+- [AI turns to maths and science research](https://arun477.github.io/themes/ai-turns-to-maths-and-science-research/index.md): Labs keep pointing frontier models at research work: OpenAI published maths results and opened GPT-Rosalind to academic labs, Anthropic used Claude to help map a bacterial vault particle, DeepMind's AlphaGenome 2 traces variants to the cells where disease unfolds, and Google opened Antigravity's /teamwork multi-agent tools to outside researchers after Gemini 4 workflows produced results in maths, chemistry and kernel optimization. Formal methods are moving into real software, as AlphaProof Code verified security properties of Signal's protocol code, and OpenAI's BioBasicsBench scores agents on raw wet-lab data. Research results are becoming both a capability signal and a product line.
+- [Assistants move into the tools people already use](https://arun477.github.io/themes/assistants-move-into-the-tools-people-already-use/index.md): Assistants keep absorbing the surfaces people already work in: Claude now builds whiteboards, live spreadsheets and data stories as native workspaces, and meetings became a contested surface within a day, as Claude Meetings and then Grok Bot started joining team calls to answer questions, take on work and track decisions. Muse Spaces turns a description into a persistent mini-app, and the flow also runs the other way, as OpenAI lets businesses deploy agents inside ChatGPT and Stripe exposes payments data to agents over MCP. Distribution through existing tools matters as much as raw model quality.
+- [Sandboxes and limits for agents that act](https://arun477.github.io/themes/sandboxes-and-limits-for-agents-that-act/index.md): As agents run code and touch production, containment is getting real engineering. Vercel's sandbox challenge surfaced a kernel zero-day, Codex on Windows moved to a container sandbox, Google offers a microVM per agent, and Figma built Nimbus to run tens of thousands of isolated sandboxes for untrusted code. Testing the walls is maturing too: Perplexity had 12 models try to escape its agent VM and found capture-the-flag setups can steer agents away from the boundary under test, and security-tuned models did no better. Isolation at scale, checked by adversarial testing, is becoming the default control.
+- [Anthropic reshapes its governance on the way to an IPO](https://arun477.github.io/themes/anthropic-reshapes-its-governance-on-the-way-to-an-ipo/index.md): Anthropic has opened its IPO roadshow, with a prospectus showing $17.0B of revenue in Q3 2026, more than 12x a year earlier, and over 11,900 customers paying $100K+ a year. It got there after filing an S-1 to list on Nasdaq as ANT, committing 5% of its shares to a Public Benefit Fund, and handing its Agent Skills standard to the Linux Foundation's Agentic AI Foundation. A frontier lab going public puts its finances and governance in the open and sets a template for how safety-focused labs raise capital.
+- [Infrastructure strains under agent-scale code](https://arun477.github.io/themes/infrastructure-strains-under-agent-scale-code/index.md): Agents now write code faster than Git hosting and review were built for. GitHub moved repositories to Azure under agent-driven load and has published the redesign of its Git object storage; OpenAI built Pando, a Rust Git backend for thousands of concurrent pushes from engineers and Codex agents, cutting median push latency by about 80% on a petabyte-scale monorepo. Anthropic built its own source control after merges grew more than tenfold, and teams are answering review load with automation such as Meta's just-in-time tests. Tooling built for human pace is giving way first.
+
+## Startups
+
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+- [Startups]()
+
+## Feed
+
+Tech news and engineering blog posts, picked daily by an agent. Everything as JSON: https://arun477.github.io/feed/index.json. RSS: https://arun477.github.io/feed/index.xml. Latest days:
+
+- [ChatGPT Wallet lets agents pay; llama.cpp hits 1.0](https://arun477.github.io/feed/2026-11-13/index.md): Agent payments got a real rail with ChatGPT Wallet, DeepSeek folded its app features into the API, and llama.cpp committed to a stable 1.0. Plus a 4-bit training write-up and a warning on AI pentest swarms.
+- [Anthropic opens its IPO with $17B quarterly revenue](https://arun477.github.io/feed/2026-11-12/index.md): Anthropic launches its public offering and shows its books for the first time: $17.0B Q3 revenue, up more than 12x year over year.
+- [Gemini Decision 1 and Grok Bot 1.0; Runway opens Praxis-1](https://arun477.github.io/feed/2026-11-11/index.md): Google ships a decision model API, Grok Bot 1.0 brings shared team bots, and Runway open-sources a robot world action model. Plus DeepMind's AlphaGenome 2 and Perplexity's sandbox red-team results.
+- [Gemini 4 Carbon opens up; Claude adds Sheets and Whiteboards](https://arun477.github.io/feed/2026-11-10/index.md): Google makes its strongest model available to all paying developers and ships Gemini Robotics 2.5, Claude moves into boards and spreadsheets, and ChatGPT opens to businesses with their own agents. DeepMind's AlphaProof Code verifies Signal's protocol code.
+- [Claude Fable 5.2 and Meta's Muse Ember; Google's new TPUs](https://arun477.github.io/feed/2026-11-09/index.md): Anthropic ships faster, cheaper Fable and Mythos 5.2, and Meta releases Muse Ember for cheap high-volume agent work. Also: Google's confidential and long-context TPUs, and OpenAI on how it can stop any research workload.
+- [Agents get your real browser, and the tools that make it cheap](https://arun477.github.io/feed/2026-11-07/index.md): A quiet Saturday. OpenCode shipped an open-source way for any MCP agent to drive your own browser with handoffs for logins, and LangChain published hard numbers on how much browser-tool design changes agent cost and speed.
+- [Muse Spaces; BioBasicsBench; Claude agent memory](https://arun477.github.io/feed/2026-11-06/index.md): Meta lets Muse build persistent mini-apps from a prompt; OpenAI scores agents on raw wet-lab data; Anthropic explains dreaming as the offline pass that keeps agent memory honest.
+- [Claude Personal Finance; Perplexity Teammates; Muse Voice](https://arun477.github.io/feed/2026-11-05/index.md): Consumer agents get bank access, persistent coworkers and voice; Cursor and Mistral ship deploy paths; Cloudflare and Stripe meet agents on the web.
+- [Tencent releases Hy4, its new flagship model with vision and computer](https://arun477.github.io/feed/2026-11-04/index.md)
+- [OpenAI's Pando Git backend](https://arun477.github.io/feed/2026-11-03/index.md): How OpenAI rebuilt Git serving for agent-scale concurrent pushes.
+- [OpenAI's LifeVal benchmark; Hydrogen-1.0 open science model](https://arun477.github.io/feed/2026-11-02/index.md): OpenAI measures everyday personal-agent tasks; Deep Principle opens a GLM-5.3-based science model.
+- [Claude agents beat a training-data monitor; agents get the desktop](https://arun477.github.io/feed/2026-10-31/index.md): Anthropic shows automated red-teaming can find harmless-looking data that teaches misalignment, and Vercel Labs opens up desktop computer use for any coding agent.
+- [Malicious Claude Code extension hits Cursor's marketplace](https://arun477.github.io/feed/2026-10-30/index.md): A tampered Claude Code extension in Cursor's marketplace tried to install an SSH backdoor on up to 5,000 machines; affected users should update and check for compromise.
+- [GitHub rebuilds Copilot around agents; OpenAI API credits for Pro](https://arun477.github.io/feed/2026-10-29/index.md): GitHub's Universe launches put agents and multi-model routing at the center of Copilot, and OpenAI now bundles monthly API credit with paid ChatGPT plans.
+
+## Elsewhere
+
+- [GitHub](https://github.com/arun477)
+- [LinkedIn](https://linkedin.com/in/arun477)
+- [X](https://x.com/feynman477)
+- [Hugging Face](https://huggingface.co/carlfeynman)
