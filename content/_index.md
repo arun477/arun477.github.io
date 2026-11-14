@@ -1,8 +1,8 @@
 ---
 title: "Arun Arumugam"
 date: 2026-01-01
-lastmod: 2026-11-13T23:45:23Z
-note: "OpenAI launched ChatGPT Wallet so agents can pay without seeing your card, llama.cpp reached a stable v1.0, and Google opened Antigravity's multi-agent /teamwork to outside researchers."
+lastmod: 2026-11-14T23:45:44Z
+note: "Cursor traced its October breach to unredacted credentials in agent traces it had shared with a training vendor, a clear case for scrubbing secrets from agent logs before they leave your systems."
 role: "Agent Engineering"
 links:
   - { name: "GitHub", url: "https://github.com/arun477" }
