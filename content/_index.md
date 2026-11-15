@@ -1,8 +1,8 @@
 ---
 title: "Arun Arumugam"
 date: 2026-01-01
-lastmod: 2026-11-14T23:45:44Z
-note: "Cursor traced its October breach to unredacted credentials in agent traces it had shared with a training vendor, a clear case for scrubbing secrets from agent logs before they leave your systems."
+lastmod: 2026-11-15T23:42:09Z
+note: "Agent security leads the weekend: Cursor traced its breach to credentials left in agent traces shared with a vendor, and the FBI warned that attackers are using the open-source ARTEX agent framework to automate intrusions."
 role: "Agent Engineering"
 links:
   - { name: "GitHub", url: "https://github.com/arun477" }
