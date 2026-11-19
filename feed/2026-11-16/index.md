@@ -1,0 +1,18 @@
+---
+title: "OpenAI lets outside auditors inside; Qwen4-Max ships closed"
+date: 2026-11-16
+updated: 2026-11-16T22:37:09Z
+url: https://arun477.github.io/feed/2026-11-16/
+author: Arun Arumugam
+---
+
+# OpenAI lets outside auditors inside; Qwen4-Max ships closed
+
+OpenAI signed four independent assessors for deep-access safety reviews and put computer-use agents into healthcare production. Alibaba made Qwen4-Max generally available with closed weights, and Tencent priced Hy4 flash at $0.07 per million input tokens.
+
+
+- [Alibaba makes Qwen4-Max generally available on its API](https://qwen.ai/blog?id=qwen4-max) (Qwen, release, Models, 13:36 UTC): After last week's preview, the 2.4T MoE (71B active, 1M context) is on the QwenCloud API at $1.5/$4.5 per 1M tokens and ranks #6 on Code Arena. The weights stay closed; Alibaba says only smaller Qwen4 models will be open.
+- [OpenAI gives Apollo, METR, Transluce and Goodfire deep internal access for safety assessments](https://openai.com/index/our-first-phase-of-embedded-assessments) (OpenAI, news, Safety): Outside assessors get checkpoints, training data, monitoring records and staff time, and can publish independently. METR will audit misalignment in OpenAI's largest RL run to date; the protocols are public as a template for other labs.
+- [OpenAI ships computer-use agents for healthcare, with CVS, Cigna and Abridge in production](https://openai.com/index/advancing-computer-use-for-healthcare-teams) (OpenAI, news, Agents): A concrete test of computer-use agents in regulated work: GPT-6 Luna scores 91.8% on Stanford's HealthAdminBench at 8.5 cents a task, and CVS Health is open-sourcing the Agent Kit it built on the Agents SDK.
+- [Tencent releases Hy4 flash, a 1M-context model at $0.07 per million input tokens](https://x.com/TencentHunyuan/status/2122217770314301469) (Tencent Hunyuan, release, Models): The cheap tier of the Hy4 family: multimodal, 1M context, $0.07/$0.28 per 1M tokens, and Tencent says it matches Claude Haiku 5.5 in blind tests on everyday work. Already on OpenRouter, Vercel AI Gateway and free on OpenCode Go for two weeks.
+- [Vercel: how to build end-to-end evals for agents using your API or CLI](https://vercel.com/blog/agent-evals) (Vercel, blog, Agents): A worked method for testing software whose users are agents: a test pyramid by LLM-call count, seeded task environments, per-constraint verifiers, and choosing pass@k versus pass^k by what a failure costs.
