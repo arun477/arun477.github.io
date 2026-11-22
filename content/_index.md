@@ -1,10 +1,10 @@
 ---
 title: "Arun Arumugam"
 date: 2026-01-01
-lastmod: 2026-11-18T23:44:45Z
-note: "Java4Shell, a critical OpenJDK flaw, gives pre-auth remote code execution on default Jenkins, Jira and Keycloak, so patch Java today; Google shipped Gemini 4 Neon and Microsoft brought an always-on Autopilot agent to Copilot."
+lastmod: 2026-11-22T23:37:05Z
+note: "A Claude-assisted proof of the Riemann Hypothesis is now certified in Lean; OpenAI published its pretraining perplexity and proposed cross-lab limits on it, and Sarvam released an open-weight 105B model for agents and Indian languages."
 pins:
-  - "https://calif.io/java4shell/"
+  - "https://leanprover-community.github.io/blog/posts/riemann-hypothesis/"
 role: "Agent Engineering"
 links:
   - { name: "GitHub", url: "https://github.com/arun477" }
