@@ -1,0 +1,23 @@
+---
+title: "Java4Shell to patch; Gemini 4 Neon; Microsoft's Autopilot agent"
+date: 2026-11-18
+updated: 2026-11-18T22:33:45Z
+url: https://arun477.github.io/feed/2026-11-18/
+author: Arun Arumugam
+---
+
+# Java4Shell to patch; Gemini 4 Neon; Microsoft's Autopilot agent
+
+A critical OpenJDK flaw gives pre-auth RCE on Jenkins, Jira and Keycloak, so patch Java now. Google shipped Gemini 4 Neon, Microsoft brought an always-on agent to Copilot, and OpenAI showed models improving AMD's GPU designs.
+
+
+- **Spike.** [Java4Shell: a critical OpenJDK Base64 bug gives remote code execution on Jenkins, Jira and Keycloak](https://calif.io/java4shell/) (Calif, news, Security, 22:33 UTC): A memory-corruption flaw in OpenJDK 17.0.6+ Base64 decoding on AVX-512 x86 CPUs allows pre-auth RCE in default Jenkins, Jira, Confluence and Keycloak. Patch to 17.0.21.1, 21.0.13.1, 25.0.5.1 or 27.0.1.1, or run with -XX:-UseBASE64Intrinsics.
+- [Google releases Gemini 4 Neon, a faster frontier tier at $3/$15 per million tokens](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/) (Google, release, Models): Neon sits between Carbon and Hydrogen, ranks #1 on the Artificial Analysis Coding Agent Index and #3 on its Intelligence Index, and has a 1M context. It is built to orchestrate Hydrogen subagents in Antigravity and is live in the Gemini API today.
+- [Microsoft launches Autopilot, an always-on Copilot agent with its own identity in your tenant](https://www.microsoft.com/en-us/copilot/blog/2026/11/17/copilot-at-microsoft-ignite-expanding-whats-possible-with-intelligence-built-for-work/) (Microsoft, news, Agents): Announced at Ignite, Autopilot watches Teams and email, runs recurring work and follows up without prompts, each with its own Entra Agent ID, manager and audit log. It brings the proactive personal-agent pattern into the largest enterprise suite.
+- [OpenAI models found up to 14% PPA gains on AMD's flagship GPU design](https://openai.com/index/advancing-chip-design-with-our-models) (OpenAI, news, Research): Model rewrites of SystemVerilog RTL, verified with Synopsys tools, beat years of hand optimisation in under five months, and AMD has already sent some to manufacturing. A concrete case of frontier models doing expert hardware work, not just code.
+- [Tencent opens the weights of Hy4 flash, a 224B MoE with 12B active and 1M context](https://x.com/TencentHunyuan/status/2122912575302119554) (Tencent Hunyuan, release, Models): Two days after the cheap API launch, Tencent put Hy4 flash, an FP8 build and the base model on Hugging Face. A natively multimodal 1M-context model you can self-host is a strong new option for open-weight agent work, though 224B total parameters still needs a multi-GPU node.
+- [Grok Bot can now book flights, hotels and rental cars end to end](https://x.com/bot/status/2123121401762918718) (Grok Bot, news, Agents): Consumer agents are moving from planning trips to completing purchases on the user's behalf, one of the clearest tests of whether people will trust an agent with real money.
+- [OpenAI: inside the Codex sandbox on macOS, Linux and Windows](https://openai.com/index/inside-the-codex-sandbox) (OpenAI, blog, Agents): How Codex picks its defaults (workspace writes, broad reads, no network), the attacks those defaults still allow, and how each OS enforces permission profiles. Useful for anyone designing an agent harness, and the sandbox is reusable via codex sandbox.
+- [Meta: agents now do 60% of porting ranking-model improvements across its ads fleet](https://engineering.fb.com/2026/11/18/ml-applications/ai-agents-to-scale-ml-innovations-across-ads-ranking-models/) (Meta Engineering, blog, Agents): Meta describes how agents adapt proven techniques to many differently built ads models, with 3x engineer productivity, a median 4x cut in training compute and an estimated $45M+ in compute savings this year.
+- [Ramp: making LLM judges agree when grading coding agents](https://builders.ramp.com/post/building-llm-judges-to-judge-llms) (Ramp Engineering, blog, Evals): Ramp replaced tests with LLM judges for its internal SWE benchmark. Splitting 'list the differences' from 'do they matter', then letting judges deliberate, lifted agreement from 54% to 94%, and engineers backed about 90% of verdicts.
+- [Hugging Face: running a 180B MoE in 32GB of RAM by streaming experts from SSD](https://huggingface.co/blog/moe-expert-streaming) (Hugging Face, blog, Infra): A hands-on account of offloading MoE experts to disk in Transformers to run 121GB of experts on a 32GB Mac, getting within 6% of a dedicated engine on token generation. Shows what local inference of big open models now costs.
