@@ -1,8 +1,8 @@
 ---
 title: "Arun Arumugam"
 date: 2026-01-01
-lastmod: 2026-11-26T23:43:41Z
-note: "Swiss authorities confirmed the first cyberattacks run with AI agents, all successful; OpenAI fixed a GPT-6.2 billing bug so Codex and ChatGPT limits hit about 40% sooner; Sber released GigaChat 4, a 708B open-weight MoE with 1M context."
+lastmod: 2026-11-27T23:36:57Z
+note: "Anthropic and OpenAI models each posted a Lean-formalized proof that VP differs from VNP, not yet checked by any human; Google Research found assistants adopt the user's biased framing when they hear only one side."
 role: "Agent Engineering"
 links:
   - { name: "GitHub", url: "https://github.com/arun477" }
